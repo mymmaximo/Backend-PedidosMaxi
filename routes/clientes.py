@@ -113,16 +113,30 @@ def update_cliente(
     cliente: Clientes_Crear, 
     db: Session = Depends(get_db)
 ):
-    db_cliente = crud.update_cliente(
+    db_cliente_email = crud.get_cliente(
         db, 
-        id_cliente=id_cliente, 
-        cliente=cliente
+        email_cliente=cliente.email
     )
+    if db_cliente_email and id_cliente != db_cliente_email.id:
+        raise HTTPException(
+            status_code=400, 
+            detail="Email ya registrado"
+        )
     if db_cliente is None:
         raise HTTPException(
             status_code=404, 
             detail="Cliente no encontrado"
         )
+    for key, value in cliente.dict().items():
+        if key == "contrasena":
+            contrasena_hash = get_contrasena_criptid(cliente.contrasena)
+            value = contrasena_hash
+        setattr(db_cliente, key, value)
+    db_cliente = crud.update_cliente(
+        db, 
+        id_cliente=id_cliente, 
+        cliente=cliente
+    )
     return db_cliente
 
 @router.delete(

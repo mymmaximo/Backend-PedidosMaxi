@@ -79,6 +79,9 @@ def update_cliente(
     if not db_cliente:
         return None
     for key, value in cliente.dict().items():
+        if key == "contrasena":
+            contrasena_hash = get_contrasena_criptid(cliente.contrasena)
+            value = contrasena_hash
         setattr(db_cliente, key, value)
     db.commit()
     db.refresh(db_cliente)
