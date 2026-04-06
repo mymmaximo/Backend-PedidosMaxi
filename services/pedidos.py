@@ -186,7 +186,7 @@ def create_pedido(
 ):
     db_pedido = Pedidos(**pedido.dict())
     db.add(db_pedido)
-    db.commit()
+    db.flush()
     db.refresh(db_pedido)
     return db_pedido
 

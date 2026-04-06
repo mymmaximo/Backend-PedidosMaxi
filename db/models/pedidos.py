@@ -57,8 +57,8 @@ class Pedidos(Base):
 
 class Pedidos_Base(BaseModel):
     id_cliente: int
-    id_direccion: int
-    metodo_pago: str
+    id_direccion: Optional[int]
+    metodo_pago: Optional[str]
     tiempo_estimado_entrega: Optional[int]
     tiempo_entrega: Optional[int]
 

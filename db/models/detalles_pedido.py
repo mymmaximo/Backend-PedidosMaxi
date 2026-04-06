@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from db.database import Base
 from pydantic import BaseModel
 from db.models.productos import Productos_Detalles
+from typing import Optional
 
 
 class Detalles_Pedido(Base):
@@ -42,7 +43,7 @@ class Detalles_Pedido(Base):
     )
 
 class Detalles_Pedido_Base(BaseModel):
-    id_pedido: int
+    id_pedido: Optional[int]
     cantidad: int
     id_producto: int
 

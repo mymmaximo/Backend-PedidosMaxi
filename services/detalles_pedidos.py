@@ -42,7 +42,7 @@ def create_detalle_pedido(
         precio_unitario=db_producto.precio
     )
     db.add(db_detalle_pedido)
-    db.commit()
+    db.flush()
     db.refresh(db_detalle_pedido)
     return db_detalle_pedido
 

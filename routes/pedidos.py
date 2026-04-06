@@ -3,10 +3,15 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from db.database import get_db
 from db.models.pedidos import Pedidos_Respuesta, Pedidos_Crear, Pedidos_Detalles, Pedidos_CDDP
+from db.models.detalles_pedido import Detalles_Pedido_Crear
 from services.clientes import get_cliente
 from services.direcciones import get_direccion
 from services import pedidos as crud
+from services.detalles_pedidos import create_detalle_pedido
+from sec import verificar_token
+from fastapi.security import OAuth2PasswordBearer
 router = APIRouter()
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="cliente/login")
 
 
 
@@ -108,36 +113,33 @@ def read_pedidos(
     return pedidos 
 
 @router.post(
-        "/pedidos/", 
-        response_model=Pedidos_Respuesta, 
-        tags=["Sección de Pedidos"]
+    "/pedidos/", 
+    response_model=Pedidos_Respuesta, 
+    tags=["Sección de Pedidos"]
 )
 def create_pedido(
-    pedido: Pedidos_Crear, 
-    db: Session = Depends(get_db)
+        nuevo_detalle: Detalles_Pedido_Crear,
+        token: str = Depends(oauth2_scheme),
+        db: Session = Depends(get_db)
 ):
-    db_cliente = get_cliente(
-        db, 
-        id_cliente=pedido.id_cliente
+    usuario_actual = verificar_token(token)
+    if not usuario_actual:
+        raise HTTPException(status_code=401, detail="Usuario inválido")
+    id_usuario = usuario_actual.get("sub")
+    nuevo_pedido = Pedidos_Crear(id_cliente=id_usuario)
+    db_pedido = crud.create_pedido(
+        db=db,
+        pedido=nuevo_pedido
     )
-    if not db_cliente:
-        raise HTTPException(
-            status_code=404, 
-            detail="Cliente no encontrado"
-        )
-    db_direccion = get_direccion(
-        db, 
-        id_direccion=pedido.id_direccion
+    nuevo_detalle.id_pedido = db_pedido.id
+    db_detalle = create_detalle_pedido(
+        db=db,
+        detalle_pedido=nuevo_detalle
     )
-    if not db_direccion:
-        raise HTTPException(
-            status_code=404, 
-            detail="Direccion no encontrada"
-        )
-    return crud.create_pedido(
-        db=db, 
-        pedido=pedido
-    )
+    db.commit()
+    db.refresh(db_pedido)
+    db.refresh(db_detalle)
+    return db_pedido
 
 @router.put(
         "/pedidos/id/{id_pedido}", 
