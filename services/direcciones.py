@@ -39,7 +39,6 @@ def get_direcciones(
     ):
     return db.query(Direcciones).limit(limit).all()
 
-
 def create_direccion(
         db: Session, 
         direccion: Direcciones_Crear

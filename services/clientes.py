@@ -69,7 +69,6 @@ def create_cliente(
     db.refresh(db_cliente)
     return db_cliente
 
-
 def update_cliente(
         db: Session, 
         id_cliente: int, 
@@ -86,7 +85,6 @@ def update_cliente(
     db.commit()
     db.refresh(db_cliente)
     return db_cliente
-
 
 def delete_cliente(
         db: Session, 

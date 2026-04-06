@@ -35,6 +35,7 @@ class Direcciones(Base):
         "Clientes", 
         backref="direcciones"
     )
+  
     
 class Direcciones_Base(BaseModel):
     ciudad: str

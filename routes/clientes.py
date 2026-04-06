@@ -122,21 +122,16 @@ def update_cliente(
             status_code=400, 
             detail="Email ya registrado"
         )
-    if db_cliente is None:
-        raise HTTPException(
-            status_code=404, 
-            detail="Cliente no encontrado"
-        )
-    for key, value in cliente.dict().items():
-        if key == "contrasena":
-            contrasena_hash = get_contrasena_criptid(cliente.contrasena)
-            value = contrasena_hash
-        setattr(db_cliente, key, value)
     db_cliente = crud.update_cliente(
         db, 
         id_cliente=id_cliente, 
         cliente=cliente
     )
+    if db_cliente is None:
+        raise HTTPException(
+            status_code=404, 
+            detail="Cliente no encontrado"
+        )
     return db_cliente
 
 @router.delete(

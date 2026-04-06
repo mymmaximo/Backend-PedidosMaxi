@@ -39,7 +39,6 @@ class Productos(Base):
     )
 
 
-
 class Productos_Base(BaseModel):
     nombre: str
     precio: float

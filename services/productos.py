@@ -45,7 +45,6 @@ def get_productos(
     ):
     return db.query(Productos).limit(limit).all()
 
-
 def create_producto(
         db: Session, 
         producto: Productos_Crear

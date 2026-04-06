@@ -52,7 +52,6 @@ def read_productos(
     )
     return productos
 
-
 @router.post(
         "/productos/", 
         response_model=Productos_Respuesta, 

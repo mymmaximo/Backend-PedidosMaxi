@@ -179,7 +179,6 @@ def get_all_pedidos(
         }
         db_pedidos[id_pedidios]["detalle_pedido"].append(nuevo_detalle)
     return list(db_pedidos.values())
-    
 
 def create_pedido(
         db: Session, 
