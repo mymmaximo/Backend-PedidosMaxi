@@ -3,11 +3,11 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from db.database import get_db
 from db.models.pedidos import Pedidos_Respuesta, Pedidos_Crear, Pedidos_Detalles, Pedidos_CDDP
-from db.models.detalles_pedido import Detalles_Pedido_Crear
+from db.models.detalles_pedido import Detalles_Pedido_Crear, Detalles_Pedido_Respuesta
 from services.clientes import get_cliente
 from services.direcciones import get_direccion
 from services import pedidos as crud
-from services.detalles_pedidos import create_detalle_pedido
+from services import detalles_pedidos as servi
 from sec import verificar_token
 from fastapi.security import OAuth2PasswordBearer
 router = APIRouter()
@@ -118,9 +118,9 @@ def read_pedidos(
     tags=["Sección de Pedidos"]
 )
 def create_pedido(
-        nuevo_detalle: Detalles_Pedido_Crear,
-        token: str = Depends(oauth2_scheme),
-        db: Session = Depends(get_db)
+    nuevo_detalle: Detalles_Pedido_Crear,
+    token: str = Depends(oauth2_scheme),
+    db: Session = Depends(get_db)
 ):
     usuario_actual = verificar_token(token)
     if not usuario_actual:
@@ -132,7 +132,7 @@ def create_pedido(
         pedido=nuevo_pedido
     )
     nuevo_detalle.id_pedido = db_pedido.id
-    db_detalle = create_detalle_pedido(
+    db_detalle = servi.create_detalle_pedido(
         db=db,
         detalle_pedido=nuevo_detalle
     )
@@ -140,6 +140,28 @@ def create_pedido(
     db.refresh(db_pedido)
     db.refresh(db_detalle)
     return db_pedido
+
+@router.post(
+        "/pedidos/detalles_pedido/", 
+        response_model=Detalles_Pedido_Respuesta, 
+        tags=["Sección de Detalles de Pedidos"]
+)
+def create_detalles_pedido(
+    detalle_pedido: Detalles_Pedido_Crear, 
+    token: str = Depends(oauth2_scheme),
+    db: Session = Depends(get_db)
+):
+    usuario_actual = verificar_token(token)
+    if not usuario_actual:
+        raise HTTPException(status_code=401, detail="Usuario inválido")
+    id_usuario = usuario_actual.get("sub")
+    db_detalle = servi.create_detalle_pedido(
+        db=db,
+        detalle_pedido=detalle_pedido
+    )
+    db.commit()
+    db.refresh(db_detalle)
+    return db_detalle
 
 @router.put(
         "/pedidos/id/{id_pedido}", 
