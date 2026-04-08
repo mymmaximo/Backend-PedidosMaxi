@@ -118,27 +118,19 @@ def read_pedidos(
     tags=["Sección de Pedidos"]
 )
 def create_pedido(
-    nuevo_detalle: Detalles_Pedido_Crear,
+    nuevo_pedido: Pedidos_Crear,
     token: str = Depends(oauth2_scheme),
     db: Session = Depends(get_db)
 ):
     usuario_actual = verificar_token(token)
     if not usuario_actual:
         raise HTTPException(status_code=401, detail="Usuario inválido")
-    id_usuario = usuario_actual.get("sub")
-    nuevo_pedido = Pedidos_Crear(id_cliente=id_usuario)
     db_pedido = crud.create_pedido(
         db=db,
         pedido=nuevo_pedido
     )
-    nuevo_detalle.id_pedido = db_pedido.id
-    db_detalle = servi.create_detalle_pedido(
-        db=db,
-        detalle_pedido=nuevo_detalle
-    )
     db.commit()
     db.refresh(db_pedido)
-    db.refresh(db_detalle)
     return db_pedido
 
 @router.post(

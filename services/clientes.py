@@ -48,12 +48,12 @@ def login_clientes(
         Clientes.usuario == pase.usuario
         ).first()
     if not cliente_db:
-        return False
+        return False, False
     contrasena_valida = verifica_sena(pase.contrasena, cliente_db.contrasena)
     if not contrasena_valida:
-        return False
+        return False, False
     token = crear_pase({"sub": str(cliente_db.id)})
-    return token
+    return token, cliente_db.id
 
 def create_cliente(
         db: Session, 

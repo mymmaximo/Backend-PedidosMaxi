@@ -92,3 +92,4 @@ class Clientes_Login(BaseModel):
 class Token(BaseModel):
     access_token: str
     token_type: str
+    id_cliente: int

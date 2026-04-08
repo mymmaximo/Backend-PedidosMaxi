@@ -39,7 +39,7 @@ def crear_pase(
         datos: dict
 ):
     encripto = datos.copy()
-    expira = datetime.now() + timedelta(minutes=120)
+    expira = datetime.utcnow() + timedelta(minutes=120)
     encripto.update({
         "exp": expira
     })
@@ -59,5 +59,13 @@ def verificar_token(token: str):
             algorithms=[ALGORITMO]
         )
         return payload
-    except Exception:
+    except Exception as e:
+        print("\n" + "="*30)
+        print("🚨 FALLO AL VERIFICAR TOKEN 🚨")
+        print(f"Motivo del error: {e}")
+        print(f"Token recibido: {token[:20]}... (cortado)")
+        print(f"Arma Secreta cargada: {ARMA_SECRETA}")
+        print(f"Algoritmo cargado: {ALGORITMO}")
+        print("="*30 + "\n")
         return None
+        

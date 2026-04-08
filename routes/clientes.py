@@ -60,7 +60,7 @@ def login_cliente(
     pase: Clientes_Login, 
     db: Session = Depends(get_db)
 ):
-    cliente = crud.login_clientes(
+    cliente, id_cliente = crud.login_clientes(
         db,
         pase
     )
@@ -69,7 +69,11 @@ def login_cliente(
             status_code=401, 
             detail="Usuario o Contraseña Invalido"
         )
-    return {"access_token": cliente, "token_type": "bearer"}
+    return {
+        "access_token": cliente, 
+        "token_type": "bearer",
+        "id_cliente": id_cliente
+        }
     
 @router.post(
         "/clientes/", 
