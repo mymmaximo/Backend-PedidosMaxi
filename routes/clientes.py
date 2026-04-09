@@ -60,7 +60,7 @@ def login_cliente(
     pase: Clientes_Login, 
     db: Session = Depends(get_db)
 ):
-    cliente, id_cliente = crud.login_clientes(
+    cliente, id_cliente, id_rol = crud.login_clientes(
         db,
         pase
     )
@@ -72,7 +72,8 @@ def login_cliente(
     return {
         "access_token": cliente, 
         "token_type": "bearer",
-        "id_cliente": id_cliente
+        "id_cliente": id_cliente,
+        "id_rol": id_rol
         }
     
 @router.post(

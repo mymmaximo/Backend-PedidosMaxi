@@ -26,15 +26,6 @@ class Direcciones(Base):
     provincia = Column(
         String(50)
     )
-    id_cliente = Column(
-        Integer, 
-        ForeignKey("clientes.id"), 
-        index=True
-    )
-    clientes = relationship(
-        "Clientes", 
-        backref="direcciones"
-    )
   
     
 class Direcciones_Base(BaseModel):
@@ -45,13 +36,11 @@ class Direcciones_Base(BaseModel):
 class Direcciones_Crear(Direcciones_Base):
     barrio: str
     provincia: str
-    id_cliente: int
 
 class Direcciones_Respuesta(Direcciones_Base):
     id: int
     barrio: str
     provincia: str
-    id_cliente: int
     model_config = {"from_attributes": True}
 
 class Direcciones_Pedidos(BaseModel):

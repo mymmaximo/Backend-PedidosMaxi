@@ -32,19 +32,24 @@ def get_detalles_pedido(
 
 def create_detalle_pedido(
         db: Session, 
-        detalle_pedido: Detalles_Pedido_Crear
+        detalle_pedido: list[Detalles_Pedido_Crear]
     ):
-    db_producto = db.query(Productos).filter(Productos.id == detalle_pedido.id_producto).first()
-    db_detalle_pedido = Detalles_Pedido(
-        id_pedido=detalle_pedido.id_pedido,
-        id_producto=detalle_pedido.id_producto,
-        cantidad=detalle_pedido.cantidad,
-        precio_unitario=db_producto.precio
-    )
-    db.add(db_detalle_pedido)
-    db.flush()
-    db.refresh(db_detalle_pedido)
-    return db_detalle_pedido
+    lista_detalles = []
+    for i in detalle_pedido:
+        db_producto = db.query(Productos).filter(Productos.id == i.id_producto).first()
+        if db_producto is None:
+            return False
+        db_detalle_pedido = Detalles_Pedido(
+            id_pedido=i.id_pedido,
+            id_producto=i.id_producto,
+            cantidad=i.cantidad,
+            precio_unitario=db_producto.precio
+        )
+        lista_detalles.append(db_detalle_pedido)
+        db.add(db_detalle_pedido)
+        db.flush()
+        db.refresh(db_detalle_pedido)
+    return lista_detalles
 
 def update_detalle_pedido(
         db: Session, 

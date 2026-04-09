@@ -1,4 +1,5 @@
 from typing import Optional
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 from db.models.clientes import Clientes, Clientes_Crear, Clientes_Login
 from sec import get_contrasena_criptid, verifica_sena, crear_pase, verificar_token
@@ -48,12 +49,21 @@ def login_clientes(
         Clientes.usuario == pase.usuario
         ).first()
     if not cliente_db:
-        return False, False
-    contrasena_valida = verifica_sena(pase.contrasena, cliente_db.contrasena)
+        return False, False, False
+    contrasena_valida = verifica_sena(
+        pase.contrasena, 
+        cliente_db.contrasena
+    )
     if not contrasena_valida:
-        return False, False
+        return False, False, False
     token = crear_pase({"sub": str(cliente_db.id)})
-    return token, cliente_db.id
+    return token, cliente_db.id, cliente_db.id_rol
+
+def get_cliente_direccion(
+    db: Session, 
+):
+    query = text("SELECT * from get_all_clientes ()")
+    db_cliente = db.execute(query).mappings().all()
 
 def create_cliente(
         db: Session, 

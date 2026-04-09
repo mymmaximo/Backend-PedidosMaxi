@@ -45,6 +45,9 @@ class Clientes(Base):
         DateTime(timezone=True), 
         onupdate=func.now()
     )
+    id_rol = Column(
+        Integer
+    )
 
 
 class Clientes_Base(BaseModel):
@@ -74,11 +77,14 @@ class Clientes_Direcciones(Clientes_Base):
     direcciones: list[Direcciones_Clientes]
 
 class Clientes_Direccion(BaseModel):
+    id_cliente: int
     nombre: str
     apellido: str
     email: EmailStr
     dni: str
     calle: str
+    id_rol: int
+    id_direccion: int
     numero: int
     barrio: str
     ciudad: str
@@ -93,3 +99,4 @@ class Token(BaseModel):
     access_token: str
     token_type: str
     id_cliente: int
+    id_rol: int

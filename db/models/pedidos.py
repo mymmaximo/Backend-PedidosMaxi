@@ -44,6 +44,12 @@ class Pedidos(Base):
         DateTime(timezone=True), 
         onupdate=func.now()
     )
+    estatus = Column(
+        Integer,
+        ForeignKey("estados_pedido.id"), 
+        index=True
+    )
+
 
     clientes = relationship(
         "Clientes", 
@@ -54,13 +60,13 @@ class Pedidos(Base):
         backref="pedidos"
     )
 
-
 class Pedidos_Base(BaseModel):
     id_cliente: int
-    id_direccion: Optional[int] = None
-    metodo_pago: Optional[str] = None
-    tiempo_estimado_entrega: Optional[int] = None
-    tiempo_entrega: Optional[int] = None
+    id_direccion: Optional[int] = 0
+    metodo_pago: Optional[str] = " "
+    tiempo_estimado_entrega: Optional[int] = 0
+    tiempo_entrega: Optional[int] = 0
+    estatus: Optional[int] = 3
 
 class Pedidos_Crear(Pedidos_Base):
     pass
@@ -81,6 +87,7 @@ class Pedidos_Detalles_Productos(BaseModel):
     id_cliente: int
     id_direccion: int
     metodo_pago: str
+    estatus: int
     tiempo_estimado_entrega: int
     tiempo_entrega: int
     id_detalles_pedido: int
@@ -112,6 +119,7 @@ class Pedidos_Clientes_Direcciones_Detalles_Productos(BaseModel):
     ciudad: str
     provincia: str
     metodo_pago: str
+    estatus: int
     tiempo_estimado_entrega: int
     tiempo_entrega: int
     id_detalles_pedido: int

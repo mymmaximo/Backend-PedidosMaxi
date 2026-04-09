@@ -135,11 +135,11 @@ def create_pedido(
 
 @router.post(
         "/pedidos/detalles_pedido/", 
-        response_model=Detalles_Pedido_Respuesta, 
+        response_model=list[Detalles_Pedido_Respuesta], 
         tags=["Sección de Detalles de Pedidos"]
 )
 def create_detalles_pedido(
-    detalle_pedido: Detalles_Pedido_Crear, 
+    detalle_pedido: list[Detalles_Pedido_Crear], 
     token: str = Depends(oauth2_scheme),
     db: Session = Depends(get_db)
 ):
@@ -152,7 +152,6 @@ def create_detalles_pedido(
         detalle_pedido=detalle_pedido
     )
     db.commit()
-    db.refresh(db_detalle)
     return db_detalle
 
 @router.put(
