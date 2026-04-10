@@ -50,6 +50,7 @@ class Direcciones_Pedidos(BaseModel):
     provincia: str
 
 class Direcciones_Clientes(BaseModel):
+    id_direccion: int
     ciudad: str
     calle: str
     barrio: str

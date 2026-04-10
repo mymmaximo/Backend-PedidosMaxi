@@ -46,7 +46,6 @@ class Pedidos(Base):
     )
     estatus = Column(
         Integer,
-        ForeignKey("estados_pedido.id"), 
         index=True
     )
 

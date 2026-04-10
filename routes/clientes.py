@@ -2,7 +2,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from db.database import get_db
-from db.models.clientes import Clientes_Respuesta, Clientes_Crear, Clientes_Login, Token
+from db.models.clientes import Clientes_Respuesta, Clientes_Crear, Clientes_Login, Token,Clientes_Direcciones
 from services import clientes as crud
 router = APIRouter()
 
@@ -38,16 +38,14 @@ def read_cliente(
 
 @router.get(
         "/clientes/", 
-        response_model=list[Clientes_Respuesta], 
+        response_model=list[Clientes_Direcciones], 
         tags=["Sección de Clientes"]
 )
 def read_clientes(
     db: Session = Depends(get_db), 
-    limit: int = 100
 ):
-    clientes = crud.get_clientes(
-        db, 
-        limit=limit
+    clientes = crud.get_cliente_direccion(
+        db,
     )
     return clientes
 

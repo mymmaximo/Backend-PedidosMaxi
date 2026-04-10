@@ -73,6 +73,7 @@ class Clientes_Pedidos(BaseModel):
     apellido: str
 
 class Clientes_Direcciones(Clientes_Base):
+    id: int
     dni: str
     direcciones: list[Direcciones_Clientes]
 
@@ -99,4 +100,4 @@ class Token(BaseModel):
     access_token: str
     token_type: str
     id_cliente: int
-    id_rol: int
+    id_rol: int = 3

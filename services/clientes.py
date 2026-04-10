@@ -1,7 +1,7 @@
 from typing import Optional
 from sqlalchemy import text
 from sqlalchemy.orm import Session
-from db.models.clientes import Clientes, Clientes_Crear, Clientes_Login
+from db.models.clientes import Clientes, Clientes_Crear, Clientes_Login, Clientes_Direccion
 from sec import get_contrasena_criptid, verifica_sena, crear_pase, verificar_token
 
 def get_cliente(
@@ -60,10 +60,39 @@ def login_clientes(
     return token, cliente_db.id, cliente_db.id_rol
 
 def get_cliente_direccion(
-    db: Session, 
+    db: Session,
 ):
     query = text("SELECT * from get_all_clientes ()")
     db_cliente = db.execute(query).mappings().all()
+    cliente_list = {}
+    for i in db_cliente:
+        id_cliente = i["id_cliente"]
+        if id_cliente not in cliente_list:
+            cliente_list[id_cliente] = {
+                "id": id_cliente,
+                "nombre": i["nombre"],
+                "email": i["email"],
+                "dni": i["dni"],
+                "apellido": i["apellido"],
+                "usuario": i["usuario"],
+                "id_rol": i["id_rol"],
+                "direcciones": [] 
+            }
+        id_direcciones = []
+        if i["id_direccion"] is not None:
+            for e in cliente_list[id_cliente]["direcciones"]:
+                id_direcciones.append(e["id_direccion"])
+            if i["id_direccion"] not in id_direcciones:
+                nueva_direccion = {
+                    "id_direccion": i["id_direccion"],
+                    "calle": i["calle"],
+                    "numero": i["numero"],
+                    "barrio": i["barrio"],
+                    "ciudad": i["ciudad"],
+                    "provincia": i["provincia"],
+                }
+                cliente_list[id_cliente]["direcciones"].append(nueva_direccion)
+    return list(cliente_list.values())
 
 def create_cliente(
         db: Session, 
