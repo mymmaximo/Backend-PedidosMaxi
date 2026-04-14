@@ -2,7 +2,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from db.database import get_db
-from db.models.clientes import Clientes_Respuesta, Clientes_Crear, Clientes_Login, Token,Clientes_Direcciones
+from db.models.clientes import Clientes_Respuesta, Clientes_Crear, Clientes_Login, Token,Clientes_Direcciones, Clientes_id_Direccion
 from services import clientes as crud
 router = APIRouter()
 
@@ -35,6 +35,21 @@ def read_cliente(
             detail="Cliente no encontrado"
         )
     return db_cliente
+
+@router.get(
+        "/cliente/{id_cliente}/direcciones/", 
+        response_model= list[Clientes_id_Direccion], 
+        tags=["Sección de Clientes"]
+)
+def get_cliente_idireccion(
+    id_cliente: int, 
+    db: Session = Depends(get_db), 
+):
+    cliente = crud.get_cliente_id_direccion(
+        db,
+        id_cliente
+    )
+    return cliente
 
 @router.get(
         "/clientes/", 

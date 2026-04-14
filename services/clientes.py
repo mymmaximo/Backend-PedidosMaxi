@@ -59,8 +59,28 @@ def login_clientes(
     token = crear_pase({"sub": str(cliente_db.id)})
     return token, cliente_db.id, cliente_db.id_rol
 
+def get_cliente_id_direccion(
+    db:Session,
+    id_cliente: int
+):
+    query = text("SELECT * from get_only_clientes ()")
+    db_cliente = db.execute(query).mappings().all()
+    direcciones_list = []
+    for i in db_cliente:
+        if id_cliente == i["id_cliente"]:
+            direcciones_list.append ({
+                "id_direccion": i["id_direccion"],
+                "calle": i["calle"],
+                "numero": i["numero"],
+                "barrio": i["barrio"],
+                "ciudad": i["ciudad"],
+                "provincia": i["provincia"]
+            })
+    return direcciones_list
+    
+
 def get_cliente_direccion(
-    db: Session,
+    db: Session
 ):
     query = text("SELECT * from get_all_clientes ()")
     db_cliente = db.execute(query).mappings().all()

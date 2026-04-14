@@ -92,6 +92,15 @@ class Clientes_Direccion(BaseModel):
     provincia: str
     model_config = {"from_attributes": True}
 
+class Clientes_id_Direccion(BaseModel):
+    id_direccion: int
+    calle: str
+    numero: int
+    barrio: str
+    ciudad: str
+    provincia: str
+    model_config = {"from_attributes": True}
+
 class Clientes_Login(BaseModel):
     usuario: str
     contrasena: str
