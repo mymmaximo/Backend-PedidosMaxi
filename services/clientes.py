@@ -66,16 +66,20 @@ def get_cliente_id_direccion(
     query = text("SELECT * from get_only_clientes ()")
     db_cliente = db.execute(query).mappings().all()
     direcciones_list = []
+    id_direcciones = []
     for i in db_cliente:
         if id_cliente == i["id_cliente"]:
-            direcciones_list.append ({
-                "id_direccion": i["id_direccion"],
-                "calle": i["calle"],
-                "numero": i["numero"],
-                "barrio": i["barrio"],
-                "ciudad": i["ciudad"],
-                "provincia": i["provincia"]
-            })
+            if i["id_direccion"] is not None:
+                if i["id_direccion"] not in id_direcciones:
+                    direcciones_list.append ({
+                        "id_direccion": i["id_direccion"],
+                        "calle": i["calle"],
+                        "numero": i["numero"],
+                        "barrio": i["barrio"],
+                        "ciudad": i["ciudad"],
+                        "provincia": i["provincia"]
+                    })
+                    id_direcciones.append(i["id_direccion"])
     return direcciones_list
     
 

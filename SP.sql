@@ -197,19 +197,17 @@ AS $function$
 $function$
 ;
 
--- DROP FUNCTION public.fn_obtener_ticket_pedido(int4, int4);
+-- DROP FUNCTION public.fn_obtener_ticket_pedido(int4, int2);
 
-CREATE OR REPLACE FUNCTION public.fn_obtener_ticket_pedido(p_id_pedido integer, p_dias_reales integer)
+CREATE OR REPLACE FUNCTION public.fn_obtener_ticket_pedido(p_id_pedido integer, p_dias_reales smallint)
  RETURNS void
  LANGUAGE plpgsql
 AS $function$
-		declare p_tiempo_estimado_entrega int2;
 		begin
 			update pedidos
-				set tiempo_entrega = p_dias_reales
-				where id = p_id_pedido
-				returning tiempo_estimado_entrega into p_tiempo_estimado_entrega;
-			if p_dias_reales > p_tiempo_estimado_entrega then
+				set p.tiempo_entrega = p_dias_reales
+				where p.id = p_id_pedido;
+			if p.tiempo_entrega > p.tiempo_estimado_entrega then
 				raise notice 'El pedido no llego en el tiempo estimado';
 			end if;
 		end;
@@ -233,27 +231,97 @@ AS $function$
 $function$
 ;
 
--- DROP FUNCTION public.fn_obtener_ticket_pedido(int4, int2);
+-- DROP FUNCTION public.fn_obtener_ticket_pedido(int4, int4);
 
-CREATE OR REPLACE FUNCTION public.fn_obtener_ticket_pedido(p_id_pedido integer, p_dias_reales smallint)
+CREATE OR REPLACE FUNCTION public.fn_obtener_ticket_pedido(p_id_pedido integer, p_dias_reales integer)
  RETURNS void
  LANGUAGE plpgsql
 AS $function$
+		declare p_tiempo_estimado_entrega int2;
 		begin
 			update pedidos
-				set p.tiempo_entrega = p_dias_reales
-				where p.id = p_id_pedido;
-			if p.tiempo_entrega > p.tiempo_estimado_entrega then
+				set tiempo_entrega = p_dias_reales
+				where id = p_id_pedido
+				returning tiempo_estimado_entrega into p_tiempo_estimado_entrega;
+			if p_dias_reales > p_tiempo_estimado_entrega then
 				raise notice 'El pedido no llego en el tiempo estimado';
 			end if;
 		end;
 	$function$
 ;
 
+-- DROP FUNCTION public.get_all_clientes();
+
+CREATE OR REPLACE FUNCTION public.get_all_clientes()
+ RETURNS TABLE(id_cliente integer, nombre character varying, email character varying, dni character varying, apellido character varying, usuario character varying, id_rol integer, id_direccion integer, calle character varying, numero integer, barrio character varying, ciudad character varying, provincia character varying)
+ LANGUAGE plpgsql
+AS $function$
+begin
+	return query
+	select
+		c.id,
+		c.nombre,
+		c.email,
+		c.dni,
+		c.apellido,
+		c.usuario,
+		c.id_rol,
+			d.id,
+			d.calle,
+			d.numero,
+			d.barrio,
+			d.ciudad,
+			d.provincia
+	from clientes c
+	left join pedidos p on c.id = p.id_cliente
+	left join direcciones d on p.id_direccion = d.id;
+end;
+$function$
+;
+
+-- DROP FUNCTION public.get_direcciones(int4);
+
+CREATE OR REPLACE FUNCTION public.get_direcciones(p_id_cliente integer)
+ RETURNS SETOF direcciones
+ LANGUAGE plpgsql
+AS $function$
+begin
+	return query
+	select d.* 
+	from direcciones d
+	join pedidos p on d.id = p.id_direccion 
+	where p.id_cliente = p_id_cliente;
+end;
+$function$
+;
+
+-- DROP FUNCTION public.get_only_clientes();
+
+CREATE OR REPLACE FUNCTION public.get_only_clientes()
+ RETURNS TABLE(id_cliente integer, id_direccion integer, calle character varying, numero integer, barrio character varying, ciudad character varying, provincia character varying)
+ LANGUAGE plpgsql
+AS $function$
+begin
+	return query
+	select
+		c.id,
+			d.id,
+			d.calle,
+			d.numero,
+			d.barrio,
+			d.ciudad,
+			d.provincia
+	from clientes c
+	left join pedidos p on c.id = p.id_cliente
+	left join direcciones d on p.id_direccion = d.id;
+end;
+$function$
+;
+
 -- DROP FUNCTION public.obtener_all_pedidos();
 
 CREATE OR REPLACE FUNCTION public.obtener_all_pedidos()
- RETURNS TABLE(id_pedido integer, id_cliente integer, nombre_cliente character varying, apellido_cliente character varying, id_direccion integer, calle character varying, numero integer, ciudad character varying, provincia character varying, metodo_pago character varying, tiempo_estimado_entrega smallint, tiempo_entrega smallint, id_detalles_pedido integer, cantidad integer, precio_unitario numeric, id_producto integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying)
+ RETURNS TABLE(id_pedido integer, id_cliente integer, nombre_cliente character varying, apellido_cliente character varying, id_direccion integer, calle character varying, numero integer, ciudad character varying, provincia character varying, metodo_pago character varying, estatus integer, tiempo_estimado_entrega smallint, tiempo_entrega smallint, id_detalles_pedido integer, cantidad integer, precio_unitario numeric, id_producto integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying)
  LANGUAGE plpgsql
 AS $function$
 		begin
@@ -269,6 +337,7 @@ AS $function$
 							d.ciudad,
 							d.provincia,
 						p.metodo_pago,
+						p.estatus,
 						p.tiempo_estimado_entrega,
 						p.tiempo_entrega,
 							dp.id,
@@ -292,7 +361,7 @@ AS $function$
 -- DROP FUNCTION public.obtener_id_pedido_pedidos(int4);
 
 CREATE OR REPLACE FUNCTION public.obtener_id_pedido_pedidos(p_id_pedidos integer)
- RETURNS TABLE(id_pedido integer, id_cliente integer, nombre_cliente character varying, apellido_cliente character varying, id_direccion integer, calle character varying, numero integer, ciudad character varying, provincia character varying, metodo_pago character varying, tiempo_estimado_entrega smallint, tiempo_entrega smallint, id_detalles_pedido integer, cantidad integer, precio_unitario numeric, id_producto integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying)
+ RETURNS TABLE(id_pedido integer, id_cliente integer, nombre_cliente character varying, apellido_cliente character varying, id_direccion integer, calle character varying, numero integer, ciudad character varying, provincia character varying, metodo_pago character varying, estatus integer, tiempo_estimado_entrega smallint, tiempo_entrega smallint, id_detalles_pedido integer, cantidad integer, precio_unitario numeric, id_producto integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying)
  LANGUAGE plpgsql
 AS $function$
 		begin
@@ -308,6 +377,7 @@ AS $function$
 							d.ciudad,
 							d.provincia,
 						p.metodo_pago,
+						p.estatus,
 						p.tiempo_estimado_entrega,
 						p.tiempo_entrega,
 							dp.id,
@@ -336,7 +406,7 @@ AS $function$
 -- DROP FUNCTION public.obtener_productos_pedidos(int4);
 
 CREATE OR REPLACE FUNCTION public.obtener_productos_pedidos(p_id_producto integer)
- RETURNS TABLE(id_pedido integer, id_cliente integer, id_direccion integer, metodo_pago character varying, tiempo_estimado_entrega smallint, tiempo_entrega smallint, total numeric, id_detalles_pedido integer, cantidad integer, precio_unitario numeric, subtotal numeric, id_producto integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying)
+ RETURNS TABLE(id_pedido integer, id_cliente integer, id_direccion integer, metodo_pago character varying, estatus integer, tiempo_estimado_entrega smallint, tiempo_entrega smallint, total numeric, id_detalles_pedido integer, cantidad integer, precio_unitario numeric, subtotal numeric, id_producto integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying)
  LANGUAGE plpgsql
 AS $function$
 		begin
@@ -346,6 +416,7 @@ AS $function$
 						p.id_cliente,
 						p.id_direccion,
 						p.metodo_pago,
+						p.estatus,
 						p.tiempo_estimado_entrega,
 						p.tiempo_entrega,
 						(sum(dp.cantidad * dp.precio_unitario) over(partition by p.id))::numeric(10,2) as total,

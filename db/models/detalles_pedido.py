@@ -46,6 +46,7 @@ class Detalles_Pedido_Base(BaseModel):
     id_pedido: Optional[int]
     cantidad: int
     id_producto: int
+    precio_unitario: int
 
 class Detalles_Pedido_Crear(Detalles_Pedido_Base):
     pass
