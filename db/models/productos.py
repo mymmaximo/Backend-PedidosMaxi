@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Numeric, DateTime
+from sqlalchemy import Column, Integer, String, Numeric, DateTime, Boolean
 from sqlalchemy.sql import func
 from db.database import Base
 from pydantic import BaseModel
@@ -36,6 +36,10 @@ class Productos(Base):
     updated_at = Column(
         DateTime(timezone=True), 
         onupdate=func.now()
+    )
+    activo = Column(
+        Boolean,
+        default=True
     )
 
 

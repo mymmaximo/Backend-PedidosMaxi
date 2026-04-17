@@ -37,7 +37,7 @@ def get_direcciones(
         db: Session, 
         limit: int = 100
     ):
-    return db.query(Direcciones).limit(limit).all()
+    return db.query(Direcciones).filter(Direcciones.activo == True).limit(limit).all()
 
 def create_direccion(
         db: Session, 
@@ -70,6 +70,7 @@ def delete_direccion(
     db_direccion = db.query(Direcciones).filter(Direcciones.id == id_direccion).first()
     if db_direccion is None:
         return False
-    db.delete(db_direccion)
+    db_direccion.activo = False
     db.commit()
+    db.refresh(db_direccion)
     return True

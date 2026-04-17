@@ -39,7 +39,7 @@ def get_clientes(
         db: Session, 
         limit: int = 100
     ):
-    return db.query(Clientes).limit(limit).all()
+    return db.query(Clientes).filter(Clientes.activo == True).limit(limit).all()
 
 def login_clientes(
         db: Session,
@@ -156,6 +156,7 @@ def delete_cliente(
     db_cliente = db.query(Clientes).filter(Clientes.id == id_cliente).first()
     if db_cliente is None:
         return False
-    db.delete(db_cliente)
+    db_cliente.activo = False
     db.commit()
+    db.refresh(db_cliente)
     return True

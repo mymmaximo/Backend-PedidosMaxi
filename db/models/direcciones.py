@@ -1,4 +1,4 @@
-from sqlalchemy import ForeignKey, Column, Integer, String
+from sqlalchemy import ForeignKey, Column, Integer, String, Boolean
 from db.database import Base
 from pydantic import BaseModel
 from sqlalchemy.orm import relationship
@@ -25,6 +25,10 @@ class Direcciones(Base):
     )
     provincia = Column(
         String(50)
+    )
+    activo = Column(
+        Boolean,
+        default=True
     )
   
     

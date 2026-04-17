@@ -43,7 +43,7 @@ def get_productos(
         db: Session, 
         limit: int = 100
     ):
-    return db.query(Productos).limit(limit).all()
+    return db.query(Productos).filter(Productos.activo == True).limit(limit).all()
 
 def create_producto(
         db: Session, 
@@ -76,6 +76,7 @@ def delete_producto(
     db_producto = db.query(Productos).filter(Productos.id == id_producto).first()
     if db_producto is None:
         return False
-    db.delete(db_producto)
+    db_producto.activo = False
     db.commit()
+    db.refresh(db_producto)
     return True

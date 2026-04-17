@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, Boolean
 from sqlalchemy.sql import func
 from db.database import Base
 from pydantic import BaseModel, EmailStr
@@ -47,6 +47,10 @@ class Clientes(Base):
     )
     id_rol = Column(
         Integer
+    )
+    activo = Column(
+        Boolean,
+        default=True
     )
 
 
