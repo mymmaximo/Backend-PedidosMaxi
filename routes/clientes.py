@@ -2,7 +2,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from db.database import get_db
-from db.models.clientes import Clientes_Respuesta, Clientes_Crear, Clientes_Login, Token,Clientes_Direcciones, Clientes_id_Direccion
+from db.models.clientes import Clientes_Respuesta, Clientes_Crear, Clientes_Login, Token,Clientes_Direcciones, Clientes_id_Direccion, Clientes_Act
 from services import clientes as crud
 router = APIRouter()
 
@@ -128,14 +128,14 @@ def create_cliente(
 )
 def update_cliente(
     id_cliente: int, 
-    cliente: Clientes_Crear, 
+    cliente: Clientes_Act, 
     db: Session = Depends(get_db)
 ):
     db_cliente_email = crud.get_cliente(
         db, 
         email_cliente=cliente.email
     )
-    if db_cliente_email and id_cliente != db_cliente_email.id:
+    if db_cliente_email and id_cliente != db_cliente_email[0].id:
         raise HTTPException(
             status_code=400, 
             detail="Email ya registrado"

@@ -1,7 +1,7 @@
 from typing import Optional
 from sqlalchemy import text
 from sqlalchemy.orm import Session
-from db.models.clientes import Clientes, Clientes_Crear, Clientes_Login, Clientes_Direccion
+from db.models.clientes import Clientes, Clientes_Crear, Clientes_Login, Clientes_Act
 from sec import get_contrasena_criptid, verifica_sena, crear_pase, verificar_token
 
 def get_cliente(
@@ -135,7 +135,7 @@ def create_cliente(
 def update_cliente(
         db: Session, 
         id_cliente: int, 
-        cliente: Clientes_Crear
+        cliente: Clientes_Act
     ):
     db_cliente = db.query(Clientes).filter(Clientes.id == id_cliente).first()
     if not db_cliente:

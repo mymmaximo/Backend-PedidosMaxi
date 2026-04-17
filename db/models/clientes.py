@@ -63,6 +63,11 @@ class Clientes_Base(BaseModel):
 class Clientes_Crear(Clientes_Base):
     dni: str
     contrasena: str
+    id_rol: int
+
+class Clientes_Act(Clientes_Base):
+    contrasena: str
+    id_rol: int
 
 class Clientes_Respuesta(Clientes_Base):
     id: int
