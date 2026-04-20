@@ -274,7 +274,8 @@ begin
 			d.provincia
 	from clientes c
 	left join pedidos p on c.id = p.id_cliente
-	left join direcciones d on p.id_direccion = d.id;
+	left join direcciones d on p.id_direccion = d.id
+	where c.activo is True;
 end;
 $function$
 ;

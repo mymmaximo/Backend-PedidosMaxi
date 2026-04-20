@@ -15,20 +15,16 @@ router = APIRouter()
 def read_producto(
         db: Session = Depends(get_db), 
         id_producto: Optional[int] = None,
-        nombre_producto: Optional[str] = None,
+        busqueda_producto: Optional[str] = None,
         precio_producto: Optional[int] = None,
-        stock_producto: Optional[int] = None,
-        categoria_producto: Optional[str] = None,
-        codigo_barra_producto: Optional[str] = None
+        stock_producto: Optional[int] = None
     ):
     db_producto = crud.get_producto(
         db, 
         id_producto=id_producto,
-        nombre_producto=nombre_producto,
+        busqueda_producto=busqueda_producto,
         precio_producto=precio_producto,
-        stock_producto=stock_producto,
-        categoria_producto=categoria_producto,
-        codigo_barra_producto=codigo_barra_producto
+        stock_producto=stock_producto
     )
     if not db_producto:
         raise HTTPException(

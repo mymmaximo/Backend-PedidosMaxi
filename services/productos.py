@@ -1,4 +1,5 @@
 from typing import Optional
+from sqlalchemy import or_
 from sqlalchemy.orm import Session
 from db.models.productos import Productos, Productos_Crear
 
@@ -6,20 +7,22 @@ from db.models.productos import Productos, Productos_Crear
 def get_producto(
         db: Session, 
         id_producto: Optional[int] = None,
-        nombre_producto: Optional[str] = None,
+        busqueda_producto: Optional[str] = None,
         precio_producto: Optional[int] = None,
         stock_producto: Optional[int] = None,
-        categoria_producto: Optional[str] = None,
-        codigo_barra_producto: Optional[str] = None
     ):
     resultado = db.query(Productos)
     if id_producto is not None:
         resultado = resultado.filter(
             Productos.id == id_producto 
         )
-    if nombre_producto is not None:
+    if busqueda_producto is not None:
         resultado = resultado.filter(
-            Productos.nombre == nombre_producto
+            or_(
+                Productos.nombre.ilike(f"%{busqueda_producto}%"),
+                Productos.categoria.ilike(f"%{busqueda_producto}%"),
+                Productos.codigo_barra.ilike(f"%{busqueda_producto}%")
+            ) 
         )
     if precio_producto is not None:
         resultado = resultado.filter(
@@ -28,14 +31,6 @@ def get_producto(
     if stock_producto is not None:
         resultado = resultado.filter(
             Productos.stock == stock_producto
-        )
-    if categoria_producto is not None:
-        resultado = resultado.filter(
-            Productos.categoria == categoria_producto 
-        )
-    if codigo_barra_producto is not None:
-        resultado = resultado.filter(
-            Productos.codigo_barra == codigo_barra_producto 
         )
     return resultado.all()
 

@@ -11,6 +11,7 @@ CREATE TABLE direcciones (
 	barrio varchar(100) NOT NULL,
 	ciudad varchar(100) NOT NULL,
 	provincia varchar(100) NOT NULL,
+	activo bool NULL,
 	CONSTRAINT direcciones_pkey PRIMARY KEY (id)
 );
 
@@ -44,6 +45,7 @@ CREATE TABLE productos (
 	codigo_barra varchar(50) NOT NULL,
 	created_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
 	updated_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
+	activo bool NULL,
 	CONSTRAINT productos_codigo_barra_key UNIQUE (codigo_barra),
 	CONSTRAINT productos_pkey PRIMARY KEY (id)
 );
@@ -93,6 +95,7 @@ CREATE TABLE clientes (
 	usuario varchar(50) NULL,
 	contrasena varchar(255) NULL,
 	id_rol int4 NULL,
+	activo bool NULL,
 	CONSTRAINT clientes_dni_key UNIQUE (dni),
 	CONSTRAINT clientes_email_key UNIQUE (email),
 	CONSTRAINT clientes_pkey PRIMARY KEY (id),
