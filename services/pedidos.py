@@ -1,7 +1,9 @@
+import random
 from typing import Optional
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 from db.models.pedidos import Pedidos, Pedidos_Crear
+from datetime import datetime
 
 def get_pedido(
         db: Session, 
@@ -133,6 +135,9 @@ def get_pedidos(
 
 def get_all_pedidos(
         db: Session, 
+        busqueda_pedido: Optional[str] = None,
+        filtromp: Optional[str] = None,
+        filtroest: Optional[int] = None,
         limit: int = 100
 ):
     query = text("SELECT * from obtener_all_pedidos()")
@@ -147,8 +152,8 @@ def get_all_pedidos(
                 "id_pedido": id_pedidios,
                 "id_cliente": i["id_cliente"],
                 "cliente": [{
-                "nombre": i["nombre_cliente"],
-                "apellido": i["apellido_cliente"],
+                    "nombre": i["nombre_cliente"],
+                    "apellido": i["apellido_cliente"],
                 }],
                 "id_direccion": i["id_direccion"],
                 "direccion": [{
@@ -181,13 +186,47 @@ def get_all_pedidos(
             }
         }
         db_pedidos[id_pedidios]["detalle_pedido"].append(nuevo_detalle)
-    return list(db_pedidos.values())
+    lista_pedidos = list(db_pedidos.values())
+    if busqueda_pedido is not None:
+        busqueda = busqueda_pedido.lower() 
+        lista_filtrada = []
+        for pedido in lista_pedidos:
+            nombre = pedido["cliente"][0]["nombre"].lower() if pedido["cliente"] else ""
+            apellido = pedido["cliente"][0]["apellido"].lower() if pedido["cliente"] else ""
+            metodo = pedido["metodo_pago"].lower() if pedido["metodo_pago"] else ""
+            calle = pedido["direccion"][0]["calle"].lower() if pedido["direccion"] else ""
+            ciudad = pedido["direccion"][0]["ciudad"].lower() if pedido["direccion"] else ""
+            provincia = pedido["direccion"][0]["provincia"].lower() if pedido["direccion"] else ""
+            encontrado_en_producto = False
+            for detalle in pedido["detalle_pedido"]:
+                nombre_producto = detalle["producto"]["nombre"].lower()
+                if busqueda in nombre_producto:
+                    encontrado_en_producto = True
+                    break
+            if (busqueda in nombre or busqueda in apellido or busqueda in metodo or busqueda in calle or busqueda in ciudad or busqueda in provincia or encontrado_en_producto):
+                lista_filtrada.append(pedido)
+        lista_pedidos = lista_filtrada
+    if filtromp is not None:
+        lista_temporal = []
+        for pedido in lista_pedidos:
+            if pedido["metodo_pago"] == filtromp:
+                lista_temporal.append(pedido)
+        lista_pedidos = lista_temporal
+    if filtroest is not None:
+        lista_temporal = []
+        for pedido in lista_pedidos:
+            if pedido["estatus"] == filtroest:
+                lista_temporal.append(pedido)
+        lista_pedidos = lista_temporal
+    return lista_pedidos
 
 def create_pedido(
         db: Session, 
         pedido: Pedidos_Crear
 ):
-    db_pedido = Pedidos(**pedido.dict())
+    datos_pedido = pedido.dict()
+    datos_pedido["tiempo_estimado_entrega"] = random.randint(1, 7)
+    db_pedido = Pedidos(**datos_pedido)
     db.add(db_pedido)
     db.flush()
     db.refresh(db_pedido)
@@ -198,10 +237,13 @@ def update_pedido(
         id_pedido: int, 
         pedido: Pedidos_Crear
 ):
+    datos_pedido = pedido.dict()
     db_pedido = db.query(Pedidos).filter(Pedidos.id == id_pedido).first()
     if not db_pedido:
         return None
-    for key, value in pedido.dict().items():
+    if datos_pedido["estatus"] == 1:
+        datos_pedido["tiempo_entrega"] = (datetime.now() - db_pedido.created_at).days
+    for key, value in datos_pedido.items():
         setattr(db_pedido, key, value)
     db.commit()
     db.refresh(db_pedido)

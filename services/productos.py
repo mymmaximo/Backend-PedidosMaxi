@@ -8,8 +8,8 @@ def get_producto(
         db: Session, 
         id_producto: Optional[int] = None,
         busqueda_producto: Optional[str] = None,
-        precio_producto: Optional[int] = None,
-        stock_producto: Optional[int] = None,
+        precio_producto_min: Optional[int] = None,
+        precio_producto_max: Optional[int] = None,
     ):
     resultado = db.query(Productos)
     if id_producto is not None:
@@ -24,13 +24,13 @@ def get_producto(
                 Productos.codigo_barra.ilike(f"%{busqueda_producto}%")
             ) 
         )
-    if precio_producto is not None:
+    if precio_producto_min is not None:
         resultado = resultado.filter(
-            Productos.precio == precio_producto
+            Productos.precio >= precio_producto_min
         )
-    if stock_producto is not None:
+    if precio_producto_max is not None:
         resultado = resultado.filter(
-            Productos.stock == stock_producto
+            Productos.precio <= precio_producto_max
         )
     return resultado.all()
 

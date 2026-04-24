@@ -16,21 +16,16 @@ def read_producto(
         db: Session = Depends(get_db), 
         id_producto: Optional[int] = None,
         busqueda_producto: Optional[str] = None,
-        precio_producto: Optional[int] = None,
-        stock_producto: Optional[int] = None
+        precio_producto_min: Optional[int] = None,
+        precio_producto_max: Optional[int] = None
     ):
     db_producto = crud.get_producto(
         db, 
         id_producto=id_producto,
         busqueda_producto=busqueda_producto,
-        precio_producto=precio_producto,
-        stock_producto=stock_producto
+        precio_producto_min=precio_producto_min,
+        precio_producto_max=precio_producto_max
     )
-    if not db_producto:
-        raise HTTPException(
-            status_code=404, 
-            detail="Producto no encontrado"
-        )
     return db_producto
 
 @router.get(

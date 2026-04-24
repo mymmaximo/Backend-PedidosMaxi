@@ -1,10 +1,54 @@
 from typing import Optional
-from sqlalchemy import text
+from sqlalchemy import text, or_
 from sqlalchemy.orm import Session
 from db.models.clientes import Clientes, Clientes_Crear, Clientes_Login, Clientes_Act
 from sec import get_contrasena_criptid, verifica_sena, crear_pase, verificar_token
 
 def get_cliente(
+        db: Session, 
+        id_cliente: Optional[int] = None,
+        busqueda_cliente: Optional[str] = None,
+        bool_direccion: Optional[bool] = None
+    ):
+    resultado = db.query(Clientes)
+    if id_cliente is not None:
+        resultado = resultado.filter(
+            Clientes.id == id_cliente 
+        )
+    if busqueda_cliente is not None:
+        resultado = resultado.filter(
+            or_(
+                Clientes.nombre.ilike(f"%{busqueda_cliente}%"),
+                Clientes.apellido.ilike(f"%{busqueda_cliente}%"),
+                Clientes.dni.ilike(f"%{busqueda_cliente}%"),
+                Clientes.email.ilike(f"%{busqueda_cliente}%")
+            ) 
+        )
+    listcliente = []
+    rta = resultado.all()
+    for i in rta:
+        direccionfori = get_cliente_id_direccion(db, i.id)
+        if bool_direccion is not None:
+            if bool_direccion == True and len(direccionfori) == 0:
+                continue
+            if bool_direccion == False and len(direccionfori) > 0:
+                continue
+        clientesa = {
+            "id": i.id,
+            "nombre": i.nombre,
+            "apellido": i.apellido,
+            "email": i.email,
+            "dni": i.dni,
+            "usuario": i.usuario,
+            "id_rol": i.id_rol,
+            "created_at": i.created_at,
+            "updated_at": i.updated_at,
+            "direcciones": direccionfori
+        }
+        listcliente.append(clientesa)
+    return listcliente
+
+def get_clienta(
         db: Session, 
         id_cliente: Optional[int] = None,
         nombre_cliente: Optional[str] = None,

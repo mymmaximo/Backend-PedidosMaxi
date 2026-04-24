@@ -10,30 +10,21 @@ router = APIRouter()
 
 @router.get(
         "/cliente/", 
-        response_model= list[Clientes_Respuesta], 
+        response_model= list[Clientes_Direcciones], 
         tags=["Sección de Clientes"]
 )
 def read_cliente(
         db: Session = Depends(get_db), 
         id_cliente: Optional[int] = None,
-        nombre_cliente: Optional[str] = None,
-        apellido_cliente: Optional[str] = None,
-        dni_cliente: Optional[str] = None,
-        email_cliente: Optional[str] = None
+        busqueda_cliente: Optional[str] = None,
+        bool_direccion: Optional[bool] = None
     ):
     db_cliente = crud.get_cliente(
         db, 
         id_cliente=id_cliente,
-        nombre_cliente=nombre_cliente,
-        apellido_cliente=apellido_cliente,
-        dni_cliente=dni_cliente,
-        email_cliente=email_cliente
+        busqueda_cliente=busqueda_cliente,
+        bool_direccion=bool_direccion
     )
-    if not db_cliente:
-        raise HTTPException(
-            status_code=404, 
-            detail="Cliente no encontrado"
-        )
     return db_cliente
 
 @router.get(
