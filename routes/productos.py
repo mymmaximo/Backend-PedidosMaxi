@@ -17,14 +17,16 @@ def read_producto(
         id_producto: Optional[int] = None,
         busqueda_producto: Optional[str] = None,
         precio_producto_min: Optional[int] = None,
-        precio_producto_max: Optional[int] = None
+        precio_producto_max: Optional[int] = None,
+        bool_activo: Optional[bool] = None
     ):
     db_producto = crud.get_producto(
         db, 
         id_producto=id_producto,
         busqueda_producto=busqueda_producto,
         precio_producto_min=precio_producto_min,
-        precio_producto_max=precio_producto_max
+        precio_producto_max=precio_producto_max,
+        bool_activo=bool_activo
     )
     return db_producto
 

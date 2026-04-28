@@ -1,7 +1,7 @@
 from sqlalchemy import ForeignKey,Column, Integer, String, DateTime
 from db.models.clientes import Clientes_Pedidos
 from db.models.direcciones import Direcciones_Pedidos
-from db.models.detalles_pedido import Detalles_Pedido_wProductos
+from db.models.detalles_pedido import Detalles_Pedido_wProductos, Detalles_Pedido_wProductos_xClientes
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from db.database import Base
@@ -49,7 +49,6 @@ class Pedidos(Base):
         index=True
     )
 
-
     clientes = relationship(
         "Clientes", 
         backref="pedidos"
@@ -89,9 +88,13 @@ class Pedidos_Detalles_Productos(BaseModel):
     estatus: int
     tiempo_estimado_entrega: int
     tiempo_entrega: int
+    created_at: datetime
+    updated_at: datetime
+    total: float
     id_detalles_pedido: int
     cantidad: int
     precio_unitario: float
+    subtotal: float
     id_producto: int
     nombre: str
     precio: float
@@ -104,8 +107,19 @@ class Pedidos_CDDP(Pedidos_Base):
     id_pedido: int
     cliente : list[Clientes_Pedidos]
     direccion: list[Direcciones_Pedidos]
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
     total: float
     detalle_pedido : list[Detalles_Pedido_wProductos]
+
+class Pedidos_DDP(Pedidos_Base):
+    id_pedido: int
+    direccion: list[Direcciones_Pedidos]
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
+    total: float
+    estatus: int
+    detalle_pedido : list[Detalles_Pedido_wProductos_xClientes]
 
 class Pedidos_Clientes_Direcciones_Detalles_Productos(BaseModel):
     id_pedido: int

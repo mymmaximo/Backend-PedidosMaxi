@@ -8,7 +8,8 @@ def get_cliente(
         db: Session, 
         id_cliente: Optional[int] = None,
         busqueda_cliente: Optional[str] = None,
-        bool_direccion: Optional[bool] = None
+        bool_direccion: Optional[bool] = None,
+        bool_activo: Optional[bool] = None
     ):
     resultado = db.query(Clientes)
     if id_cliente is not None:
@@ -29,9 +30,10 @@ def get_cliente(
     for i in rta:
         direccionfori = get_cliente_id_direccion(db, i.id)
         if bool_direccion is not None:
-            if bool_direccion == True and len(direccionfori) == 0:
+            if bool_direccion != bool(direccionfori):
                 continue
-            if bool_direccion == False and len(direccionfori) > 0:
+        if bool_activo is not None:
+            if bool_activo != i.activo:
                 continue
         clientesa = {
             "id": i.id,
@@ -43,7 +45,8 @@ def get_cliente(
             "id_rol": i.id_rol,
             "created_at": i.created_at,
             "updated_at": i.updated_at,
-            "direcciones": direccionfori
+            "direcciones": direccionfori,
+            "activo": i.activo
         }
         listcliente.append(clientesa)
     return listcliente
@@ -83,7 +86,7 @@ def get_clientes(
         db: Session, 
         limit: int = 100
     ):
-    return db.query(Clientes).filter(Clientes.activo == True).limit(limit).all()
+    return db.query(Clientes).limit(limit).all()
 
 def login_clientes(
         db: Session,
@@ -144,6 +147,7 @@ def get_cliente_direccion(
                 "apellido": i["apellido"],
                 "usuario": i["usuario"],
                 "id_rol": i["id_rol"],
+                "activo": i["activo"],
                 "direcciones": [] 
             }
         id_direcciones = []
@@ -200,7 +204,7 @@ def delete_cliente(
     db_cliente = db.query(Clientes).filter(Clientes.id == id_cliente).first()
     if db_cliente is None:
         return False
-    db_cliente.activo = False
+    db_cliente.activo = not db_cliente.activo
     db.commit()
     db.refresh(db_cliente)
     return True

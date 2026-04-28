@@ -74,6 +74,7 @@ class Clientes_Respuesta(Clientes_Base):
     dni: str
     created_at: datetime
     updated_at: Optional[datetime] = None
+    activo: bool
     direcciones: list[Direcciones_Clientes] = []
     model_config = {"from_attributes": True}
 
@@ -84,6 +85,7 @@ class Clientes_Pedidos(BaseModel):
 class Clientes_Direcciones(Clientes_Base):
     id: int
     dni: str
+    activo: bool
     direcciones: list[Direcciones_Clientes]
 
 class Clientes_Direccion(BaseModel):
@@ -94,6 +96,7 @@ class Clientes_Direccion(BaseModel):
     dni: str
     calle: str
     id_rol: int
+    activo: bool
     id_direccion: int
     numero: int
     barrio: str

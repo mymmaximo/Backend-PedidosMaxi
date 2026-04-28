@@ -57,8 +57,12 @@ class Productos_Respuesta(Productos_Base):
     codigo_barra: str
     created_at: datetime
     updated_at: Optional[datetime] = None
+    activo: bool
     model_config = {"from_attributes": True}
 
 class Productos_Detalles(Productos_Base):
     id_producto: int
     codigo_barra: str
+
+class Productos_Detalles_Clientes(Productos_Base):
+    id_producto: int

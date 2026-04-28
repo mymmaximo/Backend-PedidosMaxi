@@ -17,13 +17,15 @@ def read_cliente(
         db: Session = Depends(get_db), 
         id_cliente: Optional[int] = None,
         busqueda_cliente: Optional[str] = None,
-        bool_direccion: Optional[bool] = None
+        bool_direccion: Optional[bool] = None,
+        bool_activo: Optional[bool] = None
     ):
     db_cliente = crud.get_cliente(
         db, 
         id_cliente=id_cliente,
         busqueda_cliente=busqueda_cliente,
-        bool_direccion=bool_direccion
+        bool_direccion=bool_direccion,
+        bool_activo=bool_activo
     )
     return db_cliente
 

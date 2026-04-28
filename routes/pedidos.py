@@ -2,7 +2,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from db.database import get_db
-from db.models.pedidos import Pedidos_Respuesta, Pedidos_Crear, Pedidos_Detalles, Pedidos_CDDP
+from db.models.pedidos import Pedidos_Respuesta, Pedidos_Crear, Pedidos_Detalles, Pedidos_CDDP, Pedidos_DDP
 from db.models.detalles_pedido import Detalles_Pedido_Crear, Detalles_Pedido_Respuesta
 from services.clientes import get_cliente
 from services.direcciones import get_direccion
@@ -60,6 +60,25 @@ def read_pedido_producto(
             status_code=404, 
             detail="Producto no encontrado"
         )
+    return db_pedidos
+
+@router.get(
+        "/pedidos/cliente/{id_cliente}",
+        response_model= list[Pedidos_DDP],
+        tags=["Sección de Pedidos"]
+)
+def read_pedido_cliente(
+    id_cliente: int,
+    db: Session = Depends(get_db),
+    busqueda_pedido: Optional[str] = None,
+    filtromp: Optional[str] = None,
+    ):
+    db_pedidos = crud.get_pedidoxcliente(
+        db,
+        id_cliente=id_cliente,
+        busqueda_pedido=busqueda_pedido,
+        filtromp=filtromp,
+    )
     return db_pedidos
 
 @router.get(

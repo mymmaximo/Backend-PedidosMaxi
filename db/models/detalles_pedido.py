@@ -2,7 +2,7 @@ from sqlalchemy import ForeignKey, Column, Integer, Numeric
 from sqlalchemy.orm import relationship
 from db.database import Base
 from pydantic import BaseModel
-from db.models.productos import Productos_Detalles
+from db.models.productos import Productos_Detalles, Productos_Detalles_Clientes
 from typing import Optional
 
 
@@ -62,3 +62,10 @@ class Detalles_Pedido_wProductos(BaseModel):
     precio_unitario: float
     subtotal: float
     producto : Productos_Detalles
+
+class Detalles_Pedido_wProductos_xClientes(BaseModel):
+    id_detalle_pedido: int
+    cantidad: int
+    precio_unitario: float
+    subtotal: float
+    producto : Productos_Detalles_Clientes
