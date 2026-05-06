@@ -122,18 +122,20 @@ def read_pedidos(
         tags=["Sección de Pedidos"]
 )
 def read_pedidos(
-    limit: int = 100, 
+    limit: int = 20,
+    skip: int = 0, 
     db: Session = Depends(get_db),
     busqueda_pedido: Optional[str] = None,
     filtromp: Optional[str] = None,
-    filtroest: Optional[int] = None
+    filtroest: Optional[int] = None,
 ):
     pedidos = crud.get_all_pedidos(
         db, 
         busqueda_pedido=busqueda_pedido,
         filtromp=filtromp,
         filtroest=filtroest,
-        limit=limit
+        limit=limit,
+        skip=skip
     )
     return pedidos 
 

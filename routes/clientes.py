@@ -2,7 +2,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from db.database import get_db
-from db.models.clientes import Clientes_Respuesta, Clientes_Crear, Clientes_Login, Token,Clientes_Direcciones, Clientes_id_Direccion, Clientes_Act
+from db.models.clientes import Clientes_Respuesta, Clientes_Crear, Clientes_Login, Token,Clientes_Direcciones, Clientes_id_Direccion, Clientes_Edit
 from services import clientes as crud
 router = APIRouter()
 
@@ -14,18 +14,24 @@ router = APIRouter()
         tags=["Sección de Clientes"]
 )
 def read_cliente(
-        db: Session = Depends(get_db), 
-        id_cliente: Optional[int] = None,
+        limit: int = 20,
+        skip: int = 0, 
+        db: Session = Depends(get_db),
         busqueda_cliente: Optional[str] = None,
         bool_direccion: Optional[bool] = None,
-        bool_activo: Optional[bool] = None
+        bool_activo: Optional[bool] = None,
+        filtrociudad: Optional[str] = None,
+        filtroprovincia: Optional[str] = None
     ):
     db_cliente = crud.get_cliente(
-        db, 
-        id_cliente=id_cliente,
+        db,
         busqueda_cliente=busqueda_cliente,
         bool_direccion=bool_direccion,
-        bool_activo=bool_activo
+        bool_activo=bool_activo,
+        filtrociudad=filtrociudad,
+        filtroprovincia=filtroprovincia,
+        limit=limit,
+        skip=skip
     )
     return db_cliente
 
@@ -121,18 +127,19 @@ def create_cliente(
 )
 def update_cliente(
     id_cliente: int, 
-    cliente: Clientes_Act, 
+    cliente: Clientes_Edit, 
     db: Session = Depends(get_db)
 ):
-    db_cliente_email = crud.get_cliente(
-        db, 
-        email_cliente=cliente.email
-    )
-    if db_cliente_email and id_cliente != db_cliente_email[0].id:
-        raise HTTPException(
-            status_code=400, 
-            detail="Email ya registrado"
+    if cliente.email is not None:
+        db_cliente_email = crud.get_mail(
+            db, 
+            email_cliente=cliente.email
         )
+        if db_cliente_email and id_cliente != db_cliente_email[0].id:
+            raise HTTPException(
+                status_code=400, 
+                detail="Email ya registrado"
+            )
     db_cliente = crud.update_cliente(
         db, 
         id_cliente=id_cliente, 

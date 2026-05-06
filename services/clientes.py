@@ -1,84 +1,111 @@
 from typing import Optional
 from sqlalchemy import text, or_
 from sqlalchemy.orm import Session
-from db.models.clientes import Clientes, Clientes_Crear, Clientes_Login, Clientes_Act
+from db.models.clientes import Clientes, Clientes_Crear, Clientes_Login, Clientes_Edit
 from sec import get_contrasena_criptid, verifica_sena, crear_pase, verificar_token
 
-def get_cliente(
-        db: Session, 
-        id_cliente: Optional[int] = None,
-        busqueda_cliente: Optional[str] = None,
-        bool_direccion: Optional[bool] = None,
-        bool_activo: Optional[bool] = None
-    ):
-    resultado = db.query(Clientes)
-    if id_cliente is not None:
-        resultado = resultado.filter(
-            Clientes.id == id_cliente 
-        )
-    if busqueda_cliente is not None:
-        resultado = resultado.filter(
-            or_(
-                Clientes.nombre.ilike(f"%{busqueda_cliente}%"),
-                Clientes.apellido.ilike(f"%{busqueda_cliente}%"),
-                Clientes.dni.ilike(f"%{busqueda_cliente}%"),
-                Clientes.email.ilike(f"%{busqueda_cliente}%")
-            ) 
-        )
-    listcliente = []
-    rta = resultado.all()
-    for i in rta:
-        direccionfori = get_cliente_id_direccion(db, i.id)
-        if bool_direccion is not None:
-            if bool_direccion != bool(direccionfori):
-                continue
-        if bool_activo is not None:
-            if bool_activo != i.activo:
-                continue
-        clientesa = {
-            "id": i.id,
-            "nombre": i.nombre,
-            "apellido": i.apellido,
-            "email": i.email,
-            "dni": i.dni,
-            "usuario": i.usuario,
-            "id_rol": i.id_rol,
-            "created_at": i.created_at,
-            "updated_at": i.updated_at,
-            "direcciones": direccionfori,
-            "activo": i.activo
-        }
-        listcliente.append(clientesa)
-    return listcliente
 
-def get_clienta(
-        db: Session, 
-        id_cliente: Optional[int] = None,
-        nombre_cliente: Optional[str] = None,
-        apellido_cliente: Optional[str] = None,
-        dni_cliente: Optional[str] = None,
+def get_cliente(
+    db:Session,
+    busqueda_cliente: Optional[str] = None,
+    bool_direccion: Optional[bool] = None,
+    bool_activo: Optional[bool] = None,
+    filtrociudad: Optional[str] = None,
+    filtroprovincia: Optional[str] = None,
+    limit: int = 20,
+    skip: int = 0
+):
+    query = text("SELECT * from get_all_clientes ()")
+    db_cliente = db.execute(query).mappings().all()
+    if not db_cliente:
+        return []
+    db_clientes = {}
+    for i in db_cliente:
+        id_clienshin = i["id_cliente"]
+        if id_clienshin not in db_clientes:
+            db_clientes[id_clienshin] = {
+                "id": id_clienshin,
+                "nombre": i["nombre"],
+                "apellido": i["apellido"],
+                "email": i["email"],
+                "dni": i["dni"],
+                "usuario": i["usuario"],
+                "id_rol": i["id_rol"],
+                "direcciones": [],
+                "activo": i["activo"]
+            }
+        if i["id_direccion"] is not None:
+            direccion_ditto = False
+            for dir_guardada in db_clientes[id_clienshin]["direcciones"]:
+                if dir_guardada["id_direccion"] == i["id_direccion"]:
+                    direccion_ditto = True
+                    break
+            if direccion_ditto == False:
+                nueva_direccion = {
+                    "id_direccion": i["id_direccion"],
+                    "calle": i["calle"],
+                    "numero": i["numero"],
+                    "barrio": i["barrio"],
+                    "ciudad": i["ciudad"],
+                    "provincia": i["provincia"]
+                }
+                db_clientes[id_clienshin]["direcciones"].append(nueva_direccion)
+    lista_clientes = list(db_clientes.values())
+    if busqueda_cliente is not None:
+        busqueda = busqueda_cliente.lower() 
+        lista_filtrada = []
+        for cliente in lista_clientes:
+            nombre = cliente["nombre"].lower() if cliente["nombre"] else ""
+            apellido = cliente["apellido"].lower() if cliente["apellido"] else ""
+            email = cliente["email"].lower() if cliente["email"] else ""
+            dni = cliente["dni"].lower() if cliente["dni"] else ""
+            usuario = cliente["usuario"].lower() if cliente["usuario"] else ""
+            encontrado_en_direccion = False
+            for direccion in cliente["direcciones"]:
+                calle = direccion["calle"].lower() if direccion["calle"] else ""
+                barrio = direccion["barrio"].lower() if direccion["barrio"] else ""
+                ciudad = direccion["ciudad"].lower() if direccion["ciudad"] else ""
+                provincia = direccion["provincia"].lower() if direccion["provincia"] else ""
+                if (busqueda in calle or busqueda in barrio or busqueda in ciudad or busqueda in provincia):
+                    encontrado_en_direccion = True
+                    break
+            if (busqueda in nombre or busqueda in apellido or busqueda in email or busqueda in dni or busqueda in usuario or encontrado_en_direccion):
+                lista_filtrada.append(cliente)
+        lista_clientes = lista_filtrada
+    if bool_activo is not None:
+        lista_temporal = []
+        for cliente in lista_clientes:
+            if cliente["activo"] == bool_activo:
+                lista_temporal.append(cliente)
+        lista_clientes = lista_temporal
+    if bool_direccion is not None:
+        if bool_direccion:
+            lista_temporal = []
+            for cliente in lista_clientes:
+                if filtrociudad is not None or filtroprovincia is not None:
+                    for direcciones in cliente["direcciones"]:
+                        if direcciones["ciudad"] == filtrociudad or direcciones["provincia"] == filtroprovincia:
+                            lista_temporal.append(cliente)
+                            break
+                elif cliente["direcciones"] != []:
+                    lista_temporal.append(cliente)
+            lista_clientes = lista_temporal
+        else:
+            lista_temporal = []
+            for cliente in lista_clientes:
+                if cliente["direcciones"] == []:
+                    lista_temporal.append(cliente)
+            lista_clientes = lista_temporal
+    return lista_clientes[skip : skip + limit]
+
+def get_mail(
+        db: Session,
         email_cliente: Optional[str] = None
     ):
     resultado = db.query(Clientes)
-    if id_cliente is not None:
-        resultado = resultado.filter(
-            Clientes.id == id_cliente 
-        )
-    if nombre_cliente is not None:
-        resultado = resultado.filter(
-            Clientes.nombre == nombre_cliente
-        )
-    if apellido_cliente is not None:
-        resultado = resultado.filter(
-            Clientes.apellido == apellido_cliente
-        )
     if email_cliente is not None:
         resultado = resultado.filter(
             Clientes.email == email_cliente
-        )
-    if dni_cliente is not None:
-        resultado = resultado.filter(
-            Clientes.dni == dni_cliente 
         )
     return resultado.all()
 
@@ -105,30 +132,6 @@ def login_clientes(
         return False, False, False
     token = crear_pase({"sub": str(cliente_db.id)})
     return token, cliente_db.id, cliente_db.id_rol
-
-def get_cliente_id_direccion(
-    db:Session,
-    id_cliente: int
-):
-    query = text("SELECT * from get_only_clientes ()")
-    db_cliente = db.execute(query).mappings().all()
-    direcciones_list = []
-    id_direcciones = []
-    for i in db_cliente:
-        if id_cliente == i["id_cliente"]:
-            if i["id_direccion"] is not None:
-                if i["id_direccion"] not in id_direcciones:
-                    direcciones_list.append ({
-                        "id_direccion": i["id_direccion"],
-                        "calle": i["calle"],
-                        "numero": i["numero"],
-                        "barrio": i["barrio"],
-                        "ciudad": i["ciudad"],
-                        "provincia": i["provincia"]
-                    })
-                    id_direcciones.append(i["id_direccion"])
-    return direcciones_list
-    
 
 def get_cliente_direccion(
     db: Session
@@ -183,12 +186,13 @@ def create_cliente(
 def update_cliente(
         db: Session, 
         id_cliente: int, 
-        cliente: Clientes_Act
+        cliente: Clientes_Edit
     ):
     db_cliente = db.query(Clientes).filter(Clientes.id == id_cliente).first()
     if not db_cliente:
         return None
-    for key, value in cliente.dict().items():
+    clientes_act = cliente.dict(exclude_unset=True)
+    for key, value in clientes_act.items():
         if key == "contrasena":
             contrasena_hash = get_contrasena_criptid(cliente.contrasena)
             value = contrasena_hash

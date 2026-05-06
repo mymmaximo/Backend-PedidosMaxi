@@ -86,6 +86,7 @@ class Clientes_Direcciones(Clientes_Base):
     id: int
     dni: str
     activo: bool
+    id_rol: int
     direcciones: list[Direcciones_Clientes]
 
 class Clientes_Direccion(BaseModel):
@@ -122,3 +123,11 @@ class Token(BaseModel):
     token_type: str
     id_cliente: int
     id_rol: int = 3
+
+class Clientes_Edit(BaseModel):
+    nombre: Optional[str] = None
+    apellido: Optional[str] = None
+    email: Optional[EmailStr] = None
+    usuario: Optional[str] = None
+    contrasena: Optional[str] = None
+    id_rol: Optional[int] = None

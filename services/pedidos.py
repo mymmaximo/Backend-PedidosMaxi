@@ -137,7 +137,8 @@ def get_all_pedidos(
         busqueda_pedido: Optional[str] = None,
         filtromp: Optional[str] = None,
         filtroest: Optional[int] = None,
-        limit: int = 100
+        limit: int = 20,
+        skip: int = 0
 ):
     query = text("SELECT * from obtener_all_pedidos()")
     db_pedido = db.execute(query).mappings().all()
@@ -219,7 +220,7 @@ def get_all_pedidos(
             if pedido["estatus"] == filtroest:
                 lista_temporal.append(pedido)
         lista_pedidos = lista_temporal
-    return lista_pedidos
+    return lista_pedidos[skip : skip + limit]
 
 def get_pedidoxcliente(
         db: Session,

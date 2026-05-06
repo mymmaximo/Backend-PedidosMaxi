@@ -1,7 +1,9 @@
+import random
+import string
 from typing import Optional
 from sqlalchemy import or_
 from sqlalchemy.orm import Session
-from db.models.productos import Productos, Productos_Crear
+from db.models.productos import Productos, Productos_Crear, Productos_Edit
 
 
 def get_producto(
@@ -10,7 +12,9 @@ def get_producto(
         busqueda_producto: Optional[str] = None,
         precio_producto_min: Optional[int] = None,
         precio_producto_max: Optional[int] = None,
-        bool_activo: Optional[bool] = None
+        bool_activo: Optional[bool] = None,
+        limit: int = 20,
+        skip: int = 0
     ):
     resultado = db.query(Productos)
     if id_producto is not None:
@@ -37,7 +41,12 @@ def get_producto(
         resultado = resultado.filter(
             Productos.activo == bool_activo
         )
-    return resultado.all()
+    return resultado.offset(skip).limit(limit).all()
+
+def get_categoria(
+        db: Session
+    ):
+    return db.query(Productos.categoria).distinct().all()
 
 def get_productos(
         db: Session, 
@@ -49,7 +58,12 @@ def create_producto(
         db: Session, 
         producto: Productos_Crear
     ):
+    parte1 = ''.join(random.choices(string.ascii_uppercase, k=3))
+    parte2 = ''.join(random.choices(string.ascii_uppercase, k=3))
+    parte3 = ''.join(random.choices(string.digits, k=4))
+    codigo_azar = f"{parte1}-{parte2}-{parte3}"
     db_producto = Productos(**producto.dict())
+    db_producto.codigo_barra = codigo_azar
     db.add(db_producto)
     db.commit()
     db.refresh(db_producto)
@@ -58,12 +72,13 @@ def create_producto(
 def update_producto(
         db: Session, 
         id_producto: int, 
-        producto: Productos_Crear
+        producto: Productos_Edit
     ):
     db_producto = db.query(Productos).filter(Productos.id == id_producto).first()
     if not db_producto:
         return None
-    for key, value in producto.dict().items():
+    producto_act = producto.dict(exclude_unset=True)
+    for key, value in producto_act.items():
         setattr(db_producto, key, value)
     db.commit()
     db.refresh(db_producto)

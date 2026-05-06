@@ -50,7 +50,7 @@ class Productos_Base(BaseModel):
     categoria: str
     
 class Productos_Crear(Productos_Base):
-    codigo_barra: str
+    pass
 
 class Productos_Respuesta(Productos_Base):
     id: int
@@ -66,3 +66,13 @@ class Productos_Detalles(Productos_Base):
 
 class Productos_Detalles_Clientes(Productos_Base):
     id_producto: int
+
+class Productos_Edit(BaseModel):
+    nombre: Optional[str]
+    precio: Optional[float]
+    stock: Optional[int]
+    categoria: Optional[str]
+    codigo_barra: Optional[str]
+    
+class Productos_Categoria(BaseModel):
+    categoria: str

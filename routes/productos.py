@@ -2,7 +2,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from db.database import get_db
-from db.models.productos import Productos_Respuesta, Productos_Crear
+from db.models.productos import Productos_Respuesta, Productos_Crear, Productos_Edit, Productos_Categoria
 from services import productos as crud
 router = APIRouter()
 
@@ -13,6 +13,8 @@ router = APIRouter()
         tags=["Sección de Productos"]
 )
 def read_producto(
+        limit: int = 20,
+        skip: int = 0, 
         db: Session = Depends(get_db), 
         id_producto: Optional[int] = None,
         busqueda_producto: Optional[str] = None,
@@ -26,7 +28,22 @@ def read_producto(
         busqueda_producto=busqueda_producto,
         precio_producto_min=precio_producto_min,
         precio_producto_max=precio_producto_max,
-        bool_activo=bool_activo
+        bool_activo=bool_activo,
+        limit=limit,
+        skip=skip
+    )
+    return db_producto
+
+@router.get(
+        "/producto/categorias/", 
+        response_model= list[Productos_Categoria], 
+        tags=["Sección de Productos"]
+)
+def read_categoria(
+        db: Session = Depends(get_db)
+    ):
+    db_producto = crud.get_categoria(
+        db
     )
     return db_producto
 
@@ -66,7 +83,7 @@ def create_producto(
 )
 def update_producto(
     id_producto: int, 
-    producto: Productos_Crear, 
+    producto: Productos_Edit, 
     db: Session = Depends(get_db)
 ):
     db_producto = crud.update_producto(
