@@ -31,10 +31,11 @@ class Historial_Precios(Base):
 class historial_wproductos(BaseModel):
     id: int
     id_producto: int
+    precio_viejo: float
+    precio_nuevo: float
+    updated_at: datetime
     nombre: str
     categoria: str
     codigo_barra: str
-    precio_viejo: int
-    precio_nuevo: int
-    updated_at: datetime
+    activo: bool
     model_config = {"from_attributes": True}

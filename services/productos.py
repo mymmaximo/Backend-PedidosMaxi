@@ -12,6 +12,7 @@ def get_producto(
         busqueda_producto: Optional[str] = None,
         precio_producto_min: Optional[int] = None,
         precio_producto_max: Optional[int] = None,
+        filtrocat: Optional[str] = None,
         bool_activo: Optional[bool] = None,
         limit: int = 20,
         skip: int = 0
@@ -40,6 +41,10 @@ def get_producto(
     if bool_activo is not None:
         resultado = resultado.filter(
             Productos.activo == bool_activo
+        )
+    if filtrocat is not None:
+        resultado = resultado.filter(
+            Productos.categoria == filtrocat
         )
     return resultado.offset(skip).limit(limit).all()
 
