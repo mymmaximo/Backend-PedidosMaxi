@@ -33,6 +33,16 @@ def get_direccion(
         )
     return resultado.all()
 
+def get_ciudad(
+        db: Session, 
+    ):
+    return db.query(Direcciones.ciudad).distinct().all()
+
+def get_provincia(
+        db: Session, 
+    ):
+    return db.query(Direcciones.provincia).distinct().all()
+
 def get_direcciones(
         db: Session, 
         limit: int = 100

@@ -4,11 +4,9 @@ from db.database import Base
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 from datetime import datetime
-from db.models.direcciones import Direcciones_Clientes
 
-
-class Clientes(Base):
-    __tablename__ = "clientes"
+class Usuarios(Base):
+    __tablename__ = "usuarios"
 
     id = Column(
         Integer,
@@ -31,6 +29,9 @@ class Clientes(Base):
     contrasena = Column(
         String(255)
     )
+    id_rol = Column(
+        Integer
+    )
     activo = Column(
         Boolean,
         default=True
@@ -43,60 +44,48 @@ class Clientes(Base):
         DateTime(timezone=True), 
         onupdate=func.now()
     )
-
-class Clientes_Base(BaseModel):
+    
+class Usuarios_Base(BaseModel):
     nombre: str
     email: EmailStr
 
-class Clientes_Crear(Clientes_Base):
+class Usuarios_Crear(Usuarios_Base):
     dni: str
+    id_rol: int
     contrasena: str
 
-class Clientes_Act(Clientes_Base):
+class Usuarios_Act(Usuarios_Base):
+    id_rol: int
     contrasena: str
 
-class Clientes_Respuesta(Clientes_Base):
+class Usuarios_Respuesta(Usuarios_Base):
     id: int
     dni: str
     activo: bool
     created_at: datetime
     updated_at: Optional[datetime] = None
-    direcciones: list[Direcciones_Clientes] = []
     model_config = {"from_attributes": True}
 
-class Clientes_Pedidos(BaseModel):
+class Usuarios_Pedidos(BaseModel):
     nombre: str
 
-class Clientes_Direcciones(Clientes_Base):
+class Usuarios_Direcciones(Usuarios_Base):
     id: int
     dni: str
+    id_rol: int
     activo: bool
-    direcciones: list[Direcciones_Clientes]
 
-class Clientes_Direccion(BaseModel):
+class Usuarios_Direccion(BaseModel):
     id_cliente: int
     nombre: str
     email: EmailStr
     dni: str
     calle: str
+    id_rol: int
     activo: bool
-    id_direccion: int
-    numero: int
-    barrio: str
-    ciudad: str
-    provincia: str
     model_config = {"from_attributes": True}
 
-class Clientes_id_Direccion(BaseModel):
-    id_direccion: int
-    calle: str
-    numero: int
-    barrio: str
-    ciudad: str
-    provincia: str
-    model_config = {"from_attributes": True}
-
-class Clientes_Login(BaseModel):
+class Usuarios_Login(BaseModel):
     email: EmailStr
     contrasena: str
 
@@ -107,7 +96,8 @@ class Token(BaseModel):
     id_usuario: Optional[int] = None
     id_rol: Optional[int] = None
 
-class Clientes_Edit(BaseModel):
+class Usuarios_Edit(BaseModel):
     nombre: Optional[str] = None
     email: Optional[EmailStr] = None
+    id_rol: Optional[int] = None
     contrasena: Optional[str] = None

@@ -72,20 +72,19 @@ def login_cliente(
     pase: Clientes_Login, 
     db: Session = Depends(get_db)
 ):
-    cliente, id_cliente, id_rol = crud.login_clientes(
+    cliente, id_cliente = crud.login_clientes(
         db,
         pase
     )
     if not cliente:
         raise HTTPException(
             status_code=401, 
-            detail="Usuario o Contraseña Invalido"
+            detail="E-Mail o Contraseña Invalido"
         )
     return {
         "access_token": cliente, 
         "token_type": "bearer",
         "id_cliente": id_cliente,
-        "id_rol": id_rol
         }
     
 @router.post(

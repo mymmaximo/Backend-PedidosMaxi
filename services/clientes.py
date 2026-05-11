@@ -26,11 +26,8 @@ def get_cliente(
             db_clientes[id_clienshin] = {
                 "id": id_clienshin,
                 "nombre": i["nombre"],
-                "apellido": i["apellido"],
                 "email": i["email"],
                 "dni": i["dni"],
-                "usuario": i["usuario"],
-                "id_rol": i["id_rol"],
                 "direcciones": [],
                 "activo": i["activo"]
             }
@@ -56,10 +53,8 @@ def get_cliente(
         lista_filtrada = []
         for cliente in lista_clientes:
             nombre = cliente["nombre"].lower() if cliente["nombre"] else ""
-            apellido = cliente["apellido"].lower() if cliente["apellido"] else ""
             email = cliente["email"].lower() if cliente["email"] else ""
             dni = cliente["dni"].lower() if cliente["dni"] else ""
-            usuario = cliente["usuario"].lower() if cliente["usuario"] else ""
             encontrado_en_direccion = False
             for direccion in cliente["direcciones"]:
                 calle = direccion["calle"].lower() if direccion["calle"] else ""
@@ -69,7 +64,7 @@ def get_cliente(
                 if (busqueda in calle or busqueda in barrio or busqueda in ciudad or busqueda in provincia):
                     encontrado_en_direccion = True
                     break
-            if (busqueda in nombre or busqueda in apellido or busqueda in email or busqueda in dni or busqueda in usuario or encontrado_en_direccion):
+            if (busqueda in nombre or busqueda in email or busqueda in dni or encontrado_en_direccion):
                 lista_filtrada.append(cliente)
         lista_clientes = lista_filtrada
     if bool_activo is not None:
@@ -120,18 +115,41 @@ def login_clientes(
         pase: Clientes_Login
 ):
     cliente_db = db.query(Clientes).filter(
-        Clientes.usuario == pase.usuario
+        Clientes.email == pase.email
         ).first()
     if not cliente_db:
-        return False, False, False
+        return False, False
     contrasena_valida = verifica_sena(
         pase.contrasena, 
         cliente_db.contrasena
     )
     if not contrasena_valida:
-        return False, False, False
+        return False, False
     token = crear_pase({"sub": str(cliente_db.id)})
-    return token, cliente_db.id, cliente_db.id_rol
+    return token, cliente_db.id
+
+def get_cliente_id_direccion(
+    db:Session,
+    id_cliente: int
+):
+    query = text("SELECT * from get_only_clientes ()")
+    db_cliente = db.execute(query).mappings().all()
+    direcciones_list = []
+    id_direcciones = []
+    for i in db_cliente:
+        if id_cliente == i["id_cliente"]:
+            if i["id_direccion"] is not None:
+                if i["id_direccion"] not in id_direcciones:
+                    direcciones_list.append ({
+                        "id_direccion": i["id_direccion"],
+                        "calle": i["calle"],
+                        "numero": i["numero"],
+                        "barrio": i["barrio"],
+                        "ciudad": i["ciudad"],
+                        "provincia": i["provincia"]
+                    })
+                    id_direcciones.append(i["id_direccion"])
+    return direcciones_list
 
 def get_cliente_direccion(
     db: Session
@@ -147,9 +165,6 @@ def get_cliente_direccion(
                 "nombre": i["nombre"],
                 "email": i["email"],
                 "dni": i["dni"],
-                "apellido": i["apellido"],
-                "usuario": i["usuario"],
-                "id_rol": i["id_rol"],
                 "activo": i["activo"],
                 "direcciones": [] 
             }

@@ -2,7 +2,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from db.database import get_db
-from db.models.direcciones import Direcciones_Respuesta, Direcciones_Crear
+from db.models.direcciones import Direcciones_Respuesta, Direcciones_Crear, Direcciones_provincias, Direcciones_ciudades
 from services import direcciones as crud
 router = APIRouter()
 
@@ -11,31 +11,29 @@ router = APIRouter()
 
 
 @router.get(
-        "/direccion/", 
-        response_model= list[Direcciones_Respuesta], 
+        "/direccion/ciudad/", 
+        response_model= list[Direcciones_ciudades], 
         tags=["Sección de Direcciones"]
 )
 def read_direccion(
         db: Session = Depends(get_db), 
-        id_direccion: Optional[int] = None,
-        calle_direccion: Optional[str] = None,
-        barrio_direccion: Optional[str] = None,
-        ciudad_direccion: Optional[str] = None,
-        provincia_direccion: Optional[str] = None
     ):
-    db_direccion = crud.get_direccion(
-        db, 
-        id_direccion=id_direccion,
-        calle_direccion=calle_direccion,
-        barrio_direccion=barrio_direccion,
-        ciudad_direccion=ciudad_direccion,
-        provincia_direccion=provincia_direccion
+    db_direccion = crud.get_ciudad(
+        db
     )
-    if not db_direccion:
-        raise HTTPException(
-            status_code=404, 
-            detail="Direccion no encontrada"
-        )
+    return db_direccion
+
+@router.get(
+        "/direccion/provincia/", 
+        response_model= list[Direcciones_provincias], 
+        tags=["Sección de Direcciones"]
+)
+def read_direccion(
+        db: Session = Depends(get_db), 
+    ):
+    db_direccion = crud.get_provincia(
+        db
+    )
     return db_direccion
 
 @router.get(

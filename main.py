@@ -6,6 +6,7 @@ from db.models import pedidos as mod_pedidos
 from db.models import detalles_pedido as mod_detalles_pedido
 from db.models import direcciones as mod_direcciones
 from routes import clientes as route_clientes
+from routes import usuarios as route_usuarios
 from routes import productos as route_productos
 from routes import pedidos as route_pedidos
 from routes import detalles_pedido as route_detalles_pedido
@@ -26,6 +27,7 @@ app.add_middleware(
 )
 
 app.include_router(route_clientes.router)
+app.include_router(route_usuarios.router)
 app.include_router(route_productos.router)
 app.include_router(route_pedidos.router)
 app.include_router(route_detalles_pedido.router)

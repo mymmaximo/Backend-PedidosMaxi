@@ -60,3 +60,9 @@ class Direcciones_Clientes(BaseModel):
     barrio: str
     numero: int
     provincia: str
+
+class Direcciones_ciudades(BaseModel):
+    ciudad: str
+    
+class Direcciones_provincias(BaseModel):
+    provincia: str

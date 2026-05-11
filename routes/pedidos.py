@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from db.database import get_db
 from db.models.pedidos import Pedidos_Respuesta, Pedidos_Crear, Pedidos_Detalles, Pedidos_CDDP, Pedidos_DDP
 from db.models.detalles_pedido import Detalles_Pedido_Crear, Detalles_Pedido_Respuesta
-from services.clientes import get_cliente
+from db.models.clientes import Clientes
 from services.direcciones import get_direccion
 from services import pedidos as crud
 from services import detalles_pedidos as servi
@@ -191,10 +191,7 @@ def update_pedido(
     pedido: Pedidos_Crear, 
     db: Session = Depends(get_db)
 ):
-    db_cliente = get_cliente(
-        db, 
-        id_cliente=pedido.id_cliente
-    )
+    db_cliente = db.query(Clientes).filter(Clientes.id == pedido.id_cliente).first()
     if not db_cliente:
         raise HTTPException(
             status_code=404, 

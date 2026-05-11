@@ -91,7 +91,6 @@ def get_pedidoxid_pedido(
                 "id_cliente": i["id_cliente"],
                 "cliente": [{
                 "nombre": i["nombre_cliente"],
-                "apellido": i["apellido_cliente"],
                 }],
                 "id_direccion": i["id_direccion"],
                 "direccion": [{
@@ -153,7 +152,6 @@ def get_all_pedidos(
                 "id_cliente": i["id_cliente"],
                 "cliente": [{
                     "nombre": i["nombre_cliente"],
-                    "apellido": i["apellido_cliente"],
                 }],
                 "id_direccion": i["id_direccion"],
                 "direccion": [{
@@ -194,7 +192,6 @@ def get_all_pedidos(
         lista_filtrada = []
         for pedido in lista_pedidos:
             nombre = pedido["cliente"][0]["nombre"].lower() if pedido["cliente"] else ""
-            apellido = pedido["cliente"][0]["apellido"].lower() if pedido["cliente"] else ""
             metodo = pedido["metodo_pago"].lower() if pedido["metodo_pago"] else ""
             calle = pedido["direccion"][0]["calle"].lower() if pedido["direccion"] else ""
             ciudad = pedido["direccion"][0]["ciudad"].lower() if pedido["direccion"] else ""
@@ -205,7 +202,7 @@ def get_all_pedidos(
                 if busqueda in nombre_producto:
                     encontrado_en_producto = True
                     break
-            if (busqueda in nombre or busqueda in apellido or busqueda in metodo or busqueda in calle or busqueda in ciudad or busqueda in provincia or encontrado_en_producto):
+            if (busqueda in nombre or busqueda in metodo or busqueda in calle or busqueda in ciudad or busqueda in provincia or encontrado_en_producto):
                 lista_filtrada.append(pedido)
         lista_pedidos = lista_filtrada
     if filtromp is not None:

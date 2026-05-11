@@ -13,7 +13,7 @@ router = APIRouter()
         tags=["Sección de Productos"]
 )
 def read_producto(
-        limit: int = 20,
+        limit: int = 21,
         skip: int = 0, 
         db: Session = Depends(get_db), 
         id_producto: Optional[int] = None,
