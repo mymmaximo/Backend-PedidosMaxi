@@ -63,7 +63,7 @@ def create_usuario(
     usuario: Usuarios_Crear, 
     db: Session = Depends(get_db)
 ):
-    db_usuario_email = crud.get_usuario(
+    db_usuario_email = crud.get_mail_usuario(
         db, 
         email_usuario=usuario.email
     )
@@ -72,7 +72,7 @@ def create_usuario(
             status_code=400, 
             detail="Email ya registrado"
         )
-    db_usuario_dni = crud.get_usuario(
+    db_usuario_dni = crud.get_dni_usuario(
         db, 
         dni_usuario=usuario.dni
     )
@@ -97,16 +97,16 @@ def update_usuario(
     db: Session = Depends(get_db)
 ):
     if usuario.email is not None:
-        db_usuarios_email = crud.get_mail(
+        db_usuarios_email = crud.get_mail_usuario(
             db, 
-            email_cliente=usuario.email
+            email_usuario=usuario.email
         )
         if db_usuarios_email and id_usuario != db_usuarios_email[0].id:
             raise HTTPException(
                 status_code=400, 
                 detail="Email ya registrado"
             )
-    db_usuario = crud.update_cliente(
+    db_usuario = crud.update_usuario(
         db, 
         id_usuario=id_usuario, 
         usuario=usuario

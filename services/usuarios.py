@@ -18,7 +18,7 @@ def get_usuario(
         return []
     db_usuarios = {}
     for i in db_usuario:
-        id_usuarioh = i["id_cliente"]
+        id_usuarioh = i["id_usuario"]
         if id_usuarioh not in db_usuarios:
             db_usuarios[id_usuarioh] = {
                 "id": id_usuarioh,
@@ -46,6 +46,17 @@ def get_usuario(
                 lista_temporal.append(usuario)
         lista_usuarios = lista_temporal
     return lista_usuarios[skip : skip + limit]
+
+def get_dni_usuario(
+        db: Session,
+        dni_usuario: Optional[str] = None
+    ):
+    resultado = db.query(Usuarios)
+    if dni_usuario is not None:
+        resultado = resultado.filter(
+            Usuarios.dni == dni_usuario
+        )
+    return resultado.all()
 
 def get_mail_usuario(
         db: Session,
