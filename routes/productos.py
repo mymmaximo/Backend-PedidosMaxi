@@ -2,21 +2,20 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from db.database import get_db
-from db.models.productos import Productos_Respuesta, Productos_Crear, Productos_Edit, Productos_Categoria
+from db.models.productos import Productos_Respuesta, Productos_Crear, Productos_Edit, ArchivoCrear, Productos_Categoria, Productos_Imagenes
 from services import productos as crud
 router = APIRouter()
 
 
 @router.get(
         "/producto/", 
-        response_model= list[Productos_Respuesta], 
+        response_model= list[Productos_Imagenes], 
         tags=["Sección de Productos"]
 )
 def read_producto(
         limit: int = 21,
         skip: int = 0, 
         db: Session = Depends(get_db), 
-        id_producto: Optional[int] = None,
         busqueda_producto: Optional[str] = None,
         filtrocat: Optional[str] = None,
         precio_producto_min: Optional[int] = None,
@@ -25,7 +24,6 @@ def read_producto(
     ):
     db_producto = crud.get_producto(
         db, 
-        id_producto=id_producto,
         busqueda_producto=busqueda_producto,
         filtrocat=filtrocat,
         precio_producto_min=precio_producto_min,
@@ -76,6 +74,20 @@ def create_producto(
     return crud.create_producto(
         db=db, 
         producto=producto
+    )
+
+@router.post(
+        "/productos/archivos/", 
+        response_model=ArchivoCrear, 
+        tags=["Sección de Productos"]
+)
+def create_archivo(
+    archivo: ArchivoCrear, 
+    db: Session = Depends(get_db)
+):
+    return crud.create_archivo(
+        db=db, 
+        archivo=archivo
     )
 
 @router.put(

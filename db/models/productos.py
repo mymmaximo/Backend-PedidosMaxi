@@ -48,6 +48,13 @@ class Productos_Base(BaseModel):
     precio: float
     stock: int
     categoria: str
+
+class ArchivoCrear(BaseModel):
+    id_producto: int
+    s3_key: str
+    nombre_original: Optional[str] = None
+    tipo_contenido: Optional[str] = None
+    tamanio: Optional[int] = None
     
 class Productos_Crear(Productos_Base):
     pass
@@ -76,3 +83,22 @@ class Productos_Edit(BaseModel):
     
 class Productos_Categoria(BaseModel):
     categoria: str
+
+class Imagenes(BaseModel):
+    id_imagen: int
+    s3_key: str
+    tipo_contenido: str
+    tamanio: int
+    
+class Productos_Imagenes(BaseModel):
+    id: int
+    nombre: str
+    precio: float
+    stock: int
+    categoria: str
+    codigo_barra: str
+    created_at: datetime
+    updated_at: Optional[datetime]
+    activo: bool
+    imagenes: list[Imagenes]
+    model_config = {"from_attributes": True}
