@@ -4,7 +4,7 @@ from typing import Optional
 from sqlalchemy import case, or_, text
 from sqlalchemy.orm import Session
 from db.models.archivos import Archivos
-from db.models.productos import Productos, Productos_Crear, Productos_Edit, ArchivoCrear
+from db.models.productos import Archivos, Productos_Crear, Productos_Edit, ArchivoCrear
 
 
 def get_producto(
@@ -91,13 +91,13 @@ def get_producto(
 def get_categoria(
         db: Session
     ):
-    return db.query(Productos.categoria).distinct().all()
+    return db.query(Archivos.categoria).distinct().all()
 
 def get_productos(
         db: Session, 
         limit: int = 100
     ):
-    return db.query(Productos).limit(limit).all()
+    return db.query(Archivos).limit(limit).all()
 
 def create_producto(
         db: Session, 
@@ -107,7 +107,7 @@ def create_producto(
     parte2 = ''.join(random.choices(string.ascii_uppercase, k=3))
     parte3 = ''.join(random.choices(string.digits, k=4))
     codigo_azar = f"{parte1}-{parte2}-{parte3}"
-    db_producto = Productos(**producto.dict())
+    db_producto = Archivos(**producto.dict())
     db_producto.codigo_barra = codigo_azar
     db.add(db_producto)
     db.commit()
@@ -129,7 +129,7 @@ def update_producto(
         id_producto: int, 
         producto: Productos_Edit
     ):
-    db_producto = db.query(Productos).filter(Productos.id == id_producto).first()
+    db_producto = db.query(Archivos).filter(Archivos.id == id_producto).first()
     if not db_producto:
         return None
     producto_act = producto.dict(exclude_unset=True)
@@ -143,10 +143,21 @@ def delete_producto(
         db: Session, 
         id_producto: int
     ):
-    db_producto = db.query(Productos).filter(Productos.id == id_producto).first()
+    db_producto = db.query(Archivos).filter(Archivos.id == id_producto).first()
     if db_producto is None:
         return False
     db_producto.activo = not db_producto.activo
     db.commit()
     db.refresh(db_producto)
+    return True
+
+def delete_archivo(
+        db: Session,
+        id_archivo: int
+):
+    db_archivo = db.query(Archivos).filter(Archivos.id == id_archivo).first()
+    if db_archivo is None:
+        return False
+    db.delete(db_archivo)
+    db.commit()
     return True

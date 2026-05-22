@@ -214,23 +214,6 @@ AS $function$
 	$function$
 ;
 
--- DROP FUNCTION public.fn_obtener_ticket_pedido(int4);
-
-CREATE OR REPLACE FUNCTION public.fn_obtener_ticket_pedido(p_id_pedido integer)
- RETURNS TABLE(p_nombre character varying, dp_cantidad integer, dp_precio_unitario numeric, dp_subtotal numeric)
- LANGUAGE plpgsql
-AS $function$
-	begin
-		return query
-			select p.nombre, dp.cantidad, dp.precio_unitario, sum(dp.cantidad * dp.precio_unitario) as dp_subtotal
-				from detalles_pedido dp
-				join productos p on p.id = dp.id_producto
-				where dp.id_pedido = p_id_pedido
-			group by p.nombre, dp.cantidad, dp.precio_unitario;
-	end;
-$function$
-;
-
 -- DROP FUNCTION public.fn_obtener_ticket_pedido(int4, int4);
 
 CREATE OR REPLACE FUNCTION public.fn_obtener_ticket_pedido(p_id_pedido integer, p_dias_reales integer)
@@ -250,10 +233,27 @@ AS $function$
 	$function$
 ;
 
+-- DROP FUNCTION public.fn_obtener_ticket_pedido(int4);
+
+CREATE OR REPLACE FUNCTION public.fn_obtener_ticket_pedido(p_id_pedido integer)
+ RETURNS TABLE(p_nombre character varying, dp_cantidad integer, dp_precio_unitario numeric, dp_subtotal numeric)
+ LANGUAGE plpgsql
+AS $function$
+	begin
+		return query
+			select p.nombre, dp.cantidad, dp.precio_unitario, sum(dp.cantidad * dp.precio_unitario) as dp_subtotal
+				from detalles_pedido dp
+				join productos p on p.id = dp.id_producto
+				where dp.id_pedido = p_id_pedido
+			group by p.nombre, dp.cantidad, dp.precio_unitario;
+	end;
+$function$
+;
+
 -- DROP FUNCTION public.get_all_clientes();
 
 CREATE OR REPLACE FUNCTION public.get_all_clientes()
- RETURNS TABLE(id_cliente integer, nombre character varying, email character varying, dni character varying, apellido character varying, usuario character varying, id_rol integer, id_direccion integer, calle character varying, numero integer, barrio character varying, ciudad character varying, provincia character varying)
+ RETURNS TABLE(id_cliente integer, nombre character varying, email character varying, dni character varying, activo boolean, id_direccion integer, calle character varying, numero integer, barrio character varying, ciudad character varying, provincia character varying)
  LANGUAGE plpgsql
 AS $function$
 begin
@@ -263,9 +263,7 @@ begin
 		c.nombre,
 		c.email,
 		c.dni,
-		c.apellido,
-		c.usuario,
-		c.id_rol,
+		c.activo,
 			d.id,
 			d.calle,
 			d.numero,
@@ -274,8 +272,80 @@ begin
 			d.provincia
 	from clientes c
 	left join pedidos p on c.id = p.id_cliente
-	left join direcciones d on p.id_direccion = d.id
-	where c.activo is True;
+	left join direcciones d on p.id_direccion = d.id;
+end;
+$function$
+;
+
+-- DROP FUNCTION public.get_all_historial();
+
+CREATE OR REPLACE FUNCTION public.get_all_historial()
+ RETURNS TABLE(id integer, id_producto integer, precio_viejo numeric, precio_nuevo numeric, updated_at timestamp without time zone, nombre character varying, categoria character varying, codigo_barra character varying, activo boolean)
+ LANGUAGE plpgsql
+AS $function$
+begin
+	return query
+	select
+		hp.id, 
+		hp.id_producto, 
+		hp.precio_viejo, 
+		hp.precio_nuevo, 
+		hp.updated_at,
+			p.nombre,
+			p.categoria, 
+			p.codigo_barra,
+			p.activo
+	from historial_precios hp
+	join productos p on hp.id_producto = p.id;
+end;
+$function$
+;
+
+-- DROP FUNCTION public.get_all_productos();
+
+CREATE OR REPLACE FUNCTION public.get_all_productos()
+ RETURNS TABLE(id integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying, created_at timestamp without time zone, updated_at timestamp without time zone, activo boolean, id_imagen integer, s3_key character varying, tipo_contenido character varying, tamanio integer)
+ LANGUAGE plpgsql
+AS $function$
+begin
+	return query
+	select
+		p.id,
+		p.nombre,
+		p.precio,
+		p.stock,
+		p.categoria,
+		p.codigo_barra,
+		p.created_at,
+		p.updated_at,
+		p.activo,
+			a.id,
+			a.s3_key,
+			a.tipo_contenido,
+			a.tamanio
+	from productos p
+	left join archivos a on p.id = a.id_producto
+	ORDER BY stock DESC;
+end;
+$function$
+;
+
+-- DROP FUNCTION public.get_all_usuarios();
+
+CREATE OR REPLACE FUNCTION public.get_all_usuarios()
+ RETURNS TABLE(id_usuario integer, nombre character varying, email character varying, dni character varying, id_rol integer, activo boolean)
+ LANGUAGE plpgsql
+AS $function$
+begin
+	return query
+	select
+		u.id,
+		u.nombre,
+		u.email,
+		u.dni,
+		u.id_rol,
+		u.activo
+	from usuarios u;
 end;
 $function$
 ;
@@ -322,7 +392,7 @@ $function$
 -- DROP FUNCTION public.obtener_all_pedidos();
 
 CREATE OR REPLACE FUNCTION public.obtener_all_pedidos()
- RETURNS TABLE(id_pedido integer, id_cliente integer, nombre_cliente character varying, apellido_cliente character varying, id_direccion integer, calle character varying, numero integer, ciudad character varying, provincia character varying, metodo_pago character varying, estatus integer, tiempo_estimado_entrega smallint, tiempo_entrega smallint, id_detalles_pedido integer, cantidad integer, precio_unitario numeric, id_producto integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying)
+ RETURNS TABLE(id_pedido integer, id_cliente integer, nombre_cliente character varying, id_direccion integer, calle character varying, numero integer, ciudad character varying, provincia character varying, metodo_pago character varying, estatus integer, tiempo_estimado_entrega smallint, tiempo_entrega smallint, created_at timestamp without time zone, updated_at timestamp without time zone, total numeric, id_detalles_pedido integer, cantidad integer, precio_unitario numeric, dp_subtotal numeric, id_producto integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying)
  LANGUAGE plpgsql
 AS $function$
 		begin
@@ -331,7 +401,6 @@ AS $function$
 						p.id,
 						p.id_cliente,
 							c.nombre,
-							c.apellido,
 						p.id_direccion,
 							d.calle,
 							d.numero,
@@ -341,9 +410,13 @@ AS $function$
 						p.estatus,
 						p.tiempo_estimado_entrega,
 						p.tiempo_entrega,
+						p.created_at,
+						P.updated_at,
+						(sum(dp.cantidad * dp.precio_unitario) over(partition by p.id))::numeric(10,2) as total,
 							dp.id,
 							dp.cantidad,
 							dp.precio_unitario,
+							dp.cantidad * dp.precio_unitario as dp_subtotal,
 								pr.id,
 								pr.nombre,
 								pr.precio,
@@ -355,6 +428,47 @@ AS $function$
 					join direcciones d on p.id_direccion = d.id
 					join detalles_pedido dp on p.id = dp.id_pedido
 					join productos pr on dp.id_producto = pr.id;
+		end;
+	$function$
+;
+
+-- DROP FUNCTION public.obtener_clientes_pedidos(int4);
+
+CREATE OR REPLACE FUNCTION public.obtener_clientes_pedidos(p_id_cliente integer)
+ RETURNS TABLE(id_pedido integer, id_cliente integer, id_direccion integer, calle character varying, numero integer, ciudad character varying, provincia character varying, metodo_pago character varying, estatus integer, tiempo_estimado_entrega smallint, tiempo_entrega smallint, created_at timestamp without time zone, updated_at timestamp without time zone, total numeric, id_detalles_pedido integer, cantidad integer, precio_unitario numeric, subtotal numeric, id_producto integer, nombre character varying, precio numeric, stock integer, categoria character varying)
+ LANGUAGE plpgsql
+AS $function$
+		begin
+			return query
+				select
+						p.id,
+						p.id_cliente,
+						p.id_direccion,
+							d.calle,
+							d.numero,
+							d.ciudad,
+							d.provincia,
+						p.metodo_pago,
+						p.estatus,
+						p.tiempo_estimado_entrega,
+						p.tiempo_entrega,
+						p.created_at,
+						p.updated_at,
+						(sum(dp.cantidad * dp.precio_unitario) over(partition by p.id))::numeric(10,2) as total,
+							dp.id,
+							dp.cantidad,
+							dp.precio_unitario,
+							dp.cantidad * dp.precio_unitario as dp_subtotal,
+								pr.id,
+								pr.nombre,
+								pr.precio,
+								pr.stock,
+								pr.categoria
+					from pedidos p
+					join direcciones d on p.id_direccion = d.id
+					join detalles_pedido dp on p.id = dp.id_pedido
+					join productos pr on dp.id_producto = pr.id
+					where p.id_cliente  = p_id_cliente;
 		end;
 	$function$
 ;

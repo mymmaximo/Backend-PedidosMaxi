@@ -1,3 +1,24 @@
+-- public.clientes definition
+
+-- Drop table
+
+-- DROP TABLE clientes;
+
+CREATE TABLE clientes (
+	id serial4 NOT NULL,
+	nombre varchar(100) NOT NULL,
+	email varchar(150) NOT NULL,
+	dni varchar(20) NOT NULL,
+	created_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
+	updated_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
+	contrasena varchar(255) NULL,
+	activo bool NULL,
+	CONSTRAINT clientes_dni_key UNIQUE (dni),
+	CONSTRAINT clientes_email_key UNIQUE (email),
+	CONSTRAINT clientes_pkey PRIMARY KEY (id)
+);
+
+
 -- public.direcciones definition
 
 -- Drop table
@@ -73,33 +94,28 @@ update
 CREATE TABLE roles (
 	id serial4 NOT NULL,
 	rol varchar(50) NOT NULL,
+	descripcion varchar(100) NULL,
 	CONSTRAINT roles_pkey PRIMARY KEY (id),
 	CONSTRAINT roles_rol_key UNIQUE (rol)
 );
 
 
--- public.clientes definition
+-- public.archivos definition
 
 -- Drop table
 
--- DROP TABLE clientes;
+-- DROP TABLE archivos;
 
-CREATE TABLE clientes (
+CREATE TABLE archivos (
 	id serial4 NOT NULL,
-	nombre varchar(100) NOT NULL,
-	email varchar(150) NOT NULL,
-	dni varchar(20) NOT NULL,
-	apellido varchar(100) NOT NULL,
+	id_producto int4 NOT NULL,
+	s3_key varchar(255) NOT NULL,
+	nombre_original varchar(255) NOT NULL,
+	tipo_contenido varchar(50) NOT NULL,
+	tamanio int4 NOT NULL,
 	created_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
-	updated_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
-	usuario varchar(50) NULL,
-	contrasena varchar(255) NULL,
-	id_rol int4 NULL,
-	activo bool NULL,
-	CONSTRAINT clientes_dni_key UNIQUE (dni),
-	CONSTRAINT clientes_email_key UNIQUE (email),
-	CONSTRAINT clientes_pkey PRIMARY KEY (id),
-	CONSTRAINT fk_cliente_rol FOREIGN KEY (id_rol) REFERENCES roles(id)
+	CONSTRAINT archivos_pkey PRIMARY KEY (id),
+	CONSTRAINT fk_producto FOREIGN KEY (id_producto) REFERENCES productos(id) ON DELETE CASCADE
 );
 
 
@@ -140,6 +156,29 @@ CREATE TABLE pedidos (
 	CONSTRAINT fk_estatus_id FOREIGN KEY (estatus) REFERENCES estados_pedido(id),
 	CONSTRAINT pedidos_id_cliente_fkey FOREIGN KEY (id_cliente) REFERENCES clientes(id),
 	CONSTRAINT pedidos_id_direccion_fkey FOREIGN KEY (id_direccion) REFERENCES direcciones(id)
+);
+
+
+-- public.usuarios definition
+
+-- Drop table
+
+-- DROP TABLE usuarios;
+
+CREATE TABLE usuarios (
+	id serial4 NOT NULL,
+	nombre varchar(100) NOT NULL,
+	email varchar(150) NOT NULL,
+	dni varchar(20) NOT NULL,
+	contrasena varchar(255) NULL,
+	id_rol int4 NULL,
+	activo bool NULL,
+	created_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
+	updated_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
+	CONSTRAINT usuarios_dni_key UNIQUE (dni),
+	CONSTRAINT usuarios_email_key UNIQUE (email),
+	CONSTRAINT usuarios_pkey PRIMARY KEY (id),
+	CONSTRAINT fk_usuarios_rol FOREIGN KEY (id_rol) REFERENCES roles(id)
 );
 
 

@@ -130,3 +130,23 @@ def delete_producto(
             detail="Producto no encontrado"
         )
     return {"detail": "Producto eliminado"}
+
+@router.delete(
+        "/productos/archivos/id/{id_archivo}", 
+        tags=["Sección de Productos"]
+)
+def delete_archivo(
+    id_archivo: int, 
+    db: Session = Depends(get_db)
+):
+    success = crud.delete_archivo(
+        db, 
+        id_archivo=id_archivo
+    )
+    if not success:
+        raise HTTPException(
+            status_code=404, 
+            detail="Archivo no encontrado"
+        )
+    return {"detail": "Archivo eliminado"}
+

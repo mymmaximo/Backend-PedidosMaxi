@@ -6,7 +6,7 @@ from typing import Optional
 from datetime import datetime
 
 
-class Productos(Base):
+class Archivos(Base):
     __tablename__ = "productos"
 
     id = Column(
