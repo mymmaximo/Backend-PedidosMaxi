@@ -1,7 +1,7 @@
 from typing import Optional
 from sqlalchemy.orm import Session
 from db.models.detalles_pedido import Detalles_Pedido, Detalles_Pedido_Crear
-from db.models.productos import Archivos
+from db.models.productos import Productos
 
 def get_detalle_pedido(
         db: Session, 
@@ -36,7 +36,7 @@ def create_detalle_pedido(
     ):
     lista_detalles = []
     for i in detalle_pedido:
-        db_producto = db.query(Archivos).filter(Archivos.id == i.id_producto).first()
+        db_producto = db.query(Productos).filter(Productos.id == i.id_producto).first()
         if db_producto is None:
             return False
         db_detalle_pedido = Detalles_Pedido(

@@ -149,4 +149,3 @@ def delete_archivo(
             detail="Archivo no encontrado"
         )
     return {"detail": "Archivo eliminado"}
-
