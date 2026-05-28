@@ -45,6 +45,7 @@ class Archivos(Base):
 
     
 class ArchivoCreate(BaseModel):
+    id_producto: int
     s3_key: str
     nombre_original: Optional[str] = "imagen_vue"
     tipo_contenido: Optional[str] = "image/png"
