@@ -198,6 +198,12 @@ def create_cliente(
     db.refresh(db_cliente)
     return db_cliente
 
+def get_dni(
+    db: Session, 
+    dni_cliente: str
+):
+    return db.query(Clientes).filter(Clientes.dni == dni_cliente).first()
+
 def update_cliente(
         db: Session, 
         id_cliente: int, 

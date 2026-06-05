@@ -96,7 +96,7 @@ def create_cliente(
     cliente: Clientes_Crear, 
     db: Session = Depends(get_db)
 ):
-    db_cliente_email = crud.get_cliente(
+    db_cliente_email = crud.get_mail(
         db, 
         email_cliente=cliente.email
     )
@@ -105,7 +105,7 @@ def create_cliente(
             status_code=400, 
             detail="Email ya registrado"
         )
-    db_cliente_dni = crud.get_cliente(
+    db_cliente_dni = crud.get_dni(
         db, 
         dni_cliente=cliente.dni
     )
