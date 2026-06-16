@@ -40,6 +40,9 @@ def delete_banner(
     if db_banner is None:
         return False
     db_banner.activo = not db_banner.activo
+    if db_banner.activo == False:
+        db_banner.enlace = ""
+        db_banner.orden = None
     db.commit()
     db.refresh(db_banner)
     return True
