@@ -13,11 +13,13 @@ router = APIRouter()
 )
 def read_banners(
     limit: int = 100, 
-    db: Session = Depends(get_db)
+    bool_activo: Optional[bool] = None,
+    db: Session = Depends(get_db),
 ):
     banners = crud.get_banners(
         db, 
-        limit=limit
+        limit=limit,
+        bool_activo = bool_activo
     )
     return banners
 

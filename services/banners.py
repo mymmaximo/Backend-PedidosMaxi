@@ -3,9 +3,13 @@ from db.models.banners import Banners, Banners_Crear, Banners_Respuesta, Banners
 
 def get_banners(
         db: Session, 
-        limit: int = 100
+        limit: int = 100,
+        bool_activo: bool = None
     ):
-    return db.query(Banners).order_by(Banners.orden).limit(limit).all()
+    db_banner = db.query(Banners)
+    if bool_activo is not None:
+        db_banner = db_banner.filter(Banners.activo == bool_activo)
+    return db_banner.order_by(Banners.orden).limit(limit).all()
 
 def create_banner(
         db: Session, 
