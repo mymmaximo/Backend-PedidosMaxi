@@ -1,3 +1,23 @@
+-- public.banner definition
+
+-- Drop table
+
+-- DROP TABLE banner;
+
+CREATE TABLE banner (
+	id serial4 NOT NULL,
+	s3_key varchar(255) NOT NULL,
+	nombre_original varchar(255) NOT NULL,
+	tipo_contenido varchar(50) NOT NULL,
+	tamanio int4 NOT NULL,
+	activo bool DEFAULT true NULL,
+	enlace varchar(255) NOT NULL,
+	orden int4 NULL,
+	created_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
+	CONSTRAINT banner_pkey PRIMARY KEY (id)
+);
+
+
 -- public.clientes definition
 
 -- Drop table

@@ -167,6 +167,21 @@ AS $function$
 $function$
 ;
 
+-- DROP FUNCTION public.consultar_stock(int4);
+
+CREATE OR REPLACE FUNCTION public.consultar_stock(codigo_barra integer)
+ RETURNS TABLE(p_stock integer)
+ LANGUAGE plpgsql
+AS $function$
+	begin
+		return query
+			select p.stock
+				from productos p
+				where p.id = p.codigo_barra;
+	end;
+$function$
+;
+
 -- DROP FUNCTION public.consultar_stock(varchar);
 
 CREATE OR REPLACE FUNCTION public.consultar_stock(p_codigo_barra character varying)
@@ -182,17 +197,19 @@ AS $function$
 $function$
 ;
 
--- DROP FUNCTION public.consultar_stock(int4);
+-- DROP FUNCTION public.fn_obtener_ticket_pedido(int4);
 
-CREATE OR REPLACE FUNCTION public.consultar_stock(codigo_barra integer)
- RETURNS TABLE(p_stock integer)
+CREATE OR REPLACE FUNCTION public.fn_obtener_ticket_pedido(p_id_pedido integer)
+ RETURNS TABLE(p_nombre character varying, dp_cantidad integer, dp_precio_unitario numeric, dp_subtotal numeric)
  LANGUAGE plpgsql
 AS $function$
 	begin
 		return query
-			select p.stock
-				from productos p
-				where p.id = p.codigo_barra;
+			select p.nombre, dp.cantidad, dp.precio_unitario, sum(dp.cantidad * dp.precio_unitario) as dp_subtotal
+				from detalles_pedido dp
+				join productos p on p.id = dp.id_producto
+				where dp.id_pedido = p_id_pedido
+			group by p.nombre, dp.cantidad, dp.precio_unitario;
 	end;
 $function$
 ;
@@ -231,23 +248,6 @@ AS $function$
 			end if;
 		end;
 	$function$
-;
-
--- DROP FUNCTION public.fn_obtener_ticket_pedido(int4);
-
-CREATE OR REPLACE FUNCTION public.fn_obtener_ticket_pedido(p_id_pedido integer)
- RETURNS TABLE(p_nombre character varying, dp_cantidad integer, dp_precio_unitario numeric, dp_subtotal numeric)
- LANGUAGE plpgsql
-AS $function$
-	begin
-		return query
-			select p.nombre, dp.cantidad, dp.precio_unitario, sum(dp.cantidad * dp.precio_unitario) as dp_subtotal
-				from detalles_pedido dp
-				join productos p on p.id = dp.id_producto
-				where dp.id_pedido = p_id_pedido
-			group by p.nombre, dp.cantidad, dp.precio_unitario;
-	end;
-$function$
 ;
 
 -- DROP FUNCTION public.get_all_clientes();
@@ -412,7 +412,7 @@ AS $function$
 						p.tiempo_entrega,
 						p.created_at,
 						P.updated_at,
-						(sum(dp.cantidad * dp.precio_unitario) over(partition by p.id))::numeric(10,2) as total,
+						(sum(dp.cantidad * dp.precio_unitario) over(partition by p.id))::numeric(15,2) as total,
 							dp.id,
 							dp.cantidad,
 							dp.precio_unitario,
@@ -454,7 +454,7 @@ AS $function$
 						p.tiempo_entrega,
 						p.created_at,
 						p.updated_at,
-						(sum(dp.cantidad * dp.precio_unitario) over(partition by p.id))::numeric(10,2) as total,
+						(sum(dp.cantidad * dp.precio_unitario) over(partition by p.id))::numeric(15,2) as total,
 							dp.id,
 							dp.cantidad,
 							dp.precio_unitario,
