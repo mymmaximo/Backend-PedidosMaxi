@@ -22,8 +22,8 @@ def create_banner(
     return db_banner
 
 def update_banner(
-        db: Session, 
-        id_banner: int, 
+        db: Session,
+        id_banner: int,
         banner: Banners_Edit
     ):
     db_banner = db.query(Banners).filter(Banners.id == id_banner).first()
@@ -36,7 +36,7 @@ def update_banner(
     db.refresh(db_banner)
     return db_banner
 
-def delete_banner(
+def deact_banner(
         db: Session, 
         id_banner: int
     ):
@@ -50,3 +50,13 @@ def delete_banner(
     db.commit()
     db.refresh(db_banner)
     return True
+
+def hard_delete_banner(
+        db: Session, 
+        id_banner: int
+    ):
+    db_banner = db.query(Banners).filter(Banners.id == id_banner).first()
+    if db_banner:
+        db.delete(db_banner)
+        db.commit()
+    return db_banner

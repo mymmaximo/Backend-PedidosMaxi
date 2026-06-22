@@ -59,21 +59,40 @@ def update_banners(
         )
     return db_banner
 
-@router.delete(
-        "/banners/id/{id_banner}", 
+@router.put(
+        "/banners/estado/id/{id_banner}", 
         tags=["Sección de Banners"]
 )
-def delete_banners(
+def deact_banner(
     id_banner: int, 
     db: Session = Depends(get_db)
 ):
-    success = crud.delete_banner(
+    success = crud.deact_banner(
         db, 
         id_banner=id_banner
     )
     if not success:
         raise HTTPException(
             status_code=404, 
+            detail="Banner no encontrado"
+        )
+    return {"detail": "Banner desactivado"}
+
+@router.delete(
+        "/banners/id/{id_banner}", 
+        tags=["Sección de Banners"]
+)
+def hard_delete_banner(
+    id_banner: int,
+    db: Session = Depends(get_db)
+):
+    success = crud.hard_delete_banner(
+        db,
+        id_banner=id_banner
+    )
+    if not success:
+        raise HTTPException(
+            status_code=404,
             detail="Banner no encontrado"
         )
     return {"detail": "Banner eliminado"}
