@@ -294,7 +294,121 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Zapatillas Vans Knu Skool',110000.00,10,'Indumentaria','IND-VAN-KNU','2026-03-09 12:42:26.964735','2026-06-05 09:41:41.46197',true),
 	 ('Placa de Video NVIDIA RTX 3050',550000.00,234,'Hardware','HW-NV-3050','2026-03-09 12:42:26.964735','2026-06-05 10:03:48.575321',true),
 	 ('Cargador',15651.00,1456,'Periféricos','HGJ-JYS-0786','2026-05-20 10:27:12.442462','2026-06-05 12:15:30.868022',true),
-	 ('Silla Madera',123234.00,0,'Muebleria','GRY-HZJ-3991','2026-05-21 09:43:37.387455',NULL,true);
+	 ('Silla Madera',123234.00,0,'Muebleria','GRY-HZJ-3991','2026-05-21 09:43:37.387455',NULL,true),
+	 ('Mochila Ecológica',8500.00,450,'Indefinido','MOC-ECO-1001','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
+	 ('Libreta Tapa Dura',4200.00,120,'Indefinido','LIB-TAP-2002','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
+	 ('Set de Marcadores x12',15600.00,85,'Indefinido','MAR-SET-3003','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
+	 ('Taza Cerámica Mágica',6500.00,300,'Indefinido','TAZ-MAG-4004','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
+	 ('Llavero Destapador',1200.00,1500,'Indefinido','LLA-DES-5005','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true);
+INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+	 ('Agenda 2027 Diaria',22000.00,50,'Indefinido','AGE-DIA-6006','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
+	 ('Cartuchera de Lona',7800.00,210,'Indefinido','CAR-LON-7007','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
+	 ('Post-it Notas Adhesivas',3500.00,800,'Indefinido','POS-ADH-8008','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
+	 ('Goma de Borrar Miga',500.00,2000,'Indefinido','GOM-MIG-9009','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
+	 ('Set de Reglas Escuadra',4800.00,150,'Indefinido','REG-ESC-1010','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
+	 ('Porta Lápices de Malla',3200.00,400,'Indefinido','POR-LAP-1111','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
+	 ('Clip Pizarra Magnético',890.00,600,'Indefinido','CLI-PIZ-1212','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
+	 ('Carpeta A4 con Folios',9500.00,320,'Indefinido','CAR-A4F-1313','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
+	 ('Resaltadores Pastel x6',6700.00,280,'Indefinido','RES-PAS-1414','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
+	 ('Bolígrafo Tinta Gel',1800.00,1200,'Indefinido','BOL-GEL-1515','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true);
+INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+	 ('Escritorio en L (Esquinero)',185000.00,15,'Muebleria','ESC-ESQ-2001','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
+	 ('Silla de Oficina Ergonómica',240000.00,30,'Muebleria','SIL-OFI-2002','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
+	 ('Biblioteca 5 Estantes',115000.00,22,'Muebleria','BIB-5ES-2003','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
+	 ('Mesa de Centro Ratona',85000.00,40,'Muebleria','MES-RAT-2004','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
+	 ('Soporte Monitor Madera',35000.00,85,'Muebleria','SOP-MAD-2005','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
+	 ('Archivador de Metal 3 Cajones',150000.00,10,'Muebleria','ARC-MET-2006','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
+	 ('Panel Ranurado Organizador',45000.00,60,'Muebleria','PAN-RAN-2007','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
+	 ('Silla Plegable Plástico/Metal',28000.00,120,'Muebleria','SIL-PLE-2008','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
+	 ('Mesa Comedor Plegable',170000.00,18,'Muebleria','MES-COM-2009','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
+	 ('Banqueta Alta Barra',65000.00,50,'Muebleria','BAN-ALT-2010','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true);
+INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+	 ('Soporte CPU con Ruedas',22000.00,75,'Muebleria','SOP-CPU-2011','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
+	 ('Cajonera Bajo Escritorio',98000.00,25,'Muebleria','CAJ-BAJ-2012','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
+	 ('Estante Flotante Pared',18000.00,150,'Muebleria','EST-FLO-2013','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
+	 ('Escritorio Elevable Motorizado',450000.00,5,'Muebleria','ESC-ELE-2014','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
+	 ('Puff Asiento Redondo',38000.00,45,'Muebleria','PUF-RED-2015','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
+	 ('Teclado Inalámbrico Bluetooth',85000.00,110,'Periféricos','TEC-INA-3001','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
+	 ('Mouse Vertical Ergonómico',62000.00,75,'Periféricos','MOU-VER-3002','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
+	 ('Monitor Ultrawide 34"',650000.00,12,'Periféricos','MON-ULW-3003','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
+	 ('Webcam Full HD 1080p',95000.00,40,'Periféricos','WEB-FHD-3004','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
+	 ('Micrófono Condensador USB',120000.00,25,'Periféricos','MIC-CON-3005','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true);
+INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+	 ('Auriculares con Micrófono',78000.00,80,'Periféricos','AUR-MIC-3006','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
+	 ('Mousepad XL Tela Suave',25000.00,200,'Periféricos','PAD-XLS-3007','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
+	 ('Kit Teclado y Mouse Inalámbrico',115000.00,60,'Periféricos','KIT-TEC-3008','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
+	 ('Luz LED para Monitor (Screenbar)',45000.00,90,'Periféricos','LED-MON-3009','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
+	 ('Capturadora de Video USB',180000.00,15,'Periféricos','CAP-VID-3010','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
+	 ('Tableta Digitalizadora',210000.00,20,'Periféricos','TAB-DIG-3011','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
+	 ('Parlantes 2.1 Escritorio',89000.00,45,'Periféricos','PAR-210-3012','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
+	 ('HUB USB 3.0 de 7 Puertos',35000.00,150,'Periféricos','HUB-USB-3013','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
+	 ('Adaptador HDMI a DisplayPort',18000.00,200,'Periféricos','ADA-HDM-3014','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
+	 ('Gafas VR Realidad Virtual',850000.00,8,'Periféricos','GAF-VRV-3015','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true);
+INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+	 ('Memoria RAM DDR4 16GB 3200MHz',95000.00,150,'Hardware','RAM-DDR-4001','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
+	 ('Disco Sólido SSD M.2 1TB',125000.00,110,'Hardware','SSD-1TB-4002','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
+	 ('Motherboard B550M AM4',210000.00,45,'Hardware','MOT-B55-4003','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
+	 ('Fuente de Alimentación 750W 80+ Bronze',160000.00,60,'Hardware','FUE-750-4004','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
+	 ('Gabinete ATX Cristal Templado',185000.00,30,'Hardware','GAB-ATX-4005','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
+	 ('Refrigeración Líquida 240mm',240000.00,25,'Hardware','REF-LIQ-4006','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
+	 ('Placa de Video RX 4060 8GB',680000.00,18,'Hardware','GPU-406-4007','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
+	 ('Cooler CPU por Aire RGB',75000.00,80,'Hardware','COO-AIR-4008','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
+	 ('Disco Duro HDD 2TB 7200RPM',90000.00,65,'Hardware','HDD-2TB-4009','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
+	 ('Procesador Intel Core i5 12400F',310000.00,40,'Hardware','CPU-I50-4010','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true);
+INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+	 ('Ventilador Gabinete 120mm x3',45000.00,120,'Hardware','FAN-120-4011','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
+	 ('Cable Extensión Sleeved PC',38000.00,90,'Hardware','CAB-SLE-4012','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
+	 ('Pasta Térmica Alto Rendimiento',15000.00,300,'Hardware','PAS-TER-4013','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
+	 ('Controlador RGB 5v ARGB',25000.00,85,'Hardware','CON-RGB-4014','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
+	 ('Adaptador Wi-Fi PCIe 6E',65000.00,50,'Hardware','WIF-PCI-4015','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
+	 ('Soporte Celular Escritorio',12000.00,250,'Accesorios','SOP-CEL-5001','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
+	 ('Funda Notebook 15.6 Neoprene',35000.00,180,'Accesorios','FUN-NOT-5002','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
+	 ('Cable USB-C Carga Rápida 2m',15000.00,400,'Accesorios','CAB-USC-5003','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
+	 ('Organizador de Cables Velco (10u)',8500.00,500,'Accesorios','ORG-CAB-5004','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
+	 ('Mochila Porta Notebook Impermeable',85000.00,60,'Accesorios','MOC-POR-5005','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true);
+INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+	 ('Luz Aro Anillo Selfie con Trípode',42000.00,90,'Accesorios','LUZ-ARO-5006','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
+	 ('Cargador Inalámbrico Fast Charge',55000.00,70,'Accesorios','CAR-INA-5007','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
+	 ('Soporte Auriculares Mesa',18000.00,140,'Accesorios','SOP-AUR-5008','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
+	 ('Lentes Protección Luz Azul',45000.00,110,'Accesorios','LEN-LUZ-5009','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
+	 ('Adaptador Bluetooth 5.0 USB',14000.00,300,'Accesorios','ADA-BLU-5010','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
+	 ('Mouse Bungee (Sujeta Cable)',22000.00,80,'Accesorios','MOU-BUN-5011','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
+	 ('Kit Limpieza Pantallas y Teclado',16500.00,220,'Accesorios','KIT-LIM-5012','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
+	 ('Tira LED RGB 5 Metros',38000.00,130,'Accesorios','TIR-LED-5013','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
+	 ('Funda Protectora Teclado',12000.00,160,'Accesorios','FUN-TEC-5014','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
+	 ('Cámara de Seguridad IP WiFi',85000.00,45,'Accesorios','CAM-SEG-5015','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true);
+INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+	 ('Pedalera Célula Carga SimRacing',450000.00,12,'SimRacing','PED-CEL-6001','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
+	 ('Aro Volante Formula F1',320000.00,18,'SimRacing','ARO-FOR-6002','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
+	 ('Cockpit Estructura Aluminio 4080',750000.00,5,'SimRacing','COC-ALU-6003','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
+	 ('Soporte Monitor Integrado Cockpit',120000.00,22,'SimRacing','SOP-MON-6004','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
+	 ('Freno de Mano Progresivo USB',185000.00,30,'SimRacing','FRE-MAN-6005','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
+	 ('Palanca de Cambios Secuencial',210000.00,25,'SimRacing','PAL-SEC-6006','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
+	 ('Base Volante Direct Drive 8Nm',950000.00,8,'SimRacing','BAS-DIR-6007','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
+	 ('Guantes Carreras SimRacing',45000.00,60,'SimRacing','GUA-CAR-6008','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
+	 ('Soporte Teclado/Mouse Articulado',85000.00,35,'SimRacing','SOP-TEC-6009','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
+	 ('Quick Release Volante Aluminio',95000.00,40,'SimRacing','QUI-REL-6010','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true);
+INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+	 ('Botónera SimRacing (Button Box)',150000.00,20,'SimRacing','BOT-BOX-6011','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
+	 ('Cable Extensión Pedales USB',25000.00,100,'SimRacing','CAB-PED-6012','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
+	 ('Amortiguador Vibración Base (Bass Shaker)',140000.00,15,'SimRacing','AMO-VIB-6013','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
+	 ('Alfombra Goma Antideslizante Cockpit',65000.00,45,'SimRacing','ALF-ANT-6014','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
+	 ('Silla Butaca Competición',380000.00,10,'SimRacing','SIL-BUT-6015','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
+	 ('Interfaz de Audio USB 2x2',280000.00,15,'Audio','INT-USB-7001','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
+	 ('Auriculares Monitoreo Estudio',195000.00,28,'Audio','AUR-EST-7002','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
+	 ('Micrófono Dinámico XLR',210000.00,22,'Audio','MIC-DIN-7003','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
+	 ('Brazo Articulado Micrófono Premium',85000.00,50,'Audio','BRA-ART-7004','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
+	 ('Filtro Anti-Pop Micrófono',22000.00,120,'Audio','FIL-POP-7005','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true);
+INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+	 ('Monitores de Estudio Activos (Par)',450000.00,10,'Audio','MON-EST-7006','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
+	 ('Cable XLR a XLR 3 Metros',35000.00,150,'Audio','CAB-XLR-7007','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
+	 ('Panel Acústico Espuma (Pack 12)',75000.00,80,'Audio','PAN-ACU-7008','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
+	 ('Soporte Araña Micrófono (Shockmount)',45000.00,65,'Audio','SOP-ARA-7009','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
+	 ('Amplificador Auriculares 4 Salidas',95000.00,30,'Audio','AMP-AUR-7011','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
+	 ('Cable Jack 3.5 a Doble RCA',18000.00,200,'Audio','CAB-JAC-7012','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
+	 ('Soporte Monitores de Estudio (Pie)',110000.00,25,'Audio','SOP-PIE-7013','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
+	 ('Micrófono Inalámbrico Solapero',160000.00,35,'Audio','MIC-SOL-7014','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
+	 ('Parlante Portátil Bluetooth Agua',135000.00,55,'Audio','PAR-POR-7015','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true);
 INSERT INTO public.roles (rol,descripcion) VALUES
 	 ('Administrador','Dueño de la Pagina, Tiene Acceso a Todas las Funciones de la Pagina'),
 	 ('Editor de Productos General','Puede editar todo sobre los Productos y ver el historial de cambios de precios'),

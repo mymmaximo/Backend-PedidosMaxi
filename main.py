@@ -15,6 +15,7 @@ from routes import direcciones as route_direcciones
 from routes import historial_precios as route_historial_precios
 from fastapi.middleware.cors import CORSMiddleware
 
+
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
@@ -23,7 +24,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "http://127.0.0.1:5173"
+        "http://127.0.0.1:5173",
+        "https://x1sjqnzh-5173.brs.devtunnels.ms"
     ],
     allow_credentials=True,
     allow_methods=["*"],
