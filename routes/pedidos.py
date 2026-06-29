@@ -71,12 +71,14 @@ def read_pedido_cliente(
     id_cliente: int,
     db: Session = Depends(get_db),
     busqueda_pedido: Optional[str] = None,
+    orden: Optional[int] = None,
     filtromp: Optional[str] = None,
     ):
     db_pedidos = crud.get_pedidoxcliente(
         db,
         id_cliente=id_cliente,
         busqueda_pedido=busqueda_pedido,
+        orden=orden,
         filtromp=filtromp,
     )
     return db_pedidos
@@ -126,12 +128,14 @@ def read_pedidos(
     skip: int = 0, 
     db: Session = Depends(get_db),
     busqueda_pedido: Optional[str] = None,
+    orden: Optional[int] = None,
     filtromp: Optional[str] = None,
     filtroest: Optional[int] = None,
 ):
     pedidos = crud.get_all_pedidos(
         db, 
         busqueda_pedido=busqueda_pedido,
+        orden=orden,
         filtromp=filtromp,
         filtroest=filtroest,
         limit=limit,

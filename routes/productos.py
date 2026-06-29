@@ -13,6 +13,7 @@ router = APIRouter()
 )
 def read_producto(
         busqueda_producto: Optional[str] = None,
+        orden: Optional[int] = None,
         filtrocat: Optional[str] = None,
         precio_producto_min: Optional[int] = None,
         precio_producto_max: Optional[int] = None,
@@ -24,6 +25,7 @@ def read_producto(
     db_producto = crud.get_producto(
         db, 
         busqueda_producto=busqueda_producto,
+        orden=orden,
         filtrocat=filtrocat,
         precio_producto_min=precio_producto_min,
         precio_producto_max=precio_producto_max,

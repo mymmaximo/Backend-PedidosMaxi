@@ -8,11 +8,25 @@ from sec import get_contrasena_criptid, verifica_sena, crear_pase, verificar_tok
 def get_usuario(
     db:Session,
     busqueda_usuario: Optional[str] = None,
+    orden: Optional[int] = None,
     bool_activo: Optional[bool] = None,
     limit: int = 20,
     skip: int = 0
 ):
-    query = text("SELECT * from get_all_usuarios ()")
+    if orden == 1:
+        query = text("SELECT * from get_all_usuarios () order by nombre asc")
+    elif orden == 2:
+        query = text("SELECT * from get_all_usuarios () order by nombre desc")
+    elif orden == 3:
+        query = text("SELECT * from get_all_usuarios () order by id_rol asc")
+    elif orden == 4:
+        query = text("SELECT * from get_all_usuarios () order by id_rol desc")
+    elif orden == 5:
+        query = text("SELECT * from get_all_usuarios () order by created_at asc")
+    elif orden == 6:
+        query = text("SELECT * from get_all_usuarios () order by created_at desc")
+    else:
+        query = text("SELECT * from get_all_usuarios () order by id_rol asc")
     db_usuario = db.execute(query).mappings().all()
     if not db_usuario:
         return []
@@ -26,7 +40,8 @@ def get_usuario(
                 "email": i["email"],
                 "dni": i["dni"],
                 "id_rol": i["id_rol"],
-                "activo": i["activo"]
+                "activo": i["activo"],
+                "created_at": i["created_at"]
             }
     lista_usuarios = list(db_usuarios.values())
     if busqueda_usuario is not None:

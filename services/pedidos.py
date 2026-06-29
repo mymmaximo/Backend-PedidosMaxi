@@ -134,12 +134,18 @@ def get_pedidos(
 def get_all_pedidos(
         db: Session, 
         busqueda_pedido: Optional[str] = None,
+        orden: Optional[int] = None,
         filtromp: Optional[str] = None,
         filtroest: Optional[int] = None,
         limit: int = 20,
         skip: int = 0
 ):
-    query = text("SELECT * from obtener_all_pedidos()")
+    if orden == 1:
+        query = text("SELECT * from obtener_all_pedidos() order by created_at asc")
+    elif orden == 2:
+        query = text("SELECT * from obtener_all_pedidos() order by created_at desc")
+    else:
+        query = text("SELECT * from obtener_all_pedidos() order by created_at desc")
     db_pedido = db.execute(query).mappings().all()
     if not db_pedido:
         return []
@@ -223,10 +229,15 @@ def get_pedidoxcliente(
         db: Session,
         id_cliente: int,
         busqueda_pedido: Optional[str] = None,
-        filtromp: Optional[str] = None,
-        limit: int = 100
+        orden: Optional[int] = None,
+        filtromp: Optional[str] = None
 ):
-    query = text("SELECT * from obtener_clientes_pedidos(:id)")
+    if orden == 1:
+        query = text("SELECT * from obtener_clientes_pedidos(:id) order by created_at asc")
+    elif orden == 2:
+        query = text("SELECT * from obtener_clientes_pedidos(:id) order by created_at desc")
+    else:
+        query = text("SELECT * from obtener_clientes_pedidos(:id) order by created_at desc")
     db_pedido = db.execute(query, {"id": id_cliente}).mappings().all()
     if not db_pedido:
         return []

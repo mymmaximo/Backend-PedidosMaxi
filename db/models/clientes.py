@@ -71,6 +71,7 @@ class Clientes_Direcciones(Clientes_Base):
     id: int
     dni: str
     activo: bool
+    created_at: datetime
     direcciones: list[Direcciones_Clientes]
 
 class Clientes_Direccion(BaseModel):

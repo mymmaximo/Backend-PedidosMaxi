@@ -21,6 +21,7 @@ def clean_cache():
 def get_producto(
         db: Session,
         busqueda_producto: Optional[str] = None,
+        orden: Optional[int] = None,
         precio_producto_min: Optional[int] = None,
         precio_producto_max: Optional[int] = None,
         filtrocat: Optional[str] = None,
@@ -35,7 +36,7 @@ def get_producto(
         print ("cargando desde cache")
     else: 
         print ("cargando desde base")
-        query = text("SELECT * from get_all_productos ()")
+        query = text("SELECT * from get_all_productos () order by created_at desc")
         db_producto = db.execute(query).mappings().all()
         if not db_producto:
             return []
@@ -70,10 +71,27 @@ def get_producto(
                     }
                     db_productos[id_productron]["imagenes"].append(nueva_imagen)
         lista_completa = list(db_productos.values())
-        lista_completa.sort(key=lambda x: x["id"])
         cache = lista_completa
         tiempo_cache = tiempo_actual
     productos_filtrados = lista_completa.copy()
+    if orden == 1:
+        productos_filtrados.sort(key=lambda x: x["nombre"].lower() if x["nombre"] else "")
+    elif orden == 2:
+        productos_filtrados.sort(key=lambda x: x["nombre"].lower() if x["nombre"] else "", reverse=True)
+    elif orden == 3:
+        productos_filtrados.sort(key=lambda x: x["precio"] or 0, reverse=True)
+    elif orden == 4:
+        productos_filtrados.sort(key=lambda x: x["precio"] or 0)
+    elif orden == 5:
+        productos_filtrados.sort(key=lambda x: x["stock"] or 0, reverse=True)
+    elif orden == 6:
+        productos_filtrados.sort(key=lambda x: x["stock"] or 0)
+    elif orden == 7:
+        productos_filtrados.sort(key=lambda x: x["created_at"] or "")
+    elif orden == 8:
+        productos_filtrados.sort(key=lambda x: x["created_at"] or "", reverse=True)
+    else:
+        productos_filtrados.sort(key=lambda x: x["created_at"] or "", reverse=True)
     if busqueda_producto is not None:
         busqueda = busqueda_producto.lower() 
         lista_filtrada = []

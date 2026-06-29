@@ -18,6 +18,7 @@ def read_cliente(
         skip: int = 0, 
         db: Session = Depends(get_db),
         busqueda_cliente: Optional[str] = None,
+        orden: Optional[int] = None,
         bool_direccion: Optional[bool] = None,
         bool_activo: Optional[bool] = None,
         filtrociudad: Optional[str] = None,
@@ -26,6 +27,7 @@ def read_cliente(
     db_cliente = crud.get_cliente(
         db,
         busqueda_cliente=busqueda_cliente,
+        orden=orden,
         bool_direccion=bool_direccion,
         bool_activo=bool_activo,
         filtrociudad=filtrociudad,

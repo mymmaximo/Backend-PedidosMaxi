@@ -8,6 +8,7 @@ from sec import get_contrasena_criptid, verifica_sena, crear_pase, verificar_tok
 def get_cliente(
     db:Session,
     busqueda_cliente: Optional[str] = None,
+    orden: Optional[int] = None,
     bool_direccion: Optional[bool] = None,
     bool_activo: Optional[bool] = None,
     filtrociudad: Optional[str] = None,
@@ -15,7 +16,16 @@ def get_cliente(
     limit: int = 20,
     skip: int = 0
 ):
-    query = text("SELECT * from get_all_clientes ()")
+    if orden == 1:
+        query = text("SELECT * from get_all_clientes () order by nombre asc")
+    elif orden == 2:
+        query = text("SELECT * from get_all_clientes () order by nombre desc")
+    elif orden == 3:
+        query = text("SELECT * from get_all_clientes () order by created_at asc")
+    elif orden == 4:
+        query = text("SELECT * from get_all_clientes () order by created_at desc")
+    else:
+        query = text("SELECT * from get_all_clientes () order by created_at desc")
     db_cliente = db.execute(query).mappings().all()
     if not db_cliente:
         return []
@@ -29,7 +39,8 @@ def get_cliente(
                 "email": i["email"],
                 "dni": i["dni"],
                 "direcciones": [],
-                "activo": i["activo"]
+                "activo": i["activo"],
+                "created_at": i["created_at"]
             }
         if i["id_direccion"] is not None:
             direccion_ditto = False

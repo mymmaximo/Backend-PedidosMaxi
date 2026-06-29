@@ -74,6 +74,7 @@ class Usuarios_Direcciones(Usuarios_Base):
     dni: str
     id_rol: int
     activo: bool
+    created_at: datetime
 
 class Usuarios_Direccion(BaseModel):
     id_cliente: int

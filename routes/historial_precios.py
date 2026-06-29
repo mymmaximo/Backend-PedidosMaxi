@@ -15,6 +15,7 @@ router = APIRouter()
 def read_historial(
     db:Session = Depends(get_db),
     busqueda_historial: Optional[str] = None,
+    orden: Optional[int] = None,
     fecha_upgrade_max: Optional[datetime] = None,
     fecha_upgrade_min: Optional[datetime] = None,
     precio_nuevo_min: Optional[int] = None,
@@ -29,6 +30,7 @@ def read_historial(
     db_historial = crud.get_historial(
         db, 
         busqueda_historial=busqueda_historial,
+        orden=orden,
         fecha_upgrade_max=fecha_upgrade_max,
         fecha_upgrade_min=fecha_upgrade_min,
         precio_nuevo_min=precio_nuevo_min,

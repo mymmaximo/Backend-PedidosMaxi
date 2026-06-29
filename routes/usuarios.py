@@ -18,11 +18,13 @@ def read_usuario(
         skip: int = 0, 
         db: Session = Depends(get_db),
         busqueda_usuario: Optional[str] = None,
+        orden: Optional[int] = None,
         bool_activo: Optional[bool] = None,
     ):
     db_usuario = crud.get_usuario(
         db,
         busqueda_usuario=busqueda_usuario,
+        orden=orden,
         bool_activo=bool_activo,
         limit=limit,
         skip=skip

@@ -6,6 +6,7 @@ from datetime import datetime
 def get_historial(
     db:Session,
     busqueda_historial: Optional[str] = None,
+    orden: Optional[int] = None,
     fecha_upgrade_max: Optional[datetime] = None,
     fecha_upgrade_min: Optional[datetime] = None,
     precio_nuevo_min: Optional[int] = None,
@@ -17,7 +18,28 @@ def get_historial(
     limit: int = 20,
     skip: int = 0
 ):
-    query = text("SELECT * from get_all_historial ()")
+    if orden == 1:
+        query = text("SELECT * from get_all_historial () order by nombre asc")
+    elif orden == 2:
+        query = text("SELECT * from get_all_historial () order by nombre desc")
+    elif orden == 3:
+        query = text("SELECT * from get_all_historial () order by updated_at asc")
+    elif orden == 4:
+        query = text("SELECT * from get_all_historial () order by updated_at desc")
+    elif orden == 5:
+        query = text("SELECT * from get_all_historial () order by precio_nuevo asc")
+    elif orden == 6:
+        query = text("SELECT * from get_all_historial () order by precio_nuevo desc")
+    elif orden == 7:
+        query = text("SELECT * from get_all_historial () order by precio_viejo asc")
+    elif orden == 8:
+        query = text("SELECT * from get_all_historial () order by precio_viejo desc")
+    elif orden == 9:
+        query = text("SELECT * from get_all_historial () order by categoria asc")
+    elif orden == 10:
+        query = text("SELECT * from get_all_historial () order by categoria desc")
+    else:
+        query = text("SELECT * from get_all_historial () order by updated_at desc")
     db_historial = db.execute(query).mappings().all()
     if not db_historial:
         return []
