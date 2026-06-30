@@ -1,227 +1,195 @@
--- public.banner definition
+-- CREATE
 
--- Drop table
-
--- DROP TABLE banner;
-
-CREATE TABLE banner (
-	id serial4 NOT NULL,
-	s3_key varchar(255) NOT NULL,
-	nombre_original varchar(255) NOT NULL,
-	tipo_contenido varchar(50) NOT NULL,
-	tamanio int4 NOT NULL,
-	activo bool DEFAULT true NULL,
-	enlace varchar(255) NOT NULL,
-	orden int4 NULL,
-	created_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
-	CONSTRAINT banner_pkey PRIMARY KEY (id)
+create table archivos (
+	id serial4 not null,
+	id_producto int4 not null,
+	s3_key varchar(255) not null,
+	nombre_original varchar(255) not null,
+	tipo_contenido varchar(50) not null,
+	tamanio int4 not null,
+	created_at timestamp default current_timestamp null,
+	constraint archivos_pkey primary key (id),
+	constraint fk_producto foreign key (id_producto) references productos(id) on delete cascade
 );
 
-
--- public.clientes definition
-
--- Drop table
-
--- DROP TABLE clientes;
-
-CREATE TABLE clientes (
-	id serial4 NOT NULL,
-	nombre varchar(100) NOT NULL,
-	email varchar(150) NOT NULL,
-	dni varchar(20) NOT NULL,
-	created_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
-	updated_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
-	contrasena varchar(255) NULL,
-	activo bool NULL,
-	CONSTRAINT clientes_dni_key UNIQUE (dni),
-	CONSTRAINT clientes_email_key UNIQUE (email),
-	CONSTRAINT clientes_pkey PRIMARY KEY (id)
+create table banner (
+	id serial4 not null,
+	s3_key varchar(255) not null,
+	nombre_original varchar(255) not null,
+	tipo_contenido varchar(50) not null,
+	tamanio int4 not null,
+	activo bool default true null,
+	enlace varchar(255) not null,
+	orden int4 null,
+	created_at timestamp default current_timestamp null,
+	constraint banner_pkey primary key (id)
 );
 
-
--- public.direcciones definition
-
--- Drop table
-
--- DROP TABLE direcciones;
-
-CREATE TABLE direcciones (
-	id serial4 NOT NULL,
-	calle varchar(150) NOT NULL,
-	numero int4 NOT NULL,
-	barrio varchar(100) NOT NULL,
-	ciudad varchar(100) NOT NULL,
-	provincia varchar(100) NOT NULL,
-	activo bool NULL,
-	CONSTRAINT direcciones_pkey PRIMARY KEY (id)
+create table clientes (
+	id serial4 not null,
+	nombre varchar(100) not null,
+	email varchar(150) not null,
+	dni varchar(20) not null,
+	created_at timestamp default current_timestamp null,
+	updated_at timestamp default current_timestamp null,
+	contrasena varchar(255) null,
+	activo bool null,
+	constraint clientes_dni_key unique (dni),
+	constraint clientes_email_key unique (email),
+	constraint clientes_pkey primary key (id)
 );
 
-
--- public.estados_pedido definition
-
--- Drop table
-
--- DROP TABLE estados_pedido;
-
-CREATE TABLE estados_pedido (
-	id serial4 NOT NULL,
-	estatus varchar(50) NOT NULL,
-	CONSTRAINT estados_pedido_estatus_key UNIQUE (estatus),
-	CONSTRAINT estados_pedido_pkey PRIMARY KEY (id)
+create table detalles_pedido (
+	id serial4 not null,
+	id_pedido int4 not null,
+	id_producto int4 not null,
+	cantidad int4 not null,
+	precio_unitario numeric(10, 2) not null,
+	constraint detalles_pedido_pkey primary key (id),
+	constraint fk_detalles_pedido foreign key (id_pedido) references pedidos(id) on delete cascade,
+	constraint fk_detalles_producto foreign key (id_producto) references productos(id) on delete restrict
 );
 
-
--- public.productos definition
-
--- Drop table
-
--- DROP TABLE productos;
-
-CREATE TABLE productos (
-	id serial4 NOT NULL,
-	nombre varchar(100) NOT NULL,
-	precio numeric(10, 2) NOT NULL,
-	stock int4 DEFAULT 0 NULL,
-	categoria varchar(50) NULL,
-	codigo_barra varchar(50) NOT NULL,
-	created_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
-	updated_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
-	activo bool NULL,
-	CONSTRAINT productos_codigo_barra_key UNIQUE (codigo_barra),
-	CONSTRAINT productos_pkey PRIMARY KEY (id)
+create table direcciones (
+	id serial4 not null,
+	calle varchar(150) not null,
+	numero int4 not null,
+	barrio varchar(100) not null,
+	ciudad varchar(100) not null,
+	provincia varchar(100) not null,
+	activo bool null,
+	constraint direcciones_pkey primary key (id)
 );
 
--- Table Triggers
-
-create trigger save_precio before
-insert
-    or
-update
-    on
-    public.productos for each row execute function validar_precio();
-create trigger almacenar_precios_trigger before
-update
-    on
-    public.productos for each row execute function almacenar_precios();
-
-
--- public.roles definition
-
--- Drop table
-
--- DROP TABLE roles;
-
-CREATE TABLE roles (
-	id serial4 NOT NULL,
-	rol varchar(50) NOT NULL,
-	descripcion varchar(100) NULL,
-	CONSTRAINT roles_pkey PRIMARY KEY (id),
-	CONSTRAINT roles_rol_key UNIQUE (rol)
+create table estados_pedido (
+	id serial4 not null,
+	estatus varchar(50) not null,
+	constraint estados_pedido_estatus_key unique (estatus),
+	constraint estados_pedido_pkey primary key (id)
 );
 
-
--- public.archivos definition
-
--- Drop table
-
--- DROP TABLE archivos;
-
-CREATE TABLE archivos (
-	id serial4 NOT NULL,
-	id_producto int4 NOT NULL,
-	s3_key varchar(255) NOT NULL,
-	nombre_original varchar(255) NOT NULL,
-	tipo_contenido varchar(50) NOT NULL,
-	tamanio int4 NOT NULL,
-	created_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
-	CONSTRAINT archivos_pkey PRIMARY KEY (id),
-	CONSTRAINT fk_producto FOREIGN KEY (id_producto) REFERENCES productos(id) ON DELETE CASCADE
+create table historial_precios (
+	id serial4 not null,
+	id_producto int4 null,
+	precio_viejo numeric(10, 2) not null,
+	precio_nuevo numeric(10, 2) not null,
+	updated_at timestamp null,
+	constraint historial_precios_pkey primary key (id),
+	constraint historial_precios_id_producto_fkey foreign key (id_producto) references productos(id)
 );
 
-
--- public.historial_precios definition
-
--- Drop table
-
--- DROP TABLE historial_precios;
-
-CREATE TABLE historial_precios (
-	id serial4 NOT NULL,
-	id_producto int4 NULL,
-	precio_viejo numeric(10, 2) NOT NULL,
-	precio_nuevo numeric(10, 2) NOT NULL,
-	updated_at timestamp NULL,
-	CONSTRAINT historial_precios_pkey PRIMARY KEY (id),
-	CONSTRAINT historial_precios_id_producto_fkey FOREIGN KEY (id_producto) REFERENCES productos(id)
+create table pedidos (
+	id serial4 not null,
+	id_cliente int4 not null,
+	id_direccion int4 not null,
+	metodo_pago varchar(50) not null,
+	tiempo_entrega int2 null,
+	tiempo_estimado_entrega int2 NOT null,
+	created_at timestamp default current_timestamp null,
+	updated_at timestamp default current_timestamp null,
+	estatus int4 null,
+	constraint pedidos_pkey primary key (id),
+	constraint fk_estatus_id foreign key (estatus) references estados_pedido(id),
+	constraint pedidos_id_cliente_fkey foreign key (id_cliente) references clientes(id),
+	constraint pedidos_id_direccion_fkey foreign key (id_direccion) references direcciones(id)
 );
 
-
--- public.pedidos definition
-
--- Drop table
-
--- DROP TABLE pedidos;
-
-CREATE TABLE pedidos (
-	id serial4 NOT NULL,
-	id_cliente int4 NOT NULL,
-	id_direccion int4 NOT NULL,
-	metodo_pago varchar(50) NOT NULL,
-	tiempo_entrega int2 NULL,
-	tiempo_estimado_entrega int2 NOT NULL,
-	created_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
-	updated_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
-	estatus int4 NULL,
-	CONSTRAINT pedidos_pkey PRIMARY KEY (id),
-	CONSTRAINT fk_estatus_id FOREIGN KEY (estatus) REFERENCES estados_pedido(id),
-	CONSTRAINT pedidos_id_cliente_fkey FOREIGN KEY (id_cliente) REFERENCES clientes(id),
-	CONSTRAINT pedidos_id_direccion_fkey FOREIGN KEY (id_direccion) REFERENCES direcciones(id)
+create table productos (
+	id serial4 not null,
+	nombre varchar(100) not null,
+	precio numeric(10, 2) not null,
+	stock int4 default 0 null,
+	categoria varchar(50) null,
+	codigo_barra varchar(50) not null,
+	created_at timestamp default current_timestamp null,
+	updated_at timestamp default current_timestamp null,
+	activo bool null,
+	constraint productos_codigo_barra_key unique (codigo_barra),
+	constraint productos_pkey primary key (id)
 );
 
-
--- public.usuarios definition
-
--- Drop table
-
--- DROP TABLE usuarios;
-
-CREATE TABLE usuarios (
-	id serial4 NOT NULL,
-	nombre varchar(100) NOT NULL,
-	email varchar(150) NOT NULL,
-	dni varchar(20) NOT NULL,
-	contrasena varchar(255) NULL,
-	id_rol int4 NULL,
-	activo bool NULL,
-	created_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
-	updated_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
-	CONSTRAINT usuarios_dni_key UNIQUE (dni),
-	CONSTRAINT usuarios_email_key UNIQUE (email),
-	CONSTRAINT usuarios_pkey PRIMARY KEY (id),
-	CONSTRAINT fk_usuarios_rol FOREIGN KEY (id_rol) REFERENCES roles(id)
+create table roles (
+	id serial4 not null,
+	rol varchar(50) not null,
+	descripcion varchar(100) null,
+	constraint roles_pkey primary key (id),
+	constraint roles_rol_key unique (rol)
 );
 
-
--- public.detalles_pedido definition
-
--- Drop table
-
--- DROP TABLE detalles_pedido;
-
-CREATE TABLE detalles_pedido (
-	id serial4 NOT NULL,
-	id_pedido int4 NOT NULL,
-	id_producto int4 NOT NULL,
-	cantidad int4 NOT NULL,
-	precio_unitario numeric(10, 2) NOT NULL,
-	CONSTRAINT detalles_pedido_pkey PRIMARY KEY (id),
-	CONSTRAINT fk_detalles_pedido FOREIGN KEY (id_pedido) REFERENCES pedidos(id) ON DELETE CASCADE,
-	CONSTRAINT fk_detalles_producto FOREIGN KEY (id_producto) REFERENCES productos(id) ON DELETE RESTRICT
+create table usuarios (
+	id serial4 not null,
+	nombre varchar(100) not null,
+	email varchar(150) not null,
+	dni varchar(20) not null,
+	contrasena varchar(255) null,
+	id_rol int4 null,
+	activo bool null,
+	created_at timestamp default current_timestamp null,
+	updated_at timestamp default current_timestamp null,
+	constraint usuarios_dni_key unique (dni),
+	constraint usuarios_email_key unique (email),
+	constraint usuarios_pkey primary key (id),
+	constraint fk_usuarios_rol foreign key (id_rol) references roles(id)
 );
 
--- Table Triggers
+-- DROP
+
+drop table banner
+
+drop table clientes
+
+drop table detalles_pedido
+
+drop table direcciones
+
+drop table estados_pedido
+
+drop table historial_precios
+
+drop table pedidos
+
+drop table productos
+
+drop table roles
+
+drop table usuarios
+
+--ALTER
+
+alter table clientes  add column activo boolean;
+
+alter table pedidos
+	add constraint fk_estatus_id
+	foreign key (estatus)
+	references estados_pedido (id);
+
+alter table pedidos (
+	id serial4 not null,
+	id_usuted_at timestamp DEFAULT current_timestamp null,
+	estatus int4 null,
+	constraint pedidos_pkey primary key (id),
+	constraint fk_estatus_id foreign key (estatus) references estados_pedido(id),
+	constraint pedidos_id_usuario_fkey foreign key (id_usuario) references usuarios(id),
+	constraint pedidos_id_direccion_fkey foreign key (id_direccion) references direcciones(id)
+);
+
+alter table roles
+	add column descripcion varchar(100);
+
+--INSERT
+
+insert into estados_pedido (estatus) values ('');
+
+--TRIGGER
 
 create trigger restar_stock_despues_de_venta after
-insert
-    on
-    public.detalles_pedido for each row execute function actualizar_stock_auto();
+	insert on detalles_pedido 
+	for each row execute function actualizar_stock_auto();
+
+create trigger save_precio before
+	insert or update on productos 
+	for each row execute function validar_precio();
+
+create trigger almacenar_precios_trigger before
+	update on productos 
+	for each row execute function almacenar_precios();
