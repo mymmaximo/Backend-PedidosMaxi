@@ -1,10 +1,11 @@
 from typing import Optional
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 from db.database import get_db
 from db.models.historial_precios import historial_wproductos
 from services import historial_precios as crud
 from datetime import datetime
+from sec import obtener_usuario_actual
 router = APIRouter()
 
 @router.get(

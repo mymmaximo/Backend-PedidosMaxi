@@ -1,9 +1,10 @@
 from typing import Optional
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from db.database import get_db
 from db.models.banners import Banners_Respuesta, Banners_Crear, Banners_Edit
 from services import banners as crud
+from sec import obtener_usuario_actual
 router = APIRouter()
 
 @router.get(
@@ -30,8 +31,15 @@ def read_banners(
 )
 def create_banners(
     banner: Banners_Crear, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_rol = usuario_logeado.get("id_rol") in [1]
+    if not (true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     return crud.create_banner(
         db=db, 
         banner=banner
@@ -45,8 +53,15 @@ def create_banners(
 def update_banners(
     id_banner: int, 
     banner: Banners_Edit, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_rol = usuario_logeado.get("id_rol") in [1]
+    if not (true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     db_banner = crud.update_banner(
         db, 
         id_banner=id_banner, 
@@ -65,8 +80,15 @@ def update_banners(
 )
 def deact_banner(
     id_banner: int, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_rol = usuario_logeado.get("id_rol") in [1]
+    if not (true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     success = crud.deact_banner(
         db, 
         id_banner=id_banner
@@ -84,8 +106,15 @@ def deact_banner(
 )
 def hard_delete_banner(
     id_banner: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_rol = usuario_logeado.get("id_rol") in [1]
+    if not (true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     success = crud.hard_delete_banner(
         db,
         id_banner=id_banner

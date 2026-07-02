@@ -1,11 +1,12 @@
 from typing import Optional
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from db.database import get_db
 from db.models.detalles_pedido import Detalles_Pedido_Respuesta, Detalles_Pedido_Crear
 from services.productos import get_producto
 from services.pedidos import get_pedido
 from services import detalles_pedidos as crud
+from sec import obtener_usuario_actual
 router = APIRouter()
 
 
@@ -16,11 +17,19 @@ router = APIRouter()
         tags=["Sección de Detalles de Pedidos"]
 )
 def read_detalle_pedido(
-        db: Session = Depends(get_db), 
-        id_detalle_pedido: Optional[int] = None,
-        id_producto_detalle_pedido: Optional[int] = None,
-        id_pedido_detalle_pedido: Optional[int] = None
-    ):
+    db: Session = Depends(get_db), 
+    usuario_logeado: dict = Depends(obtener_usuario_actual),
+    id_detalle_pedido: Optional[int] = None,
+    id_producto_detalle_pedido: Optional[int] = None,
+    id_pedido_detalle_pedido: Optional[int] = None
+):
+    true_cliente = usuario_logeado.get("id_cliente") == id_cliente
+    true_rol = usuario_logeado.get("id_rol") in [1, 3]
+    if not (true_cliente or true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     db_detalle_pedido = crud.get_detalle_pedido(
         db, 
         id_detalle_pedido=id_detalle_pedido,
@@ -41,8 +50,15 @@ def read_detalle_pedido(
 )
 def read_detalles_pedido(
     limit: int = 100, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_cliente = usuario_logeado.get("id_cliente") == id_cliente
+    if not (true_cliente):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     detalles_pedido = crud.get_detalles_pedido(
         db,
         limit=limit
@@ -56,8 +72,15 @@ def read_detalles_pedido(
 )
 def create_detalle_pedido(
     detalle_pedido: Detalles_Pedido_Crear, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_cliente = usuario_logeado.get("id_cliente") == id_cliente
+    if not (true_cliente):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     db_detalle_pedido = get_pedido(
         db, 
         id_pedido=detalle_pedido.id_pedido
@@ -89,8 +112,15 @@ def create_detalle_pedido(
 def update_detalle_pedido(
     id_detalle_pedido: int, 
     detalle_pedido: Detalles_Pedido_Crear,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_cliente = usuario_logeado.get("id_cliente") == id_cliente
+    if not (true_cliente):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     db_pedido = get_pedido(
         db, 
         id_pedido=detalle_pedido.id_pedido
@@ -127,8 +157,15 @@ def update_detalle_pedido(
 )
 def delete_detalle_pedido(
     id_detalle_pedido: int, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_cliente = usuario_logeado.get("id_cliente") == id_cliente
+    if not (true_cliente):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     success = crud.delete_detalle_pedido(
         db, 
         id_detalle_pedido=id_detalle_pedido

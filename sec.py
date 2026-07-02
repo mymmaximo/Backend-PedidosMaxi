@@ -1,4 +1,5 @@
 import os
+from fastapi import HTTPException, Request, status
 from datetime import datetime, timedelta
 from jose import jwt
 from dotenv import load_dotenv
@@ -13,27 +14,6 @@ pwd_context = CryptContext(
     schemes=["bcrypt"],
     deprecated="auto"
 )
-
-def get_contrasena_criptid(
-        contrasena_plana: str
-    ):
-    contrasena_segura = contrasena_plana[:72]
-    contrasena_hash = pwd_context.hash(
-        contrasena_segura
-    )
-    return (
-        contrasena_hash
-    )
-
-def verifica_sena(
-        contrasena_plana: str,
-        contrasena_hash: str
-):
-    verificado = pwd_context.verify(
-        contrasena_plana,
-        contrasena_hash
-    )
-    return verificado
 
 def crear_pase(
         datos: dict
@@ -50,6 +30,45 @@ def crear_pase(
     )
     
     return final_token
+
+def get_contrasena_criptid(
+        contrasena_plana: str
+    ):
+    contrasena_segura = contrasena_plana[:72]
+    contrasena_hash = pwd_context.hash(
+        contrasena_segura
+    )
+    return (
+        contrasena_hash
+    )
+
+def obtener_usuario_actual(
+    request: Request
+):
+    token = request.cookies.get("token_seguro")
+    if not token:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="No se encontró la cookie de sesión legítima."
+        )
+    payload = verificar_token(token)
+    if not payload:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="El Acceso es inválido o ha expirado."
+        )
+    
+    return payload
+
+def verifica_sena(
+        contrasena_plana: str,
+        contrasena_hash: str
+):
+    verificado = pwd_context.verify(
+        contrasena_plana,
+        contrasena_hash
+    )
+    return verificado
     
 def verificar_token(token: str):
     try:
@@ -68,4 +87,3 @@ def verificar_token(token: str):
         print(f"Algoritmo cargado: {ALGORITMO}")
         print("="*30 + "\n")
         return None
-        

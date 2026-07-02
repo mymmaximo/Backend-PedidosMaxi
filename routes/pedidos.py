@@ -1,5 +1,5 @@
 from typing import Optional
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from db.database import get_db
 from db.models.pedidos import Pedidos_Respuesta, Pedidos_Crear, Pedidos_Detalles, Pedidos_CDDP, Pedidos_DDP
@@ -10,6 +10,7 @@ from services import pedidos as crud
 from services import detalles_pedidos as servi
 from sec import verificar_token
 from fastapi.security import OAuth2PasswordBearer
+from sec import obtener_usuario_actual
 router = APIRouter()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="cliente/login")
 

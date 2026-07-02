@@ -1,9 +1,10 @@
 from typing import Optional
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import HTTPException, APIRouter, Response, status, Depends
 from sqlalchemy.orm import Session
 from db.database import get_db
 from db.models.clientes import Clientes_Respuesta, Clientes_Crear, Clientes_Login, Token,Clientes_Direcciones, Clientes_id_Direccion, Clientes_Edit
 from services import clientes as crud
+from sec import crear_pase, obtener_usuario_actual
 router = APIRouter()
 
 
@@ -17,6 +18,7 @@ def read_cliente(
         limit: int = 20,
         skip: int = 0, 
         db: Session = Depends(get_db),
+        usuario_logeado: dict = Depends(obtener_usuario_actual),
         busqueda_cliente: Optional[str] = None,
         orden: Optional[int] = None,
         bool_direccion: Optional[bool] = None,
@@ -24,6 +26,12 @@ def read_cliente(
         filtrociudad: Optional[str] = None,
         filtroprovincia: Optional[str] = None
     ):
+    true_rol = usuario_logeado.get("id_rol") in [1, 7]
+    if not true_rol:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="No tienes los privilegios necesarios para hacer esto."
+        )
     db_cliente = crud.get_cliente(
         db,
         busqueda_cliente=busqueda_cliente,
@@ -44,8 +52,16 @@ def read_cliente(
 )
 def get_cliente_idireccion(
     id_cliente: int, 
-    db: Session = Depends(get_db), 
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_cliente = usuario_logeado.get("id_cliente") == id_cliente
+    true_rol = usuario_logeado.get("id_rol") in [1, 7]
+    if not (true_cliente or true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar este perfil."
+        )
     cliente = crud.get_cliente_id_direccion(
         db,
         id_cliente
@@ -59,7 +75,14 @@ def get_cliente_idireccion(
 )
 def read_clientes(
     db: Session = Depends(get_db), 
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_rol = usuario_logeado.get("id_rol") in [1, 7]
+    if not (true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar este perfil."
+        )
     clientes = crud.get_cliente_direccion(
         db,
     )
@@ -72,6 +95,7 @@ def read_clientes(
 )
 def login_cliente(
     pase: Clientes_Login, 
+    response: Response,
     db: Session = Depends(get_db)
 ):
     cliente, id_cliente = crud.login_clientes(
@@ -83,11 +107,24 @@ def login_cliente(
             status_code=401, 
             detail="E-Mail o Contraseña Invalido"
         )
-    return {
-        "access_token": cliente, 
+    payload_data = {
+        "id_cliente": id_cliente,
+        "es_cliente": True
+    }
+    token_seguro = crear_pase(
+        datos=payload_data
+    )
+    response.set_cookie(
+        key="token_seguro",
+        value=token_seguro,
+        httponly=True,
+        secure=False,
+        samesite="lax"
+    )
+    return { 
         "token_type": "bearer",
         "id_cliente": id_cliente,
-        }
+    }
     
 @router.post(
         "/clientes/", 
@@ -96,7 +133,7 @@ def login_cliente(
 )
 def create_cliente(
     cliente: Clientes_Crear, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
     db_cliente_email = crud.get_mail(
         db, 
@@ -129,8 +166,16 @@ def create_cliente(
 def update_cliente(
     id_cliente: int, 
     cliente: Clientes_Edit, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_cliente = usuario_logeado.get("id_cliente") == id_cliente
+    true_rol = usuario_logeado.get("id_rol") in [1, 7]
+    if not (true_cliente or true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar este perfil."
+        )
     if cliente.email is not None:
         db_cliente_email = crud.get_mail(
             db, 
@@ -159,8 +204,16 @@ def update_cliente(
 )
 def delete_cliente(
     id_cliente: int, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_cliente = usuario_logeado.get("id_cliente") == id_cliente
+    true_rol = usuario_logeado.get("id_rol") in [1, 7]
+    if not (true_cliente or true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar este perfil."
+        )
     success = crud.delete_cliente(
         db, 
         id_cliente=id_cliente

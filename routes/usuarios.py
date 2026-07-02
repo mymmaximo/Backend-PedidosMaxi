@@ -1,9 +1,10 @@
 from typing import Optional
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import HTTPException, APIRouter, Response, status, Depends
 from sqlalchemy.orm import Session
 from db.database import get_db
 from db.models.usuarios import Usuarios_Respuesta, Usuarios_Crear, Usuarios_Login, Token,Usuarios_Direcciones, Usuarios_Edit
 from services import usuarios as crud
+from sec import crear_pase, obtener_usuario_actual
 router = APIRouter()
 
 
@@ -20,7 +21,13 @@ def read_usuario(
         busqueda_usuario: Optional[str] = None,
         orden: Optional[int] = None,
         bool_activo: Optional[bool] = None,
+        usuario_verificado: dict = Depends(obtener_usuario_actual)
     ):
+    if usuario_verificado.get("id_rol") != 1:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="No tienes los privilegios necesarios para hacer esto."
+        )
     db_usuario = crud.get_usuario(
         db,
         busqueda_usuario=busqueda_usuario,
@@ -38,23 +45,35 @@ def read_usuario(
 )
 def login_usuario(
     pase: Usuarios_Login, 
+    response: Response,
     db: Session = Depends(get_db)
 ):
-    usuario, id_usuario, id_rol = crud.login_usuarios(
+    token_string, id_usuario, id_rol = crud.login_usuarios(
         db,
         pase
     )
-    if not usuario:
+    if not token_string:
         raise HTTPException(
-            status_code=401, 
+            status_code=status.HTTP_401_UNAUTHORIZED, 
             detail="E-Mail o Contraseña Invalido"
         )
+    payload_data = {
+        "id_usuario": id_usuario,
+        "id_rol": id_rol
+    }
+    token_seguro = crear_pase(datos=payload_data)
+    response.set_cookie(
+        key="token_seguro", 
+        value=token_seguro, 
+        httponly=True,
+        secure=False,
+        samesite="lax"
+    )
     return {
-        "access_token": usuario, 
         "token_type": "bearer",
         "id_usuario": id_usuario,
         "id_rol": id_rol
-        }
+    }
     
 @router.post(
         "/usuarios/", 
@@ -63,8 +82,14 @@ def login_usuario(
 )
 def create_usuario(
     usuario: Usuarios_Crear, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_verificado: dict = Depends(obtener_usuario_actual)
 ):
+    if usuario_verificado.get("id_rol") != 1:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="No tienes los privilegios necesarios para hacer esto."
+        )
     db_usuario_email = crud.get_mail_usuario(
         db, 
         email_usuario=usuario.email

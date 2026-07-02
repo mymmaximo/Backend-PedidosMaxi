@@ -1,9 +1,10 @@
 from typing import Optional
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from db.database import get_db
 from db.models.direcciones import Direcciones_Respuesta, Direcciones_Crear, Direcciones_provincias, Direcciones_ciudades
 from services import direcciones as crud
+from sec import obtener_usuario_actual
 router = APIRouter()
 
 
