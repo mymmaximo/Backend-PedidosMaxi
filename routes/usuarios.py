@@ -10,18 +10,18 @@ router = APIRouter()
 
 
 @router.get(
-        "/usuarios/", 
-        response_model= list[Usuarios_Direcciones], 
-        tags=["Sección de Usuarios"]
+    "/usuarios/", 
+    response_model= list[Usuarios_Direcciones], 
+    tags=["Sección de Usuarios"]
 )
 def read_usuario(
-        limit: int = 20,
-        skip: int = 0, 
-        db: Session = Depends(get_db),
-        busqueda_usuario: Optional[str] = None,
-        orden: Optional[int] = None,
-        bool_activo: Optional[bool] = None,
-        usuario_verificado: dict = Depends(obtener_usuario_actual)
+    limit: int = 20,
+    skip: int = 0, 
+    db: Session = Depends(get_db),
+    usuario_verificado: dict = Depends(obtener_usuario_actual),
+    busqueda_usuario: Optional[str] = None,
+    orden: Optional[int] = None,
+    bool_activo: Optional[bool] = None
     ):
     if usuario_verificado.get("id_rol") != 1:
         raise HTTPException(
@@ -39,9 +39,9 @@ def read_usuario(
     return db_usuario
 
 @router.post(
-        "/usuario/login/",
-        response_model=Token,
-        tags=["Seccion de Usuarios"]
+    "/usuario/login/",
+    response_model=Token,
+    tags=["Seccion de Usuarios"]
 )
 def login_usuario(
     pase: Usuarios_Login, 
@@ -76,9 +76,9 @@ def login_usuario(
     }
     
 @router.post(
-        "/usuarios/", 
-        response_model=Usuarios_Respuesta, 
-        tags=["Sección de Usuarios"]
+    "/usuarios/", 
+    response_model=Usuarios_Respuesta, 
+    tags=["Sección de Usuarios"]
 )
 def create_usuario(
     usuario: Usuarios_Crear, 
@@ -96,7 +96,7 @@ def create_usuario(
     )
     if db_usuario_email:
         raise HTTPException(
-            status_code=400, 
+            status_code=status.HTTP_401_UNAUTHORIZED, 
             detail="Email ya registrado"
         )
     db_usuario_dni = crud.get_dni_usuario(
@@ -105,7 +105,7 @@ def create_usuario(
     )
     if db_usuario_dni:
         raise HTTPException(
-            status_code=400, 
+            status_code=status.HTTP_400_BAD_REQUEST, 
             detail="DNI ya registrado"
         )
     return crud.create_usuario(
@@ -114,9 +114,9 @@ def create_usuario(
     )
 
 @router.put(
-        "/usuarios/id/{id_usuario}", 
-        response_model=Usuarios_Respuesta, 
-        tags=["Sección de Usuarios"]
+    "/usuarios/id/{id_usuario}", 
+    response_model=Usuarios_Respuesta, 
+    tags=["Sección de Usuarios"]
 )
 def update_usuario(
     id_usuario: int, 
@@ -130,7 +130,7 @@ def update_usuario(
         )
         if db_usuarios_email and id_usuario != db_usuarios_email[0].id:
             raise HTTPException(
-                status_code=400, 
+                status_code=status.HTTP_400_BAD_REQUEST, 
                 detail="Email ya registrado"
             )
     db_usuario = crud.update_usuario(
@@ -140,14 +140,14 @@ def update_usuario(
     )
     if db_usuario is None:
         raise HTTPException(
-            status_code=404, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Usuario no encontrado"
         )
     return db_usuario
 
 @router.delete(
-        "/usuarios/id/{id_usuario}", 
-        tags=["Sección de Usuarios"]
+    "/usuarios/id/{id_usuario}", 
+    tags=["Sección de Usuarios"]
 )
 def delete_usuario(
     id_usuario: int, 
@@ -159,7 +159,7 @@ def delete_usuario(
     )
     if not success:
         raise HTTPException(
-            status_code=404, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Usuario no encontrado"
         )
     return {"detail": "Usuario eliminado"}

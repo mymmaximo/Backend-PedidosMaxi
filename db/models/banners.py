@@ -5,7 +5,6 @@ from db.database import Base
 from pydantic import BaseModel
 from typing import Optional
 
-
 class Banners(Base):
     __tablename__ = "banner"
 
@@ -54,10 +53,10 @@ class Banners_Crear(Banners_Base):
     tipo_contenido: Optional[str] = None
     tamanio: Optional[int] = None
 
-class Banners_Respuesta(Banners_Base):
-    id: int
-    model_config = {"from_attributes": True}
-
 class Banners_Edit(BaseModel):
     enlace: Optional[str] = None
     orden: Optional[int] = None
+
+class Banners_Respuesta(Banners_Base):
+    id: int
+    model_config = {"from_attributes": True}

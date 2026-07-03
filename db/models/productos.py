@@ -5,7 +5,6 @@ from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
 
-
 class Productos(Base):
     __tablename__ = "productos"
 
@@ -42,6 +41,18 @@ class Productos(Base):
         default=True
     )
 
+class ArchivoCrear(BaseModel):
+    id_producto: int
+    s3_key: str
+    nombre_original: Optional[str] = None
+    tipo_contenido: Optional[str] = None
+    tamanio: Optional[int] = None
+
+class Imagenes(BaseModel):
+    id_imagen: int
+    s3_key: str
+    tipo_contenido: str
+    tamanio: int
 
 class Productos_Base(BaseModel):
     nombre: str
@@ -49,23 +60,11 @@ class Productos_Base(BaseModel):
     stock: int
     categoria: str
 
-class ArchivoCrear(BaseModel):
-    id_producto: int
-    s3_key: str
-    nombre_original: Optional[str] = None
-    tipo_contenido: Optional[str] = None
-    tamanio: Optional[int] = None
-    
+class Productos_Categoria(BaseModel):
+    categoria: str
+
 class Productos_Crear(Productos_Base):
     pass
-
-class Productos_Respuesta(Productos_Base):
-    id: int
-    codigo_barra: str
-    created_at: datetime
-    updated_at: Optional[datetime] = None
-    activo: bool
-    model_config = {"from_attributes": True}
 
 class Productos_Detalles(Productos_Base):
     id_producto: int
@@ -80,16 +79,7 @@ class Productos_Edit(BaseModel):
     stock: Optional[int]
     categoria: Optional[str]
     codigo_barra: Optional[str]
-    
-class Productos_Categoria(BaseModel):
-    categoria: str
 
-class Imagenes(BaseModel):
-    id_imagen: int
-    s3_key: str
-    tipo_contenido: str
-    tamanio: int
-    
 class Productos_Imagenes(BaseModel):
     id: int
     nombre: str
@@ -101,4 +91,12 @@ class Productos_Imagenes(BaseModel):
     updated_at: Optional[datetime]
     activo: bool
     imagenes: list[Imagenes]
+    model_config = {"from_attributes": True}
+
+class Productos_Respuesta(Productos_Base):
+    id: int
+    codigo_barra: str
+    created_at: datetime
+    updated_at: Optional[datetime] = None
+    activo: bool
     model_config = {"from_attributes": True}

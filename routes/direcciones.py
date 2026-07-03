@@ -7,30 +7,26 @@ from services import direcciones as crud
 from sec import obtener_usuario_actual
 router = APIRouter()
 
-
-
-
-
 @router.get(
-        "/direccion/ciudad/", 
-        response_model= list[Direcciones_ciudades], 
-        tags=["Sección de Direcciones"]
+    "/direccion/ciudad/", 
+    response_model= list[Direcciones_ciudades], 
+    tags=["Sección de Direcciones"]
 )
-def read_direccion(
-        db: Session = Depends(get_db), 
-    ):
+def read_ciudad(
+    db: Session = Depends(get_db)
+):
     db_direccion = crud.get_ciudad(
         db
     )
     return db_direccion
 
 @router.get(
-        "/direccion/provincia/", 
-        response_model= list[Direcciones_provincias], 
-        tags=["Sección de Direcciones"]
+    "/direccion/provincia/", 
+    response_model= list[Direcciones_provincias], 
+    tags=["Sección de Direcciones"]
 )
-def read_direccion(
-        db: Session = Depends(get_db), 
+def read_provincia(
+    db: Session = Depends(get_db)
     ):
     db_direccion = crud.get_provincia(
         db
@@ -38,45 +34,73 @@ def read_direccion(
     return db_direccion
 
 @router.get(
-        "/direcciones/", 
-        response_model=list[Direcciones_Respuesta], 
-        tags=["Sección de Direcciones"]
+    "/direcciones/", 
+    response_model=list[Direcciones_Respuesta], 
+    tags=["Sección de Direcciones"]
 )
 def read_direcciones(
     limit: int = 100, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
     direcciones = crud.get_direcciones(
         db,
         limit=limit
     )
+    true_cliente = usuario_logeado.get("id_cliente") == direcciones.id_cliente
+    true_rol = usuario_logeado.get("id_rol") in [1, 3, 7]
+    if not (true_cliente or true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     return direcciones
 
 @router.post(
-        "/direcciones/", 
-        response_model=Direcciones_Respuesta, 
-        tags=["Sección de Direcciones"]
+    "/direcciones/", 
+    response_model=Direcciones_Respuesta, 
+    tags=["Sección de Direcciones"]
 )
 def create_direccion(
     direccion: Direcciones_Crear,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    return crud.create_direccion(
+    true_cliente = usuario_logeado.get("id_cliente") == direccion.id_cliente
+    true_rol = usuario_logeado.get("id_rol") in [1, 3, 7]
+    if not (true_cliente or true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
+    db_direcciones = crud.create_direccion(
         db=db,
         direccion=direccion
     )
-
+    if db_direcciones is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, 
+            detail="Direccion no encontrada"
+        )
+    return db_direcciones
 
 @router.put(
-        "/direcciones/id/{id_direccion}", 
-        response_model=Direcciones_Respuesta, 
-        tags=["Sección de Direcciones"]
+    "/direcciones/id/{id_direccion}", 
+    response_model=Direcciones_Respuesta, 
+    tags=["Sección de Direcciones"]
 )
-def update_producto(
+def update_direccion(
     id_direccion: int, 
     direccion: Direcciones_Crear, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_rol = usuario_logeado.get("id_rol") in [1, 3, 7]
+    if not (true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     db_direccion = crud.update_direccion(
         db, 
         id_direccion=id_direccion, 
@@ -84,27 +108,33 @@ def update_producto(
     )
     if db_direccion is None:
         raise HTTPException(
-            status_code=404, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Direccion no encontrada"
         )
     return db_direccion
 
-
 @router.delete(
-        "/direcciones/id/{id_direccion}", 
-        tags=["Sección de Direcciones"]
+    "/direcciones/id/{id_direccion}", 
+    tags=["Sección de Direcciones"]
 )
 def delete_direccion(
     id_direccion: int, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_rol = usuario_logeado.get("id_rol") in [1, 3, 7]
+    if not (true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     success = crud.delete_direccion(
         db, 
         id_direccion=id_direccion
     )
     if not success:
         raise HTTPException(
-            status_code=404, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Direccion no encontrada"
         )
     return {"detail": "Direccion eliminada"}

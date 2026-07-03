@@ -5,7 +5,6 @@ from db.database import Base
 from pydantic import BaseModel
 from typing import Optional
 
-
 class Archivos(Base):
     __tablename__ = "archivos"
 
@@ -43,7 +42,6 @@ class Archivos(Base):
         backref = "archivos"
     )
 
-    
 class ArchivoCreate(BaseModel):
     id_producto: int
     s3_key: str

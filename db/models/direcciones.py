@@ -30,28 +30,11 @@ class Direcciones(Base):
         Boolean,
         default=True
     )
-  
-    
+
 class Direcciones_Base(BaseModel):
     ciudad: str
     calle: str
     numero: int
-
-class Direcciones_Crear(Direcciones_Base):
-    barrio: str
-    provincia: str
-
-class Direcciones_Respuesta(Direcciones_Base):
-    id: int
-    barrio: str
-    provincia: str
-    model_config = {"from_attributes": True}
-
-class Direcciones_Pedidos(BaseModel):
-    ciudad: str
-    calle: str
-    numero: int
-    provincia: str
 
 class Direcciones_Clientes(BaseModel):
     id_direccion: int
@@ -61,8 +44,24 @@ class Direcciones_Clientes(BaseModel):
     numero: int
     provincia: str
 
+class Direcciones_Crear(Direcciones_Base):
+    barrio: str
+    provincia: str
+
 class Direcciones_ciudades(BaseModel):
     ciudad: str
-    
+
+class Direcciones_Pedidos(BaseModel):
+    ciudad: str
+    calle: str
+    numero: int
+    provincia: str
+
 class Direcciones_provincias(BaseModel):
     provincia: str
+
+class Direcciones_Respuesta(Direcciones_Base):
+    id: int
+    barrio: str
+    provincia: str
+    model_config = {"from_attributes": True}

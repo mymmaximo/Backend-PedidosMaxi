@@ -4,7 +4,6 @@ from db.database import Base
 from pydantic import BaseModel
 from datetime import datetime
 
-
 class Historial_Precios(Base):
     __tablename__ = "historial_precios"
 
@@ -27,7 +26,6 @@ class Historial_Precios(Base):
         onupdate=func.now()
     )
 
-    
 class historial_wproductos(BaseModel):
     id: int
     id_producto: int

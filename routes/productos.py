@@ -8,20 +8,20 @@ from sec import obtener_usuario_actual
 router = APIRouter()
 
 @router.get(
-        "/producto/", 
-        response_model=list[Productos_Imagenes], 
-        tags=["Sección de Productos"]
+    "/producto/", 
+    response_model=list[Productos_Imagenes], 
+    tags=["Sección de Productos"]
 )
 def read_producto(
-        busqueda_producto: Optional[str] = None,
-        orden: Optional[int] = None,
-        filtrocat: Optional[str] = None,
-        precio_producto_min: Optional[int] = None,
-        precio_producto_max: Optional[int] = None,
-        bool_activo: Optional[bool] = None,
-        limit: int = 21,
-        skip: int = 0, 
-        db: Session = Depends(get_db)
+    busqueda_producto: Optional[str] = None,
+    orden: Optional[int] = None,
+    filtrocat: Optional[str] = None,
+    precio_producto_min: Optional[int] = None,
+    precio_producto_max: Optional[int] = None,
+    bool_activo: Optional[bool] = None,
+    limit: int = 21,
+    skip: int = 0, 
+    db: Session = Depends(get_db)
 ):
     db_producto = crud.get_producto(
         db, 
@@ -37,58 +37,92 @@ def read_producto(
     return db_producto
 
 @router.get(
-        "/producto/categorias/", 
-        response_model=list[Productos_Categoria], 
-        tags=["Sección de Productos"]
+    "/producto/categorias/", 
+    response_model=list[Productos_Categoria], 
+    tags=["Sección de Productos"]
 )
-def read_categoria(db: Session = Depends(get_db)):
-    db_producto = crud.get_categoria(db)
+def read_categoria(
+    db: Session = Depends(get_db)
+):
+    db_producto = crud.get_categoria(
+        db
+    )
     return db_producto
 
 @router.get(
-        "/productos/", 
-        response_model=list[Productos_Respuesta], 
-        tags=["Sección de Productos"]
+    "/productos/", 
+    response_model=list[Productos_Respuesta], 
+    tags=["Sección de Productos"]
 )
 def read_productos(
     limit: int = 100, 
     db: Session = Depends(get_db)
 ):
-    productos = crud.get_productos(db, limit=limit)
+    productos = crud.get_productos(
+        db, 
+        limit=limit
+    )
     return productos
 
 @router.post(
-        "/productos/", 
-        response_model=Productos_Respuesta, 
-        tags=["Sección de Productos"]
+    "/productos/", 
+    response_model=Productos_Respuesta, 
+    tags=["Sección de Productos"]
 )
 def create_producto(
     producto: Productos_Crear, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    return crud.create_producto(db=db, producto=producto)
+    true_rol = usuario_logeado.get("id_rol") in [1, ]
+    if not (true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
+    return crud.create_producto(
+        db=db, 
+        producto=producto
+    )
 
 @router.post(
-        "/productos/archivos/", 
-        response_model=ArchivoCrear, 
-        tags=["Sección de Productos"]
+    "/productos/archivos/", 
+    response_model=ArchivoCrear, 
+    tags=["Sección de Productos"]
 )
 def create_archivo(
     archivo: ArchivoCrear, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    return crud.create_archivo(db=db, archivo=archivo)
+    true_rol = usuario_logeado.get("id_rol") in [1, ]
+    if not (true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
+    return crud.create_archivo(
+        db=db, 
+        archivo=archivo
+    )
 
 @router.put(
-        "/productos/id/{id_producto}", 
-        response_model=Productos_Respuesta, 
-        tags=["Sección de Productos"]
+    "/productos/id/{id_producto}", 
+    response_model=Productos_Respuesta, 
+    tags=["Sección de Productos"]
 )
 def update_producto(
     id_producto: int, 
     producto: Productos_Edit, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_rol = usuario_logeado.get("id_rol") in [1, ]
+    if not (true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     db_producto = crud.update_producto(
         db, 
         id_producto=id_producto, 
@@ -96,45 +130,59 @@ def update_producto(
     )
     if db_producto is None:
         raise HTTPException(
-            status_code=404, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Producto no encontrado"
         )
     return db_producto
 
 @router.delete(
-        "/productos/id/{id_producto}", 
-        tags=["Sección de Productos"]
+    "/productos/id/{id_producto}", 
+    tags=["Sección de Productos"]
 )
 def delete_producto(
     id_producto: int, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_rol = usuario_logeado.get("id_rol") in [1, 3]
+    if not (true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     success = crud.delete_producto(
         db, 
         id_producto=id_producto
     )
     if not success:
         raise HTTPException(
-            status_code=404, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Producto no encontrado"
         )
     return {"detail": "Producto eliminado"}
 
 @router.delete(
-        "/productos/archivos/id/{id_archivo}", 
-        tags=["Sección de Productos"]
+    "/productos/archivos/id/{id_archivo}", 
+    tags=["Sección de Productos"]
 )
 def delete_archivo(
     id_archivo: int, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_rol = usuario_logeado.get("id_rol") in [1, 3]
+    if not (true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     success = crud.delete_archivo(
         db, 
         id_archivo=id_archivo
     )
     if not success:
         raise HTTPException(
-            status_code=404, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Archivo no encontrado"
         )
     return {"detail": "Archivo eliminado"}

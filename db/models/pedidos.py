@@ -66,14 +66,26 @@ class Pedidos_Base(BaseModel):
     tiempo_entrega: Optional[int] = 0
     estatus: Optional[int] = 3
 
+class Pedidos_CDDP(Pedidos_Base):
+    id_pedido: int
+    cliente : list[Clientes_Pedidos]
+    direccion: list[Direcciones_Pedidos]
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
+    total: float
+    detalle_pedido : list[Detalles_Pedido_wProductos]
+
 class Pedidos_Crear(Pedidos_Base):
     pass
 
-class Pedidos_Respuesta(Pedidos_Base):
-    id: int
-    created_at: datetime
+class Pedidos_DDP(Pedidos_Base):
+    id_pedido: int
+    direccion: list[Direcciones_Pedidos]
+    created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    model_config = {"from_attributes": True}
+    total: float
+    estatus: int
+    detalle_pedido : list[Detalles_Pedido_wProductos_xClientes]
 
 class Pedidos_Detalles(Pedidos_Base):
     id_pedido: int
@@ -103,24 +115,6 @@ class Pedidos_Detalles_Productos(BaseModel):
     codigo_barra: str
     model_config = {"from_attributes": True}
 
-class Pedidos_CDDP(Pedidos_Base):
-    id_pedido: int
-    cliente : list[Clientes_Pedidos]
-    direccion: list[Direcciones_Pedidos]
-    created_at: Optional[datetime] = None
-    updated_at: Optional[datetime] = None
-    total: float
-    detalle_pedido : list[Detalles_Pedido_wProductos]
-
-class Pedidos_DDP(Pedidos_Base):
-    id_pedido: int
-    direccion: list[Direcciones_Pedidos]
-    created_at: Optional[datetime] = None
-    updated_at: Optional[datetime] = None
-    total: float
-    estatus: int
-    detalle_pedido : list[Detalles_Pedido_wProductos_xClientes]
-
 class Pedidos_Clientes_Direcciones_Detalles_Productos(BaseModel):
     id_pedido: int
     id_cliente: int
@@ -144,4 +138,10 @@ class Pedidos_Clientes_Direcciones_Detalles_Productos(BaseModel):
     stock: int
     categoria: str
     codigo_barra: str
+    model_config = {"from_attributes": True}
+
+class Pedidos_Respuesta(Pedidos_Base):
+    id: int
+    created_at: datetime
+    updated_at: Optional[datetime] = None
     model_config = {"from_attributes": True}

@@ -5,7 +5,6 @@ from pydantic import BaseModel
 from db.models.productos import Productos_Detalles, Productos_Detalles_Clientes
 from typing import Optional
 
-
 class Detalles_Pedido(Base):
     __tablename__ = "detalles_pedido"
 

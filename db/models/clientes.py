@@ -6,7 +6,6 @@ from typing import Optional
 from datetime import datetime
 from db.models.direcciones import Direcciones_Clientes
 
-
 class Clientes(Base):
     __tablename__ = "clientes"
 
@@ -48,31 +47,12 @@ class Clientes_Base(BaseModel):
     nombre: str
     email: EmailStr
 
-class Clientes_Crear(Clientes_Base):
-    dni: str
-    contrasena: str
-
 class Clientes_Act(Clientes_Base):
     contrasena: str
 
-class Clientes_Respuesta(Clientes_Base):
-    id: int
+class Clientes_Crear(Clientes_Base):
     dni: str
-    activo: bool
-    created_at: datetime
-    updated_at: Optional[datetime] = None
-    direcciones: list[Direcciones_Clientes] = []
-    model_config = {"from_attributes": True}
-
-class Clientes_Pedidos(BaseModel):
-    nombre: str
-
-class Clientes_Direcciones(Clientes_Base):
-    id: int
-    dni: str
-    activo: bool
-    created_at: datetime
-    direcciones: list[Direcciones_Clientes]
+    contrasena: str
 
 class Clientes_Direccion(BaseModel):
     id_cliente: int
@@ -88,6 +68,18 @@ class Clientes_Direccion(BaseModel):
     provincia: str
     model_config = {"from_attributes": True}
 
+class Clientes_Direcciones(Clientes_Base):
+    id: int
+    dni: str
+    activo: bool
+    created_at: datetime
+    direcciones: list[Direcciones_Clientes]
+
+class Clientes_Edit(BaseModel):
+    nombre: Optional[str] = None
+    email: Optional[EmailStr] = None
+    contrasena: Optional[str] = None
+
 class Clientes_id_Direccion(BaseModel):
     id_direccion: int
     calle: str
@@ -101,14 +93,21 @@ class Clientes_Login(BaseModel):
     email: EmailStr
     contrasena: str
 
+class Clientes_Pedidos(BaseModel):
+    nombre: str
+
+class Clientes_Respuesta(Clientes_Base):
+    id: int
+    dni: str
+    activo: bool
+    created_at: datetime
+    updated_at: Optional[datetime] = None
+    direcciones: list[Direcciones_Clientes] = []
+    model_config = {"from_attributes": True}
+
 class Token(BaseModel):
     access_token: Optional[str]
     token_type: Optional[str]
     id_cliente: Optional[int] = None
     id_usuario: Optional[int] = None
     id_rol: Optional[int] = None
-
-class Clientes_Edit(BaseModel):
-    nombre: Optional[str] = None
-    email: Optional[EmailStr] = None
-    contrasena: Optional[str] = None

@@ -7,25 +7,23 @@ from services import clientes as crud
 from sec import crear_pase, obtener_usuario_actual
 router = APIRouter()
 
-
-
 @router.get(
-        "/cliente/", 
-        response_model= list[Clientes_Direcciones], 
-        tags=["Sección de Clientes"]
+    "/cliente/", 
+    response_model= list[Clientes_Direcciones], 
+    tags=["Sección de Clientes"]
 )
 def read_cliente(
-        limit: int = 20,
-        skip: int = 0, 
-        db: Session = Depends(get_db),
-        usuario_logeado: dict = Depends(obtener_usuario_actual),
-        busqueda_cliente: Optional[str] = None,
-        orden: Optional[int] = None,
-        bool_direccion: Optional[bool] = None,
-        bool_activo: Optional[bool] = None,
-        filtrociudad: Optional[str] = None,
-        filtroprovincia: Optional[str] = None
-    ):
+    limit: int = 20,
+    skip: int = 0, 
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual),
+    busqueda_cliente: Optional[str] = None,
+    orden: Optional[int] = None,
+    bool_direccion: Optional[bool] = None,
+    bool_activo: Optional[bool] = None,
+    filtrociudad: Optional[str] = None,
+    filtroprovincia: Optional[str] = None
+):
     true_rol = usuario_logeado.get("id_rol") in [1, 7]
     if not true_rol:
         raise HTTPException(
@@ -46,9 +44,9 @@ def read_cliente(
     return db_cliente
 
 @router.get(
-        "/cliente/{id_cliente}/direcciones/", 
-        response_model= list[Clientes_id_Direccion], 
-        tags=["Sección de Clientes"]
+    "/cliente/{id_cliente}/direcciones/", 
+    response_model= list[Clientes_id_Direccion], 
+    tags=["Sección de Clientes"]
 )
 def get_cliente_idireccion(
     id_cliente: int, 
@@ -69,9 +67,9 @@ def get_cliente_idireccion(
     return cliente
 
 @router.get(
-        "/clientes/", 
-        response_model=list[Clientes_Direcciones], 
-        tags=["Sección de Clientes"]
+    "/clientes/", 
+    response_model=list[Clientes_Direcciones], 
+    tags=["Sección de Clientes"]
 )
 def read_clientes(
     db: Session = Depends(get_db), 
@@ -84,14 +82,14 @@ def read_clientes(
             detail="No tienes permiso para modificar este perfil."
         )
     clientes = crud.get_cliente_direccion(
-        db,
+        db
     )
     return clientes
 
 @router.post(
-        "/cliente/login/",
-        response_model=Token,
-        tags=["Seccion de Clientes"]
+    "/cliente/login/",
+    response_model=Token,
+    tags=["Seccion de Clientes"]
 )
 def login_cliente(
     pase: Clientes_Login, 
@@ -104,7 +102,7 @@ def login_cliente(
     )
     if not cliente:
         raise HTTPException(
-            status_code=401, 
+            status_code=status.HTTP_401_UNAUTHORIZED, 
             detail="E-Mail o Contraseña Invalido"
         )
     payload_data = {
@@ -123,17 +121,17 @@ def login_cliente(
     )
     return { 
         "token_type": "bearer",
-        "id_cliente": id_cliente,
+        "id_cliente": id_cliente
     }
     
 @router.post(
-        "/clientes/", 
-        response_model=Clientes_Respuesta, 
-        tags=["Sección de Clientes"]
+    "/clientes/", 
+    response_model=Clientes_Respuesta, 
+    tags=["Sección de Clientes"]
 )
 def create_cliente(
     cliente: Clientes_Crear, 
-    db: Session = Depends(get_db),
+    db: Session = Depends(get_db)
 ):
     db_cliente_email = crud.get_mail(
         db, 
@@ -141,7 +139,7 @@ def create_cliente(
     )
     if db_cliente_email:
         raise HTTPException(
-            status_code=400, 
+            status_code=status.HTTP_400_BAD_REQUEST, 
             detail="Email ya registrado"
         )
     db_cliente_dni = crud.get_dni(
@@ -150,7 +148,7 @@ def create_cliente(
     )
     if db_cliente_dni:
         raise HTTPException(
-            status_code=400, 
+            status_code=status.HTTP_400_BAD_REQUEST, 
             detail="DNI ya registrado"
         )
     return crud.create_cliente(
@@ -159,9 +157,9 @@ def create_cliente(
     )
 
 @router.put(
-        "/clientes/id/{id_cliente}", 
-        response_model=Clientes_Respuesta, 
-        tags=["Sección de Clientes"]
+    "/clientes/id/{id_cliente}", 
+    response_model=Clientes_Respuesta, 
+    tags=["Sección de Clientes"]
 )
 def update_cliente(
     id_cliente: int, 
@@ -183,7 +181,7 @@ def update_cliente(
         )
         if db_cliente_email and id_cliente != db_cliente_email[0].id:
             raise HTTPException(
-                status_code=400, 
+                status_code=status.HTTP_400_BAD_REQUEST, 
                 detail="Email ya registrado"
             )
     db_cliente = crud.update_cliente(
@@ -193,14 +191,14 @@ def update_cliente(
     )
     if db_cliente is None:
         raise HTTPException(
-            status_code=404, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Cliente no encontrado"
         )
     return db_cliente
 
 @router.delete(
-        "/clientes/id/{id_cliente}", 
-        tags=["Sección de Clientes"]
+    "/clientes/id/{id_cliente}", 
+    tags=["Sección de Clientes"]
 )
 def delete_cliente(
     id_cliente: int, 
@@ -220,7 +218,7 @@ def delete_cliente(
     )
     if not success:
         raise HTTPException(
-            status_code=404, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Cliente no encontrado"
         )
     return {"detail": "Cliente eliminado"}

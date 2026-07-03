@@ -1,5 +1,5 @@
 from typing import Optional
-from fastapi import APIRouter, Depends, status
+from fastapi import HTTPException, APIRouter, Depends, status
 from sqlalchemy.orm import Session
 from db.database import get_db
 from db.models.historial_precios import historial_wproductos
@@ -9,12 +9,13 @@ from sec import obtener_usuario_actual
 router = APIRouter()
 
 @router.get(
-        "/historial/", 
-        response_model= list[historial_wproductos], 
-        tags=["Sección de Historial Precios"]
+    "/historial/", 
+    response_model= list[historial_wproductos], 
+    tags=["Sección de Historial Precios"]
 )
 def read_historial(
     db:Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual),
     busqueda_historial: Optional[str] = None,
     orden: Optional[int] = None,
     fecha_upgrade_max: Optional[datetime] = None,
@@ -27,7 +28,13 @@ def read_historial(
     filtrocat: Optional[str] = None,
     limit: int = 20,
     skip: int = 0
-    ):
+):
+    true_rol = usuario_logeado.get("id_rol") in [1, 2, 4]
+    if not (true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     db_historial = crud.get_historial(
         db, 
         busqueda_historial=busqueda_historial,

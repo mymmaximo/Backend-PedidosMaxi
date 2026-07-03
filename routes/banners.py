@@ -8,14 +8,14 @@ from sec import obtener_usuario_actual
 router = APIRouter()
 
 @router.get(
-        "/banners/", 
-        response_model=list[Banners_Respuesta], 
-        tags=["Sección de Banners"]
+    "/banners/", 
+    response_model=list[Banners_Respuesta], 
+    tags=["Sección de Banners"]
 )
 def read_banners(
     limit: int = 100, 
     bool_activo: Optional[bool] = None,
-    db: Session = Depends(get_db),
+    db: Session = Depends(get_db)
 ):
     banners = crud.get_banners(
         db, 
@@ -25,9 +25,9 @@ def read_banners(
     return banners
 
 @router.post(
-        "/banners/", 
-        response_model=Banners_Respuesta, 
-        tags=["Sección de Banners"]
+    "/banners/", 
+    response_model=Banners_Respuesta, 
+    tags=["Sección de Banners"]
 )
 def create_banners(
     banner: Banners_Crear, 
@@ -46,9 +46,9 @@ def create_banners(
     )
 
 @router.put(
-        "/banners/id/{id_banner}", 
-        response_model=Banners_Respuesta, 
-        tags=["Sección de Banners"]
+    "/banners/id/{id_banner}", 
+    response_model=Banners_Respuesta, 
+    tags=["Sección de Banners"]
 )
 def update_banners(
     id_banner: int, 
@@ -69,14 +69,14 @@ def update_banners(
     )
     if db_banner is None:
         raise HTTPException(
-            status_code=404, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Banners no encontrado"
         )
     return db_banner
 
 @router.put(
-        "/banners/estado/id/{id_banner}", 
-        tags=["Sección de Banners"]
+    "/banners/estado/id/{id_banner}", 
+    tags=["Sección de Banners"]
 )
 def deact_banner(
     id_banner: int, 
@@ -95,14 +95,14 @@ def deact_banner(
     )
     if not success:
         raise HTTPException(
-            status_code=404, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Banner no encontrado"
         )
     return {"detail": "Banner desactivado"}
 
 @router.delete(
-        "/banners/id/{id_banner}", 
-        tags=["Sección de Banners"]
+    "/banners/id/{id_banner}", 
+    tags=["Sección de Banners"]
 )
 def hard_delete_banner(
     id_banner: int,
@@ -121,7 +121,7 @@ def hard_delete_banner(
     )
     if not success:
         raise HTTPException(
-            status_code=404,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail="Banner no encontrado"
         )
     return {"detail": "Banner eliminado"}
