@@ -43,17 +43,16 @@ def read_direcciones(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    direcciones = crud.get_direcciones(
-        db,
-        limit=limit
-    )
-    true_cliente = usuario_logeado.get("id_cliente") == direcciones.id_cliente
     true_rol = usuario_logeado.get("id_rol") in [1, 3, 7]
-    if not (true_cliente or true_rol):
+    if not (true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar esto."
         )
+    direcciones = crud.get_direcciones(
+        db,
+        limit=limit
+    )
     return direcciones
 
 @router.post(

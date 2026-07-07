@@ -121,8 +121,15 @@ def create_usuario(
 def update_usuario(
     id_usuario: int, 
     usuario: Usuarios_Edit, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_rol = usuario_logeado.get("id_rol") in [1]
+    if not (true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     if usuario.email is not None:
         db_usuarios_email = crud.get_mail_usuario(
             db, 
@@ -151,8 +158,15 @@ def update_usuario(
 )
 def delete_usuario(
     id_usuario: int, 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    true_rol = usuario_logeado.get("id_rol") in [1]
+    if not (true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     success = crud.delete_usuario(
         db, 
         id_usuario=id_usuario

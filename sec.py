@@ -1,6 +1,6 @@
 import os
 from fastapi import HTTPException, Request, status
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from jose import jwt
 from dotenv import load_dotenv
 from passlib.context import CryptContext
@@ -19,7 +19,7 @@ def crear_pase(
         datos: dict
 ):
     encripto = datos.copy()
-    expira = datetime.utcnow() + timedelta(minutes=120)
+    expira = datetime.now(timezone.utc) + timedelta(minutes=120)
     encripto.update({
         "exp": expira
     })
