@@ -76,17 +76,18 @@ def read_detalles_pedido(
 
 @router.post(
     "/detalles_pedidos/", 
-    response_model=Detalles_Pedido_Respuesta, 
+    response_model=list[Detalles_Pedido_Respuesta], 
     tags=["Sección de Detalles de Pedidos"]
 )
 def create_detalle_pedido(
-    detalle_pedido: Detalles_Pedido_Crear, 
+    detalle_pedido: list[Detalles_Pedido_Crear], 
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    id_pedidios = detalle_pedido[0].id_pedido
     db_pedido = get_pedido(
         db, 
-        id_pedido=detalle_pedido.id_pedido
+        id_pedido=id_pedidios
     )
     if not db_pedido:
         raise HTTPException(

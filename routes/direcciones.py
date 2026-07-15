@@ -62,16 +62,8 @@ def read_direcciones(
 )
 def create_direccion(
     direccion: Direcciones_Crear,
-    db: Session = Depends(get_db),
-    usuario_logeado: dict = Depends(obtener_usuario_actual)
+    db: Session = Depends(get_db)
 ):
-    true_cliente = usuario_logeado.get("id_cliente") == direccion.id_cliente
-    true_rol = usuario_logeado.get("id_rol") in [1, 3, 7]
-    if not (true_cliente or true_rol):
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN, 
-            detail="No tienes permiso para modificar esto."
-        )
     db_direcciones = crud.create_direccion(
         db=db,
         direccion=direccion

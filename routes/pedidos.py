@@ -221,6 +221,11 @@ def create_detalles_pedido(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    if not detalle_pedido:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, 
+            detail="La lista de detalles no puede estar vacía"
+        )
     db_pedido  = crud.get_pedido(
         db, 
         id_pedido=detalle_pedido[0].id_pedido

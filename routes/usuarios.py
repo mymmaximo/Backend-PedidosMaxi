@@ -1,10 +1,10 @@
 from typing import Optional
-from fastapi import HTTPException, APIRouter, Response, status, Depends
+from fastapi import HTTPException, APIRouter, Response, Request, status, Depends
 from sqlalchemy.orm import Session
 from db.database import get_db
 from db.models.usuarios import Usuarios_Respuesta, Usuarios_Crear, Usuarios_Login, Token,Usuarios_Direcciones, Usuarios_Edit
 from services import usuarios as crud
-from sec import crear_pase, obtener_usuario_actual
+from sec import crear_pase, obtener_usuario_actual, crear_huella
 router = APIRouter()
 
 
@@ -40,12 +40,12 @@ def read_usuario(
 
 @router.post(
     "/usuario/login/",
-    response_model=Token,
     tags=["Seccion de Usuarios"]
 )
 def login_usuario(
     pase: Usuarios_Login, 
     response: Response,
+    request: Request,
     db: Session = Depends(get_db)
 ):
     token_string, id_usuario, id_rol = crud.login_usuarios(
@@ -59,7 +59,8 @@ def login_usuario(
         )
     payload_data = {
         "id_usuario": id_usuario,
-        "id_rol": id_rol
+        "id_rol": id_rol,
+        "huella": crear_huella(request)
     }
     token_seguro = crear_pase(datos=payload_data)
     response.set_cookie(
@@ -72,7 +73,7 @@ def login_usuario(
     return {
         "token_type": "bearer",
         "id_usuario": id_usuario,
-        "id_rol": id_rol
+        "id_rol": id_rol,
     }
     
 @router.post(
@@ -177,3 +178,29 @@ def delete_usuario(
             detail="Usuario no encontrado"
         )
     return {"detail": "Usuario eliminado"}
+
+@router.get(
+    "/reload/", 
+    tags=["Autenticación"]
+)
+def verificar_sesion (
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
+):
+    return {
+        "id_rol": usuario_logeado.get("id_rol"),
+        "id_cliente": usuario_logeado.get("id_cliente")
+    }
+
+@router.post(
+    "/logout/", 
+    tags=["Autenticación"]
+)
+def logout_sesion(
+    response: Response
+):
+    response.delete_cookie(
+        "token_seguro"
+    )
+    return {
+        "mensaje": "Sesion cerrada de forma segura"
+    }
