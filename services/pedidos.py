@@ -359,13 +359,13 @@ def confirmar_pago(
     if db_pedido.estatus == 4:
         db_pedido.estatus = 3
         db_pedido.metodo_pago = "Paddle"
-        if transaccion_id:
+        if transaccion_id is not None:
             db_pedido.transaccion_id = transaccion_id
-        if url_recibo:
+        if url_recibo is not None:
             db_pedido.url_recibo = url_recibo
-        if detalle_pago:
+        if detalle_pago is not None:
             db_pedido.detalle_pago = detalle_pago
-        if monto_pagado:
+        if monto_pagado is not None:
             db_pedido.monto_pagado = monto_pagado
     db.commit()
     db.refresh(db_pedido)
