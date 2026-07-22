@@ -1,10 +1,6 @@
 from fastapi import FastAPI
 from db.database import Base, engine
-from db.models import clientes as mod_clientes
-from db.models import productos as mod_productos
-from db.models import pedidos as mod_pedidos
-from db.models import detalles_pedido as mod_detalles_pedido
-from db.models import direcciones as mod_direcciones
+from routes import paddle
 from routes import clientes as route_clientes
 from routes import banners as route_banners
 from routes import usuarios as route_usuarios
@@ -23,7 +19,7 @@ app = FastAPI()
 links = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "http://10.250.4.38:5173"
+    "http://10.250.4.62:5173"
     # "link proximo"
 ]
 
@@ -35,6 +31,7 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+app.include_router(paddle.router)
 app.include_router(route_clientes.router)
 app.include_router(route_banners.router)
 app.include_router(route_usuarios.router)

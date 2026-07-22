@@ -68,3 +68,4 @@ class Detalles_Pedido_wProductos_xClientes(BaseModel):
     precio_unitario: float
     subtotal: float
     producto : Productos_Detalles_Clientes
+    

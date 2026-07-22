@@ -9,8 +9,6 @@ from services import detalles_pedidos as crud
 from sec import obtener_usuario_actual
 router = APIRouter()
 
-
-
 @router.get(
     "/detalle_pedido/", 
     response_model= list[Detalles_Pedido_Respuesta], 
@@ -84,6 +82,11 @@ def create_detalle_pedido(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    if not db_producto:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Producto no encontrado"
+        )
     id_pedidios = detalle_pedido[0].id_pedido
     db_pedido = get_pedido(
         db, 
@@ -94,7 +97,8 @@ def create_detalle_pedido(
             status_code=status.HTTP_404_NOT_FOUND, 
             detail="Pedido no encontrado"
         )
-    true_cliente = usuario_logeado.get("id_cliente") == db_pedido.id_cliente
+    db_pedidios = db_pedido
+    true_cliente = usuario_logeado.get("id_cliente") == db_pedidios.id_cliente
     if not (true_cliente):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
@@ -104,11 +108,6 @@ def create_detalle_pedido(
         db, 
         id_producto=detalle_pedido.id_producto
     )
-    if not db_producto:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Producto no encontrado"
-        )
     return crud.create_detalle_pedido(
         db=db,
         detalle_pedido=detalle_pedido

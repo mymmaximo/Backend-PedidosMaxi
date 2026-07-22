@@ -306,8 +306,8 @@ def get_pedidoxcliente(
     return lista_pedidos
 
 def create_pedido(
-        db: Session, 
-        pedido: Pedidos_Crear
+    db: Session, 
+    pedido: Pedidos_Crear
 ):
     datos_pedido = pedido.dict()
     datos_pedido["tiempo_estimado_entrega"] = random.randint(1, 7)
@@ -318,9 +318,9 @@ def create_pedido(
     return db_pedido
 
 def update_pedido(
-        db: Session, 
-        id_pedido: int, 
-        pedido: Pedidos_Crear
+    db: Session, 
+    id_pedido: int, 
+    pedido: Pedidos_Crear
 ):
     datos_pedido = pedido.dict()
     db_pedido = db.query(Pedidos).filter(Pedidos.id == id_pedido).first()
@@ -335,8 +335,8 @@ def update_pedido(
     return db_pedido
 
 def delete_pedido(
-        db: Session, 
-        id_pedido: int
+    db: Session, 
+    id_pedido: int
 ):
     db_pedido = db.query(Pedidos).filter(Pedidos.id == id_pedido).first()
     if db_pedido is None:
@@ -344,3 +344,29 @@ def delete_pedido(
     db.delete(db_pedido)
     db.commit()
     return True
+
+def confirmar_pago(
+    db: Session,
+    id_pedido: int,
+    transaccion_id: Optional[str] = None,
+    url_recibo: Optional[str] = None,
+    detalle_pago: Optional[str] = None,
+    monto_pagado: Optional[float] = None,
+):
+    db_pedido = db.query(Pedidos).filter(Pedidos.id == id_pedido).first()
+    if not db_pedido:
+        return None
+    if db_pedido.estatus == 4:
+        db_pedido.estatus = 3
+        db_pedido.metodo_pago = "Paddle"
+        if transaccion_id:
+            db_pedido.transaccion_id = transaccion_id
+        if url_recibo:
+            db_pedido.url_recibo = url_recibo
+        if detalle_pago:
+            db_pedido.detalle_pago = detalle_pago
+        if monto_pagado:
+            db_pedido.monto_pagado = monto_pagado
+    db.commit()
+    db.refresh(db_pedido)
+    return db_pedido

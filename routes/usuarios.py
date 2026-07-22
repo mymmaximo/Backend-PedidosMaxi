@@ -199,7 +199,10 @@ def logout_sesion(
     response: Response
 ):
     response.delete_cookie(
-        "token_seguro"
+        key="token_seguro",
+        httponly=True,
+        secure=False,
+        samesite="lax"
     )
     return {
         "mensaje": "Sesion cerrada de forma segura"

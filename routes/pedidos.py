@@ -1,5 +1,9 @@
+import os
+import hmac
+import hashlib
+import secrets
 from typing import Optional
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Request
 from sqlalchemy.orm import Session
 from db.database import get_db
 from db.models.pedidos import Pedidos_Respuesta, Pedidos_Crear, Pedidos_Detalles, Pedidos_CDDP, Pedidos_DDP
@@ -13,6 +17,8 @@ from fastapi.security import OAuth2PasswordBearer
 from sec import obtener_usuario_actual
 router = APIRouter()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="cliente/login")
+PADDLE_SECRETO = os.getenv("PADDLE_SECRETO")
+PADDLE_WEBHOOK_SECRETO = os.getenv("PADDLE_WEBHOOK_SECRETO", "")
 
 @router.get(
     "/pedido/", 
@@ -235,7 +241,8 @@ def create_detalles_pedido(
             status_code=status.HTTP_404_NOT_FOUND, 
             detail="Pedido no encontrado"
         )
-    true_cliente = usuario_logeado.get("id_cliente") == db_pedido.id_cliente
+    pedidios = db_pedido[0]
+    true_cliente = usuario_logeado.get("id_cliente") == pedidios.id_cliente
     true_rol = usuario_logeado.get("id_rol") in [1, 3]
     if not (true_cliente or true_rol):
         raise HTTPException(
@@ -312,3 +319,86 @@ def delete_pedido(
             detail="Pedido no encontrado"
         )
     return {"detail": "Pedido eliminado"}
+
+@router.post(
+    "/webhook/paddle",
+    tags=["Webhooks"]
+)
+async def webhook_paddle(
+    payload: dict,
+    request: Request,
+    db: Session = Depends(get_db)
+):
+    firma = request.headers.get("paddle-signature")
+    if not firma:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, 
+            detail="Headers no encontrado"
+        )
+    try:
+        partes = dict(item.split("=") for item in firma.split(";"))
+        ts = partes.get("ts")
+        h1 = partes.get("h1")
+        cuerpo_crudo = await request.body()
+        payload_sfirma = f"{ts}:".encode('utf-8') + cuerpo_crudo
+        firma_calculada = hmac.new(
+            PADDLE_WEBHOOK_SECRETO.encode('utf-8'), 
+            payload_sfirma, 
+            hashlib.sha256
+        ).hexdigest() 
+        compa = secrets.compare_digest(h1, firma_calculada)
+        if not compa:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED, 
+                detail="Firma inválida"
+            )
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, 
+            detail=f"Error validando firma: {str(e)}"
+        )
+    evento = payload.get("event_type")
+    if evento == "transaction.completed":
+        datos_transaccion = payload.get("data", {})
+        id_pedido_str = datos_transaccion.get("custom_data", {}).get("id_pedido")
+        if not id_pedido_str:
+            return {
+                "status": "ok",
+                "message": "Ignorado: no tiene Id de Pedido"
+            }
+        id_pedido = int(id_pedido_str)
+        transaccion_id = datos_transaccion.get("id")
+        datos_recibo = datos_transaccion.get("receipt_data")
+        if datos_recibo:
+            url_recibo = datos_recibo.get("receipt_url", "")
+        else:
+            url_recibo = ""
+        monto_pagado_paddle = None
+        total_pagado_str = datos_transaccion.get("details", {}).get("totals", {}).get("total")
+        if total_pagado_str:
+            monto_pagado_paddle = float(total_pagado_str) / 100.0
+        detalle_pago = "Paddle"
+        pagos = datos_transaccion.get("payments", [])
+        if pagos:
+            tipo_metodo = pagos[0].get("method_details", {}).get("type", "")
+            if tipo_metodo == "card":
+                last4 = pagos[0].get("method_details", {}).get("card", {}).get("last4", "")
+                detalle_pago = f"Tarjeta terminada en {last4}"
+            else:
+                detalle_pago = tipo_metodo.capitalize() 
+        paycon = crud.confirmar_pago(
+            db, 
+            id_pedido=id_pedido,
+            transaccion_id=transaccion_id,
+            url_recibo=url_recibo,
+            detalle_pago=detalle_pago,
+            monto_pagado=monto_pagado_paddle
+        )
+        if paycon:
+            return {"status": "ok"} 
+        else:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, 
+                detail="Pedido no encontrado"
+            )
+    return {"status": "ok", "message": "Evento ignorado"}

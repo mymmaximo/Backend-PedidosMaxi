@@ -1,4 +1,4 @@
-from sqlalchemy import ForeignKey,Column, Integer, String, DateTime
+from sqlalchemy import ForeignKey,Column, Integer, String, DateTime, Float
 from db.models.clientes import Clientes_Pedidos
 from db.models.direcciones import Direcciones_Pedidos
 from db.models.detalles_pedido import Detalles_Pedido_wProductos, Detalles_Pedido_wProductos_xClientes
@@ -48,6 +48,22 @@ class Pedidos(Base):
         Integer,
         index=True
     )
+    transaccion_id = Column(
+        String, 
+        nullable=True
+    )
+    url_recibo = Column(
+        String, 
+        nullable=True
+    )
+    detalle_pago = Column(
+        String, 
+        nullable=True
+    )
+    monto_pagado = Column(
+        Float, 
+        nullable=True
+    )
 
     clientes = relationship(
         "Clientes", 
@@ -64,7 +80,7 @@ class Pedidos_Base(BaseModel):
     metodo_pago: Optional[str] = " "
     tiempo_estimado_entrega: Optional[int] = 0
     tiempo_entrega: Optional[int] = 0
-    estatus: Optional[int] = 3
+    estatus: Optional[int] = 4
 
 class Pedidos_CDDP(Pedidos_Base):
     id_pedido: int
@@ -145,3 +161,4 @@ class Pedidos_Respuesta(Pedidos_Base):
     created_at: datetime
     updated_at: Optional[datetime] = None
     model_config = {"from_attributes": True}
+    
