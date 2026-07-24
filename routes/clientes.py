@@ -118,7 +118,8 @@ def login_cliente(
         value=token_seguro,
         httponly=True,
         secure=False,
-        samesite="lax"
+        samesite="lax",
+        max_age=7200
     )
     return { 
         "token_type": "bearer",

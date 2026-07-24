@@ -52,7 +52,6 @@ class Token(BaseModel):
     id_usuario: Optional[int] = None
     id_rol: Optional[int] = None
 
-
 class Usuarios_Base(BaseModel):
     nombre: str
     email: EmailStr
