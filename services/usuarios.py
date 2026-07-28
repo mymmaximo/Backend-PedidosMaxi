@@ -1,8 +1,9 @@
 from typing import Optional
 from sqlalchemy import text, or_
 from sqlalchemy.orm import Session
+from fastapi import Request
 from db.models.usuarios import Usuarios, Usuarios_Crear, Usuarios_Login, Usuarios_Edit
-from sec import get_contrasena_criptid, verifica_sena, crear_pase, verificar_token
+from sec import get_contrasena_criptid, verifica_sena, crear_pase, crear_huella
 
 
 def get_usuario(
@@ -92,20 +93,26 @@ def get_usuarios(
 
 def login_usuarios(
         db: Session,
-        pase: Usuarios_Login
+        pase: Usuarios_Login,
+        request: Request
 ):
     usuario_db = db.query(Usuarios).filter(
         Usuarios.email == pase.email
         ).first()
     if not usuario_db:
-        return False, False, False
+        return None, None, None
     contrasena_valida = verifica_sena(
         pase.contrasena, 
         usuario_db.contrasena
     )
     if not contrasena_valida:
-        return False, False, False
-    token = crear_pase({"sub": str(usuario_db.id)})
+        return None, None, None
+    payload_data = {
+        "id_usuario": usuario_db.id,
+        "id_rol": usuario_db.id_rol,
+        "huella": crear_huella(request)
+    }
+    token = crear_pase(datos=payload_data)
     return token, usuario_db.id, usuario_db.id_rol
 
 def create_usuario(

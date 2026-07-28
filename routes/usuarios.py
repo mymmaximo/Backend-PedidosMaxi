@@ -189,6 +189,7 @@ def verificar_sesion (
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
     return {
+        "id_usuario": usuario_logeado.get("id_usuario"),
         "id_rol": usuario_logeado.get("id_rol"),
         "id_cliente": usuario_logeado.get("id_cliente")
     }
