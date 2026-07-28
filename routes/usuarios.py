@@ -50,7 +50,8 @@ def login_usuario(
 ):
     token_string, id_usuario, id_rol = crud.login_usuarios(
         db,
-        pase
+        pase,
+        request
     )
     if not token_string:
         raise HTTPException(
