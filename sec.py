@@ -89,7 +89,7 @@ def obtener_usuario_actual(
         if not usuario_db:
             raise HTTPException (
                 status_code=403,
-                detail="No se encontró la cookie de sesión legítima."
+                detail="No se encontró el usuario."
             )
         if hasattr(usuario_db, 'activo') and not usuario_db.activo:
             raise HTTPException(
