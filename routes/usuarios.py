@@ -72,6 +72,7 @@ def login_usuario(
         max_age=7200
     )
     return {
+        "access_token": token_seguro,
         "token_type": "bearer",
         "id_usuario": id_usuario,
         "id_rol": id_rol,

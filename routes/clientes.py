@@ -121,7 +121,8 @@ def login_cliente(
         samesite="none",
         max_age=7200
     )
-    return { 
+    return {
+        "access_token": token_seguro,
         "token_type": "bearer",
         "id_cliente": id_cliente
     }
