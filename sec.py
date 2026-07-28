@@ -22,7 +22,11 @@ pwd_context = CryptContext(
 def crear_huella(
         request: Request
 ) -> str:
-    ip = request.client.host if request.client else "0.0.0.0"
+    ip_real = request.headers.get("X-Forwarded-For")
+    if ip_real:
+        ip = ip_real.split(",")[0].strip()
+    else:
+        ip = request.client.host if request.client else "0.0.0.0"
     navegador = request.headers.get(
         "user-agent", 
         "Desconocido"
