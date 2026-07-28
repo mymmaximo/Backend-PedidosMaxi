@@ -67,8 +67,8 @@ def login_usuario(
         key="token_seguro", 
         value=token_seguro, 
         httponly=True,
-        secure=False,
-        samesite="lax",
+        secure=True,
+        samesite="none",
         max_age=7200
     )
     return {
@@ -202,8 +202,8 @@ def logout_sesion(
     response.delete_cookie(
         key="token_seguro",
         httponly=True,
-        secure=False,
-        samesite="lax"
+        secure=True,
+        samesite="none"
     )
     return {
         "mensaje": "Sesion cerrada de forma segura"

@@ -117,8 +117,8 @@ def login_cliente(
         key="token_seguro",
         value=token_seguro,
         httponly=True,
-        secure=False,
-        samesite="lax",
+        secure=True,
+        samesite="none",
         max_age=7200
     )
     return { 
