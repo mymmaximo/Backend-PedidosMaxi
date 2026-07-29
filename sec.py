@@ -77,13 +77,13 @@ def obtener_usuario_actual(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="El Acceso es inválido o ha expirado."
         )
-    # huella_actual = crear_huella(request)
-    # huella_guardada = payload.get("huella")
-    # if huella_guardada and huella_guardada != huella_actual:
-    #     raise HTTPException(
-    #         status_code=status.HTTP_401_UNAUTHORIZED,
-    #         detail="El Acceso es inválido o ha expirado."
-    #     )
+    huella_actual = crear_huella(request)
+    huella_guardada = payload.get("huella")
+    if huella_guardada and huella_guardada != huella_actual:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="El Acceso es inválido o ha expirado."
+        )
     if payload.get("id_usuario"):        
         usuario_db = db.query(ModeloUsuario).filter(ModeloUsuario.id == payload.get("id_usuario")).first()
         if not usuario_db:
