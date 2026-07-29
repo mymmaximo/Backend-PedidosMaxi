@@ -64,13 +64,12 @@ def obtener_usuario_actual(
     request: Request,
     db: Session = Depends(get_db)
 ):
-    auth_header = request.headers.get("Authorization")
-    if not auth_header or not auth_header.startswith("Bearer "):
+    token = request.cookies.get("token_seguro")
+    if not token:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="No se encontró el token de sesión legítimo."
         )
-    token = auth_header.split(" ")[1]
     payload = verificar_token(token)
     if not payload:
         raise HTTPException(
