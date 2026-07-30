@@ -10,11 +10,21 @@ from routes import detalles_pedido as route_detalles_pedido
 from routes import direcciones as route_direcciones
 from routes import historial_precios as route_historial_precios
 from fastapi.middleware.cors import CORSMiddleware
+from slowapi import _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
+from sec import limiter
 
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+app.state.limiter = limiter
+
+app.add_exception_handler(
+    RateLimitExceeded, 
+    _rate_limit_exceeded_handler
+)
 
 links = [
     "https://pedidosmaxi-production.up.railway.app",

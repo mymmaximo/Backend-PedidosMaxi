@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from db.database import get_db
 from db.models.clientes import Clientes_Respuesta, Clientes_Crear, Clientes_Login, Token,Clientes_Direcciones, Clientes_id_Direccion, Clientes_Edit
 from services import clientes as crud
-from sec import crear_pase, obtener_usuario_actual, crear_huella
+from sec import crear_pase, obtener_usuario_actual, crear_huella, limiter
 router = APIRouter()
 
 @router.get(
@@ -90,6 +90,7 @@ def read_clientes(
     "/cliente/login/",
     tags=["Seccion de Clientes"]
 )
+@limiter.limit("5/minute")
 def login_cliente(
     pase: Clientes_Login, 
     response: Response,

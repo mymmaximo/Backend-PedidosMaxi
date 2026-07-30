@@ -1,13 +1,14 @@
 import os
 import hashlib
-from fastapi import HTTPException, Request, status, Depends
-from datetime import datetime, timedelta, timezone
-from sqlalchemy.orm import Session
 from jose import jwt
+from slowapi import Limiter
+from db.database import get_db
 from dotenv import load_dotenv
+from sqlalchemy.orm import Session
 from passlib.context import CryptContext
-from db.database import get_db 
+from datetime import datetime, timedelta, timezone
 from db.models.usuarios import Usuarios as ModeloUsuario
+from fastapi import HTTPException, Request, status, Depends
 
 load_dotenv()
 
@@ -19,6 +20,21 @@ pwd_context = CryptContext(
     deprecated="auto"
 )
 
+def obtener_ip_real(
+    request: Request
+) -> str:
+    ip_cliente = request.headers.get(
+        "x-forwarded-for", 
+        request.headers.get(
+            "x-real-ip", 
+            request.client.host if request.client else "127.0.0.1"
+        )
+    )
+    if "," in ip_cliente:
+        ip_cliente = ip_cliente.split(",")[0].strip()
+    return ip_cliente
+limiter = Limiter(key_func=obtener_ip_real)
+
 def crear_huella(
         request: Request
 ) -> str:
@@ -26,7 +42,20 @@ def crear_huella(
         "user-agent", 
         "Desconocido"
     )
-    huella_cruda = f"{navegador}" 
+    ip_cliente = request.headers.get(
+        "x-forwarded-for", 
+        request.headers.get(
+            "x-real-ip", 
+            request.client.host if request.client else "IP_Desconocida"
+        )
+    )
+    if "," in ip_cliente:
+        ip_cliente = ip_cliente.split(",")[0].strip()
+    idioma = request.headers.get(
+        "accept-language", 
+        "Desconocido"
+    )
+    huella_cruda = f"{ip_cliente}|{navegador}|{idioma}" 
     return hashlib.sha256(huella_cruda.encode('utf-8')).hexdigest()[:16]
 
 def crear_pase(

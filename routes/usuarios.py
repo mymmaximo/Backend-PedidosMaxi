@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from db.database import get_db
 from db.models.usuarios import Usuarios_Respuesta, Usuarios_Crear, Usuarios_Login, Token,Usuarios_Direcciones, Usuarios_Edit
 from services import usuarios as crud
-from sec import crear_pase, obtener_usuario_actual, crear_huella
+from sec import crear_pase, obtener_usuario_actual, crear_huella, limiter
 router = APIRouter()
 
 
@@ -42,6 +42,7 @@ def read_usuario(
     "/usuario/login/",
     tags=["Seccion de Usuarios"]
 )
+@limiter.limit("5/minute")
 def login_usuario(
     pase: Usuarios_Login, 
     response: Response,
@@ -187,8 +188,20 @@ def delete_usuario(
     tags=["Autenticación"]
 )
 def verificar_sesion (
+    response: Response,
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    payload_data = usuario_logeado.copy()
+    payload_data.pop("exp", None)
+    nuevo_token = crear_pase(datos=payload_data)
+    response.set_cookie(
+        key="token_seguro",
+        value=nuevo_token,
+        httponly=True,
+        secure=True,
+        samesite="none",
+        max_age=7200
+    )
     return {
         "id_usuario": usuario_logeado.get("id_usuario"),
         "id_rol": usuario_logeado.get("id_rol"),
