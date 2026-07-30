@@ -21,7 +21,7 @@ links = [
     "https://backend-pedidosmaxi-production.up.railway.app",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "http://10.250.4.38:5173"
+    "http://10.250.4.18:5173"
     # "link proximo"
 ]
 
