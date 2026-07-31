@@ -33,7 +33,7 @@ def read_cliente(
             detail="No tienes los privilegios necesarios para hacer esto."
         )
     if true_cliente and not true_rol:
-        id_cliente=true_cliente,
+        id_cliente=true_cliente
         busqueda_cliente = None
         orden = None
         bool_direccion = None
