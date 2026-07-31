@@ -17,6 +17,7 @@ def read_cliente(
     skip: int = 0, 
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual),
+    id_cliente: Optional[int] = None,
     busqueda_cliente: Optional[str] = None,
     orden: Optional[int] = None,
     bool_direccion: Optional[bool] = None,
@@ -25,14 +26,25 @@ def read_cliente(
     filtroprovincia: Optional[str] = None
 ):
     true_rol = usuario_logeado.get("id_rol") in [1, 7]
-    if not true_rol:
+    true_cliente = usuario_logeado.get("id_cliente")
+    if not (true_cliente or true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="No tienes los privilegios necesarios para hacer esto."
         )
+    if true_cliente and not true_rol:
+        id_cliente=true_cliente,
+        busqueda_cliente = None
+        orden = None
+        bool_direccion = None
+        bool_activo = None
+        filtrociudad = None
+        filtroprovincia = None
+        limit = 1000
     db_cliente = crud.get_cliente(
         db,
         busqueda_cliente=busqueda_cliente,
+        id_cliente=id_cliente,
         orden=orden,
         bool_direccion=bool_direccion,
         bool_activo=bool_activo,

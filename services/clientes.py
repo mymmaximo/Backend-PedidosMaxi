@@ -8,6 +8,7 @@ from sec import get_contrasena_criptid, verifica_sena, crear_pase, verificar_tok
 def get_cliente(
     db:Session,
     busqueda_cliente: Optional[str] = None,
+    id_cliente: Optional[int] = None,
     orden: Optional[int] = None,
     bool_direccion: Optional[bool] = None,
     bool_activo: Optional[bool] = None,
@@ -59,6 +60,12 @@ def get_cliente(
                 }
                 db_clientes[id_clienshin]["direcciones"].append(nueva_direccion)
     lista_clientes = list(db_clientes.values())
+    if id_cliente is not None:
+        lista_temporal = []
+        for cliente in lista_clientes:
+            if cliente["id"] == id_cliente:
+                lista_temporal.append(cliente)
+        lista_clientes = lista_temporal
     if busqueda_cliente is not None:
         busqueda = busqueda_cliente.lower() 
         lista_filtrada = []
