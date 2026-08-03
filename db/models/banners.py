@@ -1,11 +1,13 @@
-from sqlalchemy import Column, Integer, DateTime, String, Boolean
+from sqlalchemy import ForeignKey, Column, Integer, DateTime, String, Boolean
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 from db.database import Base
 from pydantic import BaseModel
 from typing import Optional
 
 class Banners(Base):
     __tablename__ = "banner"
+
     id = Column(
         Integer, 
         primary_key=True, 

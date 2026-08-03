@@ -8,6 +8,7 @@ from db.models.direcciones import Direcciones_Clientes
 
 class Clientes(Base):
     __tablename__ = "clientes"
+
     id = Column(
         Integer,
         primary_key=True, 
@@ -53,6 +54,20 @@ class Clientes_Crear(Clientes_Base):
     dni: str
     contrasena: str
 
+class Clientes_Direccion(BaseModel):
+    id_cliente: int
+    nombre: str
+    email: EmailStr
+    dni: str
+    calle: str
+    activo: bool
+    id_direccion: int
+    numero: int
+    barrio: str
+    ciudad: str
+    provincia: str
+    model_config = {"from_attributes": True}
+
 class Clientes_Direcciones(Clientes_Base):
     id: int
     dni: str
@@ -78,6 +93,9 @@ class Clientes_Login(BaseModel):
     email: EmailStr
     contrasena: str
 
+class Clientes_Pedidos(BaseModel):
+    nombre: str
+
 class Clientes_Respuesta(Clientes_Base):
     id: int
     dni: str
@@ -86,3 +104,10 @@ class Clientes_Respuesta(Clientes_Base):
     updated_at: Optional[datetime] = None
     direcciones: list[Direcciones_Clientes] = []
     model_config = {"from_attributes": True}
+
+class Token(BaseModel):
+    access_token: Optional[str]
+    token_type: Optional[str]
+    id_cliente: Optional[int] = None
+    id_usuario: Optional[int] = None
+    id_rol: Optional[int] = None
