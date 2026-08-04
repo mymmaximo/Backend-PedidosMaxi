@@ -1,17 +1,5 @@
 -- CREATE
 
-create table archivos (
-	id serial4 not null,
-	id_producto int4 not null,
-	s3_key varchar(255) not null,
-	nombre_original varchar(255) not null,
-	tipo_contenido varchar(50) not null,
-	tamanio int4 not null,
-	created_at timestamp default current_timestamp null,
-	constraint archivos_pkey primary key (id),
-	constraint fk_producto foreign key (id_producto) references productos(id) on delete cascade
-);
-
 create table banner (
 	id serial4 not null,
 	s3_key varchar(255) not null,
@@ -39,17 +27,6 @@ create table clientes (
 	constraint clientes_pkey primary key (id)
 );
 
-create table detalles_pedido (
-	id serial4 not null,
-	id_pedido int4 not null,
-	id_producto int4 not null,
-	cantidad int4 not null,
-	precio_unitario numeric(10, 2) not null,
-	constraint detalles_pedido_pkey primary key (id),
-	constraint fk_detalles_pedido foreign key (id_pedido) references pedidos(id) on delete cascade,
-	constraint fk_detalles_producto foreign key (id_producto) references productos(id) on delete restrict
-);
-
 create table direcciones (
 	id serial4 not null,
 	calle varchar(150) not null,
@@ -66,32 +43,6 @@ create table estados_pedido (
 	estatus varchar(50) not null,
 	constraint estados_pedido_estatus_key unique (estatus),
 	constraint estados_pedido_pkey primary key (id)
-);
-
-create table historial_precios (
-	id serial4 not null,
-	id_producto int4 null,
-	precio_viejo numeric(10, 2) not null,
-	precio_nuevo numeric(10, 2) not null,
-	updated_at timestamp null,
-	constraint historial_precios_pkey primary key (id),
-	constraint historial_precios_id_producto_fkey foreign key (id_producto) references productos(id)
-);
-
-create table pedidos (
-	id serial4 not null,
-	id_cliente int4 not null,
-	id_direccion int4 not null,
-	metodo_pago varchar(50) not null,
-	tiempo_entrega int2 null,
-	tiempo_estimado_entrega int2 NOT null,
-	created_at timestamp default current_timestamp null,
-	updated_at timestamp default current_timestamp null,
-	estatus int4 null,
-	constraint pedidos_pkey primary key (id),
-	constraint fk_estatus_id foreign key (estatus) references estados_pedido(id),
-	constraint pedidos_id_cliente_fkey foreign key (id_cliente) references clientes(id),
-	constraint pedidos_id_direccion_fkey foreign key (id_direccion) references direcciones(id)
 );
 
 create table productos (
@@ -116,6 +67,48 @@ create table roles (
 	constraint roles_rol_key unique (rol)
 );
 
+create table archivos (
+	id serial4 not null,
+	id_producto int4 not null,
+	s3_key varchar(255) not null,
+	nombre_original varchar(255) not null,
+	tipo_contenido varchar(50) not null,
+	tamanio int4 not null,
+	created_at timestamp default current_timestamp null,
+	constraint archivos_pkey primary key (id),
+	constraint fk_producto foreign key (id_producto) references productos(id) on delete cascade
+);
+
+create table historial_precios (
+	id serial4 not null,
+	id_producto int4 null,
+	precio_viejo numeric(10, 2) not null,
+	precio_nuevo numeric(10, 2) not null,
+	updated_at timestamp null,
+	constraint historial_precios_pkey primary key (id),
+	constraint historial_precios_id_producto_fkey foreign key (id_producto) references productos(id)
+);
+
+create table pedidos (
+	id serial4 not null,
+	id_cliente int4 not null,
+	id_direccion int4 not null,
+	transaccion_id varchar(100) null,
+	url_recibo text null,
+	detalle_pago varchar(100) null,
+	metodo_pago varchar(50) null,
+	monto_pagado numeric(10, 2) null,
+	tiempo_entrega int2 null,
+	tiempo_estimado_entrega int2 not null,
+	created_at timestamp default current_timestamp null,
+	updated_at timestamp default current_timestamp null,
+	estatus int4 null,
+	constraint pedidos_pkey primary key (id),
+	constraint fk_estatus_id foreign key (estatus) references estados_pedido(id),
+	constraint pedidos_id_cliente_fkey foreign key (id_cliente) references clientes(id),
+	constraint pedidos_id_direccion_fkey foreign key (id_direccion) references direcciones(id)
+);
+
 create table usuarios (
 	id serial4 not null,
 	nombre varchar(100) not null,
@@ -132,27 +125,40 @@ create table usuarios (
 	constraint fk_usuarios_rol foreign key (id_rol) references roles(id)
 );
 
+create table detalles_pedido (
+	id serial4 not null,
+	id_pedido int4 not null,
+	id_producto int4 not null,
+	cantidad int4 not null,
+	precio_unitario numeric(10, 2) not null,
+	constraint detalles_pedido_pkey primary key (id),
+	constraint fk_detalles_pedido foreign key (id_pedido) references pedidos(id) on delete cascade,
+	constraint fk_detalles_producto foreign key (id_producto) references productos(id) on delete restrict
+);
+
 -- DROP
 
-drop table banner
+drop table banner;
 
-drop table clientes
+drop table clientes;
 
-drop table detalles_pedido
+drop table direcciones;
 
-drop table direcciones
+drop table estados_pedido;
 
-drop table estados_pedido
+drop table productos;
 
-drop table historial_precios
+drop table roles;
 
-drop table pedidos
+drop table archivos;
 
-drop table productos
+drop table historial_precios;
 
-drop table roles
+drop table pedidos;
 
-drop table usuarios
+drop table usuarios;
+
+drop table detalles_pedido;
 
 --ALTER
 
@@ -165,7 +171,7 @@ alter table pedidos
 
 alter table pedidos (
 	id serial4 not null,
-	id_usuted_at timestamp DEFAULT current_timestamp null,
+	id_usuted_at timestamp default current_timestamp null,
 	estatus int4 null,
 	constraint pedidos_pkey primary key (id),
 	constraint fk_estatus_id foreign key (estatus) references estados_pedido(id),
