@@ -29,7 +29,9 @@ def read_historial(
     limit: int = 20,
     skip: int = 0
 ):
-    true_rol = usuario_logeado.get("id_rol") in [1, 2, 4]
+    roles_str = str(usuario_logeado.get("id_rol", ""))
+    roles_lista = [r.strip() for r in roles_str.split(",")]
+    true_rol = any(rol in roles_lista for rol in ["1", "2", "4"])
     if not (true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 

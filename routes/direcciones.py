@@ -42,7 +42,9 @@ def read_direcciones(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    true_rol = usuario_logeado.get("id_rol") in [1, 3, 7]
+    roles_str = str(usuario_logeado.get("id_rol", ""))
+    roles_lista = [r.strip() for r in roles_str.split(",")]
+    true_rol = any(rol in roles_lista for rol in ["1", "3", "7"])
     if not (true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
@@ -85,7 +87,9 @@ def update_direccion(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    true_rol = usuario_logeado.get("id_rol") in [1, 3, 7]
+    roles_str = str(usuario_logeado.get("id_rol", ""))
+    roles_lista = [r.strip() for r in roles_str.split(",")]
+    true_rol = any(rol in roles_lista for rol in ["1", "3", "7"])
     if not (true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
@@ -112,7 +116,9 @@ def delete_direccion(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    true_rol = usuario_logeado.get("id_rol") in [1, 3, 7]
+    roles_str = str(usuario_logeado.get("id_rol", ""))
+    roles_lista = [r.strip() for r in roles_str.split(",")]
+    true_rol = any(rol in roles_lista for rol in ["1", "3", "7"])
     if not (true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 

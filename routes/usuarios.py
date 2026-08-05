@@ -23,7 +23,10 @@ def read_usuario(
     orden: Optional[int] = None,
     bool_activo: Optional[bool] = None
     ):
-    if usuario_verificado.get("id_rol") != 1:
+    roles_str = str(usuario_verificado.get("id_rol", ""))
+    roles_lista = [r.strip() for r in roles_str.split(",")]
+    true_rol = any(rol in roles_lista for rol in ["1"])
+    if not (true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="No tienes los privilegios necesarios para hacer esto."
@@ -90,7 +93,10 @@ def create_usuario(
     db: Session = Depends(get_db),
     usuario_verificado: dict = Depends(obtener_usuario_actual)
 ):
-    if usuario_verificado.get("id_rol") != 1:
+    roles_str = str(usuario_verificado.get("id_rol", ""))
+    roles_lista = [r.strip() for r in roles_str.split(",")]
+    true_rol = any(rol in roles_lista for rol in ["1"])
+    if not (true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="No tienes los privilegios necesarios para hacer esto."
@@ -129,7 +135,9 @@ def update_usuario(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    true_rol = usuario_logeado.get("id_rol") in [1]
+    roles_str = str(usuario_logeado.get("id_rol", ""))
+    roles_lista = [r.strip() for r in roles_str.split(",")]
+    true_rol = any(rol in roles_lista for rol in ["1"])
     if not (true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
@@ -166,7 +174,9 @@ def delete_usuario(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    true_rol = usuario_logeado.get("id_rol") in [1]
+    roles_str = str(usuario_logeado.get("id_rol", ""))
+    roles_lista = [r.strip() for r in roles_str.split(",")]
+    true_rol = any(rol in roles_lista for rol in ["1"])
     if not (true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 

@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, DateTime, Boolean
+from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.sql import func
 from db.database import Base
 from pydantic import BaseModel, EmailStr
@@ -30,7 +31,7 @@ class Usuarios(Base):
         String(255)
     )
     id_rol = Column(
-        Integer
+        String(255)
     )
     activo = Column(
         Boolean,
@@ -50,19 +51,19 @@ class Token(BaseModel):
     token_type: Optional[str]
     id_cliente: Optional[int] = None
     id_usuario: Optional[int] = None
-    id_rol: Optional[int] = None
+    id_rol: Optional[str] = None
 
 class Usuarios_Base(BaseModel):
     nombre: str
     email: EmailStr
 
 class Usuarios_Act(Usuarios_Base):
-    id_rol: int
+    id_rol: str
     contrasena: str
 
 class Usuarios_Crear(Usuarios_Base):
     dni: str
-    id_rol: int
+    id_rol: str
     contrasena: str
 
 class Usuarios_Direccion(BaseModel):
@@ -71,21 +72,21 @@ class Usuarios_Direccion(BaseModel):
     email: EmailStr
     dni: str
     calle: str
-    id_rol: int
+    id_rol: str
     activo: bool
     model_config = {"from_attributes": True}
 
 class Usuarios_Direcciones(Usuarios_Base):
     id: int
     dni: str
-    id_rol: int
+    id_rol: str
     activo: bool
     created_at: datetime
 
 class Usuarios_Edit(BaseModel):
     nombre: Optional[str] = None
     email: Optional[EmailStr] = None
-    id_rol: Optional[int] = None
+    id_rol: Optional[str] = None
     contrasena: Optional[str] = None
 
 class Usuarios_Login(BaseModel):
