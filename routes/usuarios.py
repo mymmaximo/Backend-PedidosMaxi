@@ -18,7 +18,7 @@ def read_usuario(
     limit: int = 20,
     skip: int = 0, 
     db: Session = Depends(get_db),
-    usuario_verificado: dict = Depends(obtener_usuario_actual),
+    usuario_logeado: dict = Depends(obtener_usuario_actual),
     busqueda_usuario: Optional[str] = None,
     orden: Optional[int] = None,
     bool_activo: Optional[bool] = None
@@ -90,7 +90,7 @@ def login_usuario(
 def create_usuario(
     usuario: Usuarios_Crear, 
     db: Session = Depends(get_db),
-    usuario_verificado: dict = Depends(obtener_usuario_actual)
+    usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1])
