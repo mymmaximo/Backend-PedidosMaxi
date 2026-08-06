@@ -118,7 +118,7 @@ def login_usuarios(
         "huella": crear_huella(request)
     }
     token = crear_pase(datos=payload_data)
-    return token, usuario_db.id, usuario_db.id_rol
+    return token, usuario_db.id, lista_roles
 
 def create_usuario(
         db: Session, 
