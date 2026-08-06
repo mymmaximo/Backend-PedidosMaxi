@@ -34,9 +34,8 @@ def create_banners(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    roles_str = str(usuario_logeado.get("id_rol", ""))
-    roles_lista = [r.strip() for r in roles_str.split(",")]
-    true_rol = any(rol in roles_lista for rol in ["1"])
+    roles = usuario_logeado.get("id_rol") or []
+    true_rol = any(rol in roles for rol in [1])
     if not (true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
@@ -58,9 +57,8 @@ def update_banners(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    roles_str = str(usuario_logeado.get("id_rol", ""))
-    roles_lista = [r.strip() for r in roles_str.split(",")]
-    true_rol = any(rol in roles_lista for rol in ["1"])
+    roles = usuario_logeado.get("id_rol") or []
+    true_rol = any(rol in roles for rol in [1])
     if not (true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
@@ -87,9 +85,8 @@ def deact_banner(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    roles_str = str(usuario_logeado.get("id_rol", ""))
-    roles_lista = [r.strip() for r in roles_str.split(",")]
-    true_rol = "1" in roles_lista
+    roles = usuario_logeado.get("id_rol") or []
+    true_rol = any(rol in roles for rol in [1])
     if not (true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
@@ -115,9 +112,8 @@ def hard_delete_banner(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    roles_str = str(usuario_logeado.get("id_rol", ""))
-    roles_lista = [r.strip() for r in roles_str.split(",")]
-    true_rol = any(rol in roles_lista for rol in ["1"])
+    roles = usuario_logeado.get("id_rol") or []
+    true_rol = any(rol in roles for rol in [1])
     if not (true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 

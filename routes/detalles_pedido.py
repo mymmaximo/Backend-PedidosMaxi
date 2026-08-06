@@ -41,10 +41,9 @@ def read_detalle_pedido(
             status_code=status.HTTP_404_NOT_FOUND, 
             detail="Pedido no encontrado"
         )
-    true_cliente = usuario_logeado.get("id_cliente") == db_pedido.id_cliente
-    roles_str = str(usuario_logeado.get("id_rol", ""))
-    roles_lista = [r.strip() for r in roles_str.split(",")]
-    true_rol = any(rol in roles_lista for rol in ["1", "3"])
+    true_cliente = usuario_logeado.get("id_cliente") == db_pedido[0].id_cliente
+    roles = usuario_logeado.get("id_rol") or []
+    true_rol = any(rol in roles for rol in [1, 3])
     if not (true_cliente or true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
@@ -62,9 +61,8 @@ def read_detalles_pedido(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    roles_str = str(usuario_logeado.get("id_rol", ""))
-    roles_lista = [r.strip() for r in roles_str.split(",")]
-    true_rol = any(rol in roles_lista for rol in ["1", "3"])
+    roles = usuario_logeado.get("id_rol") or []
+    true_rol = any(rol in roles for rol in [1, 3])
     if not (true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
@@ -137,9 +135,8 @@ def update_detalle_pedido(
             status_code=status.HTTP_404_NOT_FOUND, 
             detail="Pedido no encontrado"
         )
-    roles_str = str(usuario_logeado.get("id_rol", ""))
-    roles_lista = [r.strip() for r in roles_str.split(",")]
-    true_rol = any(rol in roles_lista for rol in ["1", "3"])
+    roles = usuario_logeado.get("id_rol") or []
+    true_rol = any(rol in roles for rol in [1, 3])
     if not (true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
@@ -175,9 +172,8 @@ def delete_detalle_pedido(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    roles_str = str(usuario_logeado.get("id_rol", ""))
-    roles_lista = [r.strip() for r in roles_str.split(",")]
-    true_rol = any(rol in roles_lista for rol in ["1", "3"])
+    roles = usuario_logeado.get("id_rol") or []
+    true_rol = any(rol in roles for rol in [1, 3])
     if not (true_rol):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
