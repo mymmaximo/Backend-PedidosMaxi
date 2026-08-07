@@ -70,7 +70,7 @@ def create_direccion(
     )
     if db_direcciones is None:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, 
+            status_code=status.HTTP_404_not_FOUND, 
             detail="Direccion no encontrada"
         )
     return db_direcciones
@@ -100,7 +100,7 @@ def update_direccion(
     )
     if db_direccion is None:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, 
+            status_code=status.HTTP_404_not_FOUND, 
             detail="Direccion no encontrada"
         )
     return db_direccion
@@ -127,7 +127,7 @@ def delete_direccion(
     )
     if not success:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, 
+            status_code=status.HTTP_404_not_FOUND, 
             detail="Direccion no encontrada"
         )
     return {"detail": "Direccion eliminada"}

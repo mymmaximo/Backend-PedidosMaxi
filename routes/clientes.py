@@ -211,7 +211,7 @@ def update_cliente(
     )
     if db_cliente is None:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, 
+            status_code=status.HTTP_404_not_FOUND, 
             detail="Cliente no encontrado"
         )
     return db_cliente
@@ -239,7 +239,7 @@ def delete_cliente(
     )
     if not success:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, 
+            status_code=status.HTTP_404_not_FOUND, 
             detail="Cliente no encontrado"
         )
     return {"detail": "Cliente eliminado"}

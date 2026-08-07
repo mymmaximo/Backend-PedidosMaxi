@@ -42,7 +42,7 @@ def read_pedido(
     )
     if not db_pedido:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, 
+            status_code=status.HTTP_404_not_FOUND, 
             detail="Pedido no encontrado"
         )
     true_cliente = usuario_logeado.get("id_cliente") == db_pedido[0].id_cliente
@@ -71,7 +71,7 @@ def read_producto_pedido(
     )
     if db_pedidos is False: 
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, 
+            status_code=status.HTTP_404_not_FOUND, 
             detail="Producto no encontrado"
         )
     roles = usuario_logeado.get("id_rol") or []
@@ -129,7 +129,7 @@ def read_pedido_producto(
     )
     if db_pedidos is False: 
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, 
+            status_code=status.HTTP_404_not_FOUND, 
             detail="Pedido no encontrado"
         )
     true_cliente = usuario_logeado.get("id_cliente") == db_pedidos.id_cliente
@@ -245,7 +245,7 @@ def create_detalles_pedido(
     )
     if not db_pedido:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, 
+            status_code=status.HTTP_404_not_FOUND, 
             detail="Pedido no encontrado"
         )
     pedidios = db_pedido[0]
@@ -278,7 +278,7 @@ def update_pedido(
     db_cliente = db.query(Clientes).filter(Clientes.id == pedido.id_cliente).first()
     if not db_cliente:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, 
+            status_code=status.HTTP_404_not_FOUND, 
             detail="Cliente no encontrado"
         )
     roles = usuario_logeado.get("id_rol") or []
@@ -294,7 +294,7 @@ def update_pedido(
     )
     if not db_direccion:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, 
+            status_code=status.HTTP_404_not_FOUND, 
             detail="Direccion no encontrada"
         )
     return crud.update_pedido(
@@ -325,7 +325,7 @@ def delete_pedido(
     )
     if not success:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, 
+            status_code=status.HTTP_404_not_FOUND, 
             detail="Pedido no encontrado"
         )
     return {"detail": "Pedido eliminado"}
@@ -408,7 +408,7 @@ async def webhook_paddle(
             return {"status": "ok"} 
         else:
             raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND, 
+                status_code=status.HTTP_404_not_FOUND, 
                 detail="Pedido no encontrado"
             )
     return {"status": "ok", "message": "Evento ignorado"}

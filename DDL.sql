@@ -67,6 +67,20 @@ create table roles (
 	constraint roles_rol_key unique (rol)
 );
 
+create table usuarios (
+	id serial4 not null,
+	nombre varchar(100) not null,
+	email varchar(150) not null,
+	dni varchar(20) not null,
+	contrasena varchar(255) null,
+	activo bool null,
+	created_at timestamp default current_timestamp null,
+	updated_at timestamp default current_timestamp null,
+	constraint usuarios_dni_key unique (dni),
+	constraint usuarios_email_key unique (email),
+	constraint usuarios_pkey primary key (id)
+);
+
 create table archivos (
 	id serial4 not null,
 	id_producto int4 not null,
@@ -109,20 +123,12 @@ create table pedidos (
 	constraint pedidos_id_direccion_fkey foreign key (id_direccion) references direcciones(id)
 );
 
-create table usuarios (
-	id serial4 not null,
-	nombre varchar(100) not null,
-	email varchar(150) not null,
-	dni varchar(20) not null,
-	contrasena varchar(255) null,
-	id_rol int4 null,
-	activo bool null,
-	created_at timestamp default current_timestamp null,
-	updated_at timestamp default current_timestamp null,
-	constraint usuarios_dni_key unique (dni),
-	constraint usuarios_email_key unique (email),
-	constraint usuarios_pkey primary key (id),
-	constraint fk_usuarios_rol foreign key (id_rol) references roles(id)
+create table usuarios_roles (
+	id_usuario int4 not null,
+	id_rol int4 not null,
+	constraint usuarios_roles_pkey primary key (id_usuario, id_rol),
+	constraint fk_ur_rol foreign key (id_rol) references roles(id) on delete cascade,
+	constraint fk_ur_usuario foreign key (id_usuario) references usuarios(id) on delete cascade
 );
 
 create table detalles_pedido (
@@ -133,7 +139,7 @@ create table detalles_pedido (
 	precio_unitario numeric(10, 2) not null,
 	constraint detalles_pedido_pkey primary key (id),
 	constraint fk_detalles_pedido foreign key (id_pedido) references pedidos(id) on delete cascade,
-	constraint fk_detalles_producto foreign key (id_producto) references productos(id) on delete restrict
+	constraint fk_detalles_producto foreign key (id_producto) references productos(id) ON DELETE RESTRICT
 );
 
 -- DROP
@@ -157,6 +163,8 @@ drop table historial_precios;
 drop table pedidos;
 
 drop table usuarios;
+
+drop table usuarios_roles;
 
 drop table detalles_pedido;
 

@@ -157,7 +157,7 @@ def update_usuario(
     )
     if db_usuario is None:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, 
+            status_code=status.HTTP_404_not_FOUND, 
             detail="Usuario no encontrado"
         )
     return db_usuario
@@ -184,7 +184,7 @@ def delete_usuario(
     )
     if not success:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, 
+            status_code=status.HTTP_404_not_FOUND, 
             detail="Usuario no encontrado"
         )
     return {"detail": "Usuario eliminado"}
