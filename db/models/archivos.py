@@ -2,7 +2,7 @@ from sqlalchemy import ForeignKey, Column, Integer, DateTime, String
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from db.database import Base
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional
 
 class Archivos(Base):
@@ -44,7 +44,7 @@ class Archivos(Base):
 
 class ArchivoCreate(BaseModel):
     id_producto: int
-    s3_key: str
+    s3_key: str = Field (max_length=255)
     nombre_original: Optional[str] = "imagen_vue"
     tipo_contenido: Optional[str] = "image/png"
     tamanio: Optional[int] = 0

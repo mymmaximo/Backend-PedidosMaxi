@@ -1,8 +1,7 @@
-from sqlalchemy import ForeignKey, Column, Integer, DateTime, String, Boolean
+from sqlalchemy import Column, Integer, DateTime, String, Boolean
 from sqlalchemy.sql import func
-from sqlalchemy.orm import relationship
 from db.database import Base
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional
 
 class Banners(Base):
@@ -43,9 +42,9 @@ class Banners(Base):
     )
 
 class Banners_Base(BaseModel):
-    s3_key: str
+    s3_key: str = Field (max_length=255)
     activo: bool = True
-    enlace: Optional[str] = None
+    enlace: Optional[str]  = Field (None, max_length=255)
     orden: Optional[int] = None
 
 class Banners_Crear(Banners_Base):

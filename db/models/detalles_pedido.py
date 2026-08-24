@@ -29,7 +29,6 @@ class Detalles_Pedido(Base):
     precio_unitario = Column(
         Numeric(10, 2),
     )
-
     pedidos = relationship(
         "Pedidos", 
         foreign_keys = [id_pedido], 
@@ -45,7 +44,7 @@ class Detalles_Pedido_Base(BaseModel):
     id_pedido: Optional[int]
     cantidad: int
     id_producto: int
-    precio_unitario: int
+    precio_unitario: float
 
 class Detalles_Pedido_Crear(Detalles_Pedido_Base):
     pass

@@ -1,7 +1,6 @@
-from sqlalchemy import ForeignKey, Column, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String, Boolean
 from db.database import Base
 from pydantic import BaseModel
-from sqlalchemy.orm import relationship
 
 class Direcciones(Base):
     __tablename__ = "direcciones"
