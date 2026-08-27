@@ -4,7 +4,7 @@ create or replace procedure actualizar_stock(
 	in p_id_producto integer, 
 	in p_cantidad integer
 )
-	languaje plpgsql
+	language plpgsql
 	as $procedure$
 		declare
 			v_stock_actual int;
@@ -29,7 +29,7 @@ create or replace procedure actualizar_stock(
 
 create or replace function actualizar_stock_auto()
 	returns  trigger
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			update productos
@@ -42,7 +42,7 @@ create or replace function actualizar_stock_auto()
 
 create or replace function almacenar_precios()
 	returns  trigger
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			if new.precio <> old.precio then
@@ -74,7 +74,7 @@ create or replace function caja_rejistradora(
 		dp_cantidad integer, 
 		dp_precio_unitario integer
 	)
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			select 
@@ -100,7 +100,7 @@ create or replace function caja_rejistradora(
 		recibo_precio integer, 
 		recibo_subtotal integer
 	)
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		declare 
 			v_id_producto int;
@@ -160,7 +160,7 @@ create or replace function caja_rejistradora_2(
 		recibo_precio integer, 
 		recibo_subtotal integer
 	)
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		declare 
 			v_id_producto int;
@@ -218,7 +218,7 @@ create or replace function consultar_stock(
 	returns  table(
 		p_stock integer
 	)
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			return query
@@ -235,7 +235,7 @@ create or replace function consultar_stock(
 	returns  table(
 		p_stock integer
 	)
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			return query
@@ -255,7 +255,7 @@ create or replace function fn_obtener_ticket_pedido(
 		dp_precio_unitario numeric, 
 		dp_subtotal numeric
 	)
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			return query
@@ -281,7 +281,7 @@ create or replace function fn_obtener_ticket_pedido(
 	p_dias_reales integer
 )
 	returns  void
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		declare p_tiempo_estimado_entrega int2;
 		begin
@@ -302,7 +302,7 @@ create or replace function fn_obtener_ticket_pedido(
 	p_dias_reales smallint
 )
 	returns  void
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			update pedidos
@@ -330,7 +330,7 @@ create or replace function get_all_clientes()
 		ciudad character varying, 
 		provincia character varying
 	)
- 	languaje plpgsql
+ 	language plpgsql
 	as $function$
 		begin
 			return query
@@ -366,7 +366,7 @@ create or replace function get_all_historial()
 		codigo_barra character varying, 
 		activo boolean
 	)
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			return query
@@ -402,7 +402,7 @@ create or replace function get_all_productos()
 		tipo_contenido character varying, 
 		tamanio integer
 	)
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			return query
@@ -437,7 +437,7 @@ create or replace function get_all_usuarios()
 		activo boolean, 
 		created_at timestamp without time zone
 	)
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			return query
@@ -458,7 +458,7 @@ create or replace function get_direcciones(
 	p_id_cliente integer
 )
 	returns  SETOF direcciones
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			return query
@@ -480,7 +480,7 @@ create or replace function get_only_clientes()
 		ciudad character varying, 
 		provincia character varying
 	)
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			return query
@@ -527,7 +527,7 @@ create or replace function obtener_all_pedidos()
 		categoria character varying, 
 		codigo_barra character varying
 	)
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			return query
@@ -594,7 +594,7 @@ create or replace function obtener_clientes_pedidos(
 		stock integer, 
 		categoria character varying
 	)
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			return query
@@ -658,7 +658,7 @@ create or replace function obtener_id_pedido_pedidos(
 		categoria character varying, 
 		codigo_barra character varying
 	)
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			return query
@@ -722,7 +722,7 @@ create or replace function obtener_productos_pedidos(
 		categoria character varying, 
 		codigo_barra character varying
 	)
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			return query
@@ -768,7 +768,7 @@ create or replace function pedidos_por_fecha(
 		tiempo_estimado_entrega smallint, 
 		fecha_creacion timestamp without time zone
 	)
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			return query
@@ -789,7 +789,7 @@ create or replace function sp_actualizar_precio_categoria(
 	p_porcentaje_aumento smallint
 )
 	returns  void
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			update productos
@@ -804,7 +804,7 @@ create or replace function sp_actualizar_precio_categoria(
 	p_porcentaje_aumento integer
 )
 	returns  void
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			update productos
@@ -816,7 +816,7 @@ create or replace function sp_actualizar_precio_categoria(
 
 create or replace function validar_precio()
 	returns  trigger
-	languaje plpgsql
+	language plpgsql
 	as $function$
 		begin
 			if new.precio <= 0 then
