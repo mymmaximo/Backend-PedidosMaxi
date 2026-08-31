@@ -52,7 +52,8 @@ def crear_transaccion(
     url = "https://sandbox-api.paddle.com/transactions"
     headers = {
         "Authorization": f"Bearer {PADDLE_SECRETO}",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Paddle-Version": "1"
     }
     payload = {
         "items": items_paddle,
