@@ -195,11 +195,15 @@ def delete_usuario(
 )
 def verificar_sesion (
     response: Response,
+    request: Request,
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
     payload_data = usuario_logeado.copy()
     payload_data.pop("exp", None)
-    nuevo_token = crear_pase(datos=payload_data)
+    nuevo_token = crear_pase(
+        datos=payload_data, 
+        request=request
+    )
     response.set_cookie(
         key="token_seguro",
         value=nuevo_token,

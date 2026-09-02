@@ -59,9 +59,14 @@ def crear_huella(
     return hashlib.sha256(huella_cruda.encode('utf-8')).hexdigest()[:16]
 
 def crear_pase(
-        datos: dict
+        datos: dict,
+        request: Request = None
 ):
     encripto = datos.copy()
+    if request:
+        encripto.update({
+            "huella": crear_huella(request)
+        })
     expira = datetime.now(timezone.utc) + timedelta(minutes=120)
     encripto.update({
         "exp": expira
