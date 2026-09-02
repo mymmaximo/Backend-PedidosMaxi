@@ -199,9 +199,6 @@ def verificar_sesion (
 ):
     payload_data = usuario_logeado.copy()
     payload_data.pop("exp", None)
-    rol_actual = usuario_logeado.get("id_rol")
-    if rol_actual is None:
-        roles_lista = []
     nuevo_token = crear_pase(datos=payload_data)
     response.set_cookie(
         key="token_seguro",
@@ -213,7 +210,7 @@ def verificar_sesion (
     )
     return {
         "id_usuario": usuario_logeado.get("id_usuario"),
-        "id_rol": roles_lista,
+        "id_rol": usuario_logeado.get("id_rol"),
         "id_cliente": usuario_logeado.get("id_cliente")
     }
 
