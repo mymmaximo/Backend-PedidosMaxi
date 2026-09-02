@@ -73,7 +73,7 @@ def login_usuario(
         httponly=True,
         secure=True,
         samesite="none",
-        max_age=7200
+        max_age=60
     )
     return {
         "access_token": token_seguro,
