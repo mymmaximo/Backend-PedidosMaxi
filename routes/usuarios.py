@@ -75,6 +75,13 @@ def login_usuario(
         samesite="none",
         max_age=120
     )
+    response.set_cookie(
+        key="sesion_activa", 
+        value="true", 
+        httponly=False,
+        secure=True,
+        samesite="none"
+    )
     return {
         "access_token": token_seguro,
         "token_type": "bearer",
@@ -212,6 +219,13 @@ def verificar_sesion (
         samesite="none",
         max_age=7200
     )
+    response.set_cookie(
+        key="sesion_activa",
+        value="true",
+        httponly=False,
+        secure=True,
+        samesite="none"
+    )
     return {
         "id_usuario": usuario_logeado.get("id_usuario"),
         "id_rol": usuario_logeado.get("id_rol"),
@@ -228,6 +242,12 @@ def logout_sesion(
     response.delete_cookie(
         key="token_seguro",
         httponly=True,
+        secure=True,
+        samesite="none"
+    )
+    response.delete_cookie(
+        key="sesion_activa",
+        httponly=False,
         secure=True,
         samesite="none"
     )
