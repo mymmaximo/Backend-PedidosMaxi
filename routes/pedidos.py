@@ -95,6 +95,7 @@ def read_pedido_cliente(
     busqueda_pedido: Optional[str] = None,
     orden: Optional[int] = None,
     filtromp: Optional[str] = None,
+    filtroest: Optional[int] = None
 ):
     true_cliente = usuario_logeado.get("id_cliente") == id_cliente
     roles = usuario_logeado.get("id_rol") or []
@@ -110,6 +111,7 @@ def read_pedido_cliente(
         busqueda_pedido=busqueda_pedido,
         orden=orden,
         filtromp=filtromp,
+        filtroest=filtroest,
     )
     return db_pedidos
 
