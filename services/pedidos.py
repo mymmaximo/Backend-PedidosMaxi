@@ -230,7 +230,8 @@ def get_pedidoxcliente(
         id_cliente: int,
         busqueda_pedido: Optional[str] = None,
         orden: Optional[int] = None,
-        filtromp: Optional[str] = None
+        filtromp: Optional[str] = None,
+        filtroest: Optional[int] = None
 ):
     if orden == 1:
         query = text("SELECT * from obtener_clientes_pedidos(:id) order by created_at asc")
@@ -301,6 +302,12 @@ def get_pedidoxcliente(
         lista_temporal = []
         for pedido in lista_pedidos:
             if pedido["metodo_pago"] == filtromp:
+                lista_temporal.append(pedido)
+        lista_pedidos = lista_temporal
+    if filtroest is not None:
+        lista_temporal = []
+        for pedido in lista_pedidos:
+            if pedido["estatus"] == filtroest:
                 lista_temporal.append(pedido)
         lista_pedidos = lista_temporal
     return lista_pedidos
