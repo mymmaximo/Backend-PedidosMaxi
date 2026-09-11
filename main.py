@@ -9,6 +9,7 @@ from routes import pedidos as route_pedidos
 from routes import detalles_pedido as route_detalles_pedido
 from routes import direcciones as route_direcciones
 from routes import historial_precios as route_historial_precios
+from routes import favoritos as route_favoritos
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
@@ -50,6 +51,7 @@ app.include_router(route_usuarios.router)
 app.include_router(route_productos.router)
 app.include_router(route_pedidos.router)
 app.include_router(route_detalles_pedido.router)
+app.include_router(route_favoritos.router)
 app.include_router(route_direcciones.router)
 app.include_router(route_historial_precios.router)
 

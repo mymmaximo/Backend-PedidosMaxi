@@ -19,7 +19,7 @@ def read_producto(
     precio_producto_min: Optional[int] = None,
     precio_producto_max: Optional[int] = None,
     bool_activo: Optional[bool] = None,
-    limit: int = 21,
+    limit: int = 24,
     skip: int = 0, 
     db: Session = Depends(get_db)
 ):

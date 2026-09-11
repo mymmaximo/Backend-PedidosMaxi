@@ -26,7 +26,7 @@ def get_producto(
         precio_producto_max: Optional[int] = None,
         filtrocat: Optional[str] = None,
         bool_activo: Optional[bool] = None,
-        limit: int = 21,
+        limit: int = 24,
         skip: int = 0
     ):
     global cache, tiempo_cache
