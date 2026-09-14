@@ -19,6 +19,7 @@ def read_producto(
     precio_producto_min: Optional[int] = None,
     precio_producto_max: Optional[int] = None,
     bool_activo: Optional[bool] = None,
+    bool_promocion: Optional[bool] = None,
     limit: int = 24,
     skip: int = 0, 
     db: Session = Depends(get_db)
@@ -31,6 +32,7 @@ def read_producto(
         precio_producto_min=precio_producto_min,
         precio_producto_max=precio_producto_max,
         bool_activo=bool_activo,
+        bool_promocion=bool_promocion,
         limit=limit,
         skip=skip
     )
@@ -133,7 +135,7 @@ def update_producto(
     )
     if db_producto is None:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Producto no encontrado"
         )
     return db_producto
@@ -160,7 +162,7 @@ def delete_producto(
     )
     if not success:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Producto no encontrado"
         )
     return {"detail": "Producto eliminado"}
@@ -187,7 +189,7 @@ def delete_archivo(
     )
     if not success:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Archivo no encontrado"
         )
     return {"detail": "Archivo eliminado"}

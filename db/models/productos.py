@@ -90,6 +90,9 @@ class Productos_Imagenes(BaseModel):
     created_at: datetime
     updated_at: Optional[datetime]
     activo: bool
+    en_promocion: Optional[bool] = False
+    precio_oferta: Optional[float] = None
+    nombre_promocion: Optional[str] = None
     imagenes: list[Imagenes]
     model_config = {"from_attributes": True}
 
