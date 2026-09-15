@@ -29,7 +29,7 @@ def read_detalle_pedido(
     )
     if not db_detalle_pedido:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Detalle de Pedido no encontrado"
         )
     db_pedido = get_pedido(
@@ -38,7 +38,7 @@ def read_detalle_pedido(
     )
     if not db_pedido:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Pedido no encontrado"
         )
     true_cliente = usuario_logeado.get("id_cliente") == db_pedido[0].id_cliente
@@ -84,10 +84,10 @@ def create_detalle_pedido(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    if not db_producto:
+    if not detalle_pedido:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND,
-            detail="Producto no encontrado"
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="La lista de detalles está vacía"
         )
     id_pedidios = detalle_pedido[0].id_pedido
     db_pedido = get_pedido(
@@ -96,24 +96,27 @@ def create_detalle_pedido(
     )
     if not db_pedido:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Pedido no encontrado"
         )
-    db_pedidios = db_pedido
+    db_pedidios = db_pedido[0] if isinstance(db_pedido, list) else db_pedido
     true_cliente = usuario_logeado.get("id_cliente") == db_pedidios.id_cliente
     if not (true_cliente):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar esto."
         )
-    db_producto = get_producto(
-        db, 
-        id_producto=detalle_pedido.id_producto
-    )
-    return crud.create_detalle_pedido(
+    resultado = crud.create_detalle_pedido(
         db=db,
         detalle_pedido=detalle_pedido
     )
+    if not resultado:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Uno o más productos no fueron encontrados en la base de datos"
+        )
+        
+    return resultado
 
 @router.put(
     "/detalles_pedido/id/{id_detalle_pedido}", 
@@ -132,7 +135,7 @@ def update_detalle_pedido(
     )
     if not db_pedido:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Pedido no encontrado"
         )
     roles = usuario_logeado.get("id_rol") or []
@@ -148,7 +151,7 @@ def update_detalle_pedido(
     )
     if not db_producto:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Producto no encontrado"
         )
     db_detalle_actualizado = crud.update_detalle_pedido(
@@ -158,7 +161,7 @@ def update_detalle_pedido(
     )
     if not db_detalle_actualizado:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Detalle de Pedido no encontrado"
         )
     return db_detalle_actualizado
@@ -185,7 +188,7 @@ def delete_detalle_pedido(
     )
     if not success:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Detalle de Pedido no encontrado"
         )
     return {"detail": "Detalle de Pedido eliminado"}

@@ -1,7 +1,9 @@
 from typing import Optional
+from sqlalchemy.sql import func
 from sqlalchemy.orm import Session
 from db.models.detalles_pedido import Detalles_Pedido, Detalles_Pedido_Crear
 from db.models.productos import Productos
+from db.models.promociones import Promociones
 
 def get_detalle_pedido(
         db: Session, 
@@ -39,16 +41,23 @@ def create_detalle_pedido(
         db_producto = db.query(Productos).filter(Productos.id == i.id_producto).first()
         if db_producto is None:
             return False
+        promocion_activa = db.query(Promociones).filter(
+            Promociones.id_producto == i.id_producto,
+            Promociones.fecha_inicio <= func.now(),
+            Promociones.fecha_fin >= func.now()
+        ).first()
+        precio_final = promocion_activa.precio_oferta if promocion_activa else db_producto.precio
         db_detalle_pedido = Detalles_Pedido(
             id_pedido=i.id_pedido,
             id_producto=i.id_producto,
             cantidad=i.cantidad,
-            precio_unitario=db_producto.precio
+            precio_unitario=precio_final
         )
         lista_detalles.append(db_detalle_pedido)
         db.add(db_detalle_pedido)
         db.flush()
         db.refresh(db_detalle_pedido)
+    db.commit()
     return lista_detalles
 
 def update_detalle_pedido(
