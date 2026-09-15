@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+from sqlalchemy.sql import func
 from db.database import get_db
-from db.models.promociones import PromocionCrear, PromocionEdit, PromocionRespuesta
+from db.models.promociones import Promociones, PromocionCrear, PromocionEdit, PromocionRespuesta
 from services import promociones as crud
 from sec import obtener_usuario_actual
 
@@ -119,3 +120,14 @@ def delete_promocion(
             detail="Promoción no encontrada"
         )
     return {"detail": "Promoción eliminada con éxito"}
+
+@router.delete(
+    "/promociones/limpiar-vencidas", 
+    tags=["Sección de Promociones"]
+)
+def limpiar_vencidas(
+    db: Session = Depends(get_db)
+):
+    db.query(Promociones).filter(Promociones.fecha_fin < func.now()).delete()
+    db.commit()
+    return {"mensaje": "Basura espacial eliminada"}
