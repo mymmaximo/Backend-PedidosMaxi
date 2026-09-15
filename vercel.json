@@ -10,5 +10,12 @@
       "src": "/(.*)",
       "dest": "main.py"
     }
+  ],
+  "crons": [
+    {
+      "path": "/promociones/limpiar-vencidas",
+      "schedule": "0 6 * * *"
+    }
   ]
+
 }

@@ -121,7 +121,7 @@ def delete_promocion(
         )
     return {"detail": "Promoción eliminada con éxito"}
 
-@router.delete(
+@router.get(
     "/promociones/limpiar-vencidas", 
     tags=["Sección de Promociones"]
 )
@@ -130,4 +130,5 @@ def limpiar_vencidas(
 ):
     db.query(Promociones).filter(Promociones.fecha_fin < func.now()).delete()
     db.commit()
-    return {"mensaje": "Basura espacial eliminada"}
+    crud.clean_promos_cache()
+    return {"mensaje": "Promocion Vencida"}
