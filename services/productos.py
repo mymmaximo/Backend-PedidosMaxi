@@ -27,6 +27,7 @@ def get_producto(
         filtrocat: Optional[str] = None,
         bool_activo: Optional[bool] = None,
         bool_promocion: Optional[bool] = None,
+        porcentaje_descuento_min: Optional[int] = None,
         limit: int = 24,
         skip: int = 0
     ):
@@ -58,6 +59,7 @@ def get_producto(
                     "en_promocion": i["en_promocion"],
                     "precio_oferta": i["precio_oferta"],
                     "nombre_promocion": i["nombre_promocion"],
+                    "porcentaje_descuento": i.get("porcentaje_descuento"),
                     "imagenes": []
                 }
             if i["id_imagen"] is not None:
@@ -136,6 +138,13 @@ def get_producto(
         lista_temporal = []
         for producto in productos_filtrados:
             if producto["categoria"] == filtrocat:
+                lista_temporal.append(producto)
+        productos_filtrados = lista_temporal
+    if porcentaje_descuento_min is not None:
+        lista_temporal = []
+        for producto in productos_filtrados:
+            desc = producto.get("porcentaje_descuento")
+            if producto.get("en_promocion") and desc is not None and desc >= porcentaje_descuento_min:
                 lista_temporal.append(producto)
         productos_filtrados = lista_temporal
     return productos_filtrados[skip : skip + limit]

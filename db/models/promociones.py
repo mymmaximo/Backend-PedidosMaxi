@@ -25,6 +25,12 @@ class Promociones(Base):
     precio_oferta = Column(
         Numeric(10, 2)
     )
+    precio_default = Column(
+        Numeric(10, 2)
+    )
+    porcentaje_descuento = Column(
+        Integer
+    )
     fecha_inicio = Column(
         DateTime(timezone=True), 
         server_default=func.now()
@@ -46,22 +52,38 @@ class Promociones(Base):
 class PromocionBase(BaseModel):
     id_producto: int
     nombre_promocion: Optional[str] = None
-    precio_oferta: float
+    precio_oferta: Optional[float] = None
+    porcentaje_descuento: Optional[int] = None
     fecha_inicio: datetime
     fecha_fin: datetime
 
 class PromocionCrear(PromocionBase):
     pass
 
+class Promocion_wproductos(BaseModel):
+    id: int
+    id_producto: int
+    nombre_promocion: Optional[str] = None
+    precio_oferta: float
+    precio_default: float
+    porcentaje_descuento: Optional[int] = None
+    fecha_inicio: datetime
+    fecha_fin: datetime
+    nombre: str
+    categoria: str
+    codigo_barra: str
+    activo: bool
+    model_config = {"from_attributes": True}
+
 class PromocionEdit(BaseModel):
     nombre_promocion: Optional[str] = None
     precio_oferta: Optional[float] = None
+    porcentaje_descuento: Optional[int] = None
     fecha_inicio: Optional[datetime] = None
     fecha_fin: Optional[datetime] = None
 
 class PromocionRespuesta(PromocionBase):
     id: int
+    precio_default: float
     created_at: datetime
-
-    class Config:
-        from_attributes = True
+    model_config = {"from_attributes": True}

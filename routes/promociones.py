@@ -1,8 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+from typing import Optional
+from datetime import datetime
 from sqlalchemy.orm import Session
 from sqlalchemy.sql import func
 from db.database import get_db
-from db.models.promociones import Promociones, PromocionCrear, PromocionEdit, PromocionRespuesta
+from db.models.promociones import Promociones, PromocionCrear, PromocionEdit, PromocionRespuesta, Promocion_wproductos
 from services import promociones as crud
 from sec import obtener_usuario_actual
 
@@ -42,6 +44,58 @@ def read_promociones_activas(
 ):
     return crud.get_promociones_activas(db=db)
 
+@router.get(
+    "/promociones/historial/", 
+    response_model=list[Promocion_wproductos], 
+    tags=["Sección de Promociones"]
+)
+def read_promociones_historial(
+    db:Session = Depends(get_db),
+    usuario_logeado: dict = Depends(obtener_usuario_actual),
+    busqueda_promocion: Optional[str] = None,
+    orden: Optional[int] = None,
+    fecha_inicio_max: Optional[datetime] = None,
+    fecha_inicio_min: Optional[datetime] = None,
+    fecha_fin_max: Optional[datetime] = None,
+    fecha_fin_min: Optional[datetime] = None,
+    precio_oferta_min: Optional[int] = None,
+    precio_oferta_max: Optional[int] = None,
+    precio_default_min: Optional[int] = None,
+    precio_default_max: Optional[int] = None,
+    porcentaje_descuento_min: Optional[int] = None,
+    porcentaje_descuento_max: Optional[int] = None,
+    bool_activo: Optional[bool] = None,
+    filtrocat: Optional[str] = None,
+    limit: int = 20,
+    skip: int = 0
+):
+    roles = usuario_logeado.get("id_rol") or []
+    true_rol = any(rol in roles for rol in [1, 2, 3])
+    if not (true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
+    return crud.get_historial_promocion(
+        db, 
+        busqueda_promocion=busqueda_promocion,
+        orden=orden,
+        fecha_inicio_max=fecha_inicio_max,
+        fecha_inicio_min=fecha_inicio_min,
+        fecha_fin_max=fecha_fin_max,
+        fecha_fin_min=fecha_fin_min,
+        precio_oferta_min=precio_oferta_min,
+        precio_oferta_max=precio_oferta_max,
+        precio_default_min=precio_default_min,
+        precio_default_max=precio_default_max,
+        porcentaje_descuento_max=porcentaje_descuento_max,
+        porcentaje_descuento_min=porcentaje_descuento_min,
+        bool_activo=bool_activo,
+        filtrocat=filtrocat,
+        limit=limit,
+        skip=skip
+    )
+
 @router.post(
     "/promociones/", 
     response_model=PromocionRespuesta, 
@@ -76,7 +130,7 @@ def update_promocion(
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
     roles = usuario_logeado.get("id_rol") or []
-    true_rol = any(rol in roles for rol in [1, 2, 3])
+    true_rol = any(rol in roles for rol in [1, 2])
     if not true_rol:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
