@@ -59,6 +59,10 @@ class Productos_Base(BaseModel):
     precio: float
     stock: int
     categoria: str
+    en_promocion: Optional[bool] = None
+    precio_oferta: Optional[float] = None
+    nombre_promocion: Optional[str] = None
+    porcentaje_descuento: Optional[int] = None
 
 class Productos_Categoria(BaseModel):
     categoria: str
@@ -93,6 +97,7 @@ class Productos_Imagenes(BaseModel):
     en_promocion: Optional[bool] = False
     precio_oferta: Optional[float] = None
     nombre_promocion: Optional[str] = None
+    porcentaje_descuento: Optional[int] = None
     imagenes: list[Imagenes]
     model_config = {"from_attributes": True}
 
