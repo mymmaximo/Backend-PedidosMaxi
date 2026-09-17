@@ -1,36 +1,9 @@
---PROCEDURE
+-- DROP FUNCTION public.actualizar_stock_auto();
 
-create or replace procedure actualizar_stock(
-	in p_id_producto integer, 
-	in p_cantidad integer
-)
-	language plpgsql
-	as $procedure$
-		declare
-			v_stock_actual int;
-		begin
-			select p.stock 
-			into v_stock_actual 
-			from productos p
-			where p.id = p_id_producto;
-			if (v_stock_actual + p_cantidad) >= 0 then
-				update productos
-					set stock = v_stock_actual + p_cantidad
-				where id = p_id_producto;
-			else
-				raise notice 'stock insuficiente';
-			end if;
-		end;
-	$procedure$
-;
-
--- CREATE
-
-
-create or replace function actualizar_stock_auto()
-	returns  trigger
-	language plpgsql
-	as $function$
+CREATE OR REPLACE FUNCTION public.actualizar_stock_auto()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
 		begin
 			update productos
 				set stock = stock - new.cantidad
@@ -40,23 +13,31 @@ create or replace function actualizar_stock_auto()
 	$function$
 ;
 
-create or replace function almacenar_precios()
-	returns  trigger
-	language plpgsql
-	as $function$
+-- DROP FUNCTION public.almacenar_precios();
+
+CREATE OR REPLACE FUNCTION public.almacenar_precios()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
 		begin
 			if new.precio <> old.precio then
-				insert into historial_precios (
+				insert into registro_precios (
 					id_producto,
-					precio_viejo,
+					precio_anterior,
 					precio_nuevo,
-					updated_at
+					fecha_inicio,
+					es_promocion,
+					activa,
+					motivo
 				) 
 				values (
 					new.id,
 					old.precio,
 					new.precio,
-					current_timestamp
+					current_timestamp,
+					FALSE,
+					FALSE,
+					'Cambio de precio fijo'
 				);
 			end if;
 			return new;
@@ -64,44 +45,12 @@ create or replace function almacenar_precios()
 	$function$
 ;
 
-create or replace function caja_rejistradora(
-	p_codigo_barra character varying, 
-	caja_cantidad integer
-)
-	returns  table(
-		dp_id_pedido integer, 
-		dp_id_producto integer, 
-		dp_cantidad integer, 
-		dp_precio_unitario integer
-	)
-	language plpgsql
-	as $function$
-		begin
-			select 
-				dp.id_pedido, 
-				dp.id_producto, 
-				dp.cantidad = dp_cantidad, 
-				dp.precio_unitario
-			from detalles_pedidos
-			join productos on dp.id_producto = p.id
-			where p.codigo_barra = p_codigo_barra;
-		end;
-	$function$
-;
+-- DROP FUNCTION public.caja_rejistradora(varchar, int4, int4);
 
-create or replace function caja_rejistradora(
-	v_codigo_barra character varying, 
-	v_cantidad integer, 
-	v_id_pedido integer
-)
-	returns  table(
-		recibo_producto character varying, 
-		recibo_cantidad integer, 
-		recibo_precio integer, 
-		recibo_subtotal integer
-	)
-	language plpgsql
-	as $function$
+CREATE OR REPLACE FUNCTION public.caja_rejistradora(v_codigo_barra character varying, v_cantidad integer, v_id_pedido integer)
+ RETURNS TABLE(recibo_producto character varying, recibo_cantidad integer, recibo_precio integer, recibo_subtotal integer)
+ LANGUAGE plpgsql
+AS $function$
 		declare 
 			v_id_producto int;
 			v_precio_unitario int;
@@ -110,6 +59,7 @@ create or replace function caja_rejistradora(
 		begin
 			select 
 				p.id, 
+				COALESCE(rp.precio_nuevo, p.precio),
 				p.precio, 
 				p.nombre, 
 				p.stock
@@ -119,6 +69,10 @@ create or replace function caja_rejistradora(
 				v_nombre_producto, 
 				v_stock_actual 
 			from productos p
+			LEFT JOIN registro_precios rp ON p.id = rp.id_producto 
+		        AND rp.es_promocion = TRUE 
+		        AND rp.activa = TRUE 
+		        AND CURRENT_TIMESTAMP BETWEEN rp.fecha_inicio AND rp.fecha_fin
 			where p.codigo_barra = v_codigo_barra;
 			if (v_stock_actual + v_cantidad) >= 0 then
 				insert into detalles_pedido (
@@ -149,19 +103,12 @@ create or replace function caja_rejistradora(
 	$function$
 ;
 
-create or replace function caja_rejistradora_2(
-	v_codigo_barra character varying, 
-	v_cantidad integer, 
-	v_id_pedido integer
-)
-	returns  table(
-		recibo_producto character varying, 
-		recibo_cantidad integer, 
-		recibo_precio integer, 
-		recibo_subtotal integer
-	)
-	language plpgsql
-	as $function$
+-- DROP FUNCTION public.caja_rejistradora_2(varchar, int4, int4);
+
+CREATE OR REPLACE FUNCTION public.caja_rejistradora_2(v_codigo_barra character varying, v_cantidad integer, v_id_pedido integer)
+ RETURNS TABLE(recibo_producto character varying, recibo_cantidad integer, recibo_precio integer, recibo_subtotal integer)
+ LANGUAGE plpgsql
+AS $function$
 		declare 
 			v_id_producto int;
 			v_precio_unitario int;
@@ -170,7 +117,7 @@ create or replace function caja_rejistradora_2(
 		begin
 			select 
 				p.id, 
-				p.precio, 
+				COALESCE(rp.precio_nuevo, p.precio),
 				p.nombre, 
 				p.stock
 			into 
@@ -179,6 +126,10 @@ create or replace function caja_rejistradora_2(
 				v_nombre_producto, 
 				v_stock_actual 
 			from productos p
+			LEFT JOIN registro_precios rp ON p.id = rp.id_producto 
+		        AND rp.es_promocion = TRUE 
+		        AND rp.activa = TRUE 
+		        AND CURRENT_TIMESTAMP BETWEEN rp.fecha_inicio AND rp.fecha_fin
 			where p.codigo_barra = v_codigo_barra;
 			if v_id_producto is null then
 				raise exception '¡Producto Inexistente! Revisa el codigo de barras';
@@ -212,31 +163,12 @@ create or replace function caja_rejistradora_2(
 	$function$
 ;
 
-create or replace function consultar_stock(
-	codigo_barra integer
-)
-	returns  table(
-		p_stock integer
-	)
-	language plpgsql
-	as $function$
-		begin
-			return query
-			select p.stock
-			from productos p
-			where p.id = p.codigo_barra;
-		end;
-	$function$
-;
+-- DROP FUNCTION public.consultar_stock(varchar);
 
-create or replace function consultar_stock(
-	p_codigo_barra character varying
-)
-	returns  table(
-		p_stock integer
-	)
-	language plpgsql
-	as $function$
+CREATE OR REPLACE FUNCTION public.consultar_stock(p_codigo_barra character varying)
+ RETURNS TABLE(p_stock integer)
+ LANGUAGE plpgsql
+AS $function$
 		begin
 			return query
 			select p.stock 
@@ -246,17 +178,12 @@ create or replace function consultar_stock(
 	$function$
 ;
 
-create or replace function fn_obtener_ticket_pedido(
-	p_id_pedido integer
-)
-	returns  table(
-		p_nombre character varying, 
-		dp_cantidad integer, 
-		dp_precio_unitario numeric, 
-		dp_subtotal numeric
-	)
-	language plpgsql
-	as $function$
+-- DROP FUNCTION public.fn_obtener_ticket_pedido(int4);
+
+CREATE OR REPLACE FUNCTION public.fn_obtener_ticket_pedido(p_id_pedido integer)
+ RETURNS TABLE(p_nombre character varying, dp_cantidad integer, dp_precio_unitario numeric, dp_subtotal numeric)
+ LANGUAGE plpgsql
+AS $function$
 		begin
 			return query
 			select 
@@ -275,63 +202,12 @@ create or replace function fn_obtener_ticket_pedido(
 	$function$
 ;
 
+-- DROP FUNCTION public.get_all_clientes();
 
-create or replace function fn_obtener_ticket_pedido(
-	p_id_pedido integer, 
-	p_dias_reales integer
-)
-	returns  void
-	language plpgsql
-	as $function$
-		declare p_tiempo_estimado_entrega int2;
-		begin
-			update pedidos
-				set tiempo_entrega = p_dias_reales
-				where id = p_id_pedido
-				returning tiempo_estimado_entrega 
-				into p_tiempo_estimado_entrega;
-			if p_dias_reales > p_tiempo_estimado_entrega then
-				raise notice 'El pedido no llego en el tiempo estimado';
-			end if;
-		end;
-	$function$
-;
-
-create or replace function fn_obtener_ticket_pedido(
-	p_id_pedido integer, 
-	p_dias_reales smallint
-)
-	returns  void
-	language plpgsql
-	as $function$
-		begin
-			update pedidos
-				set p.tiempo_entrega = p_dias_reales
-				where p.id = p_id_pedido;
-			if p.tiempo_entrega > p.tiempo_estimado_entrega then
-				raise notice 'El pedido no llego en el tiempo estimado';
-			end if;
-		end;
-	$function$
-;
-
-create or replace function get_all_clientes()
-	returns  table(
-		id_cliente integer, 
-		nombre character varying, 
-		email character varying, 
-		dni character varying, 
-		activo boolean, 
-		created_at timestamp without time zone, 
-		id_direccion integer, 
-		calle character varying, 
-		numero integer, 
-		barrio character varying, 
-		ciudad character varying, 
-		provincia character varying
-	)
- 	language plpgsql
-	as $function$
+CREATE OR REPLACE FUNCTION public.get_all_clientes()
+ RETURNS TABLE(id_cliente integer, nombre character varying, email character varying, dni character varying, activo boolean, created_at timestamp without time zone, id_direccion integer, calle character varying, numero integer, barrio character varying, ciudad character varying, provincia character varying)
+ LANGUAGE plpgsql
+AS $function$
 		begin
 			return query
 			select
@@ -354,20 +230,12 @@ create or replace function get_all_clientes()
 	$function$
 ;
 
-create or replace function get_all_historial()
-	returns  table(
-		id integer, 
-		id_producto integer, 
-		precio_viejo numeric, 
-		precio_nuevo numeric, 
-		updated_at timestamp without time zone, 
-		nombre character varying, 
-		categoria character varying, 
-		codigo_barra character varying, 
-		activo boolean
-	)
-	language plpgsql
-	as $function$
+-- DROP FUNCTION public.get_all_historial();
+
+CREATE OR REPLACE FUNCTION public.get_all_historial()
+ RETURNS TABLE(id integer, id_producto integer, precio_viejo numeric, precio_nuevo numeric, updated_at timestamp without time zone, nombre character varying, categoria character varying, codigo_barra character varying, activo boolean)
+ LANGUAGE plpgsql
+AS $function$
 		begin
 			return query
 			select
@@ -386,24 +254,12 @@ create or replace function get_all_historial()
 	$function$
 ;
 
-create or replace function get_all_productos()
-	returns  table(
-		id integer, 
-		nombre character varying, 
-		precio numeric, 
-		stock integer, 
-		categoria character varying, 
-		codigo_barra character varying, 
-		created_at timestamp without time zone, 
-		updated_at timestamp without time zone, 
-		activo boolean, 
-		id_imagen integer, 
-		s3_key character varying, 
-		tipo_contenido character varying, 
-		tamanio integer
-	)
-	language plpgsql
-	as $function$
+-- DROP FUNCTION public.get_all_productos();
+
+CREATE OR REPLACE FUNCTION public.get_all_productos()
+ RETURNS TABLE(id integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying, created_at timestamp without time zone, updated_at timestamp without time zone, activo boolean, id_imagen integer, s3_key character varying, tipo_contenido character varying, tamanio integer, en_promocion boolean, precio_nuevo numeric, motivo character varying, porcentaje_descuento integer)
+ LANGUAGE plpgsql
+AS $function$
 		begin
 			return query
 			select
@@ -419,26 +275,80 @@ create or replace function get_all_productos()
 					a.id,
 					a.s3_key,
 					a.tipo_contenido,
-					a.tamanio
+					a.tamanio,
+					CASE WHEN rp.id IS NOT NULL THEN TRUE ELSE FALSE END AS en_promocion,
+				    rp.precio_nuevo,
+				    rp.motivo,
+				    rp.porcentaje_descuento
 			from productos p
-			left join archivos a on p.id = a.id_producto
+			LEFT JOIN archivos a ON p.id = a.id_producto
+		    LEFT JOIN registro_precios rp ON p.id = rp.id_producto 
+		        AND CURRENT_TIMESTAMP BETWEEN rp.fecha_inicio AND rp.fecha_fin
 			order by stock desc;
 		end;
 	$function$
 ;
 
-create or replace function get_all_usuarios()
-	returns  table(
-		id_usuario integer, 
-		nombre character varying, 
-		email character varying, 
-		dni character varying, 
-		id_rol integer, 
-		activo boolean, 
-		created_at timestamp without time zone
-	)
-	language plpgsql
-	as $function$
+-- DROP FUNCTION public.get_all_promociones();
+
+CREATE OR REPLACE FUNCTION public.get_all_promociones()
+ RETURNS TABLE(id integer, id_producto integer, motivo character varying, precio_nuevo numeric, precio_anterior numeric, porcentaje_descuento integer, fecha_inicio timestamp with time zone, fecha_fin timestamp with time zone, created_at timestamp with time zone, nombre character varying, categoria character varying, codigo_barra character varying, activo boolean)
+ LANGUAGE plpgsql
+AS $function$
+		begin
+			return query
+			select
+				rp.id, 
+				rp.id_producto, 
+				rp.motivo, 
+				rp.precio_nuevo, 
+				rp.precio_anterior, 
+				rp.porcentaje_descuento, 
+				rp.fecha_inicio, 
+				rp.fecha_fin, 
+				rp.created_at,
+					p.nombre,
+					p.categoria, 
+					p.codigo_barra,
+					p.activo
+			from registro_precios rp
+			join productos p on rp.id_producto = p.id;
+		end;
+	$function$
+;
+
+-- DROP FUNCTION public.get_all_registros();
+
+CREATE OR REPLACE FUNCTION public.get_all_registros()
+ RETURNS TABLE(id integer, id_producto integer, precio_anterior numeric, precio_nuevo numeric, fecha_inicio timestamp without time zone, fecha_fin timestamp without time zone, es_promocion boolean, nombre character varying, categoria character varying, codigo_barra character varying, activo boolean)
+ LANGUAGE plpgsql
+AS $function$
+		begin
+			return query
+			select
+				rp.id, 
+				rp.id_producto, 
+				rp.precio_anterior, 
+				rp.precio_nuevo, 
+				rp.fecha_inicio,
+				rp.fecha_fin,
+				rp.es_promocion,
+					p.nombre,
+					p.categoria, 
+					p.codigo_barra,
+					p.activo
+			from registro_precios rp
+			join productos p on rp.id_producto = p.id;
+		end;
+	$function$
+;
+
+-- DROP FUNCTION public.get_all_usuarios();
+
+CREATE OR REPLACE FUNCTION public.get_all_usuarios()
+ RETURNS TABLE(id_usuario integer, nombre character varying, email character varying, dni character varying, id_rol integer[], activo boolean, created_at timestamp without time zone)
+ LANGUAGE plpgsql
+AS $function$
 		begin
 			return query
 			select
@@ -446,20 +356,28 @@ create or replace function get_all_usuarios()
 				u.nombre,
 				u.email,
 				u.dni,
-				u.id_rol,
+				array_agg(ur.id_rol) as id_rol,
 				u.activo,
 				u.created_at
-			from usuarios u;
+			from usuarios u
+			left join usuarios_roles ur on u.id = ur.id_usuario
+				group by 
+					u.id, 
+					u.nombre, 
+					u.email, 
+					u.dni, 
+					u.activo, 
+					u.created_at;
 		end;
 	$function$
 ;
 
-create or replace function get_direcciones(
-	p_id_cliente integer
-)
-	returns  SETOF direcciones
-	language plpgsql
-	as $function$
+-- DROP FUNCTION public.get_direcciones(int4);
+
+CREATE OR REPLACE FUNCTION public.get_direcciones(p_id_cliente integer)
+ RETURNS SETOF direcciones
+ LANGUAGE plpgsql
+AS $function$
 		begin
 			return query
 			select d.* 
@@ -470,18 +388,12 @@ create or replace function get_direcciones(
 	$function$
 ;
 
-create or replace function get_only_clientes()
-	returns  table(
-		id_cliente integer, 
-		id_direccion integer, 
-		calle character varying, 
-		numero integer, 
-		barrio character varying, 
-		ciudad character varying, 
-		provincia character varying
-	)
-	language plpgsql
-	as $function$
+-- DROP FUNCTION public.get_only_clientes();
+
+CREATE OR REPLACE FUNCTION public.get_only_clientes()
+ RETURNS TABLE(id_cliente integer, id_direccion integer, calle character varying, numero integer, barrio character varying, ciudad character varying, provincia character varying)
+ LANGUAGE plpgsql
+AS $function$
 		begin
 			return query
 			select
@@ -499,36 +411,12 @@ create or replace function get_only_clientes()
 	$function$
 ;
 
-create or replace function obtener_all_pedidos()
-	returns  table(
-		id_pedido integer, 
-		id_cliente integer, 
-		nombre_cliente character varying, 
-		id_direccion integer, 
-		calle character varying, 
-		numero integer, 
-		ciudad character varying, 
-		provincia character varying, 
-		metodo_pago character varying, 
-		estatus integer, 
-		tiempo_estimado_entrega smallint, 
-		tiempo_entrega smallint, 
-		created_at timestamp without time zone, 
-		updated_at timestamp without time zone, 
-		total numeric, 
-		id_detalles_pedido integer, 
-		cantidad integer, 
-		precio_unitario numeric, 
-		dp_subtotal numeric, 
-		id_producto integer, 
-		nombre character varying, 
-		precio numeric, 
-		stock integer, 
-		categoria character varying, 
-		codigo_barra character varying
-	)
-	language plpgsql
-	as $function$
+-- DROP FUNCTION public.obtener_all_pedidos();
+
+CREATE OR REPLACE FUNCTION public.obtener_all_pedidos()
+ RETURNS TABLE(id_pedido integer, id_cliente integer, nombre_cliente character varying, id_direccion integer, calle character varying, numero integer, ciudad character varying, provincia character varying, metodo_pago character varying, estatus integer, tiempo_estimado_entrega smallint, tiempo_entrega smallint, created_at timestamp without time zone, updated_at timestamp without time zone, total numeric, id_detalles_pedido integer, cantidad integer, precio_unitario numeric, dp_subtotal numeric, id_producto integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying)
+ LANGUAGE plpgsql
+AS $function$
 		begin
 			return query
 			select
@@ -566,36 +454,12 @@ create or replace function obtener_all_pedidos()
 	$function$
 ;
 
-create or replace function obtener_clientes_pedidos(
-	p_id_cliente integer
-)
-	returns  table(
-		id_pedido integer, 
-		id_cliente integer, 
-		id_direccion integer, 
-		calle character varying, 
-		numero integer, 
-		ciudad character varying, 
-		provincia character varying, 
-		metodo_pago character varying, 
-		estatus integer, 
-		tiempo_estimado_entrega smallint, 
-		tiempo_entrega smallint, 
-		created_at timestamp without time zone, 
-		updated_at timestamp without time zone, 
-		total numeric, 
-		id_detalles_pedido integer, 
-		cantidad integer, 
-		precio_unitario numeric, 
-		subtotal numeric, 
-		id_producto integer, 
-		nombre character varying, 
-		precio numeric, 
-		stock integer, 
-		categoria character varying
-	)
-	language plpgsql
-	as $function$
+-- DROP FUNCTION public.obtener_clientes_pedidos(int4);
+
+CREATE OR REPLACE FUNCTION public.obtener_clientes_pedidos(p_id_cliente integer)
+ RETURNS TABLE(id_pedido integer, id_cliente integer, id_direccion integer, calle character varying, numero integer, ciudad character varying, provincia character varying, metodo_pago character varying, estatus integer, tiempo_estimado_entrega smallint, tiempo_entrega smallint, created_at timestamp without time zone, updated_at timestamp without time zone, total numeric, id_detalles_pedido integer, cantidad integer, precio_unitario numeric, subtotal numeric, id_producto integer, nombre character varying, precio numeric, stock integer, categoria character varying)
+ LANGUAGE plpgsql
+AS $function$
 		begin
 			return query
 			select
@@ -631,42 +495,49 @@ create or replace function obtener_clientes_pedidos(
 	$function$
 ;
 
-create or replace function obtener_id_pedido_pedidos(
-	p_id_pedidos integer
-)
-	returns  table(
-		id_pedido integer, 
-		id_cliente integer, 
-		nombre_cliente character varying, 
-		apellido_cliente character varying, 
-		id_direccion integer, 
-		calle character varying, 
-		numero integer, 
-		ciudad character varying, 
-		provincia character varying, 
-		metodo_pago character varying, 
-		estatus integer, 
-		tiempo_estimado_entrega smallint, 
-		tiempo_entrega smallint, 
-		id_detalles_pedido integer, 
-		cantidad integer, 
-		precio_unitario numeric, 
-		id_producto integer, 
-		nombre character varying, 
-		precio numeric, 
-		stock integer, 
-		categoria character varying, 
-		codigo_barra character varying
-	)
-	language plpgsql
-	as $function$
+-- DROP FUNCTION public.obtener_favoritos_cliente(int4);
+
+CREATE OR REPLACE FUNCTION public.obtener_favoritos_cliente(cliente_id integer)
+ RETURNS TABLE(fav_created_at timestamp without time zone, id integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying, created_at timestamp without time zone, updated_at timestamp without time zone, activo boolean, id_imagen integer, s3_key character varying, tipo_contenido character varying, tamanio integer)
+ LANGUAGE plpgsql
+AS $function$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        f.created_at AS fav_created_at, 
+        p.id, 
+        p.nombre, 
+        p.precio, 
+        p.stock, 
+        p.categoria, 
+        p.codigo_barra, 
+        p.created_at, 
+        p.updated_at, 
+        p.activo,
+        a.id AS id_imagen, 
+        a.s3_key, 
+        a.tipo_contenido, 
+        a.tamanio
+    FROM favoritos f
+    JOIN productos p ON f.id_producto = p.id
+    LEFT JOIN archivos a ON p.id = a.id_producto
+    WHERE f.id_cliente = cliente_id;
+END;
+$function$
+;
+
+-- DROP FUNCTION public.obtener_id_pedido_pedidos(int4);
+
+CREATE OR REPLACE FUNCTION public.obtener_id_pedido_pedidos(p_id_pedidos integer)
+ RETURNS TABLE(id_pedido integer, id_cliente integer, nombre_cliente character varying, id_direccion integer, calle character varying, numero integer, ciudad character varying, provincia character varying, metodo_pago character varying, estatus integer, tiempo_estimado_entrega smallint, tiempo_entrega smallint, id_detalles_pedido integer, cantidad integer, precio_unitario numeric, id_producto integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying)
+ LANGUAGE plpgsql
+AS $function$
 		begin
 			return query
 			select
 				p.id,
 				p.id_cliente,
 					c.nombre,
-					c.apellido,
 				p.id_direccion,
 					d.calle,
 					d.numero,
@@ -699,31 +570,12 @@ create or replace function obtener_id_pedido_pedidos(
 	$function$
 ;
 
-create or replace function obtener_productos_pedidos(
-	p_id_producto integer
-)
-	returns  table(
-		id_pedido integer, 
-		id_cliente integer, 
-		id_direccion integer, 
-		metodo_pago character varying, 
-		estatus integer, 
-		tiempo_estimado_entrega smallint, 
-		tiempo_entrega smallint, 
-		total numeric, 
-		id_detalles_pedido integer, 
-		cantidad integer, 
-		precio_unitario numeric, 
-		subtotal numeric, 
-		id_producto integer, 
-		nombre character varying, 
-		precio numeric, 
-		stock integer, 
-		categoria character varying, 
-		codigo_barra character varying
-	)
-	language plpgsql
-	as $function$
+-- DROP FUNCTION public.obtener_productos_pedidos(int4);
+
+CREATE OR REPLACE FUNCTION public.obtener_productos_pedidos(p_id_producto integer)
+ RETURNS TABLE(id_pedido integer, id_cliente integer, id_direccion integer, metodo_pago character varying, estatus integer, tiempo_estimado_entrega smallint, tiempo_entrega smallint, total numeric, id_detalles_pedido integer, cantidad integer, precio_unitario numeric, subtotal numeric, id_producto integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying)
+ LANGUAGE plpgsql
+AS $function$
 		begin
 			return query
 			select
@@ -757,19 +609,12 @@ create or replace function obtener_productos_pedidos(
 	$function$
 ;
 
-create or replace function pedidos_por_fecha(
-	pedido_inicio date, 
-	pedido_fin date
-)
-	returns  table(
-		id_pedido integer, 
-		cliente_id integer, 
-		metodo_pago character varying, 
-		tiempo_estimado_entrega smallint, 
-		fecha_creacion timestamp without time zone
-	)
-	language plpgsql
-	as $function$
+-- DROP FUNCTION public.pedidos_por_fecha(date, date);
+
+CREATE OR REPLACE FUNCTION public.pedidos_por_fecha(pedido_inicio date, pedido_fin date)
+ RETURNS TABLE(id_pedido integer, cliente_id integer, metodo_pago character varying, tiempo_estimado_entrega smallint, fecha_creacion timestamp without time zone)
+ LANGUAGE plpgsql
+AS $function$
 		begin
 			return query
 			select 
@@ -784,13 +629,12 @@ create or replace function pedidos_por_fecha(
 	$function$
 ;
 
-create or replace function sp_actualizar_precio_categoria(
-	p_categoria character varying, 
-	p_porcentaje_aumento smallint
-)
-	returns  void
-	language plpgsql
-	as $function$
+-- DROP FUNCTION public.sp_actualizar_precio_categoria(varchar, int2);
+
+CREATE OR REPLACE FUNCTION public.sp_actualizar_precio_categoria(p_categoria character varying, p_porcentaje_aumento smallint)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
 		begin
 			update productos
 				set precio = precio * (p_porcentaje_aumento / 100)
@@ -799,25 +643,12 @@ create or replace function sp_actualizar_precio_categoria(
 	$function$
 ;
 
-create or replace function sp_actualizar_precio_categoria(
-	p_categoria character varying, 
-	p_porcentaje_aumento integer
-)
-	returns  void
-	language plpgsql
-	as $function$
-		begin
-			update productos
-				set precio = precio + (precio * (p_porcentaje_aumento / 100.0))
-				where categoria = p_categoria;
-		end;
-	$function$
-;
+-- DROP FUNCTION public.validar_precio();
 
-create or replace function validar_precio()
-	returns  trigger
-	language plpgsql
-	as $function$
+CREATE OR REPLACE FUNCTION public.validar_precio()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
 		begin
 			if new.precio <= 0 then
 				raise exception '¡El precio de un producto no puede ser cero o negativo!';
@@ -826,55 +657,3 @@ create or replace function validar_precio()
 		end;
 	$function$
 ;
-
--- 	DROPS
-
-drop procedure actualizar_stock(int4, int4);
-
-drop function almacenar_precios();
-
-drop function actualizar_stock_auto();
-
-drop function caja_rejistradora(varchar, int4);
-
-drop function caja_rejistradora(varchar, int4, int4);
-
-drop function caja_rejistradora_2(varchar, int4, int4);
-
-drop function consultar_stock(int4);
-
-drop function consultar_stock(varchar);
-
-drop function fn_obtener_ticket_pedido(int4);
-
-drop function fn_obtener_ticket_pedido(int4, int4);
-
-drop function fn_obtener_ticket_pedido(int4, int2);
-
-drop function get_all_clientes();
-
-drop function get_all_historial();
-
-drop function get_all_productos();
-
-drop function get_all_usuarios();
-
-drop function get_direcciones(int4);
-
-drop function get_only_clientes();
-
-drop function obtener_all_pedidos();
-
-drop function obtener_clientes_pedidos(int4);
-
-drop function obtener_id_pedido_pedidos(int4);
-
-drop function obtener_productos_pedidos(int4);
-
-drop function pedidos_por_fecha(date, date);
-
-drop function sp_actualizar_precio_categoria(varchar, int2);
-
-drop function sp_actualizar_precio_categoria(varchar, int4);
-
-drop function validar_precio();

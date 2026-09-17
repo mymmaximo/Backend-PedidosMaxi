@@ -1,4 +1,4 @@
-from sqlalchemy import ForeignKey, Column, Integer, DateTime, String, Numeric
+from sqlalchemy import ForeignKey, Column, Integer, DateTime, String, Numeric, Boolean
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from db.database import Base
@@ -6,8 +6,8 @@ from pydantic import BaseModel, Field
 from typing import Optional
 from datetime import datetime
 
-class Promociones(Base):
-    __tablename__ = "promociones"
+class RegistroPrecios(Base):
+    __tablename__ = "registro_precios"
 
     id = Column(
         Integer, 
@@ -19,13 +19,13 @@ class Promociones(Base):
         ForeignKey("productos.id", ondelete="CASCADE"),
         index=True
     )
-    nombre_promocion = Column(
+    motivo = Column(
         String(255)
     )
-    precio_oferta = Column(
+    precio_nuevo = Column(
         Numeric(10, 2)
     )
-    precio_default = Column(
+    precio_anterior = Column(
         Numeric(10, 2)
     )
     porcentaje_descuento = Column(
@@ -43,47 +43,61 @@ class Promociones(Base):
         DateTime(timezone=True), 
         server_default=func.now()
     )
+    es_promocion = Column(
+        Boolean,
+        default=True
+    ) 
+    activa = Column(
+        Boolean, 
+        default=True
+    )
     productos = relationship(
         "Productos", 
         foreign_keys = [id_producto],
-        backref = "promociones"
+        backref = "registro_precios"
     )
 
-class PromocionBase(BaseModel):
+class RegistroPreciosBase(BaseModel):
     id_producto: int
-    nombre_promocion: Optional[str] = None
-    precio_oferta: Optional[float] = None
+    motivo: Optional[str] = None
+    precio_nuevo: Optional[float] = None
     porcentaje_descuento: Optional[int] = None
     fecha_inicio: datetime
     fecha_fin: datetime
+    es_promocion: Optional[bool] = True
+    activa: Optional[bool] = True
 
-class PromocionCrear(PromocionBase):
+class RegistroPreciosCrear(RegistroPreciosBase):
     pass
 
-class Promocion_wproductos(BaseModel):
+class RegistroPrecios_wproductos(BaseModel):
     id: int
     id_producto: int
-    nombre_promocion: Optional[str] = None
-    precio_oferta: float
-    precio_default: float
+    motivo: Optional[str] = None
+    precio_nuevo: float
+    precio_anterior: float
     porcentaje_descuento: Optional[int] = None
     fecha_inicio: datetime
     fecha_fin: datetime
+    es_promocion: bool
+    activa: bool
     nombre: str
     categoria: str
     codigo_barra: str
     activo: bool
     model_config = {"from_attributes": True}
 
-class PromocionEdit(BaseModel):
-    nombre_promocion: Optional[str] = None
-    precio_oferta: Optional[float] = None
+class RegistroPreciosEdit(BaseModel):
+    motivo: Optional[str] = None
+    precio_nuevo: Optional[float] = None
     porcentaje_descuento: Optional[int] = None
     fecha_inicio: Optional[datetime] = None
     fecha_fin: Optional[datetime] = None
+    es_promocion: Optional[bool] = None
+    activa: Optional[bool] = None
 
-class PromocionRespuesta(PromocionBase):
+class RegistroPreciosRespuesta(RegistroPreciosBase):
     id: int
-    precio_default: float
+    precio_anterior: float
     created_at: datetime
     model_config = {"from_attributes": True}

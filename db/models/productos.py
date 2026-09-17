@@ -60,8 +60,8 @@ class Productos_Base(BaseModel):
     stock: int
     categoria: str
     en_promocion: Optional[bool] = None
-    precio_oferta: Optional[float] = None
-    nombre_promocion: Optional[str] = None
+    precio_nuevo: Optional[float] = None
+    motivo: Optional[str] = None
     porcentaje_descuento: Optional[int] = None
 
 class Productos_Categoria(BaseModel):
@@ -95,8 +95,8 @@ class Productos_Imagenes(BaseModel):
     updated_at: Optional[datetime]
     activo: bool
     en_promocion: Optional[bool] = False
-    precio_oferta: Optional[float] = None
-    nombre_promocion: Optional[str] = None
+    precio_nuevo: Optional[float] = None
+    motivo: Optional[str] = None
     porcentaje_descuento: Optional[int] = None
     imagenes: list[Imagenes]
     model_config = {"from_attributes": True}

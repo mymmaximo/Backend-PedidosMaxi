@@ -5,11 +5,10 @@ from routes import clientes as route_clientes
 from routes import banners as route_banners
 from routes import usuarios as route_usuarios
 from routes import productos as route_productos
-from routes import promociones as route_promociones
 from routes import pedidos as route_pedidos
 from routes import detalles_pedido as route_detalles_pedido
 from routes import direcciones as route_direcciones
-from routes import historial_precios as route_historial_precios
+from routes import registro_precios as route_registro_precios
 from routes import favoritos as route_favoritos
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi import _rate_limit_exceeded_handler
@@ -50,12 +49,11 @@ app.include_router(route_clientes.router)
 app.include_router(route_banners.router)
 app.include_router(route_usuarios.router)
 app.include_router(route_productos.router)
-app.include_router(route_promociones.router)
 app.include_router(route_pedidos.router)
 app.include_router(route_detalles_pedido.router)
 app.include_router(route_favoritos.router)
 app.include_router(route_direcciones.router)
-app.include_router(route_historial_precios.router)
+app.include_router(route_registro_precios.router)
 
 @app.get("/", tags=["Seccion 0"])
 def root():

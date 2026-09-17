@@ -3,7 +3,7 @@ from sqlalchemy.sql import func
 from sqlalchemy.orm import Session
 from db.models.detalles_pedido import Detalles_Pedido, Detalles_Pedido_Crear
 from db.models.productos import Productos
-from db.models.promociones import Promociones
+from backend_pedidos.db.models.registro_precios import Promociones
 
 def get_detalle_pedido(
         db: Session, 

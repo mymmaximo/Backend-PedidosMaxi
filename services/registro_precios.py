@@ -4,19 +4,19 @@ from sqlalchemy import text
 from datetime import datetime
 from sqlalchemy.orm import Session
 from sqlalchemy.sql import func
-from db.models.promociones import Promociones, PromocionCrear, PromocionEdit
+from db.models.registro_precios import RegistroPrecios, RegistroPreciosCrear, RegistroPreciosEdit
 from services.productos import clean_cache as clean_productos_cache
 from db.models.productos import Productos
 cache_promos = None
 tiempo_cache_promos = 0
 tiempo_expiracion = 300
 
-def clean_promos_cache():
+def clean_registros_cache():
     global cache_promos
     cache_promos = None
     clean_productos_cache()
 
-def get_promociones(
+def get_registros_precios(
         db: Session, 
         skip: int = 0, 
         limit: int = 100
@@ -28,12 +28,12 @@ def get_promociones(
         lista_completa = cache_promos
     else:
         print("cargando promociones desde base")
-        lista_completa = db.query(Promociones).order_by(Promociones.created_at.desc()).all()
+        lista_completa = db.query(RegistroPrecios).order_by(RegistroPrecios.created_at.desc()).all()
         cache_promos = lista_completa
         tiempo_cache_promos = tiempo_actual
     return lista_completa[skip : skip + limit]
 
-def get_historial_promocion(
+def get_historial_registros_precios(
     db:Session,
     busqueda_promocion: Optional[str] = None,
     orden: Optional[int] = None,
@@ -41,25 +41,27 @@ def get_historial_promocion(
     fecha_inicio_min: Optional[datetime] = None,
     fecha_fin_max: Optional[datetime] = None,
     fecha_fin_min: Optional[datetime] = None,
-    precio_oferta_min: Optional[int] = None,
-    precio_oferta_max: Optional[int] = None,
-    precio_default_min: Optional[int] = None,
-    precio_default_max: Optional[int] = None,
+    precio_nuevo_min: Optional[int] = None,
+    precio_nuevo_max: Optional[int] = None,
+    precio_anterior_min: Optional[int] = None,
+    precio_anterior_max: Optional[int] = None,
     porcentaje_descuento_min: Optional[int] = None,
     porcentaje_descuento_max: Optional[int] = None,
+    es_promocion: Optional[bool] = None,
+    promo_activa: Optional[bool] = None,
     bool_activo: Optional[bool] = None,
     filtrocat: Optional[str] = None,
     limit: int = 20,
     skip: int = 0
 ):
     if orden == 1:
-        query = text("SELECT * from get_all_promociones () order by precio_oferta asc")
+        query = text("SELECT * from get_all_promociones () order by precio_nuevo asc")
     elif orden == 2:
-        query = text("SELECT * from get_all_promociones () order by precio_oferta desc")
+        query = text("SELECT * from get_all_promociones () order by precio_nuevo desc")
     elif orden == 3:
-        query = text("SELECT * from get_all_promociones () order by precio_default asc")
+        query = text("SELECT * from get_all_promociones () order by precio_anterior asc")
     elif orden == 4:
-        query = text("SELECT * from get_all_promociones () order by precio_default desc")
+        query = text("SELECT * from get_all_promociones () order by precio_anterior desc")
     elif orden == 5:
         query = text("SELECT * from get_all_promociones () order by porcentaje_descuento asc")
     elif orden == 6:
@@ -88,12 +90,14 @@ def get_historial_promocion(
             db_precios[id_promocion] = {
                 "id": id_promocion,
                 "id_producto": i["id_producto"],
-                "nombre_promocion": i["nombre_promocion"],
-                "precio_oferta": i["precio_oferta"],
-                "precio_default": i["precio_default"],
+                "motivo": i["motivo"],
+                "precio_nuevo": i["precio_nuevo"],
+                "precio_anterior": i["precio_anterior"],
                 "porcentaje_descuento": i["porcentaje_descuento"],
                 "fecha_inicio": i["fecha_inicio"],
                 "fecha_fin": i["fecha_fin"],
+                "es_promocion": i["es_promocion"],
+                "activa": i["activa"],
                 "created_at": i["created_at"],
                 "categoria": i["categoria"],
                 "codigo_barra": i["codigo_barra"],
@@ -115,34 +119,49 @@ def get_historial_promocion(
             if promocion["activo"] == bool_activo:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
+    if es_promocion is not None:
+        lista_temporal = []
+        for promocion in lista_promociones:
+            if promocion["es_promocion"] == es_promocion:
+                lista_temporal.append(promocion)
+        lista_promociones = lista_temporal
+    if promo_activa is not None:
+        lista_temporal = []
+        for promocion in lista_promociones:
+            if promocion["activa"] == promo_activa:
+                lista_temporal.append(promocion)
+        lista_promociones = lista_temporal
     if filtrocat is not None:
         lista_temporal = []
         for promocion in lista_promociones:
             if promocion["categoria"] == filtrocat:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
-    if precio_oferta_max is not None:
+    if precio_nuevo_max is not None:
         lista_temporal = []
         for promocion in lista_promociones:
-            if promocion["precio_oferta"] <= precio_oferta_max:
+            if promocion.get("precio_nuevo") is not None and promocion["precio_nuevo"] <= precio_nuevo_max:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
-    if precio_oferta_min is not None:
+        
+    if precio_nuevo_min is not None:
         lista_temporal = []
         for promocion in lista_promociones:
-            if promocion["precio_oferta"] >= precio_oferta_min:
+            if promocion.get("precio_nuevo") is not None and promocion["precio_nuevo"] >= precio_nuevo_min:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
-    if precio_default_max is not None:
+        
+    if precio_anterior_max is not None:
         lista_temporal = []
         for promocion in lista_promociones:
-            if promocion["precio_default"] <= precio_default_max:
+            if promocion.get("precio_anterior") is not None and promocion["precio_anterior"] <= precio_anterior_max:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
-    if precio_default_min is not None:
+        
+    if precio_anterior_min is not None:
         lista_temporal = []
         for promocion in lista_promociones:
-            if promocion["precio_default"] >= precio_default_min:
+            if promocion.get("precio_anterior") is not None and promocion["precio_anterior"] >= precio_anterior_min:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
     if fecha_inicio_max is not None:
@@ -172,89 +191,92 @@ def get_historial_promocion(
     if porcentaje_descuento_max is not None:
         lista_temporal = []
         for promocion in lista_promociones:
-            if promocion["porcentaje_descuento"] <= porcentaje_descuento_max:
+            if promocion.get("porcentaje_descuento") is not None and promocion["porcentaje_descuento"] <= porcentaje_descuento_max:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
     if porcentaje_descuento_min is not None:
         lista_temporal = []
         for promocion in lista_promociones:
-            if promocion["porcentaje_descuento"] >= porcentaje_descuento_min:
+            if promocion.get("porcentaje_descuento") is not None and promocion["porcentaje_descuento"] >= porcentaje_descuento_min:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
     return lista_promociones[skip : skip + limit]
 
-
-def get_promociones_activas(
+def get_registros_precios_activas(
     db: Session
 ):
-    return db.query(Promociones).filter(
-        Promociones.fecha_inicio <= func.now(),
-        Promociones.fecha_fin >= func.now()
+    return db.query(RegistroPrecios).filter(
+        RegistroPrecios.fecha_inicio <= func.now(),
+        RegistroPrecios.fecha_fin >= func.now(),
+        RegistroPrecios.activa == True,
+        RegistroPrecios.es_promocion == True
     ).all()
 
-def create_promocion(
+def create_registros_precios(
     db: Session, 
-    promocion: PromocionCrear
+    promocion: RegistroPreciosCrear
 ):
     db_producto = db.query(Productos).filter(Productos.id == promocion.id_producto).first()
     if not db_producto:
         return None
     precio_base = float(db_producto.precio)
-    precio_oferta = promocion.precio_oferta
+    precio_nuevo = promocion.precio_nuevo
     porcentaje = promocion.porcentaje_descuento
-    if porcentaje is not None and precio_oferta is None:
-        precio_oferta = precio_base - (precio_base * (porcentaje / 100.0))
-    elif precio_oferta is not None and porcentaje is None:
-        porcentaje = int(round(((precio_base - precio_oferta) / precio_base) * 100))
-    nueva_promo = Promociones(
+    if porcentaje is not None and precio_nuevo is None:
+        precio_nuevo = precio_base - (precio_base * (porcentaje / 100.0))
+    elif precio_nuevo is not None and porcentaje is None:
+        porcentaje = int(round(((precio_base - precio_nuevo) / precio_base) * 100))
+    nueva_promo = RegistroPrecios(
         id_producto=promocion.id_producto,
-        nombre_promocion=promocion.nombre_promocion,
-        precio_oferta=precio_oferta,
-        precio_default=precio_base,
+        motivo=promocion.motivo,
+        precio_nuevo=precio_nuevo,
+        precio_anterior=precio_base,
         porcentaje_descuento=porcentaje,
         fecha_inicio=promocion.fecha_inicio,
-        fecha_fin=promocion.fecha_fin
+        fecha_fin=promocion.fecha_fin,
+        es_promocion=True,
+        activa=True
     )
     db.add(nueva_promo)
     db.commit()
     db.refresh(nueva_promo)    
-    clean_promos_cache()
+    clean_registros_cache()
     return nueva_promo
 
-def update_promocion(
+def update_registros_precios(
     db: Session, 
     id_promocion: int, 
-    promocion: PromocionEdit
+    promocion: RegistroPreciosEdit
 ):
-    db_promo = db.query(Promociones).filter(Promociones.id == id_promocion).first()
+    db_promo = db.query(RegistroPrecios).filter(RegistroPrecios.id == id_promocion).first()
     if not db_promo:
         return None
     update_data = promocion.model_dump(exclude_unset=True)
-    if 'precio_oferta' in update_data or 'porcentaje_descuento' in update_data:
-        precio_base = float(db_promo.precio_default) 
-        nuevo_precio_oferta = update_data.get('precio_oferta', db_promo.precio_oferta)
+    if 'precio_nuevo' in update_data or 'porcentaje_descuento' in update_data:
+        precio_base = float(db_promo.precio_anterior) 
+        nuevo_precio = update_data.get('precio_nuevo', db_promo.precio_nuevo)
         nuevo_porcentaje = update_data.get('porcentaje_descuento', db_promo.porcentaje_descuento)
-        if update_data.get('porcentaje_descuento') is not None and update_data.get('precio_oferta') is None:
-            nuevo_precio_oferta = precio_base - (precio_base * (nuevo_porcentaje / 100.0))
-            update_data['precio_oferta'] = nuevo_precio_oferta
-        elif update_data.get('precio_oferta') is not None and update_data.get('porcentaje_descuento') is None:
-            nuevo_porcentaje = int(round(((precio_base - nuevo_precio_oferta) / precio_base) * 100))
-            update_data['porcentaje_descuento'] = nuevo_porcentaje
+        if update_data.get('porcentaje_descuento') is not None and update_data.get('precio_nuevo') is None:
+            nuevo_precio = precio_base - (precio_base * (nuevo_porcentaje / 100.0))
+            update_data['precio_nuevo'] = nuevo_precio
+        elif update_data.get('precio_nuevo') is not None and update_data.get('porcentaje_descuento') is None:
+            nuevo_porcentaje = int(round(((precio_base - nuevo_precio) / precio_base) * 100))
+            update_data['porcentaje_descuento'] = nuevo_porcentaje 
     for key, value in update_data.items():
         setattr(db_promo, key, value)
     db.commit()
     db.refresh(db_promo)
-    clean_promos_cache()
+    clean_registros_cache()
     return db_promo
 
 def delete_promocion(
     db: Session, 
     id_promocion: int
 ):
-    db_promo = db.query(Promociones).filter(Promociones.id == id_promocion).first()
+    db_promo = db.query(RegistroPrecios).filter(RegistroPrecios.id == id_promocion).first()
     if db_promo is None:
         return False
-    db.delete(db_promo)
+    db_promo.activa = False
     db.commit()
-    clean_promos_cache()
+    clean_registros_cache()
     return True
