@@ -98,6 +98,7 @@ def get_historial_registros_precios(
                 "fecha_fin": i["fecha_fin"],
                 "es_promocion": i["es_promocion"],
                 "activa": i["activa"],
+                "nombre": i["nombre"],
                 "created_at": i["created_at"],
                 "categoria": i["categoria"],
                 "codigo_barra": i["codigo_barra"],
