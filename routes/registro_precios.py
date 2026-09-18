@@ -4,7 +4,7 @@ from datetime import datetime
 from sqlalchemy.orm import Session
 from sqlalchemy.sql import func
 from db.database import get_db
-from backend_pedidos.db.models.registro_precios import RegistroPrecios, RegistroPreciosCrear, RegistroPreciosEdit, RegistroPreciosRespuesta, RegistroPrecios_wproductos
+from db.models.registro_precios import RegistroPrecios, RegistroPreciosCrear, RegistroPreciosEdit, RegistroPreciosRespuesta, RegistroPrecios_wproductos
 from services import registro_precios as crud
 from sec import obtener_usuario_actual
 
