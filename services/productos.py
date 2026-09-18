@@ -105,7 +105,8 @@ def get_producto(
             nombre = producto["nombre"].lower() if producto["nombre"] else ""
             categoria = producto["categoria"].lower() if producto["categoria"] else ""
             codigo_barra = producto["codigo_barra"].lower() if producto["codigo_barra"] else ""
-            if (busqueda in nombre or busqueda in categoria or busqueda in codigo_barra):
+            motivo = producto["motivo"].lower() if producto.get("motivo") else ""
+            if (busqueda in nombre or busqueda in categoria or busqueda in codigo_barra or busqueda in motivo):
                 lista_filtrada.append(producto)
         productos_filtrados = lista_filtrada
     if bool_activo is not None:

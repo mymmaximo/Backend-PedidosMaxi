@@ -111,7 +111,8 @@ def get_historial_registros_precios(
         for promocion in lista_promociones:
             nombre = promocion["nombre"].lower() if promocion["nombre"] else ""
             codigo_barra = promocion["codigo_barra"].lower() if promocion["codigo_barra"] else ""
-            if (busqueda in nombre or busqueda in codigo_barra):
+            motivo = promocion["motivo"].lower() if promocion["motivo"] else ""
+            if (busqueda in nombre or busqueda in codigo_barra or busqueda in motivo):
                 lista_filtrada.append(promocion)
         lista_promociones = lista_filtrada
     if bool_activo is not None:
