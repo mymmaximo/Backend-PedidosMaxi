@@ -3,7 +3,7 @@ from sqlalchemy.sql import func
 from sqlalchemy.orm import Session
 from db.models.detalles_pedido import Detalles_Pedido, Detalles_Pedido_Crear
 from db.models.productos import Productos
-from backend_pedidos.db.models.registro_precios import Promociones
+from backend_pedidos.db.models.registro_precios import RegistroPrecios
 
 def get_detalle_pedido(
         db: Session, 
@@ -41,10 +41,10 @@ def create_detalle_pedido(
         db_producto = db.query(Productos).filter(Productos.id == i.id_producto).first()
         if db_producto is None:
             return False
-        promocion_activa = db.query(Promociones).filter(
-            Promociones.id_producto == i.id_producto,
-            Promociones.fecha_inicio <= func.now(),
-            Promociones.fecha_fin >= func.now()
+        promocion_activa = db.query(RegistroPrecios).filter(
+            RegistroPrecios.id_producto == i.id_producto,
+            RegistroPrecios.fecha_inicio <= func.now(),
+            RegistroPrecios.fecha_fin >= func.now()
         ).first()
         precio_final = promocion_activa.precio_oferta if promocion_activa else db_producto.precio
         db_detalle_pedido = Detalles_Pedido(
