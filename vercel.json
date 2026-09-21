@@ -13,7 +13,7 @@
   ],
   "crons": [
     {
-      "path": "/promociones/limpiar-vencidas",
+      "path": "/registro_precios/limpiar-vencidas",
       "schedule": "0 6 * * *"
     }
   ]
