@@ -181,6 +181,7 @@ def read_pedidos(
     orden: Optional[int] = None,
     filtromp: Optional[str] = None,
     filtroest: Optional[int] = None,
+    filtroprom: Optional[bool] = None
 ):
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1, 3, 6])
@@ -195,6 +196,7 @@ def read_pedidos(
         orden=orden,
         filtromp=filtromp,
         filtroest=filtroest,
+        filtroprom=filtroprom,
         limit=limit,
         skip=skip
     )

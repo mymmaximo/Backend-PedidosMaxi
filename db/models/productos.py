@@ -61,6 +61,7 @@ class Productos_Base(BaseModel):
     categoria: str
     en_promocion: Optional[bool] = None
     precio_nuevo: Optional[float] = None
+    precio_anterior: Optional[float] = None
     motivo: Optional[str] = None
     porcentaje_descuento: Optional[int] = None
 
@@ -94,8 +95,9 @@ class Productos_Imagenes(BaseModel):
     created_at: datetime
     updated_at: Optional[datetime]
     activo: bool
-    en_promocion: Optional[bool] = False
+    en_promocion: Optional[bool] = None
     precio_nuevo: Optional[float] = None
+    precio_anterior: Optional[float] = None
     motivo: Optional[str] = None
     porcentaje_descuento: Optional[int] = None
     imagenes: list[Imagenes]

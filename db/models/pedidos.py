@@ -129,6 +129,11 @@ class Pedidos_Detalles_Productos(BaseModel):
     stock: int
     categoria: str
     codigo_barra: str
+    es_promocion: Optional[bool] = False
+    motivo: Optional[str] = None
+    precio_anterior: Optional[float] = None
+    precio_nuevo: Optional[float] = None
+    porcentaje_descuento: Optional[int] = None
     model_config = {"from_attributes": True}
 
 class Pedidos_Clientes_Direcciones_Detalles_Productos(BaseModel):
@@ -154,6 +159,11 @@ class Pedidos_Clientes_Direcciones_Detalles_Productos(BaseModel):
     stock: int
     categoria: str
     codigo_barra: str
+    es_promocion: Optional[bool] = False
+    motivo: Optional[str] = None
+    precio_anterior: Optional[float] = None
+    precio_nuevo: Optional[float] = None
+    porcentaje_descuento: Optional[int] = None
     model_config = {"from_attributes": True}
 
 class Pedidos_Respuesta(Pedidos_Base):

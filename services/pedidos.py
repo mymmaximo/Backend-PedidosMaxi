@@ -67,7 +67,12 @@ def get_pedidoxproducto(
                 "precio": i["precio"],
                 "stock": i["stock"],
                 "categoria": i["categoria"],
-                "codigo_barra": i["codigo_barra"]
+                "codigo_barra": i.get("codigo_barra", ""),
+                "es_promocion": i.get("es_promocion", False),
+                "motivo": i.get("motivo"),
+                "precio_anterior": i.get("precio_anterior"),
+                "precio_nuevo": i.get("precio_nuevo"),
+                "porcentaje_descuento": i.get("porcentaje_descuento")
             }
         }
         db_pedidos[id_pedidios]["detalle_pedido"].append(nuevo_detalle)
@@ -119,7 +124,12 @@ def get_pedidoxid_pedido(
                 "precio": i["precio"],
                 "stock": i["stock"],
                 "categoria": i["categoria"],
-                "codigo_barra": i["codigo_barra"]
+                "codigo_barra": i.get("codigo_barra", ""),
+                "es_promocion": i.get("es_promocion", False),
+                "motivo": i.get("motivo"),
+                "precio_anterior": i.get("precio_anterior"),
+                "precio_nuevo": i.get("precio_nuevo"),
+                "porcentaje_descuento": i.get("porcentaje_descuento")
             }
         }
         db_pedidos[id_pedidios]["detalle_pedido"].append(nuevo_detalle)
@@ -137,6 +147,7 @@ def get_all_pedidos(
         orden: Optional[int] = None,
         filtromp: Optional[str] = None,
         filtroest: Optional[int] = None,
+        filtroprom: Optional[bool] = None,
         limit: int = 20,
         skip: int = 0
 ):
@@ -188,7 +199,12 @@ def get_all_pedidos(
                 "precio": i["precio"],
                 "stock": i["stock"],
                 "categoria": i["categoria"],
-                "codigo_barra": i["codigo_barra"]
+                "codigo_barra": i.get("codigo_barra", ""),
+                "es_promocion": i.get("es_promocion", False),
+                "motivo": i.get("motivo"),
+                "precio_anterior": i.get("precio_anterior"),
+                "precio_nuevo": i.get("precio_nuevo"),
+                "porcentaje_descuento": i.get("porcentaje_descuento")
             }
         }
         db_pedidos[id_pedidios]["detalle_pedido"].append(nuevo_detalle)
@@ -205,7 +221,9 @@ def get_all_pedidos(
             encontrado_en_producto = False
             for detalle in pedido["detalle_pedido"]:
                 nombre_producto = detalle["producto"]["nombre"].lower()
-                if busqueda in nombre_producto:
+                motivo_promo = detalle["producto"].get("motivo") or ""
+                motivo_promo = motivo_promo.lower()
+                if busqueda in nombre_producto or busqueda in motivo_promo:
                     encontrado_en_producto = True
                     break
             if (busqueda in nombre or busqueda in metodo or busqueda in calle or busqueda in ciudad or busqueda in provincia or encontrado_en_producto):
@@ -221,6 +239,13 @@ def get_all_pedidos(
         lista_temporal = []
         for pedido in lista_pedidos:
             if pedido["estatus"] == filtroest:
+                lista_temporal.append(pedido)
+        lista_pedidos = lista_temporal
+    if filtroprom is not None:
+        lista_temporal = []
+        for pedido in lista_pedidos:
+            tiene_promo = any(detalle["producto"].get("es_promocion") for detalle in pedido["detalle_pedido"])
+            if tiene_promo == filtroprom:
                 lista_temporal.append(pedido)
         lista_pedidos = lista_temporal
     return lista_pedidos[skip : skip + limit]
@@ -276,7 +301,12 @@ def get_pedidoxcliente(
                 "nombre": i["nombre"],
                 "precio": i["precio"],
                 "stock": i["stock"],
-                "categoria": i["categoria"]
+                "codigo_barra": i.get("codigo_barra", ""),
+                "es_promocion": i.get("es_promocion", False),
+                "motivo": i.get("motivo"),
+                "precio_anterior": i.get("precio_anterior"),
+                "precio_nuevo": i.get("precio_nuevo"),
+                "porcentaje_descuento": i.get("porcentaje_descuento")
             }
         }
         db_pedidos[id_pedidios]["detalle_pedido"].append(nuevo_detalle)
