@@ -59,7 +59,7 @@ class Productos_Base(BaseModel):
     precio: float
     stock: int
     categoria: str
-    en_promocion: Optional[bool] = None
+    es_promocion: Optional[bool] = None
     precio_nuevo: Optional[float] = None
     precio_anterior: Optional[float] = None
     motivo: Optional[str] = None
