@@ -43,10 +43,11 @@ def create_detalle_pedido(
             return False
         promocion_activa = db.query(RegistroPrecios).filter(
             RegistroPrecios.id_producto == i.id_producto,
+            RegistroPrecios.es_promocion == True, 
             RegistroPrecios.fecha_inicio <= func.now(),
             RegistroPrecios.fecha_fin >= func.now()
         ).first()
-        precio_final = promocion_activa.precio_oferta if promocion_activa else db_producto.precio
+        precio_final = promocion_activa.precio_nuevo if promocion_activa else db_producto.precio
         db_detalle_pedido = Detalles_Pedido(
             id_pedido=i.id_pedido,
             id_producto=i.id_producto,
