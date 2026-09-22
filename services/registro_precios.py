@@ -249,7 +249,82 @@ def create_registros_precios(
     )
     db.add(nueva_promo)
     db.commit()
-    db.refresh(nueva_promo)    
+    db.refresh(nueva_promo)
+    resend.api_key = os.getenv("RESEND_API_KEY")
+    print(f"--- LOG RESEND: API KEY configurada: {bool(resend.api_key)} ---")
+    clientes_favoritos = (
+        db.query(Clientes)
+        .join(Favoritos, Clientes.id == Favoritos.id_cliente)
+        .filter(Favoritos.id_producto == promocion.id_producto)
+        .all()
+    )
+    print(f"--- LOG RESEND: Se encontraron {len(clientes_favoritos)} clientes para notificar ---")
+    for cliente in clientes_favoritos:
+        html_correo = f"""
+            <div style="font-family: sans-serif; 
+            max-width: 600px; margin: auto; padding: 20px; 
+            border: 1px solid #e5e7eb; border-radius: 12px;"
+            >
+                    <h2 style="color: #166534; text-align: center;">
+                    🔥 ¡Tu favorito bajó de precio!
+                    </h2>
+                    <p style="color: #374151; font-size: 16px;">
+                    Hola 
+                    <b>
+                    {cliente.nombre}
+                    </b>,
+                    </p>
+                    <p style="color: #374151; font-size: 16px;">
+                    El producto 
+                    <b>
+                    {db_producto.nombre}
+                    </b> 
+                    que tienes en tu lista de deseos acaba de entrar en promoción.
+                    </p>
+                <div style="background-color: #f0fdf4; 
+                padding: 15px; border-radius: 8px; 
+                text-align: center; margin: 20px 0;"
+                >
+                    <p style="color: #6b7280; text-decoration: line-through; margin: 0;">
+                    Precio anterior: ${precio_base:,.2f}
+                    </p>
+                    <p style="color: #dc2626; font-size: 24px; font-weight: 900; margin: 5px 0;">
+                    ${precio_nuevo:,.2f}
+                    </p>
+                    <span style="background-color: #22c55e; color: white; 
+                    padding: 4px 8px; border-radius: 4px; 
+                    font-weight: bold; font-size: 14px;"
+                    >
+                    {porcentaje}% OFF
+                    </span>
+                </div>
+                <p style="color: #374151; text-align: center;">
+                <i>
+                Motivo: {promocion.motivo or 'Oferta especial'}
+                </i>
+                </p>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="https://pedidos-maxi.vercel.app/" 
+                    style="background-color: #166534; color: white; 
+                    padding: 12px 24px; text-decoration: none; 
+                    border-radius: 8px; font-weight: bold; display: inline-block;"
+                    >
+                    ¡Aprovechar Oferta!
+                    </a>
+                </div>
+            </div>
+        """
+        try:
+            print(f"--- LOG RESEND: Intentando enviar a {cliente.email} ---")
+            respuesta_resend = resend.Emails.send({
+                "from": "onboarding@resend.dev", 
+                "to": cliente.email,
+                "subject": f"¡Oferta del {porcentaje}% en {db_producto.nombre}!",
+                "html": html_correo
+            })
+            print(f"--- LOG RESEND: Correo enviado exitosamente! Respuesta: {respuesta_resend} ---")
+        except Exception as e:
+            print(f"--- ❌ ERROR CRÍTICO RESEND a {cliente.email}: {str(e)} ---")
     clean_registros_cache()
     return nueva_promo
 
