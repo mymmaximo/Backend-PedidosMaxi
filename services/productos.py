@@ -56,7 +56,7 @@ def get_producto(
                     "created_at": i["created_at"],
                     "updated_at": i["updated_at"],
                     "activo": i["activo"],
-                    "en_promocion": i["en_promocion"],
+                    "es_promocion": i["es_promocion"],
                     "precio_nuevo": i.get("precio_nuevo"),
                     "motivo": i.get("motivo"),
                     "porcentaje_descuento": i.get("porcentaje_descuento"),
@@ -85,9 +85,9 @@ def get_producto(
     elif orden == 2:
         productos_filtrados.sort(key=lambda x: x["nombre"].lower() if x["nombre"] else "", reverse=True)
     elif orden == 3:
-        productos_filtrados.sort(key=lambda x: x["precio_nuevo"] if x.get("en_promocion") else (x["precio"] or 0), reverse=True)
+        productos_filtrados.sort(key=lambda x: x["precio_nuevo"] if x.get("es_promocion") else (x["precio"] or 0), reverse=True)
     elif orden == 4:
-        productos_filtrados.sort(key=lambda x: x["precio_nuevo"] if x.get("en_promocion") else (x["precio"] or 0))
+        productos_filtrados.sort(key=lambda x: x["precio_nuevo"] if x.get("es_promocion") else (x["precio"] or 0))
     elif orden == 5:
         productos_filtrados.sort(key=lambda x: x["stock"] or 0, reverse=True)
     elif orden == 6:
@@ -118,20 +118,20 @@ def get_producto(
     if bool_promocion is not None:
         lista_temporal = []
         for producto in productos_filtrados:
-            if producto["en_promocion"] == bool_promocion:
+            if producto["es_promocion"] == bool_promocion:
                 lista_temporal.append(producto)
         productos_filtrados = lista_temporal
     if precio_producto_min is not None:
         lista_temporal = []
         for producto in productos_filtrados:
-            precio_final = producto["precio_nuevo"] if producto.get("en_promocion") else producto["precio"]
+            precio_final = producto["precio_nuevo"] if producto.get("es_promocion") else producto["precio"]
             if precio_final >= precio_producto_min:
                 lista_temporal.append(producto)
         productos_filtrados = lista_temporal
     if precio_producto_max is not None:
         lista_temporal = []
         for producto in productos_filtrados:
-            precio_final = producto["precio_nuevo"] if producto.get("en_promocion") else producto["precio"]
+            precio_final = producto["precio_nuevo"] if producto.get("es_promocion") else producto["precio"]
             if precio_final <= precio_producto_max:
                 lista_temporal.append(producto)
         productos_filtrados = lista_temporal
@@ -145,7 +145,7 @@ def get_producto(
         lista_temporal = []
         for producto in productos_filtrados:
             desc = producto.get("porcentaje_descuento")
-            if producto.get("en_promocion") and desc is not None and desc >= porcentaje_descuento_min:
+            if producto.get("es_promocion") and desc is not None and desc >= porcentaje_descuento_min:
                 lista_temporal.append(producto)
         productos_filtrados = lista_temporal
     return productos_filtrados[skip : skip + limit]

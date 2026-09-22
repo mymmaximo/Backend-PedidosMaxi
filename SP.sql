@@ -257,7 +257,7 @@ AS $function$
 -- DROP FUNCTION public.get_all_productos();
 
 CREATE OR REPLACE FUNCTION public.get_all_productos()
- RETURNS TABLE(id integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying, created_at timestamp without time zone, updated_at timestamp without time zone, activo boolean, id_imagen integer, s3_key character varying, tipo_contenido character varying, tamanio integer, en_promocion boolean, precio_nuevo numeric, motivo character varying, porcentaje_descuento integer)
+ RETURNS TABLE(id integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying, created_at timestamp without time zone, updated_at timestamp without time zone, activo boolean, id_imagen integer, s3_key character varying, tipo_contenido character varying, tamanio integer, es_promocion boolean, precio_nuevo numeric, motivo character varying, porcentaje_descuento integer)
  LANGUAGE plpgsql
 AS $function$
 		begin
@@ -276,7 +276,7 @@ AS $function$
 					a.s3_key,
 					a.tipo_contenido,
 					a.tamanio,
-					CASE WHEN rp.id IS NOT NULL THEN TRUE ELSE FALSE END AS en_promocion,
+					CASE WHEN rp.id IS NOT NULL THEN TRUE ELSE FALSE END AS es_promocion,
 				    rp.precio_nuevo,
 				    rp.motivo,
 				    rp.porcentaje_descuento
