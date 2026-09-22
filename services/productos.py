@@ -56,7 +56,7 @@ def get_producto(
                     "created_at": i["created_at"],
                     "updated_at": i["updated_at"],
                     "activo": i["activo"],
-                    "es_promocion": i["es_promocion"],
+                    "es_promocion": i.get("es_promocion", i.get("en_promocion", False)),
                     "precio_nuevo": i.get("precio_nuevo"),
                     "motivo": i.get("motivo"),
                     "porcentaje_descuento": i.get("porcentaje_descuento"),

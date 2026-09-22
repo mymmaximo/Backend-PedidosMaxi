@@ -100,7 +100,7 @@ def get_historial_registros_precios(
                 "porcentaje_descuento": i["porcentaje_descuento"],
                 "fecha_inicio": i["fecha_inicio"],
                 "fecha_fin": i["fecha_fin"],
-                "es_promocion": i["es_promocion"],
+                "es_promocion": i.get("es_promocion", i.get("en_promocion", False)),
                 "activa": i["activa"],
                 "nombre": i["nombre"],
                 "created_at": i["created_at"],
