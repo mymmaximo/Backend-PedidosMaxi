@@ -1,9 +1,13 @@
+import os
 import time
+import resend
 from typing import Optional
 from sqlalchemy import text
 from datetime import datetime
 from sqlalchemy.orm import Session
 from sqlalchemy.sql import func
+from db.models.clientes import Clientes
+from db.models.favoritos import Favoritos
 from db.models.registro_precios import RegistroPrecios, RegistroPreciosCrear, RegistroPreciosEdit
 from services.productos import clean_cache as clean_productos_cache
 from db.models.productos import Productos
