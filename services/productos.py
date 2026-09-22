@@ -98,6 +98,7 @@ def get_producto(
         productos_filtrados.sort(key=lambda x: x["created_at"] or "", reverse=True)
     else:
         productos_filtrados.sort(key=lambda x: x["created_at"] or "", reverse=True)
+    productos_filtrados.sort(key=lambda x: x.get("es_promocion", False), reverse=True)
     if busqueda_producto is not None:
         busqueda = busqueda_producto.lower() 
         lista_filtrada = []
