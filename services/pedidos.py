@@ -303,7 +303,7 @@ def get_pedidoxcliente(
                 "stock": i["stock"],
                 "categoria": i.get("categoria", ""),
                 "codigo_barra": i.get("codigo_barra", ""),
-                "en_promocion": i.get("es_promocion", False),
+                "es_promocion": i.get("es_promocion", False),
                 "motivo": i.get("motivo"),
                 "precio_anterior": i.get("precio_anterior"),
                 "precio_nuevo": i.get("precio_nuevo"),
