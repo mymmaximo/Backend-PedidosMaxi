@@ -255,7 +255,7 @@ def create_registros_precios(
     clientes_favoritos = (
         db.query(Clientes)
         .join(Favoritos, Clientes.id == Favoritos.id_cliente)
-        .filter(Favoritos.id_producto == promocion.id_producto)
+        .filter(Favoritos.id_producto == nueva_promo.id_producto)
         .all()
     )
     print(f"--- LOG RESEND: Se encontraron {len(clientes_favoritos)} clientes para notificar ---")
