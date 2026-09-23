@@ -1,11 +1,12 @@
-from sqlalchemy import ForeignKey, Column, Integer, DateTime, String
-from sqlalchemy.sql import func
-from sqlalchemy.orm import relationship
-from db.database import Base
-from pydantic import BaseModel, Field
 from typing import Optional
+from db.database import Base
+from sqlalchemy.sql import func
+from pydantic import BaseModel, Field
+from sqlalchemy.orm import relationship
+from sqlalchemy import ForeignKey, Column, Integer, DateTime, String
 
 class Archivos(Base):
+    
     __tablename__ = "archivos"
 
     id = Column(

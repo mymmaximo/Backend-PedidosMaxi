@@ -369,15 +369,14 @@ INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,a
 	 ('Jonny','jonny@sbr.com','777888999','2026-03-27 08:42:48.017243',NULL,'$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true),
 	 ('Baki','hanma@gmail.com','814613535','2026-04-17 09:43:34.516494',NULL,'$2b$12$7BzQpyi6Is.DWuMaMvoLOOQlI1O/N.IgaYqwSMgeFclaY1J8m9.fS',true),
 	 ('Baki','bakihanma@gmail.com','41685419','2026-04-17 09:46:40.718326',NULL,'$2b$12$F156SXcsEmhDGRc3.mS7M.8Dr7E.Lg04p/a/B3CN1O9Br4K0dtlFy',true),
-	 ('Maximo','maxgiesenow@gmail.com','42638965','2026-03-31 08:45:33.835518','2026-05-05 11:20:47.111616','$2b$12$dz0d4gbROL/wW3AHAF46y.jWwvApkdiUnzBLeSvrsksvjQoI4KCQm',true),
 	 ('Jodio','jojo@gmail.com','99999999','2026-04-01 10:01:43.41078','2026-05-08 12:14:31.354486','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true),
 	 ('Maxi','max@gmail.com','8523697','2026-03-09 12:42:26.964735','2026-04-17 11:44:00.184693','$2b$12$c4/NU5K9Ant.m7cBp6MNiudZri0deGtc7c6WHNpdk9QS/q0RBPMnG',true),
 	 ('john','john@gmail.com','46845464','2026-07-28 14:05:52.7617',NULL,'$2b$12$kKqK1VK72Un3Y.pSiwy8Vu1EEZLNCb4dZzPyBirR8NjjVnF2JgbY6',true),
 	 ('Franco','franco@gmail.com','45241854','2026-07-31 13:33:25.238115',NULL,'$2b$12$gJ82J368NehsK.1Ldj2ZrOae4lVzAjlX3Na2y3NuvBJN5KNMUTP/O',true),
 	 ('Baki Hanma','baki@gmail.com','16514644','2026-08-03 13:06:52.832873',NULL,'$2b$12$hrXYErp2p2Unncxf.6ksPeujJ7JVE3GxLqpTQL22ucGvpPf9TIbTO',true),
-	 ('lorenzo','lololol@gmail.com','15631486','2026-07-29 15:33:24.661852','2026-08-03 15:27:54.267893','$2b$12$DrGIW5jQo4jDCAwdDu8EoOCk5ynLSupUYyIfvQBYAOl2oZ2RSpzEq',true);
+	 ('lorenzo','lololol@gmail.com','15631486','2026-07-29 15:33:24.661852','2026-08-03 15:27:54.267893','$2b$12$DrGIW5jQo4jDCAwdDu8EoOCk5ynLSupUYyIfvQBYAOl2oZ2RSpzEq',true),
+	 ('Mateo','mateo.gomez@email.com','38444111','2026-03-10 10:00:00',NULL,'$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true);
 INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) VALUES
-	 ('Mateo','mateo.gomez@email.com','38444111','2026-03-10 10:00:00',NULL,'$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true),
 	 ('Martina','martina.perez@gmail.com','40555222','2026-03-12 14:20:10.123456','2026-04-01 09:00:00','$2b$12$KkSnQ3tYWR8ms39G9yI48u5pQjkcPI3843owzNYXo7C/30188x73.',true),
 	 ('Lucas','lucas.silva@email.com','36777888','2026-03-15 08:30:20.654321',NULL,'$2b$12$MPu7A9mjSd91nUSVfgvyfu/t/W6U5aE2QpldWOLeoPOmvihuzHKsq',true),
 	 ('Valentina','valen.torres@gmail.com','42111444','2026-03-18 16:45:00.111222','2026-05-10 11:15:30','$2b$12$YdD60Ryq8zCvGu/gWujJW.2JTthKhKMOzsGEZJIfmtZZj20z3KOk2',true),
@@ -386,9 +385,9 @@ INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,a
 	 ('Joaquin','joaco.fernandez@email.com','39333666','2026-03-25 13:22:11.999888',NULL,'$2b$12$dz0d4gbROL/wW3AHAF46y.jWwvApkdiUnzBLeSvrsksvjQoI4KCQm',true),
 	 ('Camila','cami.sanchez@gmail.com','41444777','2026-03-28 15:10:05.123789','2026-05-15 14:00:22.555444','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true),
 	 ('Agustin','agus.gimenez@email.com','35999000','2026-04-02 07:55:40.555666',NULL,'$2b$12$c4/NU5K9Ant.m7cBp6MNiudZri0deGtc7c6WHNpdk9QS/q0RBPMnG',true),
-	 ('Florencia','flor.castro@gmail.com','38666111','2026-04-05 18:05:15.333222','2026-07-01 09:20:11.777888','$2b$12$kKqK1VK72Un3Y.pSiwy8Vu1EEZLNCb4dZzPyBirR8NjjVnF2JgbY6',true);
+	 ('Florencia','flor.castro@gmail.com','38666111','2026-04-05 18:05:15.333222','2026-07-01 09:20:11.777888','$2b$12$kKqK1VK72Un3Y.pSiwy8Vu1EEZLNCb4dZzPyBirR8NjjVnF2JgbY6',true),
+	 ('Nicolas','nico.diaz@email.com','34111222','2026-04-08 12:00:00.123456',NULL,'$2b$12$gJ82J368NehsK.1Ldj2ZrOae4lVzAjlX3Na2y3NuvBJN5KNMUTP/O',true);
 INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) VALUES
-	 ('Nicolas','nico.diaz@email.com','34111222','2026-04-08 12:00:00.123456',NULL,'$2b$12$gJ82J368NehsK.1Ldj2ZrOae4lVzAjlX3Na2y3NuvBJN5KNMUTP/O',true),
 	 ('Victoria','vicky.acosta@gmail.com','44333222','2026-04-10 10:30:15.654321','2026-06-12 15:40:00','$2b$12$hrXYErp2p2Unncxf.6ksPeujJ7JVE3GxLqpTQL22ucGvpPf9TIbTO',true),
 	 ('Facundo','facu.medina@email.com','36222444','2026-04-12 14:15:22.987654',NULL,'$2b$12$DrGIW5jQo4jDCAwdDu8EoOCk5ynLSupUYyIfvQBYAOl2oZ2RSpzEq',true),
 	 ('Julieta','juli.ruiz@gmail.com','41555666','2026-04-15 09:40:11.111222','2026-05-20 12:10:05.444333','$2b$12$7BzQpyi6Is.DWuMaMvoLOOQlI1O/N.IgaYqwSMgeFclaY1J8m9.fS',true),
@@ -397,9 +396,9 @@ INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,a
 	 ('Ignacio','nacho.romero@email.com','35444333','2026-04-22 08:25:50.777888',NULL,'$2b$12$KkSnQ3tYWR8ms39G9yI48u5pQjkcPI3843owzNYXo7C/30188x73.',true),
 	 ('Agustina','agus.sosa@gmail.com','42999888','2026-04-25 13:50:05.222111','2026-07-10 10:00:44.111222','$2b$12$MPu7A9mjSd91nUSVfgvyfu/t/W6U5aE2QpldWOLeoPOmvihuzHKsq',true),
 	 ('Federico','fede.molina@email.com','37555666','2026-04-28 15:10:15.999',NULL,'$2b$12$YdD60Ryq8zCvGu/gWujJW.2JTthKhKMOzsGEZJIfmtZZj20z3KOk2',true),
-	 ('Candela','cande.ortiz@gmail.com','43666777','2026-05-02 10:12:33.444555','2026-08-01 14:22:11.333444','$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true);
+	 ('Candela','cande.ortiz@gmail.com','43666777','2026-05-02 10:12:33.444555','2026-08-01 14:22:11.333444','$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true),
+	 ('Gonzalo','gonza.herrera@email.com','33888999','2026-05-05 09:00:00.123456',NULL,'$2b$12$/ecZnxWXL1cLGU4.XjM54eSWNUywbMXTYM0SFXqq/qfN.vWmvwMxW',true);
 INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) VALUES
-	 ('Gonzalo','gonza.herrera@email.com','33888999','2026-05-05 09:00:00.123456',NULL,'$2b$12$/ecZnxWXL1cLGU4.XjM54eSWNUywbMXTYM0SFXqq/qfN.vWmvwMxW',true),
 	 ('Milagros','mili.peredo@gmail.com','45111222','2026-05-08 14:20:10.789456','2026-06-15 11:30:00','$2b$12$dz0d4gbROL/wW3AHAF46y.jWwvApkdiUnzBLeSvrsksvjQoI4KCQm',true),
 	 ('Ezequiel','eze.cordoba@email.com','36444555','2026-05-10 16:45:22.333222',NULL,'$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true),
 	 ('Rocio','ro.paz@gmail.com','41777888','2026-05-12 11:15:33.555444','2026-07-20 15:00:10.123456','$2b$12$c4/NU5K9Ant.m7cBp6MNiudZri0deGtc7c6WHNpdk9QS/q0RBPMnG',true),
@@ -408,9 +407,9 @@ INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,a
 	 ('Matias','mati.mendoza@email.com','37111000','2026-05-20 17:10:12.333444',NULL,'$2b$12$hrXYErp2p2Unncxf.6ksPeujJ7JVE3GxLqpTQL22ucGvpPf9TIbTO',true),
 	 ('Sol','sol.rios@gmail.com','44999000','2026-05-22 10:05:20.999111','2026-08-10 16:40:22.111999','$2b$12$DrGIW5jQo4jDCAwdDu8EoOCk5ynLSupUYyIfvQBYAOl2oZ2RSpzEq',true),
 	 ('Esteban','este.ibanez@email.com','35666777','2026-05-25 12:40:15.444333',NULL,'$2b$12$7BzQpyi6Is.DWuMaMvoLOOQlI1O/N.IgaYqwSMgeFclaY1J8m9.fS',true),
-	 ('Magdalena','magui.flores@gmail.com','40333444','2026-05-28 15:55:30.888777','2026-08-15 13:20:11','$2b$12$F156SXcsEmhDGRc3.mS7M.8Dr7E.Lg04p/a/B3CN1O9Br4K0dtlFy',true);
+	 ('Magdalena','magui.flores@gmail.com','40333444','2026-05-28 15:55:30.888777','2026-08-15 13:20:11','$2b$12$F156SXcsEmhDGRc3.mS7M.8Dr7E.Lg04p/a/B3CN1O9Br4K0dtlFy',true),
+	 ('Damian','dami.vera@email.com','34555666','2026-06-01 09:30:00.123456',NULL,'$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true);
 INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) VALUES
-	 ('Damian','dami.vera@email.com','34555666','2026-06-01 09:30:00.123456',NULL,'$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true),
 	 ('Celeste','cele.bustos@gmail.com','43111222','2026-06-03 14:10:15.789456','2026-07-05 10:15:00','$2b$12$KkSnQ3tYWR8ms39G9yI48u5pQjkcPI3843owzNYXo7C/30188x73.',true),
 	 ('Guillermo','guille.cabrera@email.com','32777888','2026-06-06 11:20:44.333222',NULL,'$2b$12$MPu7A9mjSd91nUSVfgvyfu/t/W6U5aE2QpldWOLeoPOmvihuzHKsq',true),
 	 ('Brenda','bren.peralta@gmail.com','45888999','2026-06-08 16:50:22.555444','2026-08-12 14:30:10.123456','$2b$12$YdD60Ryq8zCvGu/gWujJW.2JTthKhKMOzsGEZJIfmtZZj20z3KOk2',true),
@@ -419,9 +418,9 @@ INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,a
 	 ('Mariana','mari.maldonado@email.com','39111333','2026-06-15 10:05:55.333444',NULL,'$2b$12$dz0d4gbROL/wW3AHAF46y.jWwvApkdiUnzBLeSvrsksvjQoI4KCQm',false),
 	 ('Claudio','claudio.campos@gmail.com','31444555','2026-06-18 15:25:40.999111','2026-08-20 17:11:22.111999','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true),
 	 ('Natalia','nati.caceres@email.com','38333222','2026-06-20 12:12:12.444333',NULL,'$2b$12$c4/NU5K9Ant.m7cBp6MNiudZri0deGtc7c6WHNpdk9QS/q0RBPMnG',true),
-	 ('Esteban','esteban.ojeda@gmail.com','40666555','2026-06-22 17:33:10.888777','2026-08-22 11:22:33','$2b$12$kKqK1VK72Un3Y.pSiwy8Vu1EEZLNCb4dZzPyBirR8NjjVnF2JgbY6',true);
+	 ('Esteban','esteban.ojeda@gmail.com','40666555','2026-06-22 17:33:10.888777','2026-08-22 11:22:33','$2b$12$kKqK1VK72Un3Y.pSiwy8Vu1EEZLNCb4dZzPyBirR8NjjVnF2JgbY6',true),
+	 ('Andrea','andy.guerra@email.com','37222111','2026-06-25 09:40:00.123456',NULL,'$2b$12$gJ82J368NehsK.1Ldj2ZrOae4lVzAjlX3Na2y3NuvBJN5KNMUTP/O',true);
 INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) VALUES
-	 ('Andrea','andy.guerra@email.com','37222111','2026-06-25 09:40:00.123456',NULL,'$2b$12$gJ82J368NehsK.1Ldj2ZrOae4lVzAjlX3Na2y3NuvBJN5KNMUTP/O',true),
 	 ('Adrian','adri.benitez@gmail.com','35888777','2026-06-28 14:15:15.789456','2026-07-15 08:30:00','$2b$12$hrXYErp2p2Unncxf.6ksPeujJ7JVE3GxLqpTQL22ucGvpPf9TIbTO',true),
 	 ('Romina','romi.farias@email.com','42555666','2026-06-30 11:00:44.333222',NULL,'$2b$12$DrGIW5jQo4jDCAwdDu8EoOCk5ynLSupUYyIfvQBYAOl2oZ2RSpzEq',true),
 	 ('Patricia','paty.reinoso@gmail.com','33444333','2026-07-02 16:30:22.555444','2026-08-25 12:00:10.123456','$2b$12$7BzQpyi6Is.DWuMaMvoLOOQlI1O/N.IgaYqwSMgeFclaY1J8m9.fS',true),
@@ -430,9 +429,11 @@ INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,a
 	 ('Emiliano','emi.suarez@email.com','39444888','2026-07-10 10:55:55.333444',NULL,'$2b$12$KkSnQ3tYWR8ms39G9yI48u5pQjkcPI3843owzNYXo7C/30188x73.',true),
 	 ('Lorena','lore.navia@gmail.com','34222111','2026-07-12 15:10:40.999111','2026-08-28 09:11:22.111999','$2b$12$MPu7A9mjSd91nUSVfgvyfu/t/W6U5aE2QpldWOLeoPOmvihuzHKsq',true),
 	 ('Mariano','mariano.gomez@email.com','37999444','2026-07-14 12:22:12.444333',NULL,'$2b$12$YdD60Ryq8zCvGu/gWujJW.2JTthKhKMOzsGEZJIfmtZZj20z3KOk2',true),
-	 ('Silvina','sil.vazquez@gmail.com','38111999','2026-07-16 17:05:10.888777','2026-08-29 16:22:33','$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true);
-INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) VALUES
+	 ('Silvina','sil.vazquez@gmail.com','38111999','2026-07-16 17:05:10.888777','2026-08-29 16:22:33','$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true),
 	 ('Cell','celljr@gmail.com','31514145','2026-09-02 11:27:27.659464',NULL,'$2b$12$HPF2E.HfsUezqfQshYLfG.rZDpsF8exBGc7T8RraFMAxKl7fqAvnG',true);
+INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) VALUES
+	 ('Maximo','maxgiesenosw@gmail.com','42638965','2026-03-31 08:45:33.835518','2026-05-05 11:20:47.111616','$2b$12$dz0d4gbROL/wW3AHAF46y.jWwvApkdiUnzBLeSvrsksvjQoI4KCQm',true),
+	 ('Manuel Juarez','maxgiesenow@gmail.com','36151544','2026-09-22 15:37:28.072828',NULL,'$2b$12$.S7wNBy1DqL96wQvHujO5e8er0kBEV2J.pRicT/nYNVAZ86BQnAT6',true);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
 	 (216,65,4,4156.00),
 	 (217,42,1,55000.00),
@@ -446,6 +447,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (224,147,4,5772220.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
 	 (225,147,4,4252.00),
+	 (226,27,1,21000.00),
 	 (1,10,1,45000.00),
 	 (2,5,1,280000.00),
 	 (2,8,2,250000.00),
@@ -453,9 +455,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (4,6,2,120000.00),
 	 (5,4,1,800000.00),
 	 (6,7,1,110000.00),
-	 (7,2,1,450000.00),
-	 (7,1,1,350000.00);
+	 (7,2,1,450000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (7,1,1,350000.00),
 	 (8,9,3,45000.00),
 	 (9,6,1,120000.00),
 	 (5,10,80,350000.00),
@@ -464,9 +466,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (23,2,1,450000.00),
 	 (23,4,20,800000.00),
 	 (24,2,1,450000.00),
-	 (24,4,20,800000.00),
-	 (24,8,1,220000.00);
+	 (24,4,20,800000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (24,8,1,220000.00),
 	 (24,1,1,5000.00),
 	 (24,12,1,10000.00),
 	 (24,13,1,50000.00),
@@ -475,9 +477,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (25,4,3,800000.00),
 	 (26,7,1,110000.00),
 	 (26,4,1,800000.00),
-	 (26,1,1,5000.00),
-	 (27,2,1,450000.00);
+	 (26,1,1,5000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (27,2,1,450000.00),
 	 (28,2,4,450000.00),
 	 (148,5,2,280000.00),
 	 (149,7,1,110000.00),
@@ -486,9 +488,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (152,13,2,50000.00),
 	 (153,15,1,5000.00),
 	 (154,16,1,15000.00),
-	 (155,18,2,29990.00),
-	 (156,20,1,457870.00);
+	 (155,18,2,29990.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (156,20,1,457870.00),
 	 (157,2,1,450000.00),
 	 (158,4,3,800000.00),
 	 (159,6,1,120000.00),
@@ -497,9 +499,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (162,12,1,10000.00),
 	 (163,14,2,8000000.00),
 	 (48,1,1,350000.00),
-	 (47,3,2,300000.00),
-	 (46,6,1,120000.00);
+	 (47,3,2,300000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (46,6,1,120000.00),
 	 (45,9,1,45000.00),
 	 (44,12,3,10000.00),
 	 (43,15,1,5000.00),
@@ -508,9 +510,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (40,2,1,450000.00),
 	 (39,4,2,800000.00),
 	 (38,7,1,110000.00),
-	 (37,10,1,45000.00),
-	 (36,13,3,50000.00);
+	 (37,10,1,45000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (36,13,3,50000.00),
 	 (35,16,1,15000.00),
 	 (34,19,2,35000.00),
 	 (33,22,1,15100.00),
@@ -519,9 +521,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (30,7,1,110000.00),
 	 (29,10,1,45000.00),
 	 (28,13,2,50000.00),
-	 (27,16,1,15000.00),
-	 (26,19,1,35000.00);
+	 (27,16,1,15000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (26,19,1,35000.00),
 	 (25,22,3,15100.00),
 	 (24,2,1,450000.00),
 	 (23,5,2,280000.00),
@@ -530,9 +532,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (20,14,2,8000000.00),
 	 (19,17,1,25000.00),
 	 (18,20,1,457870.00),
-	 (17,2,3,450000.00),
-	 (16,5,1,280000.00);
+	 (17,2,3,450000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (16,5,1,280000.00),
 	 (15,8,2,220000.00),
 	 (14,11,1,15000.00),
 	 (13,14,1,8000000.00),
@@ -541,9 +543,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (10,1,2,350000.00),
 	 (9,3,1,300000.00),
 	 (8,6,2,120000.00),
-	 (7,9,1,45000.00),
-	 (6,12,3,10000.00);
+	 (7,9,1,45000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (6,12,3,10000.00),
 	 (5,15,1,5000.00),
 	 (4,18,2,29990.00),
 	 (3,21,1,18000.00),
@@ -552,9 +554,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (112,8,1,220000.00),
 	 (113,11,2,15000.00),
 	 (114,14,1,8000000.00),
-	 (115,17,3,25000.00),
-	 (116,20,1,457870.00);
+	 (115,17,3,25000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (116,20,1,457870.00),
 	 (117,1,2,350000.00),
 	 (118,3,1,300000.00),
 	 (119,6,2,120000.00),
@@ -563,9 +565,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (122,15,1,5000.00),
 	 (123,18,2,29990.00),
 	 (124,21,1,18000.00),
-	 (125,2,2,450000.00),
-	 (126,5,1,280000.00);
+	 (125,2,2,450000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (126,5,1,280000.00),
 	 (127,8,1,220000.00),
 	 (128,11,3,15000.00),
 	 (129,14,1,8000000.00),
@@ -574,9 +576,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (132,1,1,350000.00),
 	 (133,4,2,800000.00),
 	 (134,7,1,110000.00),
-	 (135,10,1,45000.00),
-	 (136,13,3,50000.00);
+	 (135,10,1,45000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (136,13,3,50000.00),
 	 (29,6,6,120000.00),
 	 (30,3,5,500000.00),
 	 (31,7,20,110000.00),
@@ -585,9 +587,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (34,5,1,8000.00),
 	 (35,1,1,5000.00),
 	 (36,2,4,550000.00),
-	 (37,15,1,5000.00),
-	 (38,1,1,5000.00);
+	 (37,15,1,5000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (38,1,1,5000.00),
 	 (38,14,1,8000000.00),
 	 (39,5,1,8000.00),
 	 (39,6,1,120000.00),
@@ -596,9 +598,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (40,5,1,8000.00),
 	 (40,9,1,110000.00),
 	 (41,1,1,5000.00),
-	 (41,5,1,8000.00),
-	 (42,5,1,8000.00);
+	 (41,5,1,8000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (42,5,1,8000.00),
 	 (42,15,1,5000.00),
 	 (43,9,1,110000.00),
 	 (44,12,1,10000.00),
@@ -607,9 +609,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (45,16,1,15000.00),
 	 (45,18,1,29990.00),
 	 (45,6,1,120000.00),
-	 (45,4,1,800000.00),
-	 (46,9,1,110000.00);
+	 (45,4,1,800000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (46,9,1,110000.00),
 	 (105,143,4,146.00),
 	 (105,111,4,1800.00),
 	 (106,45,1,14000.00),
@@ -618,9 +620,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (108,146,1,29999.00),
 	 (109,45,1,14000.00),
 	 (110,45,1,14000.00),
-	 (111,65,1,4156.00),
-	 (112,16,1,18000.00);
+	 (111,65,1,4156.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (112,16,1,18000.00),
 	 (113,112,1,500001.00),
 	 (114,7,1,25000.00),
 	 (115,48,1,38000.00),
@@ -629,9 +631,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (56,2,1,450000.00),
 	 (57,5,3,280000.00),
 	 (58,6,1,120000.00),
-	 (59,7,2,110000.00),
-	 (60,8,1,220000.00);
+	 (59,7,2,110000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (60,8,1,220000.00),
 	 (61,9,4,45000.00),
 	 (62,10,1,45000.00),
 	 (63,11,2,15000.00),
@@ -640,9 +642,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (66,14,1,8000000.00),
 	 (67,15,3,5000.00),
 	 (68,16,1,15000.00),
-	 (69,17,2,25000.00),
-	 (70,18,1,29990.00);
+	 (69,17,2,25000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (70,18,1,29990.00),
 	 (71,19,4,35000.00),
 	 (72,20,1,457870.00),
 	 (73,21,2,18000.00),
@@ -651,9 +653,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (76,2,1,450000.00),
 	 (77,3,3,300000.00),
 	 (78,4,1,800000.00),
-	 (79,5,2,280000.00),
-	 (80,6,1,120000.00);
+	 (79,5,2,280000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (80,6,1,120000.00),
 	 (81,7,4,110000.00),
 	 (82,8,1,220000.00),
 	 (83,9,2,45000.00),
@@ -662,9 +664,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (86,12,1,10000.00),
 	 (87,13,2,50000.00),
 	 (88,14,1,8000000.00),
-	 (89,15,1,5000.00),
-	 (90,16,2,15000.00);
+	 (89,15,1,5000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (90,16,2,15000.00),
 	 (91,17,1,25000.00),
 	 (92,18,3,29990.00),
 	 (93,19,1,35000.00),
@@ -673,9 +675,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (96,22,1,15100.00),
 	 (97,1,3,350000.00),
 	 (98,2,1,450000.00),
-	 (99,4,2,800000.00),
-	 (100,5,1,280000.00);
+	 (99,4,2,800000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (100,5,1,280000.00),
 	 (101,6,2,120000.00),
 	 (102,8,1,220000.00),
 	 (103,10,1,45000.00),
@@ -684,9 +686,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (106,1,1,350000.00),
 	 (107,3,2,300000.00),
 	 (108,6,1,120000.00),
-	 (109,9,3,45000.00),
-	 (110,12,1,10000.00);
+	 (109,9,3,45000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (110,12,1,10000.00),
 	 (111,15,2,5000.00),
 	 (112,18,1,29990.00),
 	 (113,20,1,457870.00),
@@ -695,9 +697,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (116,4,1,800000.00),
 	 (117,6,3,120000.00),
 	 (118,8,1,220000.00),
-	 (119,10,2,45000.00),
-	 (120,13,1,50000.00);
+	 (119,10,2,45000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (120,13,1,50000.00),
 	 (121,15,1,5000.00),
 	 (122,17,2,25000.00),
 	 (123,19,1,35000.00),
@@ -706,9 +708,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (126,3,1,300000.00),
 	 (127,5,3,280000.00),
 	 (128,7,1,110000.00),
-	 (129,9,2,45000.00),
-	 (130,11,1,15000.00);
+	 (129,9,2,45000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (130,11,1,15000.00),
 	 (131,14,1,8000000.00),
 	 (132,16,2,15000.00),
 	 (133,18,1,29990.00),
@@ -717,9 +719,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (136,4,1,800000.00),
 	 (137,6,1,120000.00),
 	 (138,8,3,220000.00),
-	 (139,10,1,45000.00),
-	 (140,12,2,10000.00);
+	 (139,10,1,45000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (140,12,2,10000.00),
 	 (141,15,1,5000.00),
 	 (142,17,1,25000.00),
 	 (143,19,2,35000.00),
@@ -728,9 +730,9 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (146,1,2,350000.00),
 	 (147,3,1,300000.00),
 	 (137,16,1,15000.00),
-	 (138,19,2,35000.00),
-	 (139,22,1,15100.00);
+	 (138,19,2,35000.00);
 INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 (139,22,1,15100.00),
 	 (140,2,1,450000.00),
 	 (141,5,2,280000.00),
 	 (142,8,1,220000.00),
@@ -853,7 +855,11 @@ INSERT INTO public.favoritos (id_cliente,id_producto,created_at) VALUES
 	 (19,42,'2026-09-14 11:57:29.437411'),
 	 (19,62,'2026-09-14 11:57:33.594982'),
 	 (19,130,'2026-09-14 12:29:50.311787'),
-	 (19,14,'2026-09-14 12:38:56.82886');
+	 (19,14,'2026-09-14 12:38:56.82886'),
+	 (72,137,'2026-09-22 15:38:21.971376'),
+	 (72,132,'2026-09-22 15:57:17.315023'),
+	 (72,141,'2026-09-22 15:58:03.562572'),
+	 (72,99,'2026-09-22 15:58:04.404535');
 INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
 	 (1,2,'txn_01m1a2b3c4d5e6f7g8h9i0j1','https://paddle.com/receipt/1','Tarjeta terminada en 4242','Paddle',15000.00,2,4,'2026-03-10 10:00:00','2026-03-12 11:00:00',1),
 	 (3,5,'mp_12345678901','https://mercadopago.com/receipt/1','Dinero en cuenta','MercadoPago',8500.00,1,2,'2026-03-15 09:30:00','2026-03-16 10:45:00',1),
@@ -1095,26 +1101,26 @@ INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,de
 	 (19,21,'txn_01m1esqet0p4ajaynv5ct94a4m','','Tarjeta terminada en 4242','Paddle',25000.00,5,3,'2026-09-01 15:34:41.128459','2026-09-07 11:32:27.028434',1),
 	 (19,21,'txn_01m1efyga75963x84hba7qc67x','','Tarjeta terminada en 4242','Paddle',16624.00,0,2,'2026-09-01 12:43:46.251229','2026-09-07 13:19:15.560152',2),
 	 (19,21,NULL,NULL,NULL,' ',NULL,0,5,'2026-09-07 13:21:33.713002','2026-09-08 11:26:58.523025',2),
-	 (19,21,'txn_01m25h3bn9azpa1qqphej8hk4x','','Tarjeta terminada en 4242','Paddle',750000.00,0,3,'2026-09-10 11:26:25.665334','2026-09-10 11:26:56.281499',3);
+	 (19,21,'txn_01m25rzm299y7e5pyqk60bfw0q','','Tarjeta terminada en 4242','Paddle',110000.00,11,3,'2026-09-10 13:44:11.889256','2026-09-21 15:26:50.450109',1);
 INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
-	 (19,21,'txn_01m25rzm299y7e5pyqk60bfw0q','','Tarjeta terminada en 4242','Paddle',110000.00,0,3,'2026-09-10 13:44:11.889256','2026-09-10 13:44:34.295601',3),
-	 (19,21,'txn_01m25swryfgxmr2pb3jp0vaxqt','','Tarjeta terminada en 4242','Paddle',255000.00,0,3,'2026-09-10 14:00:07.15135','2026-09-10 14:00:28.262708',3),
+	 (19,21,'txn_01m25swryfgxmr2pb3jp0vaxqt','','Tarjeta terminada en 4242','Paddle',255000.00,11,3,'2026-09-10 14:00:07.15135','2026-09-21 15:26:54.100307',1),
 	 (19,21,NULL,NULL,NULL,' ',NULL,0,1,'2026-09-15 12:50:56.548881',NULL,4),
 	 (19,21,NULL,NULL,NULL,' ',NULL,0,5,'2026-09-15 12:51:27.907961','2026-09-17 12:09:59.973667',3),
-	 (19,21,'txn_01m2jn0pevk09sp8sd61dgdkxk','','Tarjeta terminada en 4242','Paddle',17008.00,0,6,'2026-09-15 13:44:59.948695','2026-09-15 13:45:31.264169',3);
+	 (19,21,'txn_01m2jn0pevk09sp8sd61dgdkxk','','Tarjeta terminada en 4242','Paddle',17008.00,0,6,'2026-09-15 13:44:59.948695','2026-09-15 13:45:31.264169',3),
+	 (19,21,'txn_01m25h3bn9azpa1qqphej8hk4x','','Tarjeta terminada en 4242','Paddle',750000.00,11,3,'2026-09-10 11:26:25.665334','2026-09-21 15:26:41.196452',1),
+	 (19,17,'txn_01m34nj6v0n6s88sbvfs03eep2','','Tarjeta terminada en 4242','Paddle',21000.00,0,2,'2026-09-22 13:40:53.971943','2026-09-22 13:41:16.929278',3);
 INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
 	 ('Amortiguador Vibración Base (Bass Shaker)',140000.00,15,'SimRacing','AMO-VIB-6013','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
 	 ('Silla Butaca Competición',380000.00,10,'SimRacing','SIL-BUT-6015','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
 	 ('Interfaz de Audio USB 2x2',280000.00,15,'Audio','INT-USB-7001','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
-	 ('Auriculares Monitoreo Estudio',195000.00,28,'Audio','AUR-EST-7002','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
 	 ('Micrófono Dinámico XLR',210000.00,22,'Audio','MIC-DIN-7003','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
 	 ('Brazo Articulado Micrófono Premium',85000.00,50,'Audio','BRA-ART-7004','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
 	 ('Filtro Anti-Pop Micrófono',22000.00,120,'Audio','FIL-POP-7005','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
 	 ('Pedalera Célula Carga SimRacing',450000.00,12,'SimRacing','PED-CEL-6001','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
 	 ('Aro Volante Formula F1',320000.00,18,'SimRacing','ARO-FOR-6002','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
-	 ('Soporte Monitor Integrado Cockpit',120000.00,22,'SimRacing','SOP-MON-6004','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true);
+	 ('Soporte Monitor Integrado Cockpit',120000.00,22,'SimRacing','SOP-MON-6004','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
+	 ('Freno de Mano Progresivo USB',185000.00,30,'SimRacing','FRE-MAN-6005','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true);
 INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
-	 ('Freno de Mano Progresivo USB',185000.00,30,'SimRacing','FRE-MAN-6005','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
 	 ('Palanca de Cambios Secuencial',210000.00,25,'SimRacing','PAL-SEC-6006','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
 	 ('Base Volante Direct Drive 8Nm',950000.00,8,'SimRacing','BAS-DIR-6007','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
 	 ('Guantes Carreras SimRacing',45000.00,60,'SimRacing','GUA-CAR-6008','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
@@ -1123,9 +1129,9 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Luz Aro Anillo Selfie con Trípode',42000.00,90,'Accesorios','LUZ-ARO-5006','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Soporte Auriculares Mesa',18000.00,140,'Accesorios','SOP-AUR-5008','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Lentes Protección Luz Azul',45000.00,110,'Accesorios','LEN-LUZ-5009','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
-	 ('Mouse Bungee (Sujeta Cable)',22000.00,80,'Accesorios','MOU-BUN-5011','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true);
+	 ('Mouse Bungee (Sujeta Cable)',22000.00,80,'Accesorios','MOU-BUN-5011','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
+	 ('Kit Limpieza Pantallas y Teclado',16500.00,220,'Accesorios','KIT-LIM-5012','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true);
 INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
-	 ('Kit Limpieza Pantallas y Teclado',16500.00,220,'Accesorios','KIT-LIM-5012','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Funda Protectora Teclado',12000.00,160,'Accesorios','FUN-TEC-5014','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Cámara de Seguridad IP WiFi',85000.00,45,'Accesorios','CAM-SEG-5015','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Ventilador Gabinete 120mm x3',45000.00,120,'Hardware','FAN-120-4011','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
@@ -1134,9 +1140,9 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Controlador RGB 5v ARGB',25000.00,85,'Hardware','CON-RGB-4014','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
 	 ('Adaptador Wi-Fi PCIe 6E',65000.00,50,'Hardware','WIF-PCI-4015','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
 	 ('Soporte Celular Escritorio',12000.00,250,'Accesorios','SOP-CEL-5001','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
-	 ('Funda Notebook 15.6 Neoprene',35000.00,180,'Accesorios','FUN-NOT-5002','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true);
+	 ('Funda Notebook 15.6 Neoprene',35000.00,180,'Accesorios','FUN-NOT-5002','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
+	 ('Cable USB-C Carga Rápida 2m',15000.00,400,'Accesorios','CAB-USC-5003','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true);
 INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
-	 ('Cable USB-C Carga Rápida 2m',15000.00,400,'Accesorios','CAB-USC-5003','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Organizador de Cables Velco (10u)',8500.00,500,'Accesorios','ORG-CAB-5004','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Mochila Porta Notebook Impermeable',85000.00,60,'Accesorios','MOC-POR-5005','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Memoria RAM DDR4 16GB 3200MHz',95000.00,150,'Hardware','RAM-DDR-4001','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
@@ -1145,9 +1151,9 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Buzo Canguro con Capucha',45000.00,150,'Indumentaria','BUZ-CAN-8002','2026-06-25 09:31:41.35302','2026-08-05 12:42:00.734179',true),
 	 ('Motherboard B550M AM4',210000.00,45,'Hardware','MOT-B55-4003','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
 	 ('Cargador Inalámbrico Fast Charge',55000.00,69,'Accesorios','CAR-INA-5007','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
-	 ('Cable XLR a XLR 3 Metros',35000.00,118,'Audio','CAB-XLR-7007','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true);
+	 ('Cable XLR a XLR 3 Metros',35000.00,118,'Audio','CAB-XLR-7007','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
+	 ('Micrófono Inalámbrico Solapero',160000.00,6,'Audio','MIC-SOL-7014','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true);
 INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
-	 ('Micrófono Inalámbrico Solapero',160000.00,6,'Audio','MIC-SOL-7014','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
 	 ('Cable Extensión Pedales USB',25000.00,79,'SimRacing','CAB-PED-6012','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
 	 ('Tira LED RGB 5 Metros',38000.00,128,'Accesorios','TIR-LED-5013','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Remera Algodón Básica Lisa',18000.00,280,'Indumentaria','REM-ALG-8001','2026-06-25 09:31:41.35302','2026-06-25 09:31:41.35302',true),
@@ -1156,13 +1162,14 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Cockpit Estructura Aluminio 4080',750000.00,4,'SimRacing','COC-ALU-6003','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
 	 ('Soporte Araña Micrófono (Shockmount)',45000.00,42,'Audio','SOP-ARA-7009','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
 	 ('Soporte Monitores de Estudio (Pie)',110000.00,4,'Audio','SOP-PIE-7013','2026-06-22 12:27:58.663','2026-09-07 15:15:18.717089',true),
-	 ('Alfombra Goma Antideslizante Cockpit',65000.00,44,'SimRacing','ALF-ANT-6014','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true);
+	 ('Alfombra Goma Antideslizante Cockpit',65000.00,44,'SimRacing','ALF-ANT-6014','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
+	 ('Adaptador Bluetooth 5.0 USB',14000.00,297,'Accesorios','ADA-BLU-5010','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true);
 INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
-	 ('Adaptador Bluetooth 5.0 USB',14000.00,297,'Accesorios','ADA-BLU-5010','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Cable Jack 3.5 a Doble RCA',18000.00,179,'Audio','CAB-JAC-7012','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
 	 ('Amplificador Auriculares 4 Salidas',95000.00,2,'Audio','AMP-AUR-7011','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
 	 ('Pantalón Jogging Algodón',38000.00,152,'Indumentaria','PAN-JOG-8004','2026-06-25 09:31:41.35302','2026-06-25 09:31:41.35302',true),
 	 ('Parlante Portátil Bluetooth Agua',135000.00,29,'Audio','PAR-POR-7015','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
+	 ('Auriculares Monitoreo Estudio',195000.00,27,'Audio','AUR-EST-7002','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
 	 ('Fuente de Alimentación 750W 80+ Bronze',160000.00,60,'Hardware','FUE-750-4004','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
 	 ('Gabinete ATX Cristal Templado',185000.00,30,'Hardware','GAB-ATX-4005','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
 	 ('Refrigeración Líquida 240mm',240000.00,25,'Hardware','REF-LIQ-4006','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
@@ -1238,15 +1245,14 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Lata',14.00,61,'Indefinido','BAQ-LDR-8658','2026-06-05 08:38:04.779331','2026-09-08 11:58:22.935912',true),
 	 ('Mouse Performance',100000.00,49,'Periféricos','PER-MON-275','2026-04-01 12:50:36.972244','2026-09-16 14:30:35.739568',true),
 	 ('Auriculares Inalámbricos JBL Tune 770NC',120000.00,4,'Audio','AUD-JBL-770','2026-03-09 12:42:26.964735','2026-04-16 12:41:16.938246',true),
-	 ('Silla',123321.00,23131,'Muebleria','DSX-QGW-6722','2026-05-21 09:42:39.341004',NULL,true),
 	 ('Celular Zarpado',5000000.00,4,'Hardware','NAB-FDUB-658','2026-05-06 08:53:07.58381','2026-05-08 08:49:55.726121',true),
 	 ('Escritorio Normal',40000.00,86,'Muebleria','BIU-USD-4445','2026-05-06 08:54:38.97244','2026-05-08 08:50:09.753917',true),
 	 ('Teclado Mecánico Redragon',110000.00,27,'Periféricos','PER-TEC-RED','2026-03-09 12:42:26.964735','2026-04-16 12:41:20.560128',true),
 	 ('Silla Gamer',41.00,3613,'Muebleria','KYY-KLN-5644','2026-05-21 09:53:39.423853',NULL,true),
 	 ('wall',74654.00,124,'Indefinido','RJJ-PPN-7688','2026-05-20 10:15:11.126817','2026-05-26 12:47:16.566999',false),
-	 ('Bolsa de Tela Venom',516.00,156315,'Indefinido','QLZ-PBQ-1955','2026-05-20 13:09:47.880256',NULL,true);
+	 ('Bolsa de Tela Venom',516.00,156315,'Indefinido','QLZ-PBQ-1955','2026-05-20 13:09:47.880256',NULL,true),
+	 ('Cuaderno',61456.00,16,'Indefinido','LBQ-WUZ-3721','2026-05-22 10:33:16.358872',NULL,true);
 INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
-	 ('Cuaderno',61456.00,16,'Indefinido','LBQ-WUZ-3721','2026-05-22 10:33:16.358872',NULL,true),
 	 ('Notebook',50001.00,49,'Hardware','NDNI-DSAD-259','2026-04-10 10:06:48.471102','2026-05-06 10:29:29.437869',true),
 	 ('Taza',840.00,99,'Indefinido','QJE-HTK-2878','2026-05-07 08:44:41.646347',NULL,true),
 	 ('Bolsa Producto',5.00,999987,'Indefinido','QOY-YYZ-0143','2026-05-07 12:31:43.612829','2026-05-22 11:01:40.392979',true),
@@ -1255,7 +1261,8 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Micrófono Condensador USB',1200001.00,25,'Periféricos','MIC-CON-3005','2026-06-22 12:27:58.599835','2026-08-05 12:43:28.997467',true),
 	 ('Wallpaper',123.00,10,'Indefinido','ZSZ-MOQ-2071','2026-05-20 10:10:53.790316','2026-09-08 11:57:59.966598',true),
 	 ('Medias Invisibles Pack x3',9500.00,321,'Indumentaria','MED-INV-8005','2026-06-25 09:31:41.35302','2026-09-10 14:54:34.686006',true),
-	 ('Auriculares Inalambricos',5772220.00,321,'Periféricos','NASODNIO','2026-05-06 08:52:04.541972',NULL,true);
+	 ('Auriculares Inalambricos',5772220.00,321,'Periféricos','NASODNIO','2026-05-06 08:52:04.541972',NULL,true),
+	 ('Silla',123321.00,23131,'Muebleria','DSX-QGW-6722','2026-05-21 09:42:39.341004','2026-09-23 12:52:33.121203',true);
 INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
 	 ('Remera Térmica Compresión',28000.00,76,'Indumentaria','REM-TER-8007','2026-06-25 09:31:41.35302','2026-06-25 09:31:41.35302',true),
 	 ('Camisa Manga Corta Estampada',55000.00,50,'Indumentaria','CAM-MAN-8011','2026-06-25 09:31:41.35302','2026-06-25 09:31:41.35302',true),
@@ -1275,7 +1282,6 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Monitores de Estudio Activos (Par)',450000.00,510,'Audio','MON-EST-7006','2026-06-22 12:27:58.663','2026-09-07 15:05:46.849052',true);
 INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
 	 (23,'Seguridad Hogar',72999.00,'2026-09-14 00:00:00+00','2026-10-10 23:59:59+00','2026-09-15 14:54:19.098059+00',140000.00,48,true,true),
-	 (25,'Modding Week',31999.00,'2026-09-10 00:00:00+00','2026-09-20 23:59:59+00','2026-09-15 14:54:19.098059+00',380000.00,92,true,true),
 	 (26,'Bajá las Temps',12500.00,'2026-09-15 00:00:00+00','2026-10-05 23:59:59+00','2026-09-15 14:54:19.098059+00',280000.00,96,true,true),
 	 (27,'Todo RGB',21000.00,'2026-09-01 00:00:00+00','2026-09-30 23:59:59+00','2026-09-15 14:54:19.098059+00',195000.00,89,true,true),
 	 (28,'Conectividad Máxima',55000.00,'2026-09-10 00:00:00+00','2026-09-28 23:59:59+00','2026-09-15 14:54:19.098059+00',210000.00,74,true,true),
@@ -1283,10 +1289,9 @@ INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inici
 	 (31,'Carga Veloz',12999.00,'2026-09-15 00:00:00+00','2026-09-25 23:59:59+00','2026-09-15 14:54:19.098059+00',450000.00,97,true,true),
 	 (32,'Setup Ordenado',6999.00,'2026-09-10 00:00:00+00','2026-10-31 23:59:59+00','2026-09-15 14:54:19.098059+00',320000.00,98,true,true),
 	 (34,'Promo Hardware',82000.00,'2026-09-12 00:00:00+00','2026-09-26 23:59:59+00','2026-09-15 14:54:19.098059+00',120000.00,32,true,true),
-	 (35,'Velocidad SSD',105000.00,'2026-09-14 00:00:00+00','2026-10-01 23:59:59+00','2026-09-15 14:54:19.098059+00',185000.00,43,true,true);
+	 (35,'Velocidad SSD',105000.00,'2026-09-14 00:00:00+00','2026-10-01 23:59:59+00','2026-09-15 14:54:19.098059+00',185000.00,43,true,true),
+	 (36,'Sale Indumentaria',79999.00,'2026-09-10 00:00:00+00','2026-09-28 23:59:59+00','2026-09-15 14:54:19.098059+00',210000.00,62,true,true);
 INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
-	 (36,'Sale Indumentaria',79999.00,'2026-09-10 00:00:00+00','2026-09-28 23:59:59+00','2026-09-15 14:54:19.098059+00',210000.00,62,true,true),
-	 (37,'Especial Invierno',38000.00,'2026-09-05 00:00:00+00','2026-09-20 23:59:59+00','2026-09-15 14:54:19.098059+00',950000.00,96,true,true),
 	 (39,'Chau Cables',46000.00,'2026-09-01 00:00:00+00','2026-10-15 23:59:59+00','2026-09-15 14:54:19.098059+00',85000.00,46,true,true),
 	 (40,'Conexión Segura',29500.00,'2026-09-10 00:00:00+00','2026-09-25 23:59:59+00','2026-09-15 14:54:19.098059+00',95000.00,69,true,true),
 	 (18,'Descuento Audio',14999.00,'2026-09-14 00:00:00+00','2026-09-30 23:59:59+00','2026-09-15 14:54:19.098059+00',160000.00,91,true,true),
@@ -1294,20 +1299,21 @@ INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inici
 	 (33,'Vuelta a Clases',74999.00,'2026-09-01 00:00:00+00','2026-09-30 23:59:59+00','2026-09-15 14:54:19.098059+00',750000.00,90,true,true),
 	 (33,'xvsdsf',12212.00,'2026-09-15 11:40:00+00','2026-09-23 12:40:00+00','2026-09-15 12:40:45.868102+00',750000.00,98,true,true),
 	 (14,'Oferta Indumentaria',38000.00,'2026-09-01 00:00:00+00','2026-09-30 23:59:59+00','2026-09-15 14:54:19.098059+00',45000.00,16,true,true),
-	 (17,'Sale Influencer',34999.00,'2026-09-05 00:00:00+00','2026-10-15 23:59:59+00','2026-09-15 14:54:19.098059+00',110000.00,68,true,true);
-INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
+	 (17,'Sale Influencer',34999.00,'2026-09-05 00:00:00+00','2026-10-15 23:59:59+00','2026-09-15 14:54:19.098059+00',110000.00,68,true,true),
 	 (24,'Refrigeración 15%',38500.00,'2026-09-05 00:00:00+00','2026-09-30 23:59:59+00','2026-09-15 14:54:19.098059+00',65000.00,41,true,true),
-	 (45,'asddsa',361.00,'2026-09-02 14:58:00+00','2026-09-30 06:58:00+00','2026-09-15 14:58:22.48088+00',14000.00,97,true,true),
+	 (45,'asddsa',361.00,'2026-09-02 14:58:00+00','2026-09-30 06:58:00+00','2026-09-15 14:58:22.48088+00',14000.00,97,true,true);
+INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
 	 (15,'Semana Ergonomía',69999.00,'2026-09-15 00:00:00+00','2026-10-05 23:59:59+00','2026-09-15 14:54:19.098059+00',95000.00,26,true,true),
 	 (19,'Cuidá tus Ojos',37999.00,'2026-09-01 00:00:00+00','2026-10-31 23:59:59+00','2026-09-15 14:54:19.098059+00',135000.00,72,true,true),
+	 (25,'Modding Week',31999.00,'2026-09-10 00:00:00+00','2026-09-20 23:59:59+00','2026-09-15 14:54:19.098059+00',380000.00,92,true,false),
+	 (37,'Especial Invierno',38000.00,'2026-09-05 00:00:00+00','2026-09-20 23:59:59+00','2026-09-15 14:54:19.098059+00',950000.00,96,true,false),
 	 (21,'Mantenimiento PC',13999.00,'2026-09-10 00:00:00+00','2026-10-01 23:59:59+00','2026-09-15 14:54:19.098059+00',150000.00,91,true,true),
 	 (7,'Remate Stock',18000.00,'2026-09-15 00:00:00+00','2026-09-25 23:59:59+00','2026-09-15 14:54:19.098059+00',25000.00,28,true,true),
 	 (11,'Derrapes al 15%',159999.00,'2026-09-10 00:00:00+00','2026-10-10 23:59:59+00','2026-09-15 14:54:19.098059+00',450000.00,64,true,true),
 	 (82,'asd',170000.00,'2026-09-09 02:30:00+00','2026-09-25 14:28:00+00','2026-09-16 14:28:25.005623+00',850000.00,80,true,true),
-	 (122,NULL,20000.00,'2026-09-15 14:30:00+00','2026-09-17 14:30:00+00','2026-09-16 14:30:53.843603+00',100000.00,80,true,true),
-	 (147,'auris',1154444.00,'2026-09-15 15:15:00+00','2026-09-24 15:15:00+00','2026-09-16 15:15:16.617543+00',5772220.00,80,true,true);
+	 (147,'auris',1154444.00,'2026-09-15 15:15:00+00','2026-09-24 15:15:00+00','2026-09-16 15:15:16.617543+00',5772220.00,80,true,true),
+	 (154,NULL,1.00,'2026-09-15 15:15:00+00','2026-09-25 15:15:00+00','2026-09-16 15:15:35.097125+00',1200001.00,100,true,true);
 INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
-	 (154,NULL,1.00,'2026-09-15 15:15:00+00','2026-09-25 15:15:00+00','2026-09-16 15:15:35.097125+00',1200001.00,100,true,true),
 	 (1,'Cambio de precio fijo',50000.00,'2026-03-12 11:51:01.439941+00','2026-03-12 11:51:01.439941+00','2026-03-12 11:51:01.439941+00',5.00,NULL,false,false),
 	 (1,'Cambio de precio fijo',5000.00,'2026-03-12 11:51:19.042781+00','2026-03-12 11:51:19.042781+00','2026-03-12 11:51:19.042781+00',50000.00,NULL,false,false),
 	 (3,'Cambio de precio fijo',500000.00,'2026-03-12 11:58:04.020623+00','2026-03-12 11:58:04.020623+00','2026-03-12 11:58:04.020623+00',300000.00,NULL,false,false),
@@ -1316,9 +1322,9 @@ INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inici
 	 (10,'Cambio de precio fijo',1500.00,'2026-03-12 12:14:39.520234+00','2026-03-12 12:14:39.520234+00','2026-03-12 12:14:39.520234+00',150000.00,NULL,false,false),
 	 (5,'Cambio de precio fijo',8000.00,'2026-03-18 11:19:51.047676+00','2026-03-18 11:19:51.047676+00','2026-03-18 11:19:51.047676+00',280000.00,NULL,false,false),
 	 (1,'Cambio de precio fijo',50000.00,'2026-04-17 12:43:29.136912+00','2026-04-17 12:43:29.136912+00','2026-04-17 12:43:29.136912+00',5000.00,NULL,false,false),
-	 (1,'Cambio de precio fijo',5000.00,'2026-04-17 12:46:44.894606+00','2026-04-17 12:46:44.894606+00','2026-04-17 12:46:44.894606+00',50000.00,NULL,false,false);
+	 (1,'Cambio de precio fijo',5000.00,'2026-04-17 12:46:44.894606+00','2026-04-17 12:46:44.894606+00','2026-04-17 12:46:44.894606+00',50000.00,NULL,false,false),
+	 (2,'Cambio de precio fijo',550000.00,'2026-04-17 12:47:02.776687+00','2026-04-17 12:47:02.776687+00','2026-04-17 12:47:02.776687+00',450000.00,NULL,false,false);
 INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
-	 (2,'Cambio de precio fijo',550000.00,'2026-04-17 12:47:02.776687+00','2026-04-17 12:47:02.776687+00','2026-04-17 12:47:02.776687+00',450000.00,NULL,false,false),
 	 (15,'Cambio de precio fijo',5000.00,'2026-04-17 12:47:18.936461+00','2026-04-17 12:47:18.936461+00','2026-04-17 12:47:18.936461+00',500000.00,NULL,false,false),
 	 (15,'Cambio de precio fijo',50000.00,'2026-05-05 09:00:35.692983+00','2026-05-05 09:00:35.692983+00','2026-05-05 09:00:35.692983+00',5000.00,NULL,false,false),
 	 (15,'Cambio de precio fijo',50001.00,'2026-05-06 10:29:29.437869+00','2026-05-06 10:29:29.437869+00','2026-05-06 10:29:29.437869+00',50000.00,NULL,false,false),
@@ -1327,9 +1333,9 @@ INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inici
 	 (3,'Cambio de precio fijo',500001.00,'2026-06-05 09:34:19.954549+00','2026-06-05 09:34:19.954549+00','2026-06-05 09:34:19.954549+00',500000.00,NULL,false,false),
 	 (6,'Cambio de precio fijo',130000.00,'2026-08-03 10:12:33.444555+00','2026-08-03 10:12:33.444555+00','2026-08-03 10:12:33.444555+00',125000.00,NULL,false,false),
 	 (8,'Cambio de precio fijo',215000.00,'2026-08-05 09:00:00.123456+00','2026-08-05 09:00:00.123456+00','2026-08-05 09:00:00.123456+00',210000.00,NULL,false,false),
-	 (10,'Cambio de precio fijo',2000.00,'2026-08-08 14:20:10.789456+00','2026-08-08 14:20:10.789456+00','2026-08-08 14:20:10.789456+00',1500.00,NULL,false,false);
+	 (10,'Cambio de precio fijo',2000.00,'2026-08-08 14:20:10.789456+00','2026-08-08 14:20:10.789456+00','2026-08-08 14:20:10.789456+00',1500.00,NULL,false,false),
+	 (12,'Cambio de precio fijo',10500.00,'2026-08-10 16:45:22.333222+00','2026-08-10 16:45:22.333222+00','2026-08-10 16:45:22.333222+00',10001.00,NULL,false,false);
 INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
-	 (12,'Cambio de precio fijo',10500.00,'2026-08-10 16:45:22.333222+00','2026-08-10 16:45:22.333222+00','2026-08-10 16:45:22.333222+00',10001.00,NULL,false,false),
 	 (13,'Cambio de precio fijo',53000.00,'2026-08-12 11:15:33.555444+00','2026-08-12 11:15:33.555444+00','2026-08-12 11:15:33.555444+00',52000.00,NULL,false,false),
 	 (15,'Cambio de precio fijo',51000.00,'2026-08-15 08:30:40.111999+00','2026-08-15 08:30:40.111999+00','2026-08-15 08:30:40.111999+00',50001.00,NULL,false,false),
 	 (18,'Cambio de precio fijo',32000.00,'2026-08-18 13:22:55.777888+00','2026-08-18 13:22:55.777888+00','2026-08-18 13:22:55.777888+00',31000.00,NULL,false,false),
@@ -1338,9 +1344,9 @@ INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inici
 	 (4,'Cambio de precio fijo',820000.00,'2026-08-25 12:40:15.444333+00','2026-08-25 12:40:15.444333+00','2026-08-25 12:40:15.444333+00',800000.00,NULL,false,false),
 	 (16,'Cambio de precio fijo',16500.00,'2026-07-08 11:50:44.789123+00','2026-07-08 11:50:44.789123+00','2026-07-08 11:50:44.789123+00',15000.00,NULL,false,false),
 	 (17,'Cambio de precio fijo',27000.00,'2026-07-10 16:22:11.123456+00','2026-07-10 16:22:11.123456+00','2026-07-10 16:22:11.123456+00',25000.00,NULL,false,false),
-	 (18,'Cambio de precio fijo',31000.00,'2026-07-12 08:30:15.654321+00','2026-07-12 08:30:15.654321+00','2026-07-12 08:30:15.654321+00',29990.00,NULL,false,false);
+	 (18,'Cambio de precio fijo',31000.00,'2026-07-12 08:30:15.654321+00','2026-07-12 08:30:15.654321+00','2026-07-12 08:30:15.654321+00',29990.00,NULL,false,false),
+	 (19,'Cambio de precio fijo',34000.00,'2026-07-15 14:15:22.987654+00','2026-07-15 14:15:22.987654+00','2026-07-15 14:15:22.987654+00',35000.00,NULL,false,false);
 INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
-	 (19,'Cambio de precio fijo',34000.00,'2026-07-15 14:15:22.987654+00','2026-07-15 14:15:22.987654+00','2026-07-15 14:15:22.987654+00',35000.00,NULL,false,false),
 	 (20,'Cambio de precio fijo',460000.00,'2026-07-18 09:40:11.111222+00','2026-07-18 09:40:11.111222+00','2026-07-18 09:40:11.111222+00',457870.00,NULL,false,false),
 	 (21,'Cambio de precio fijo',18500.00,'2026-07-20 17:20:30.333444+00','2026-07-20 17:20:30.333444+00','2026-07-20 17:20:30.333444+00',18000.00,NULL,false,false),
 	 (22,'Cambio de precio fijo',15500.00,'2026-07-22 11:05:40.555666+00','2026-07-22 11:05:40.555666+00','2026-07-22 11:05:40.555666+00',15100.00,NULL,false,false),
@@ -1349,15 +1355,34 @@ INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inici
 	 (5,'Cambio de precio fijo',8500.00,'2026-08-01 15:10:15.999+00','2026-08-01 15:10:15.999+00','2026-08-01 15:10:15.999+00',8001.00,NULL,false,false),
 	 (2,'Cambio de precio fijo',480000.00,'2026-06-10 10:12:30.123456+00','2026-06-10 10:12:30.123456+00','2026-06-10 10:12:30.123456+00',550000.00,NULL,false,false),
 	 (4,'Cambio de precio fijo',750000.00,'2026-06-12 14:05:11.987654+00','2026-06-12 14:05:11.987654+00','2026-06-12 14:05:11.987654+00',800000.00,NULL,false,false),
-	 (4,'Cambio de precio fijo',800000.00,'2026-06-15 09:22:45.444333+00','2026-06-15 09:22:45.444333+00','2026-06-15 09:22:45.444333+00',750000.00,NULL,false,false);
+	 (4,'Cambio de precio fijo',800000.00,'2026-06-15 09:22:45.444333+00','2026-06-15 09:22:45.444333+00','2026-06-15 09:22:45.444333+00',750000.00,NULL,false,false),
+	 (6,'Cambio de precio fijo',125000.00,'2026-06-18 11:40:15.111222+00','2026-06-18 11:40:15.111222+00','2026-06-18 11:40:15.111222+00',120000.00,NULL,false,false);
 INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
-	 (6,'Cambio de precio fijo',125000.00,'2026-06-18 11:40:15.111222+00','2026-06-18 11:40:15.111222+00','2026-06-18 11:40:15.111222+00',120000.00,NULL,false,false),
 	 (7,'Cambio de precio fijo',115000.00,'2026-06-20 15:10:50.555666+00','2026-06-20 15:10:50.555666+00','2026-06-20 15:10:50.555666+00',110000.00,NULL,false,false),
 	 (8,'Cambio de precio fijo',210000.00,'2026-06-22 08:33:22.777888+00','2026-06-22 08:33:22.777888+00','2026-06-22 08:33:22.777888+00',220000.00,NULL,false,false),
 	 (9,'Cambio de precio fijo',48000.00,'2026-06-25 13:50:05.333444+00','2026-06-25 13:50:05.333444+00','2026-06-25 13:50:05.333444+00',45000.00,NULL,false,false),
 	 (11,'Cambio de precio fijo',16000.00,'2026-06-28 10:15:40.222111+00','2026-06-28 10:15:40.222111+00','2026-06-28 10:15:40.222111+00',15000.00,NULL,false,false),
 	 (13,'Cambio de precio fijo',52000.00,'2026-07-02 14:20:11.999+00','2026-07-02 14:20:11.999+00','2026-07-02 14:20:11.999+00',50000.00,NULL,false,false),
-	 (14,'Cambio de precio fijo',7900000.00,'2026-07-05 09:12:33.444555+00','2026-07-05 09:12:33.444555+00','2026-07-05 09:12:33.444555+00',8000000.00,NULL,false,false);
+	 (14,'Cambio de precio fijo',7900000.00,'2026-07-05 09:12:33.444555+00','2026-07-05 09:12:33.444555+00','2026-07-05 09:12:33.444555+00',8000000.00,NULL,false,false),
+	 (135,NULL,80000.00,'2026-09-18 15:40:00+00','2026-09-25 15:40:00+00','2026-09-18 15:40:26.52453+00',800000.00,90,true,true),
+	 (45,'bobobobobobo',361.00,'2026-09-02 17:58:00+00','2026-09-30 09:58:00+00','2026-09-18 15:51:22.751031+00',14000.00,97,true,true),
+	 (122,NULL,20000.00,'2026-09-15 14:30:00+00','2026-09-17 14:30:00+00','2026-09-16 14:30:53.843603+00',100000.00,80,true,false),
+	 (132,'silla de mamadera',49293.60,'2026-09-14 15:59:00+00','2026-09-23 15:59:00+00','2026-09-22 15:59:18.733348+00',123234.00,60,true,true);
+INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
+	 (137,'Silla sin patas',24664.20,'2026-09-21 15:39:00+00','2026-09-23 15:39:00+00','2026-09-22 15:39:24.712361+00',123321.00,80,true,false),
+	 (99,'silaaa',14000.00,'2026-09-15 16:04:00+00','2026-09-30 16:04:00+00','2026-09-22 16:04:36.408812+00',28000.00,50,true,false),
+	 (137,'monogatari',24664.20,'2026-09-16 12:35:00+00','2026-09-30 12:35:00+00','2026-09-23 12:35:12.913859+00',123321.00,80,true,false),
+	 (25,'crazy',228000.00,'2026-09-16 12:39:00+00','2026-09-30 12:39:00+00','2026-09-23 12:39:54.25956+00',380000.00,40,true,true),
+	 (137,'chase',36996.30,'2026-09-16 12:41:00+00','2026-09-30 12:41:00+00','2026-09-23 12:41:14.4888+00',123321.00,70,true,false),
+	 (137,NULL,24664.20,'2026-09-16 12:52:00+00','2026-09-23 12:52:00+00','2026-09-23 12:53:02.165533+00',123321.00,80,true,true),
+	 (137,NULL,24664.20,'2026-09-16 18:52:00+00','2026-09-23 18:52:00+00','2026-09-23 12:53:26.636796+00',123321.00,80,true,false),
+	 (137,'a',24664.20,'2026-09-16 15:52:00+00','2026-09-23 15:52:00+00','2026-09-23 12:53:18.89339+00',123321.00,80,true,false),
+	 (137,NULL,24664.20,'2026-09-16 15:52:00+00','2026-09-23 15:52:00+00','2026-09-23 13:22:44.042252+00',123321.00,80,true,false),
+	 (137,NULL,24664.20,'2026-09-16 15:52:00+00','2026-09-23 15:52:00+00','2026-09-23 13:33:47.296849+00',123321.00,80,true,false);
+INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
+	 (137,'aaa',24664.20,'2026-09-16 15:52:00+00','2026-09-23 15:52:00+00','2026-09-23 13:42:06.911544+00',123321.00,80,true,false),
+	 (137,'asdc',24664.20,'2026-09-16 15:52:00+00','2026-09-23 15:52:00+00','2026-09-23 13:47:31.889679+00',123321.00,80,true,false),
+	 (137,'a',24664.20,'2026-09-16 15:52:00+00','2026-09-23 15:52:00+00','2026-09-23 13:53:00.252778+00',123321.00,80,true,true);
 INSERT INTO public.roles (rol,descripcion) VALUES
 	 ('Administrador','Dueño de la Pagina, Tiene Acceso a Todas las Funciones de la Pagina'),
 	 ('Editor de Productos General','Puede editar todo sobre los Productos y ver el historial de cambios de precios'),
@@ -1391,22 +1416,22 @@ INSERT INTO public.usuarios (nombre,email,dni,contrasena,activo,created_at,updat
 INSERT INTO public.usuarios (nombre,email,dni,contrasena,activo,created_at,updated_at) VALUES
 	 ('Milagros','milagros.suarez@email.com','36222444','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-11 09:30:00',NULL),
 	 ('Santino','santino.ortiz@email.com','37333555','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-12 10:00:00',NULL),
-	 ('Maximo','maxgiesenow@gmail.com','42638965','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-05-11 11:57:59.966549','2026-05-11 11:57:59.966549'),
 	 ('Juan','juan@gmail.com','41864158','$2b$12$StfyY0SPJUSTW1hoKTGCjOdBAc021aagr0VHGb6x/RZM6LWEOT9Hy',true,'2026-05-12 10:15:40.30004',NULL),
 	 ('Leandro','lean@gmail.com','48684486','$2b$12$StfyY0SPJUSTW1hoKTGCjOdBAc021aagr0VHGb6x/RZM6LWEOT9Hy',true,'2026-05-12 10:16:24.754034','2026-05-26 09:10:58.301049'),
 	 ('Cris','cris@gmail.com','14774476','$2b$12$KKSJrao5FDLoi9eo81/q8ull/V5hfvS1n.wavEg4fhvnRYwXvHw82',true,'2026-05-12 10:17:01.391533','2026-08-03 12:54:41.851516'),
 	 ('Tomas','pela@gmail.com','48648846','$2b$12$QoynFBdLMa.IkEw9QPxz2.LRcrNU8pYM1jE.hhRucws629aN0R1Y2',true,'2026-05-12 10:18:20.79238',NULL),
 	 ('Victoria','victoria.ruiz@email.com','38444666','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-12 10:30:00',NULL),
 	 ('Lautaro','lautaro.jimenez@email.com','39555777','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-13 11:00:00',NULL),
-	 ('Abril','abril.moreno@email.com','40666888','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-13 11:30:00',NULL);
+	 ('Abril','abril.moreno@email.com','40666888','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-13 11:30:00',NULL),
+	 ('Ciro','ciro.alvarez@email.com','41777999','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-14 12:00:00',NULL);
 INSERT INTO public.usuarios (nombre,email,dni,contrasena,activo,created_at,updated_at) VALUES
-	 ('Ciro','ciro.alvarez@email.com','41777999','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-14 12:00:00',NULL),
 	 ('Zoe','zoe.castillo@email.com','42888111','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-14 12:30:00',NULL),
 	 ('Benjamín','benjamin.gimenez@email.com','43999222','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-15 13:00:00',NULL),
 	 ('Emma','emma.vera@email.com','44000333','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-15 13:30:00',NULL),
 	 ('Matias','mati@gmail.com','41868648','$2b$12$TOHoFhGpgQhEzgWxgLEZ3uYbdDZLK5wwrWxClIOLxHmr/04xKec8S',true,'2026-05-12 10:18:51.450352','2026-08-28 14:20:02.454958'),
 	 ('Bean','bean@gmail.com','16541865','$2b$12$JUV3tBxQDn5wRAtMmx4u4eYFpQY7waq5sAV3Le7cKucy3icMn5w/q',true,'2026-09-02 13:46:13.797053',NULL),
-	 ('Julieta','julieta.mendoza@email.com','44000111','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-05 13:30:00','2026-09-07 13:08:34.84899');
+	 ('Julieta','julieta.mendoza@email.com','44000111','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-05 13:30:00','2026-09-07 13:08:34.84899'),
+	 ('Maximo','manueljuarezfenix@gmail.com','42638965','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-05-11 11:57:59.966549','2026-05-11 11:57:59.966549');
 INSERT INTO public.usuarios_roles (id_usuario,id_rol) VALUES
 	 (8,3),
 	 (9,4),
@@ -1442,7 +1467,6 @@ INSERT INTO public.usuarios_roles (id_usuario,id_rol) VALUES
 	 (2,7);
 INSERT INTO public.usuarios_roles (id_usuario,id_rol) VALUES
 	 (43,4),
-	 (1,1),
 	 (27,2),
 	 (32,2),
 	 (32,5),
@@ -1450,19 +1474,7 @@ INSERT INTO public.usuarios_roles (id_usuario,id_rol) VALUES
 	 (7,5),
 	 (22,5),
 	 (22,6),
-	 (17,2);
-INSERT INTO public.usuarios_roles (id_usuario,id_rol) VALUES
+	 (17,2),
 	 (17,6);
-
-	 (1, 1),
-	 (2, 6), (2, 3),
-	 (3, 4), 
-	 (4, 5), 
-	 (5, 2), (5, 4),
-	 (6, 5),
-	 (7, 2), (8, 3), (9, 4), (10, 5), (11, 6),
-	 (12, 2), (13, 3), (14, 4), (15, 5), (16, 6),
-	 (17, 2), (18, 3), (19, 4), (20, 5), (21, 6),
-	 (22, 2), (23, 3), (24, 4), (25, 5), (26, 6),
-	 (27, 2), (28, 3), (29, 4), (30, 5), (31, 6),
-	 (32, 2), (33, 3), (34, 4), (35, 5), (36, 6);
+INSERT INTO public.usuarios_roles (id_usuario,id_rol) VALUES
+	 (1,1);

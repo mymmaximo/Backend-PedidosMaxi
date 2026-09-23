@@ -1,19 +1,19 @@
+from sec import limiter
+from routes import paddle
 from fastapi import FastAPI
 from db.database import Base, engine
-from routes import paddle
-from routes import clientes as route_clientes
 from routes import banners as route_banners
+from routes import pedidos as route_pedidos
+from slowapi.errors import RateLimitExceeded
+from routes import clientes as route_clientes
 from routes import usuarios as route_usuarios
 from routes import productos as route_productos
-from routes import pedidos as route_pedidos
-from routes import detalles_pedido as route_detalles_pedido
-from routes import direcciones as route_direcciones
-from routes import registro_precios as route_registro_precios
 from routes import favoritos as route_favoritos
-from fastapi.middleware.cors import CORSMiddleware
 from slowapi import _rate_limit_exceeded_handler
-from slowapi.errors import RateLimitExceeded
-from sec import limiter
+from fastapi.middleware.cors import CORSMiddleware
+from routes import direcciones as route_direcciones
+from routes import detalles_pedido as route_detalles_pedido
+from routes import registro_precios as route_registro_precios
 
 
 Base.metadata.create_all(bind=engine)

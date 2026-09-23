@@ -1,12 +1,13 @@
-from sqlalchemy import Column, Integer, String, DateTime, Boolean
-from sqlalchemy.sql import func
-from db.database import Base
-from pydantic import BaseModel, EmailStr
 from typing import Optional
+from db.database import Base
 from datetime import datetime
+from sqlalchemy.sql import func
+from pydantic import BaseModel, EmailStr
 from db.models.direcciones import Direcciones_Clientes
+from sqlalchemy import Column, Integer, String, DateTime, Boolean
 
 class Clientes(Base):
+    
     __tablename__ = "clientes"
 
     id = Column(

@@ -1,12 +1,13 @@
-from sqlalchemy import ForeignKey, Column, Integer, DateTime, String, Numeric, Boolean
-from sqlalchemy.sql import func
-from sqlalchemy.orm import relationship
-from db.database import Base
-from pydantic import BaseModel, Field
 from typing import Optional
+from db.database import Base
 from datetime import datetime
+from sqlalchemy.sql import func
+from pydantic import BaseModel
+from sqlalchemy.orm import relationship
+from sqlalchemy import ForeignKey, Column, Integer, DateTime, String, Numeric, Boolean
 
 class RegistroPrecios(Base):
+
     __tablename__ = "registro_precios"
 
     id = Column(
@@ -16,7 +17,10 @@ class RegistroPrecios(Base):
     )
     id_producto = Column(
         Integer, 
-        ForeignKey("productos.id", ondelete="CASCADE"),
+        ForeignKey(
+            "productos.id", 
+            ondelete="CASCADE"
+        ),
         index=True
     )
     motivo = Column(

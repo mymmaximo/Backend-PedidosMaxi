@@ -1,9 +1,9 @@
 from typing import Optional
+from fastapi import Request
 from sqlalchemy import text
 from sqlalchemy.orm import Session
-from fastapi import Request
-from db.models.usuarios import Usuarios, Usuarios_Crear, Usuarios_Login, Usuarios_Edit
 from sec import get_contrasena_criptid, verifica_sena, crear_pase, crear_huella
+from db.models.usuarios import Usuarios, Usuarios_Crear, Usuarios_Login, Usuarios_Edit
 
 
 def get_usuario(

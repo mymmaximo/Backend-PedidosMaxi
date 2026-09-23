@@ -1,12 +1,12 @@
 from typing import Optional
-from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 from db.database import get_db
-from db.models.detalles_pedido import Detalles_Pedido_Respuesta, Detalles_Pedido_Crear
-from services.productos import get_producto
-from services.pedidos import get_pedido
-from services import detalles_pedidos as crud
+from sqlalchemy.orm import Session
 from sec import obtener_usuario_actual
+from services.pedidos import get_pedido
+from services.productos import get_producto
+from services import detalles_pedidos as crud
+from fastapi import APIRouter, Depends, HTTPException, status
+from db.models.detalles_pedido import Detalles_Pedido_Respuesta, Detalles_Pedido_Crear
 router = APIRouter()
 
 @router.get(

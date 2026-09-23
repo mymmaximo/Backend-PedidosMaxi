@@ -1,8 +1,8 @@
+import time
 import random
 import string
-import time
 from typing import Optional
-from sqlalchemy import case, or_, text
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 from db.models.archivos import Archivos
 from db.models.productos import Productos, Productos_Crear, Productos_Edit, ArchivoCrear

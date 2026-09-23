@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from db.models.banners import Banners, Banners_Crear, Banners_Respuesta, Banners_Edit
+from db.models.banners import Banners, Banners_Crear, Banners_Edit
 
 def get_banners(
         db: Session, 

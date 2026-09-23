@@ -1,11 +1,12 @@
-from sqlalchemy import ForeignKey, Column, Integer, Numeric
-from sqlalchemy.orm import relationship
+from typing import Optional
 from db.database import Base
 from pydantic import BaseModel
+from sqlalchemy.orm import relationship
+from sqlalchemy import ForeignKey, Column, Integer, Numeric
 from db.models.productos import Productos_Detalles, Productos_Detalles_Clientes
-from typing import Optional
 
 class Detalles_Pedido(Base):
+    
     __tablename__ = "detalles_pedido"
 
     id = Column(

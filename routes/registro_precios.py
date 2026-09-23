@@ -1,12 +1,12 @@
-from fastapi import APIRouter, Depends, HTTPException, status
 from typing import Optional
 from datetime import datetime
-from sqlalchemy.orm import Session
-from sqlalchemy.sql import func
 from db.database import get_db
-from db.models.registro_precios import RegistroPrecios, RegistroPreciosCrear, RegistroPreciosEdit, RegistroPreciosRespuesta, RegistroPrecios_wproductos
-from services import registro_precios as crud
+from sqlalchemy.sql import func
+from sqlalchemy.orm import Session
 from sec import obtener_usuario_actual
+from services import registro_precios as crud
+from fastapi import APIRouter, Depends, HTTPException, status
+from db.models.registro_precios import RegistroPrecios, RegistroPreciosCrear, RegistroPreciosEdit, RegistroPreciosRespuesta, RegistroPrecios_wproductos
 
 router = APIRouter()
 

@@ -71,23 +71,6 @@ CREATE TABLE estados_pedido (
 );
 
 
--- public.historial_precios definition
-
--- Drop table
-
--- DROP TABLE historial_precios;
-
-CREATE TABLE historial_precios (
-	id serial4 NOT NULL,
-	id_producto int4 NULL,
-	precio_viejo numeric(10, 2) NULL,
-	precio_nuevo numeric(10, 2) NULL,
-	updated_at timestamptz NULL,
-	CONSTRAINT historial_precios_pkey PRIMARY KEY (id)
-);
-CREATE INDEX ix_historial_precios_id ON public.historial_precios USING btree (id);
-
-
 -- public.productos definition
 
 -- Drop table
@@ -175,7 +158,7 @@ CREATE TABLE favoritos (
 	id_cliente int4 NOT NULL,
 	id_producto int4 NOT NULL,
 	created_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
-	CONSTRAINT favoritos_id_cliente_id_producto_key UNIQUE (id_cliente, id_producto),
+	CONSTRAINT favoritos_id_cliente_id_producto_key UNIQUE (id_cliente,id_producto),
 	CONSTRAINT favoritos_pkey PRIMARY KEY (id),
 	CONSTRAINT favoritos_id_cliente_fkey FOREIGN KEY (id_cliente) REFERENCES clientes(id) ON DELETE CASCADE,
 	CONSTRAINT favoritos_id_producto_fkey FOREIGN KEY (id_producto) REFERENCES productos(id) ON DELETE CASCADE
@@ -207,29 +190,6 @@ CREATE TABLE pedidos (
 	CONSTRAINT pedidos_id_cliente_fkey FOREIGN KEY (id_cliente) REFERENCES clientes(id),
 	CONSTRAINT pedidos_id_direccion_fkey FOREIGN KEY (id_direccion) REFERENCES direcciones(id)
 );
-
-
--- public.promociones definition
-
--- Drop table
-
--- DROP TABLE promociones;
-
-CREATE TABLE promociones (
-	id serial4 NOT NULL,
-	id_producto int4 NULL,
-	nombre_promocion varchar(255) NULL,
-	precio_oferta numeric(10, 2) NULL,
-	precio_default numeric(10, 2) NULL,
-	porcentaje_descuento int4 NULL,
-	fecha_inicio timestamptz DEFAULT now() NULL,
-	fecha_fin timestamptz DEFAULT now() NULL,
-	created_at timestamptz DEFAULT now() NULL,
-	CONSTRAINT promociones_pkey1 PRIMARY KEY (id),
-	CONSTRAINT promociones_id_producto_fkey1 FOREIGN KEY (id_producto) REFERENCES productos(id) ON DELETE CASCADE
-);
-CREATE INDEX ix_promociones_id ON public.promociones USING btree (id);
-CREATE INDEX ix_promociones_id_producto ON public.promociones USING btree (id_producto);
 
 
 -- public.registro_precios definition
@@ -264,7 +224,7 @@ CREATE TABLE registro_precios (
 CREATE TABLE usuarios_roles (
 	id_usuario int4 NOT NULL,
 	id_rol int4 NOT NULL,
-	CONSTRAINT usuarios_roles_pkey PRIMARY KEY (id_usuario, id_rol),
+	CONSTRAINT usuarios_roles_pkey PRIMARY KEY (id_usuario,id_rol),
 	CONSTRAINT fk_ur_rol FOREIGN KEY (id_rol) REFERENCES roles(id) ON DELETE CASCADE,
 	CONSTRAINT fk_ur_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
 );
@@ -286,10 +246,3 @@ CREATE TABLE detalles_pedido (
 	CONSTRAINT fk_detalles_pedido FOREIGN KEY (id_pedido) REFERENCES pedidos(id) ON DELETE CASCADE,
 	CONSTRAINT fk_detalles_producto FOREIGN KEY (id_producto) REFERENCES productos(id) ON DELETE RESTRICT
 );
-
--- Table Triggers
-
-create trigger restar_stock_despues_de_venta after
-insert
-    on
-    public.detalles_pedido for each row execute function actualizar_stock_auto();

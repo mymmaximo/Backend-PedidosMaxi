@@ -4,13 +4,13 @@ import resend
 from typing import Optional
 from sqlalchemy import text
 from datetime import datetime
-from sqlalchemy.orm import Session
 from sqlalchemy.sql import func
+from sqlalchemy.orm import Session
 from db.models.clientes import Clientes
 from db.models.favoritos import Favoritos
-from db.models.registro_precios import RegistroPrecios, RegistroPreciosCrear, RegistroPreciosEdit
-from services.productos import clean_cache as clean_productos_cache
 from db.models.productos import Productos
+from services.productos import clean_cache as clean_productos_cache
+from db.models.registro_precios import RegistroPrecios, RegistroPreciosCrear, RegistroPreciosEdit
 cache_promos = None
 tiempo_cache_promos = 0
 tiempo_expiracion = 300

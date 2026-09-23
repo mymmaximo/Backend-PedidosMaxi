@@ -1,8 +1,8 @@
 from typing import Optional
 from sqlalchemy import text
 from sqlalchemy.orm import Session
-from db.models.clientes import Clientes, Clientes_Crear, Clientes_Login, Clientes_Edit
 from sec import get_contrasena_criptid, verifica_sena, crear_pase
+from db.models.clientes import Clientes, Clientes_Crear, Clientes_Login, Clientes_Edit
 
 
 def get_cliente(

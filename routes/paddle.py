@@ -1,5 +1,5 @@
-import httpx
 import os
+import httpx
 from dotenv import load_dotenv
 from db.database import get_db
 from sqlalchemy.orm import Session

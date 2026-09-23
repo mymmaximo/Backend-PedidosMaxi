@@ -1,15 +1,16 @@
-from sqlalchemy import ForeignKey,Column, Integer, String, DateTime, Float
+from typing import Optional
+from db.database import Base
+from datetime import datetime
+from pydantic import BaseModel
+from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 from db.models.clientes import Clientes_Pedidos
 from db.models.direcciones import Direcciones_Pedidos
+from sqlalchemy import ForeignKey,Column, Integer, String, DateTime, Float
 from db.models.detalles_pedido import Detalles_Pedido_wProductos, Detalles_Pedido_wProductos_xClientes
-from sqlalchemy.orm import relationship
-from sqlalchemy.sql import func
-from db.database import Base
-from pydantic import BaseModel
-from typing import Optional
-from datetime import datetime
 
 class Pedidos(Base):
+    
     __tablename__ = "pedidos"
 
     id = Column(

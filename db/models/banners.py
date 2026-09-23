@@ -1,10 +1,11 @@
-from sqlalchemy import Column, Integer, DateTime, String, Boolean
-from sqlalchemy.sql import func
-from db.database import Base
-from pydantic import BaseModel, Field
 from typing import Optional
+from db.database import Base
+from sqlalchemy.sql import func
+from pydantic import BaseModel, Field
+from sqlalchemy import Column, Integer, DateTime, String, Boolean
 
 class Banners(Base):
+    
     __tablename__ = "banner"
 
     id = Column(

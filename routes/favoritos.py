@@ -1,10 +1,10 @@
 from typing import Optional
-from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 from db.database import get_db
+from sqlalchemy.orm import Session
 from db.models.favoritos import FavoritoCrear
-from db.models.productos import Productos_Imagenes
 from services import favoritos as crud_favoritos
+from db.models.productos import Productos_Imagenes
+from fastapi import APIRouter, Depends, HTTPException, status
 from sec import obtener_usuario_actual
 
 router = APIRouter()

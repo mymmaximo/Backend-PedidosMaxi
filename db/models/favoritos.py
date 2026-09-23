@@ -1,11 +1,13 @@
-from sqlalchemy import Column, Integer, DateTime, ForeignKey, UniqueConstraint
-from sqlalchemy.sql import func
 from db.database import Base
-from pydantic import BaseModel
 from datetime import datetime
+from pydantic import BaseModel
+from sqlalchemy.sql import func
+from sqlalchemy import Column, Integer, DateTime, ForeignKey, UniqueConstraint
 
 class Favoritos(Base):
+
     __tablename__ = "favoritos"
+    
     id = Column(
         Integer, 
         primary_key=True, 

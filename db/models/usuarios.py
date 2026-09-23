@@ -1,5 +1,4 @@
 from sqlalchemy import Column, Integer, String, DateTime, Boolean
-from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.sql import func
 from db.database import Base
 from pydantic import BaseModel, EmailStr
@@ -7,6 +6,7 @@ from typing import Optional
 from datetime import datetime
 
 class Usuarios(Base):
+    
     __tablename__ = "usuarios"
 
     id = Column(

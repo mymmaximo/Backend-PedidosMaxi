@@ -1,9 +1,9 @@
 import random
 from typing import Optional
 from sqlalchemy import text
+from datetime import datetime
 from sqlalchemy.orm import Session
 from db.models.pedidos import Pedidos, Pedidos_Crear
-from datetime import datetime
 
 def get_pedido(
         db: Session, 

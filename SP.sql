@@ -276,14 +276,15 @@ AS $function$
 					a.s3_key,
 					a.tipo_contenido,
 					a.tamanio,
-					CASE WHEN rp.id IS NOT NULL THEN TRUE ELSE FALSE END AS es_promocion,
-				    rp.precio_nuevo,
-				    rp.motivo,
-				    rp.porcentaje_descuento
+						CASE WHEN rp.id IS NOT NULL THEN TRUE ELSE FALSE END AS en_promocion,
+					    rp.precio_nuevo,
+					    rp.motivo,
+					    rp.porcentaje_descuento
 			from productos p
 			LEFT JOIN archivos a ON p.id = a.id_producto
 		    LEFT JOIN registro_precios rp ON p.id = rp.id_producto 
 		        AND CURRENT_TIMESTAMP BETWEEN rp.fecha_inicio AND rp.fecha_fin
+				AND rp.activa = TRUE
 			order by stock desc;
 		end;
 	$function$
@@ -292,7 +293,7 @@ AS $function$
 -- DROP FUNCTION public.get_all_promociones();
 
 CREATE OR REPLACE FUNCTION public.get_all_promociones()
- RETURNS TABLE(id integer, id_producto integer, motivo character varying, precio_nuevo numeric, precio_anterior numeric, porcentaje_descuento integer, fecha_inicio timestamp with time zone, fecha_fin timestamp with time zone, created_at timestamp with time zone, nombre character varying, categoria character varying, codigo_barra character varying, activo boolean)
+ RETURNS TABLE(id integer, id_producto integer, motivo character varying, precio_nuevo numeric, precio_anterior numeric, porcentaje_descuento integer, fecha_inicio timestamp with time zone, fecha_fin timestamp with time zone, es_promocion boolean, activa boolean, created_at timestamp with time zone, nombre character varying, categoria character varying, codigo_barra character varying, activo boolean)
  LANGUAGE plpgsql
 AS $function$
 		begin
@@ -306,6 +307,8 @@ AS $function$
 				rp.porcentaje_descuento, 
 				rp.fecha_inicio, 
 				rp.fecha_fin, 
+				rp.es_promocion,
+				rp.activa,
 				rp.created_at,
 					p.nombre,
 					p.categoria, 
@@ -414,7 +417,7 @@ AS $function$
 -- DROP FUNCTION public.obtener_all_pedidos();
 
 CREATE OR REPLACE FUNCTION public.obtener_all_pedidos()
- RETURNS TABLE(id_pedido integer, id_cliente integer, nombre_cliente character varying, id_direccion integer, calle character varying, numero integer, ciudad character varying, provincia character varying, metodo_pago character varying, estatus integer, tiempo_estimado_entrega smallint, tiempo_entrega smallint, created_at timestamp without time zone, updated_at timestamp without time zone, total numeric, id_detalles_pedido integer, cantidad integer, precio_unitario numeric, dp_subtotal numeric, id_producto integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying)
+ RETURNS TABLE(id_pedido integer, id_cliente integer, nombre_cliente character varying, id_direccion integer, calle character varying, numero integer, ciudad character varying, provincia character varying, metodo_pago character varying, estatus integer, tiempo_estimado_entrega smallint, tiempo_entrega smallint, created_at timestamp without time zone, updated_at timestamp without time zone, total numeric, id_detalles_pedido integer, cantidad integer, precio_unitario numeric, dp_subtotal numeric, id_producto integer, nombre character varying, precio numeric, stock integer, categoria character varying, codigo_barra character varying, es_promocion boolean, motivo character varying, precio_anterior numeric, precio_nuevo numeric, porcentaje_descuento integer)
  LANGUAGE plpgsql
 AS $function$
 		begin
@@ -444,12 +447,22 @@ AS $function$
 						pr.precio,
 						pr.stock,
 						pr.categoria,
-						pr.codigo_barra
+						pr.codigo_barra,
+							(rp.id IS NOT NULL) AS es_promocion,
+        					rp.motivo,
+                            rp.precio_anterior,
+                            rp.precio_nuevo,
+                            rp.porcentaje_descuento
 			from pedidos p
 			join clientes c on p.id_cliente = c.id
 			join direcciones d on p.id_direccion = d.id
 			join detalles_pedido dp on p.id = dp.id_pedido
-			join productos pr on dp.id_producto = pr.id;
+			join productos pr on dp.id_producto = pr.id
+			LEFT JOIN registro_precios rp 
+		        ON rp.id_producto = pr.id 
+		        AND rp.es_promocion = true 
+		        AND p.created_at >= rp.fecha_inicio 
+		        AND p.created_at <= rp.fecha_fin;
 		end;
 	$function$
 ;
@@ -457,7 +470,7 @@ AS $function$
 -- DROP FUNCTION public.obtener_clientes_pedidos(int4);
 
 CREATE OR REPLACE FUNCTION public.obtener_clientes_pedidos(p_id_cliente integer)
- RETURNS TABLE(id_pedido integer, id_cliente integer, id_direccion integer, calle character varying, numero integer, ciudad character varying, provincia character varying, metodo_pago character varying, estatus integer, tiempo_estimado_entrega smallint, tiempo_entrega smallint, created_at timestamp without time zone, updated_at timestamp without time zone, total numeric, id_detalles_pedido integer, cantidad integer, precio_unitario numeric, subtotal numeric, id_producto integer, nombre character varying, precio numeric, stock integer, categoria character varying)
+ RETURNS TABLE(id_pedido integer, id_cliente integer, id_direccion integer, calle character varying, numero integer, ciudad character varying, provincia character varying, metodo_pago character varying, estatus integer, tiempo_estimado_entrega smallint, tiempo_entrega smallint, created_at timestamp without time zone, updated_at timestamp without time zone, total numeric, id_detalles_pedido integer, cantidad integer, precio_unitario numeric, subtotal numeric, id_producto integer, nombre character varying, precio numeric, stock integer, categoria character varying, es_promocion boolean, motivo character varying, precio_anterior numeric, precio_nuevo numeric, porcentaje_descuento integer)
  LANGUAGE plpgsql
 AS $function$
 		begin
@@ -485,11 +498,21 @@ AS $function$
 						pr.nombre,
 						pr.precio,
 						pr.stock,
-						pr.categoria
+						pr.categoria,
+							(rp.id IS NOT NULL) AS es_promocion,
+        					rp.motivo,
+                            rp.precio_anterior,
+                            rp.precio_nuevo,
+                            rp.porcentaje_descuento
 			from pedidos p
 			join direcciones d on p.id_direccion = d.id
 			join detalles_pedido dp on p.id = dp.id_pedido
 			join productos pr on dp.id_producto = pr.id
+			LEFT JOIN registro_precios rp 
+		         ON rp.id_producto = pr.id 
+		         AND rp.es_promocion = true 
+		         AND p.created_at >= rp.fecha_inicio 
+		         AND p.created_at <= rp.fecha_fin
 			where p.id_cliente  = p_id_cliente;
 		end;
 	$function$
