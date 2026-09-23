@@ -251,25 +251,13 @@ def create_registros_precios(
     db.commit()
     db.refresh(nueva_promo)
     resend.api_key = os.getenv("RESEND_API_KEY")
-    print(
-        f"--- LOG RESEND: API KEY configurada: {bool(resend.api_key)} ---", 
-        flush=True
-    )
     clientes_favoritos = (
         db.query(Clientes)
         .join(Favoritos, Clientes.id == Favoritos.id_cliente)
         .filter(Favoritos.id_producto == nueva_promo.id_producto)
         .all()
     )
-    print(
-        f"--- LOG RESEND: Se encontraron {len(clientes_favoritos)} clientes para notificar ---", 
-        flush=True
-    )
-    if len(clientes_favoritos) == 0:
-        print(
-            "--- LOG RESEND: ⚠️ Se canceló el envío porque ningún cliente tiene este producto en favoritos. ---", 
-            flush=True
-        )
+    reporte = f"API KEY: {bool(resend.api_key)} | Prod ID: {nueva_promo.id_producto} | Favoritos Encontrados: {len(clientes_favoritos)} | "
     for cliente in clientes_favoritos:
         html_correo = f"""
             <div style="font-family: sans-serif; 
@@ -326,25 +314,16 @@ def create_registros_precios(
             </div>
         """
         try:
-            print(
-                f"--- LOG RESEND: Intentando enviar a {cliente.email} ---", 
-                flush=True
-            )
-            respuesta_resend = resend.Emails.send({
+            respuesta = resend.Emails.send({
                 "from": "onboarding@resend.dev", 
-                "to": cliente.email,
+                "to": [cliente.email],
                 "subject": f"¡Oferta del {porcentaje}% en {db_producto.nombre}!",
                 "html": html_correo
             })
-            print(
-                f"--- LOG RESEND: Correo enviado exitosamente! Respuesta: {respuesta_resend} ---", 
-                flush=True
-            )
+            reporte += f"Enviado a {cliente.email} (ID: {respuesta.get('id')}) | "
         except Exception as e:
-            print(
-                f"--- ❌ ERROR CRÍTICO RESEND a {cliente.email}: {str(e)} ---", 
-                flush=True
-            )
+            reporte += f"ERROR {cliente.email}: {str(e)} | "
+    print(f"--- LOG RESEND CONSOLIDADO: {reporte} ---", flush=True)
     clean_registros_cache()
     return nueva_promo
 
