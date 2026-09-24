@@ -13,23 +13,27 @@ router = APIRouter()
 PADDLE_SECRETO = os.getenv("PADDLE_SECRETO", "").strip()
 PADDLE_WEBHOOK_SECRETO = os.getenv("PADDLE_WEBHOOK_SECRETO", "").strip()
 
+# Codigo. {Crear Transaccion}
 @router.post("/crear-transaccion-paddle/")
 def crear_transaccion(
     datos_pedido: dict,
     db: Session = Depends(get_db)
 ):
+    # Service. {Conseguir Pedido}
     id_pedido = datos_pedido.get("id_pedido")
     if not id_pedido:
         raise HTTPException(
             status_code=400, 
             detail="Falta el id_pedido"
         )
+    # Service. {Conseguir Detalles del Pedido}
     detalles = db.query(Detalles_Pedido).filter(Detalles_Pedido.id_pedido == id_pedido).all()
     if not detalles:
         raise HTTPException(
             status_code=404, 
             detail="El pedido no tiene detalles"
         )
+    # Codigo. {Armar Transaccion}
     items_paddle = []
     for detalle in detalles:
         productos = db.query(Productos).filter(Productos.id == detalle.id_producto).first()
@@ -62,16 +66,15 @@ def crear_transaccion(
         }
     }
     
+    # Codigo. {Enviar Transaccion}
     response = httpx.post(
         url, 
         json=payload, 
         headers=headers
     )
-
     if response.status_code not in [200, 201]:
         print("--- ❌ ERROR DETALLADO DE PADDLE ---")
         print(response.text)
         raise HTTPException(status_code=400, detail=response.json())
-        
     data = response.json()
     return {"transaction_id": data["data"]["id"]}

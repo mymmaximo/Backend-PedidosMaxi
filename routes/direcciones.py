@@ -6,6 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from db.models.direcciones import Direcciones_Respuesta, Direcciones_Crear, Direcciones_provincias, Direcciones_ciudades
 router = APIRouter()
 
+# Codigo. {Leer Ciudad}
 @router.get(
     "/direccion/ciudad/", 
     response_model= list[Direcciones_ciudades], 
@@ -14,11 +15,13 @@ router = APIRouter()
 def read_ciudad(
     db: Session = Depends(get_db)
 ):
+    # Service. {Leer Ciudad}
     db_direccion = crud.get_ciudad(
         db
     )
     return db_direccion
 
+# Codigo. {Leer Provincia}
 @router.get(
     "/direccion/provincia/", 
     response_model= list[Direcciones_provincias], 
@@ -26,12 +29,14 @@ def read_ciudad(
 )
 def read_provincia(
     db: Session = Depends(get_db)
-    ):
+):
+    # Service. {Leer Provincia}
     db_direccion = crud.get_provincia(
         db
     )
     return db_direccion
 
+# Codigo. {Leer Todas las Direcciones}
 @router.get(
     "/direcciones/", 
     response_model=list[Direcciones_Respuesta], 
@@ -42,6 +47,7 @@ def read_direcciones(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Administrador, Gestor de Precios, Gestor de Pedidos General}
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1, 3, 7])
     if not (true_rol):
@@ -49,12 +55,14 @@ def read_direcciones(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar esto."
         )
+    # Service. {Leer Todas las Direcciones}
     direcciones = crud.get_direcciones(
         db,
         limit=limit
     )
     return direcciones
 
+# Codigo. {Crear Direccion}
 @router.post(
     "/direcciones/", 
     response_model=Direcciones_Respuesta, 
@@ -64,6 +72,7 @@ def create_direccion(
     direccion: Direcciones_Crear,
     db: Session = Depends(get_db)
 ):
+    # Codigo. {Crear Direccion}
     db_direcciones = crud.create_direccion(
         db=db,
         direccion=direccion
@@ -75,6 +84,7 @@ def create_direccion(
         )
     return db_direcciones
 
+# Codigo. {Actualizar Direccion}
 @router.put(
     "/direcciones/id/{id_direccion}", 
     response_model=Direcciones_Respuesta, 
@@ -86,6 +96,7 @@ def update_direccion(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Administrador, Gestor de Precios, Gestor de Pedidos General}
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1, 3, 7])
     if not (true_rol):
@@ -93,6 +104,7 @@ def update_direccion(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar esto."
         )
+    # Service. {Actualizar Direccion}
     db_direccion = crud.update_direccion(
         db, 
         id_direccion=id_direccion, 
@@ -105,6 +117,7 @@ def update_direccion(
         )
     return db_direccion
 
+# Codigo. {Borrar Direccion}
 @router.delete(
     "/direcciones/id/{id_direccion}", 
     tags=["Sección de Direcciones"]
@@ -114,6 +127,7 @@ def delete_direccion(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Administrador, Gestor de Precios, Gestor de Pedidos General}
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1, 3, 7])
     if not (true_rol):
@@ -121,6 +135,7 @@ def delete_direccion(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar esto."
         )
+    # Service. {Borrar Direccion}
     success = crud.delete_direccion(
         db, 
         id_direccion=id_direccion

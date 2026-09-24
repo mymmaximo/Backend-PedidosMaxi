@@ -7,8 +7,7 @@ from fastapi import HTTPException, APIRouter, Response, Request, status, Depends
 from db.models.usuarios import Usuarios_Respuesta, Usuarios_Crear, Usuarios_Login, Usuarios_Direcciones, Usuarios_Edit
 router = APIRouter()
 
-
-
+# Codigo. {Leer Todos los Usuarios}
 @router.get(
     "/usuarios/", 
     response_model= list[Usuarios_Direcciones], 
@@ -23,6 +22,7 @@ def read_usuario(
     orden: Optional[int] = None,
     bool_activo: Optional[bool] = None
     ):
+    # Verificacion. {Administrador}
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1])
     if not (true_rol):
@@ -30,6 +30,7 @@ def read_usuario(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="No tienes los privilegios necesarios para hacer esto."
         )
+    # Service. {Leer Todos los Usuarios}
     db_usuario = crud.get_usuario(
         db,
         busqueda_usuario=busqueda_usuario,
@@ -40,6 +41,7 @@ def read_usuario(
     )
     return db_usuario
 
+# Codigo. {Iniciar Sesion como Usuario}
 @router.post(
     "/usuario/login/",
     tags=["Seccion de Usuarios"]
@@ -51,6 +53,7 @@ def login_usuario(
     request: Request,
     db: Session = Depends(get_db)
 ):
+    # Service. {Iniciar Sesion como Usuario}
     token_string, id_usuario, id_rol = crud.login_usuarios(
         db,
         pase,
@@ -61,6 +64,7 @@ def login_usuario(
             status_code=status.HTTP_401_UNAUTHORIZED, 
             detail="E-Mail o Contraseña Invalido"
         )
+    # Service. {Otorgar Permisos}
     payload_data = {
         "id_usuario": id_usuario,
         "id_rol": id_rol,
@@ -88,7 +92,8 @@ def login_usuario(
         "id_usuario": id_usuario,
         "id_rol": id_rol,
     }
-    
+
+# Codigo. {Registrar Usuarios}
 @router.post(
     "/usuarios/", 
     response_model=Usuarios_Respuesta, 
@@ -99,6 +104,7 @@ def create_usuario(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Administrador}
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1])
     if not (true_rol):
@@ -106,6 +112,7 @@ def create_usuario(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="No tienes los privilegios necesarios para hacer esto."
         )
+    # Service. {Comparar Mail}
     db_usuario_email = crud.get_mail_usuario(
         db, 
         email_usuario=usuario.email
@@ -115,6 +122,7 @@ def create_usuario(
             status_code=status.HTTP_401_UNAUTHORIZED, 
             detail="Email ya registrado"
         )
+    # Service. {Comparar DNI}
     db_usuario_dni = crud.get_dni_usuario(
         db, 
         dni_usuario=usuario.dni
@@ -124,11 +132,13 @@ def create_usuario(
             status_code=status.HTTP_400_BAD_REQUEST, 
             detail="DNI ya registrado"
         )
+    # Service. {Registrar Usuarios}
     return crud.create_usuario(
         db=db, 
         usuario=usuario
     )
 
+# Codigo. {Actualizar Usuarios}
 @router.put(
     "/usuarios/id/{id_usuario}", 
     response_model=Usuarios_Respuesta, 
@@ -140,6 +150,7 @@ def update_usuario(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Administrador}
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1])
     if not (true_rol):
@@ -147,6 +158,7 @@ def update_usuario(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar esto."
         )
+    # Service. {Comparar Mail}
     if usuario.email is not None:
         db_usuarios_email = crud.get_mail_usuario(
             db, 
@@ -157,6 +169,7 @@ def update_usuario(
                 status_code=status.HTTP_400_BAD_REQUEST, 
                 detail="Email ya registrado"
             )
+    # Service. {Actualizar Usuarios}
     db_usuario = crud.update_usuario(
         db, 
         id_usuario=id_usuario, 
@@ -169,6 +182,7 @@ def update_usuario(
         )
     return db_usuario
 
+# Codigo. {Desactivar Usuario}
 @router.delete(
     "/usuarios/id/{id_usuario}", 
     tags=["Sección de Usuarios"]
@@ -178,6 +192,7 @@ def delete_usuario(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Administrador}
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1])
     if not (true_rol):
@@ -185,6 +200,7 @@ def delete_usuario(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar esto."
         )
+    # Service. {Desactivar Usuario}
     success = crud.delete_usuario(
         db, 
         id_usuario=id_usuario
@@ -196,6 +212,7 @@ def delete_usuario(
         )
     return {"detail": "Usuario eliminado"}
 
+# Verificacion. {Actualizar Pagina}
 @router.get(
     "/reload/", 
     tags=["Autenticación"]
@@ -205,6 +222,7 @@ def verificar_sesion (
     request: Request,
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Service. {Comparar Permisos}
     payload_data = usuario_logeado.copy()
     payload_data.pop("exp", None)
     nuevo_token = crear_pase(
@@ -232,6 +250,7 @@ def verificar_sesion (
         "id_cliente": usuario_logeado.get("id_cliente")
     }
 
+# Codigo. {Cerrar Sesion}
 @router.post(
     "/logout/", 
     tags=["Autenticación"]
@@ -239,12 +258,14 @@ def verificar_sesion (
 def logout_sesion(
     response: Response
 ):
+    # Service. {Borrar Permisos}
     response.delete_cookie(
         key="token_seguro",
         httponly=True,
         secure=True,
         samesite="none"
     )
+    # Service. {Cerrar Sesion}
     response.delete_cookie(
         key="sesion_activa",
         httponly=False,

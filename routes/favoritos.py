@@ -9,6 +9,7 @@ from sec import obtener_usuario_actual
 
 router = APIRouter()
 
+# Codigo. {Añadir/Quitar de a Favoritos}
 @router.post(
     "/favoritos/toggle", 
     tags=["Favoritos"]
@@ -19,18 +20,21 @@ def toggle_favorito_route(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Cliente}
     true_cliente = usuario_logeado.get("id_cliente") == id_cliente
     if not (true_cliente):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar este perfil."
         )
+    # Service. {Añadir/Quitar de Favoritos}
     return crud_favoritos.toggle_favorito(
         db=db, 
         id_cliente=id_cliente, 
         id_producto=fav.id_producto
     )
 
+# Codigo. {Detectar los Favoritos}
 @router.get(
         "/favoritos/cliente/{id_cliente}", 
         tags=["Favoritos"]
@@ -40,13 +44,19 @@ def obtener_favoritos(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Cliente}
     if usuario_logeado.get("id_cliente") != id_cliente:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No puedes ver los favoritos de otro cliente"
         )
-    return crud_favoritos.get_favoritos_cliente(db=db, id_cliente=id_cliente)
+    # Service. {Detectar los Favoritos}
+    return crud_favoritos.get_favoritos_cliente(
+        db=db, 
+        id_cliente=id_cliente
+    )
 
+# Codigo. {Leer Mis Favoritos (Cliente)}
 @router.get(
     "/favoritos/lista/{id_cliente}", 
     response_model=list[Productos_Imagenes], 
@@ -65,11 +75,13 @@ def read_favoritos_completos(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Cliente}
     if usuario_logeado.get("id_cliente") != id_cliente:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No puedes ver los favoritos de otro cliente"
         )
+    # Service. {Leer Mis Favoritos (Cliente)}
     db_favoritos = crud_favoritos.get_lista_favoritos_completa(
         db=db, 
         id_cliente=id_cliente,

@@ -19,6 +19,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="cliente/login")
 PADDLE_SECRETO = os.getenv("PADDLE_SECRETO")
 PADDLE_WEBHOOK_SECRETO = os.getenv("PADDLE_WEBHOOK_SECRETO", "")
 
+# Codigo. {Leer 1 Pedido}
 @router.get(
     "/pedido/", 
     response_model= list[Pedidos_Respuesta], 
@@ -32,6 +33,16 @@ def read_pedido(
     id_direccion_pedido: Optional[int] = None,
     metodo_pago_pedido: Optional[str] = None
     ):
+    # Verificacion. {Administrador, Gestor de Precios, Editor de Clientes}
+    true_cliente = usuario_logeado.get("id_cliente") == db_pedido[0].id_cliente
+    roles = usuario_logeado.get("id_rol") or []
+    true_rol = any(rol in roles for rol in [1, 3, 6])
+    if not (true_cliente or true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
+    # Service. {Leer 1 Pedido}
     db_pedido = crud.get_pedido(
         db, 
         id_pedido=id_pedido,
@@ -44,16 +55,9 @@ def read_pedido(
             status_code=status.HTTP_404_not_FOUND, 
             detail="Pedido no encontrado"
         )
-    true_cliente = usuario_logeado.get("id_cliente") == db_pedido[0].id_cliente
-    roles = usuario_logeado.get("id_rol") or []
-    true_rol = any(rol in roles for rol in [1, 3, 6])
-    if not (true_cliente or true_rol):
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN, 
-            detail="No tienes permiso para modificar esto."
-        )
     return db_pedido
 
+# Codigo. {Buscar Pedidos por Producto}
 @router.get(
     "/pedidos/producto/{id_producto}",
     response_model= list[Pedidos_Detalles],
@@ -64,6 +68,15 @@ def read_producto_pedido(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Administrador, Gestor de Precios, Editor de Clientes}
+    roles = usuario_logeado.get("id_rol") or []
+    true_rol = any(rol in roles for rol in [1, 3, 6])
+    if not (true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
+    # Service. {Buscar Pedidos por Producto}
     db_pedidos = crud.get_pedidoxproducto(
         db,
         id_producto
@@ -73,15 +86,9 @@ def read_producto_pedido(
             status_code=status.HTTP_404_not_FOUND, 
             detail="Producto no encontrado"
         )
-    roles = usuario_logeado.get("id_rol") or []
-    true_rol = any(rol in roles for rol in [1, 3, 6])
-    if not (true_rol):
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN, 
-            detail="No tienes permiso para modificar esto."
-        )
     return db_pedidos
 
+# Codigo. {Buscar Pedidos por Cliente}
 @router.get(
     "/pedidos/cliente/{id_cliente}",
     response_model= list[Pedidos_DDP],
@@ -96,6 +103,7 @@ def read_pedido_cliente(
     filtromp: Optional[str] = None,
     filtroest: Optional[int] = None
 ):
+    # Verificacion. {Cliente, Administrador, Gestor de Precios}
     true_cliente = usuario_logeado.get("id_cliente") == id_cliente
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1, 3])
@@ -104,6 +112,7 @@ def read_pedido_cliente(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar esto."
         )
+    # Service. {Buscar Pedidos por Cliente}
     db_pedidos = crud.get_pedidoxcliente(
         db,
         id_cliente=id_cliente,
@@ -114,6 +123,7 @@ def read_pedido_cliente(
     )
     return db_pedidos
 
+# Codigo. {Leer 1 Pedido}
 @router.get(
     "/pedidos/{id_pedido}",
     response_model= list[Pedidos_CDDP],
@@ -124,6 +134,16 @@ def read_pedido_producto(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Cliente, Administrador, Gestor de Precios, Editor de Clientes}
+    true_cliente = usuario_logeado.get("id_cliente") == db_pedidos.id_cliente
+    roles = usuario_logeado.get("id_rol") or []
+    true_rol = any(rol in roles for rol in [1, 3, 6])
+    if not (true_cliente or true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
+    # Service. {Leer 1 Pedido}
     db_pedidos = crud.get_pedidoxid_pedido(
         db,
         id_pedido
@@ -133,16 +153,9 @@ def read_pedido_producto(
             status_code=status.HTTP_404_not_FOUND, 
             detail="Pedido no encontrado"
         )
-    true_cliente = usuario_logeado.get("id_cliente") == db_pedidos.id_cliente
-    roles = usuario_logeado.get("id_rol") or []
-    true_rol = any(rol in roles for rol in [1, 3, 6])
-    if not (true_cliente or true_rol):
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN, 
-            detail="No tienes permiso para modificar esto."
-        )
     return db_pedidos
 
+# Codigo. {Leer Todos los Pedidos (Version Vieja)}
 @router.get(
     "/pedidos/", 
     response_model=list[Pedidos_Respuesta], 
@@ -153,6 +166,7 @@ def read_pedidos_old(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Administrador, Gestor de Precios, Editor de Clientes}
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1, 3, 6])
     if not (true_rol):
@@ -160,12 +174,14 @@ def read_pedidos_old(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar esto."
         )
+    # Service. {Leer Todos los Pedidos (Version Vieja)}
     db_pedidos = crud.get_pedidos(
         db, 
         limit=limit
     )
     return db_pedidos 
 
+# Codigo. {Leer Todos los Pedidos}
 @router.get(
     "/pedidos/all/",
     response_model= list[Pedidos_CDDP],
@@ -176,12 +192,15 @@ def read_pedidos(
     skip: int = 0, 
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual),
+
     busqueda_pedido: Optional[str] = None,
     orden: Optional[int] = None,
+
     filtromp: Optional[str] = None,
     filtroest: Optional[int] = None,
     filtroprom: Optional[bool] = None
 ):
+    # Verificacion. {Administrador, Gestor de Precios, Editor de Clientes}
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1, 3, 6])
     if not (true_rol):
@@ -189,6 +208,7 @@ def read_pedidos(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar esto."
         )
+    # Service. {Leer Todos los Pedidos}
     db_pedidos = crud.get_all_pedidos(
         db, 
         busqueda_pedido=busqueda_pedido,
@@ -201,6 +221,7 @@ def read_pedidos(
     )
     return db_pedidos 
 
+# Codigo. {Crear Pedido}
 @router.post(
     "/pedidos/", 
     response_model=Pedidos_Respuesta, 
@@ -211,6 +232,7 @@ def create_pedido(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Cliente, Administrador, Gestor de Precios, Editor de Clientes}
     true_cliente = usuario_logeado.get("id_cliente") == nuevo_pedido.id_cliente
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1, 3])
@@ -219,6 +241,7 @@ def create_pedido(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar esto."
         )
+    # Service. {Crear Pedido}
     db_pedidos = crud.create_pedido(
         db=db,
         pedido=nuevo_pedido
@@ -227,6 +250,7 @@ def create_pedido(
     db.refresh(db_pedidos)
     return db_pedidos
 
+# Codigo. {Crear Detalles de Pedido}
 @router.post(
     "/pedidos/detalles_pedido/", 
     response_model=list[Detalles_Pedido_Respuesta], 
@@ -237,11 +261,22 @@ def create_detalles_pedido(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Cliente, Administrador, Gestor de Precios}
+    true_cliente = usuario_logeado.get("id_cliente") == pedidios.id_cliente
+    roles = usuario_logeado.get("id_rol") or []
+    true_rol = any(rol in roles for rol in [1, 3])
+    if not (true_cliente or true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
+    # Verificacion. {Lista de Detalles Vacia}
     if not detalle_pedido:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, 
             detail="La lista de detalles no puede estar vacía"
         )
+    # Service. {Conseguir el Pedido}
     db_pedido  = crud.get_pedido(
         db, 
         id_pedido=detalle_pedido[0].id_pedido
@@ -252,14 +287,7 @@ def create_detalles_pedido(
             detail="Pedido no encontrado"
         )
     pedidios = db_pedido[0]
-    true_cliente = usuario_logeado.get("id_cliente") == pedidios.id_cliente
-    roles = usuario_logeado.get("id_rol") or []
-    true_rol = any(rol in roles for rol in [1, 3])
-    if not (true_cliente or true_rol):
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN, 
-            detail="No tienes permiso para modificar esto."
-        )
+    # Service. {Crear Detalles de Pedido}
     db_detalle = servi.create_detalle_pedido(
         db=db,
         detalle_pedido=detalle_pedido
@@ -267,6 +295,7 @@ def create_detalles_pedido(
     db.commit()
     return db_detalle
 
+# Codigo. {Actualizar Pedidos}
 @router.put(
     "/pedidos/id/{id_pedido}", 
     response_model=Pedidos_Respuesta, 
@@ -278,12 +307,7 @@ def update_pedido(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    db_cliente = db.query(Clientes).filter(Clientes.id == pedido.id_cliente).first()
-    if not db_cliente:
-        raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
-            detail="Cliente no encontrado"
-        )
+    # Verificacion. {Administrador, Gestor de Precios, Editor de Clientes}
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1, 3, 6])
     if not (true_rol):
@@ -291,6 +315,14 @@ def update_pedido(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar esto."
         )
+    # Service. {Encontrar Cliente}
+    db_cliente = db.query(Clientes).filter(Clientes.id == pedido.id_cliente).first()
+    if not db_cliente:
+        raise HTTPException(
+            status_code=status.HTTP_404_not_FOUND, 
+            detail="Cliente no encontrado"
+        )
+    # Service. {Encontrar Direccion}
     db_direccion = get_direccion(
         db, 
         id_direccion=pedido.id_direccion
@@ -300,12 +332,14 @@ def update_pedido(
             status_code=status.HTTP_404_not_FOUND, 
             detail="Direccion no encontrada"
         )
+    # Service. {Actualizar Pedidos}
     return crud.update_pedido(
         db, 
         id_pedido=id_pedido, 
         pedido=pedido
     )
 
+# Codigo. {Borrar Pedidos}
 @router.delete(
     "/pedidos/id/{id_pedido}", 
     tags=["Sección de Pedidos"]
@@ -315,6 +349,7 @@ def delete_pedido(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Administrador, Gestor de Precios, Editor de Clientes}
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1, 3, 6])
     if not (true_rol):
@@ -322,6 +357,7 @@ def delete_pedido(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar esto."
         )
+    # Service. {Borrar Pedido}
     success = crud.delete_pedido(
         db, 
         id_pedido=id_pedido
@@ -333,6 +369,7 @@ def delete_pedido(
         )
     return {"detail": "Pedido eliminado"}
 
+# Codigo. {Preparar Transaccion}
 @router.post(
     "/webhook/paddle",
     tags=["Webhooks"]
@@ -342,12 +379,14 @@ async def webhook_paddle(
     request: Request,
     db: Session = Depends(get_db)
 ):
+    # Service. {Conseguir Contraseña}
     firma = request.headers.get("paddle-signature")
     if not firma:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, 
             detail="Headers no encontrado"
         )
+    # Service. {Preparar Transaccion}
     try:
         partes = dict(item.split("=") for item in firma.split(";"))
         ts = partes.get("ts")

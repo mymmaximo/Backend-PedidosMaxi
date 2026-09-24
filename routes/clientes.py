@@ -7,6 +7,7 @@ from fastapi import HTTPException, APIRouter, Response, Request, status, Depends
 from db.models.clientes import Clientes_Respuesta, Clientes_Crear, Clientes_Login, Clientes_Direcciones, Clientes_id_Direccion, Clientes_Edit
 router = APIRouter()
 
+# Codigo. {Leer 1 Cliente}
 @router.get(
     "/cliente/", 
     response_model= list[Clientes_Direcciones], 
@@ -17,14 +18,17 @@ def read_cliente(
     skip: int = 0, 
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual),
+
     id_cliente: Optional[int] = None,
-    busqueda_cliente: Optional[str] = None,
     orden: Optional[int] = None,
-    bool_direccion: Optional[bool] = None,
-    bool_activo: Optional[bool] = None,
+    busqueda_cliente: Optional[str] = None,
+    
+    filtroprovincia: Optional[str] = None,
     filtrociudad: Optional[str] = None,
-    filtroprovincia: Optional[str] = None
+    bool_activo: Optional[bool] = None,
+    bool_direccion: Optional[bool] = None
 ):
+    # Verificacion. {Administrador, Gestor de Pedidos General}
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1, 7])
     true_cliente = usuario_logeado.get("id_cliente")
@@ -42,6 +46,7 @@ def read_cliente(
         filtrociudad = None
         filtroprovincia = None
         limit = 1000
+    # Service. {Leer  Cliente}
     db_cliente = crud.get_cliente(
         db,
         busqueda_cliente=busqueda_cliente,
@@ -56,6 +61,7 @@ def read_cliente(
     )
     return db_cliente
 
+# Codigo. {Conseguir Direccion de Cliente}
 @router.get(
     "/cliente/{id_cliente}/direcciones/", 
     response_model= list[Clientes_id_Direccion], 
@@ -66,6 +72,7 @@ def get_cliente_idireccion(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Administrador, Gestor de Pedidos General}
     true_cliente = usuario_logeado.get("id_cliente") == id_cliente
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1, 7])
@@ -74,12 +81,14 @@ def get_cliente_idireccion(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar este perfil."
         )
+    # Service. {Conseguir Direccion de Cliente}
     cliente = crud.get_cliente_id_direccion(
         db,
         id_cliente
     )
     return cliente
 
+# Codigo. {Leer Todos los Clientes con sus Direcciones}
 @router.get(
     "/clientes/", 
     response_model=list[Clientes_Direcciones], 
@@ -89,6 +98,7 @@ def read_clientes(
     db: Session = Depends(get_db), 
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Administrador, Gestor de Pedidos General}
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1, 7])
     if not (true_rol):
@@ -96,11 +106,13 @@ def read_clientes(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar este perfil."
         )
+    # Service. {Leer Todos los Clientes con sus Direcciones}
     clientes = crud.get_cliente_direccion(
         db
     )
     return clientes
 
+# Codigo. {Iniciar Sesion como Cliente}
 @router.post(
     "/cliente/login/",
     tags=["Seccion de Clientes"]
@@ -112,6 +124,7 @@ def login_cliente(
     request: Request,
     db: Session = Depends(get_db)
 ):
+    # Service. {Iniciar Sesion como Cliente}
     cliente, id_cliente = crud.login_clientes(
         db,
         pase
@@ -143,6 +156,7 @@ def login_cliente(
         "id_cliente": id_cliente
     }
     
+# Codigo. {Registrar Cliente}
 @router.post(
     "/clientes/", 
     response_model=Clientes_Respuesta, 
@@ -152,6 +166,7 @@ def create_cliente(
     cliente: Clientes_Crear, 
     db: Session = Depends(get_db)
 ):
+    # Service. {Verificar Mail Repetido}
     db_cliente_email = crud.get_mail(
         db, 
         email_cliente=cliente.email
@@ -161,6 +176,7 @@ def create_cliente(
             status_code=status.HTTP_400_BAD_REQUEST, 
             detail="Email ya registrado"
         )
+    # Service. {Registrar Cliente}
     db_cliente_dni = crud.get_dni(
         db, 
         dni_cliente=cliente.dni
@@ -175,6 +191,7 @@ def create_cliente(
         cliente=cliente
     )
 
+# Codigo. {Actualizar Datos del Cliente}
 @router.put(
     "/clientes/id/{id_cliente}", 
     response_model=Clientes_Respuesta, 
@@ -186,6 +203,7 @@ def update_cliente(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Administrador, Gestor de Pedidos General}
     true_cliente = usuario_logeado.get("id_cliente") == id_cliente
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1, 7])
@@ -194,6 +212,7 @@ def update_cliente(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar este perfil."
         )
+    # Service. {Verificar Mail Repetido}
     if cliente.email is not None:
         db_cliente_email = crud.get_mail(
             db, 
@@ -204,6 +223,7 @@ def update_cliente(
                 status_code=status.HTTP_400_BAD_REQUEST, 
                 detail="Email ya registrado"
             )
+    # Service. {Actualizar Datos del Cliente}
     db_cliente = crud.update_cliente(
         db, 
         id_cliente=id_cliente, 
@@ -216,6 +236,7 @@ def update_cliente(
         )
     return db_cliente
 
+# Codigo. {Desactivar Cliente}
 @router.delete(
     "/clientes/id/{id_cliente}", 
     tags=["Sección de Clientes"]
@@ -225,6 +246,7 @@ def delete_cliente(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Verificacion. {Administrador, Gestor de Pedidos General}
     true_cliente = usuario_logeado.get("id_cliente") == id_cliente
     roles = usuario_logeado.get("id_rol") or []
     true_rol = any(rol in roles for rol in [1, 7])
@@ -233,6 +255,7 @@ def delete_cliente(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar este perfil."
         )
+    # Verificacion. {Desactivar Cliente}
     success = crud.delete_cliente(
         db, 
         id_cliente=id_cliente
