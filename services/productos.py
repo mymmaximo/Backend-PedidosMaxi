@@ -13,11 +13,13 @@ tiempo_expiracion = 300
 cache_cat = None
 tiempo_cache_cat = 0
 
+# Codigo. {}
 def clean_cache():
     global cache,cache_cat
     cache = None
     cache_cat = None
 
+# Codigo. {}
 def get_producto(
         db: Session,
         busqueda_producto: Optional[str] = None,
@@ -151,6 +153,7 @@ def get_producto(
         productos_filtrados = lista_temporal
     return productos_filtrados[skip : skip + limit]
 
+# Codigo. {}
 def get_categoria(
         db: Session
     ):
@@ -166,12 +169,14 @@ def get_categoria(
     tiempo_cache_cat = tiempo_actual
     return resultado_seguro
 
+# Codigo. {}
 def get_productos(
         db: Session, 
         limit: int = 100
     ):
     return db.query(Productos).limit(limit).all()
 
+# Codigo. {}
 def create_producto(
         db: Session, 
         producto: Productos_Crear
@@ -188,6 +193,7 @@ def create_producto(
     clean_cache()
     return db_producto
 
+# Codigo. {}
 def create_archivo(
         db: Session, 
         archivo: ArchivoCrear
@@ -199,6 +205,7 @@ def create_archivo(
     clean_cache()
     return db_archivo
 
+# Codigo. {}
 def update_producto(
         db: Session, 
         id_producto: int, 
@@ -215,6 +222,7 @@ def update_producto(
     clean_cache()
     return db_producto
 
+# Codigo. {}
 def delete_producto(
         db: Session, 
         id_producto: int
@@ -228,6 +236,7 @@ def delete_producto(
     clean_cache()
     return True
 
+# Codigo. {}
 def delete_archivo(
         db: Session,
         id_archivo: int

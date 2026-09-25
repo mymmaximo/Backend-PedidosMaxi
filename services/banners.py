@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from db.models.banners import Banners, Banners_Crear, Banners_Edit
 
+# Codigo. {Leer Banners}
 def get_banners(
         db: Session, 
         limit: int = 100,
@@ -11,6 +12,7 @@ def get_banners(
         db_banner = db_banner.filter(Banners.activo == bool_activo)
     return db_banner.order_by(Banners.orden).limit(limit).all()
 
+# Codigo. {Crear Banner}
 def create_banner(
         db: Session, 
         banner: Banners_Crear
@@ -21,6 +23,7 @@ def create_banner(
     db.refresh(db_banner)
     return db_banner
 
+# Codigo. {Actualizar Banner}
 def update_banner(
         db: Session,
         id_banner: int,
@@ -36,6 +39,7 @@ def update_banner(
     db.refresh(db_banner)
     return db_banner
 
+# Codigo. {Desactivar Banner}
 def deact_banner(
         db: Session, 
         id_banner: int
@@ -51,6 +55,7 @@ def deact_banner(
     db.refresh(db_banner)
     return True
 
+# Codigo. {Borrar Banner}
 def hard_delete_banner(
         db: Session, 
         id_banner: int

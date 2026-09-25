@@ -3,6 +3,7 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session
 from db.models.favoritos import Favoritos
 
+# Codigo. {}
 def toggle_favorito(
     db: Session, 
     id_cliente: int, 
@@ -32,6 +33,7 @@ def toggle_favorito(
             "estado_favorito": True
         }
 
+# Codigo. {}
 def get_favoritos_cliente(
     db: Session, 
     id_cliente: int
@@ -39,6 +41,7 @@ def get_favoritos_cliente(
     favoritos = db.query(Favoritos.id_producto).filter(Favoritos.id_cliente == id_cliente).all()
     return [fav[0] for fav in favoritos]
 
+# Codigo. {}
 def get_lista_favoritos_completa(
         db: Session, 
         id_cliente: int,

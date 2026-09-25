@@ -2,6 +2,7 @@ from typing import Optional
 from sqlalchemy.orm import Session
 from db.models.direcciones import Direcciones, Direcciones_Crear
 
+# Codigo. {}
 def get_direccion(
         db: Session, 
         id_direccion: Optional[int] = None,
@@ -33,22 +34,26 @@ def get_direccion(
         )
     return resultado.all()
 
+# Codigo. {}
 def get_ciudad(
         db: Session, 
     ):
     return db.query(Direcciones.ciudad).distinct().all()
 
+# Codigo. {}
 def get_provincia(
         db: Session, 
     ):
     return db.query(Direcciones.provincia).distinct().all()
 
+# Codigo. {}
 def get_direcciones(
         db: Session, 
         limit: int = 100
     ):
     return db.query(Direcciones).filter(Direcciones.activo == True).limit(limit).all()
 
+# Codigo. {}
 def create_direccion(
         db: Session, 
         direccion: Direcciones_Crear
@@ -59,6 +64,7 @@ def create_direccion(
     db.refresh(db_direccion)
     return db_direccion
 
+# Codigo. {}
 def update_direccion(
         db: Session, 
         id_direccion: int, 
@@ -73,6 +79,7 @@ def update_direccion(
     db.refresh(db_direccion)
     return db_direccion
 
+# Codigo. {}
 def delete_direccion(
         db: Session, 
         id_direccion: int

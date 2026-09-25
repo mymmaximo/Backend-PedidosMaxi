@@ -5,6 +5,7 @@ from datetime import datetime
 from sqlalchemy.orm import Session
 from db.models.pedidos import Pedidos, Pedidos_Crear
 
+# Codigo. {}
 def get_pedido(
         db: Session, 
         id_pedido: Optional[int] = None,
@@ -31,6 +32,7 @@ def get_pedido(
         )
     return resultado.all()
 
+# Codigo. {}
 def get_pedidoxproducto(
         db: Session,
         id_producto: int
@@ -78,6 +80,7 @@ def get_pedidoxproducto(
         db_pedidos[id_pedidios]["detalle_pedido"].append(nuevo_detalle)
     return list(db_pedidos.values())
 
+# Codigo. {}
 def get_pedidoxid_pedido(
         db: Session,
         id_pedidos: int
@@ -135,12 +138,14 @@ def get_pedidoxid_pedido(
         db_pedidos[id_pedidios]["detalle_pedido"].append(nuevo_detalle)
     return list(db_pedidos.values())
 
+# Codigo. {}
 def get_pedidos(
         db: Session, 
         limit: int = 100
 ):
     return db.query(Pedidos).limit(limit).all()
 
+# Codigo. {}
 def get_all_pedidos(
         db: Session, 
         busqueda_pedido: Optional[str] = None,
@@ -250,6 +255,7 @@ def get_all_pedidos(
         lista_pedidos = lista_temporal
     return lista_pedidos[skip : skip + limit]
 
+# Codigo. {}
 def get_pedidoxcliente(
         db: Session,
         id_cliente: int,
@@ -343,6 +349,7 @@ def get_pedidoxcliente(
         lista_pedidos = lista_temporal
     return lista_pedidos
 
+# Codigo. {}
 def create_pedido(
     db: Session, 
     pedido: Pedidos_Crear
@@ -355,6 +362,7 @@ def create_pedido(
     db.refresh(db_pedido)
     return db_pedido
 
+# Codigo. {}
 def update_pedido(
     db: Session, 
     id_pedido: int, 
@@ -372,6 +380,7 @@ def update_pedido(
     db.refresh(db_pedido)
     return db_pedido
 
+# Codigo. {}
 def delete_pedido(
     db: Session, 
     id_pedido: int
@@ -383,6 +392,7 @@ def delete_pedido(
     db.commit()
     return True
 
+# Codigo. {}
 def confirmar_pago(
     db: Session,
     id_pedido: int,

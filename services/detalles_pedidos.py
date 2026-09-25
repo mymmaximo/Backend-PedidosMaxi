@@ -5,6 +5,7 @@ from db.models.productos import Productos
 from db.models.registro_precios import RegistroPrecios
 from db.models.detalles_pedido import Detalles_Pedido, Detalles_Pedido_Crear
 
+# Codigo. {}
 def get_detalle_pedido(
         db: Session, 
         id_detalle_pedido: Optional[int] = None,
@@ -26,12 +27,14 @@ def get_detalle_pedido(
         )
     return resultado.all()
 
+# Codigo. {}
 def get_detalles_pedido(
         db: Session, 
         limit: int = 100
     ):
     return db.query(Detalles_Pedido).limit(limit).all()
 
+# Codigo. {}
 def create_detalle_pedido(
         db: Session, 
         detalle_pedido: list[Detalles_Pedido_Crear]
@@ -61,6 +64,7 @@ def create_detalle_pedido(
     db.commit()
     return lista_detalles
 
+# Codigo. {}
 def update_detalle_pedido(
         db: Session, 
         id_detalle_pedido: int, 
@@ -75,6 +79,7 @@ def update_detalle_pedido(
     db.refresh(db_detalle_pedido)
     return db_detalle_pedido
 
+# Codigo. {}
 def delete_detalle_pedido(
         db: Session, 
         id_detalle_pedido: int

@@ -5,6 +5,7 @@ from sec import get_contrasena_criptid, verifica_sena, crear_pase
 from db.models.clientes import Clientes, Clientes_Crear, Clientes_Login, Clientes_Edit
 
 
+# Codigo. {Leer Todos los Clientes}
 def get_cliente(
     db:Session,
     busqueda_cliente: Optional[str] = None,
@@ -17,6 +18,7 @@ def get_cliente(
     limit: int = 20,
     skip: int = 0
 ):
+    # Orden y Acceso a Base de Datos
     if orden == 1:
         query = text("SELECT * from get_all_clientes () order by nombre asc")
     elif orden == 2:
@@ -31,6 +33,7 @@ def get_cliente(
     if not db_cliente:
         return []
     db_clientes = {}
+    # Asignar Datos de Cliente
     for i in db_cliente:
         id_clienshin = i["id_cliente"]
         if id_clienshin not in db_clientes:
@@ -43,6 +46,7 @@ def get_cliente(
                 "activo": i["activo"],
                 "created_at": i["created_at"]
             }
+        # Asignar Datos de Direccion
         if i["id_direccion"] is not None:
             direccion_ditto = False
             for dir_guardada in db_clientes[id_clienshin]["direcciones"]:
@@ -60,12 +64,14 @@ def get_cliente(
                 }
                 db_clientes[id_clienshin]["direcciones"].append(nueva_direccion)
     lista_clientes = list(db_clientes.values())
+    # Verificacion de ID
     if id_cliente is not None:
         lista_temporal = []
         for cliente in lista_clientes:
             if cliente["id"] == id_cliente:
                 lista_temporal.append(cliente)
         lista_clientes = lista_temporal
+    # Busqueda de Clientes y Direccion
     if busqueda_cliente is not None:
         busqueda = busqueda_cliente.lower() 
         lista_filtrada = []
@@ -85,16 +91,19 @@ def get_cliente(
             if (busqueda in nombre or busqueda in email or busqueda in dni or encontrado_en_direccion):
                 lista_filtrada.append(cliente)
         lista_clientes = lista_filtrada
+    # Filtro de Cliente Activo
     if bool_activo is not None:
         lista_temporal = []
         for cliente in lista_clientes:
             if cliente["activo"] == bool_activo:
                 lista_temporal.append(cliente)
         lista_clientes = lista_temporal
+    # Filtro de Direccion (Si Tiene Direccion Realizo al menos un Pedido)
     if bool_direccion is not None:
         if bool_direccion:
             lista_temporal = []
             for cliente in lista_clientes:
+                # Filtro de Ciudad y Provincia 
                 if filtrociudad is not None or filtroprovincia is not None:
                     for direcciones in cliente["direcciones"]:
                         if direcciones["ciudad"] == filtrociudad or direcciones["provincia"] == filtroprovincia:
@@ -111,6 +120,7 @@ def get_cliente(
             lista_clientes = lista_temporal
     return lista_clientes[skip : skip + limit]
 
+# Codigo. {Comparacion de Mails}
 def get_mail(
         db: Session,
         email_cliente: Optional[str] = None
@@ -122,12 +132,14 @@ def get_mail(
         )
     return resultado.all()
 
+# Codigo. {Leer Todos los Clientes (Version Vieja)}
 def get_clientes(
         db: Session, 
         limit: int = 100
     ):
     return db.query(Clientes).limit(limit).all()
 
+# Codigo. {Iniciar Sesion de los Clientes}
 def login_clientes(
         db: Session,
         pase: Clientes_Login
@@ -146,6 +158,7 @@ def login_clientes(
     token = crear_pase({"sub": str(cliente_db.id)})
     return token, cliente_db.id
 
+# Codigo. {Leer Direccion de 1 Cliente}
 def get_cliente_id_direccion(
     db:Session,
     id_cliente: int
@@ -169,6 +182,7 @@ def get_cliente_id_direccion(
                     id_direcciones.append(i["id_direccion"])
     return direcciones_list
 
+# Codigo. {Leer Todos los Clientes (Version menos Vieja)}
 def get_cliente_direccion(
     db: Session
 ):
@@ -202,11 +216,13 @@ def get_cliente_direccion(
                 cliente_list[id_cliente]["direcciones"].append(nueva_direccion)
     return list(cliente_list.values())
 
+# Codigo. {Crear Cliente}
 def create_cliente(
         db: Session, 
         cliente: Clientes_Crear
     ):
     datos_cliente = cliente.dict()
+    # Encriptar Contraseña
     contrasena_plana = datos_cliente.pop("contrasena")
     contrasena_hash = get_contrasena_criptid(contrasena_plana)
     datos_cliente["contrasena"] = contrasena_hash
@@ -216,12 +232,14 @@ def create_cliente(
     db.refresh(db_cliente)
     return db_cliente
 
+# Codigo. {Comparacion de DNI}
 def get_dni(
     db: Session, 
     dni_cliente: str
 ):
     return db.query(Clientes).filter(Clientes.dni == dni_cliente).first()
 
+# Codigo. {Actualizar Cliente}
 def update_cliente(
         db: Session, 
         id_cliente: int, 
@@ -240,6 +258,7 @@ def update_cliente(
     db.refresh(db_cliente)
     return db_cliente
 
+# Codigo. {Desactivar Cliente}
 def delete_cliente(
         db: Session, 
         id_cliente: int

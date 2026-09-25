@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from sec import get_contrasena_criptid, verifica_sena, crear_pase, crear_huella
 from db.models.usuarios import Usuarios, Usuarios_Crear, Usuarios_Login, Usuarios_Edit
 
-
+# Codigo. {}
 def get_usuario(
     db:Session,
     busqueda_usuario: Optional[str] = None,
@@ -63,6 +63,7 @@ def get_usuario(
         lista_usuarios = lista_temporal
     return lista_usuarios[skip : skip + limit]
 
+# Codigo. {}
 def get_dni_usuario(
         db: Session,
         dni_usuario: Optional[str] = None
@@ -74,6 +75,7 @@ def get_dni_usuario(
         )
     return resultado.all()
 
+# Codigo. {}
 def get_mail_usuario(
         db: Session,
         email_usuario: Optional[str] = None
@@ -85,12 +87,14 @@ def get_mail_usuario(
         )
     return resultado.all()
 
+# Codigo. {}
 def get_usuarios(
         db: Session, 
         limit: int = 100
     ):
     return db.query(Usuarios).limit(limit).all()
 
+# Codigo. {}
 def login_usuarios(
         db: Session,
         pase: Usuarios_Login,
@@ -123,6 +127,7 @@ def login_usuarios(
     )
     return token_seguro, usuario_db.id, lista_roles
 
+# Codigo. {}
 def create_usuario(
         db: Session, 
         usuario: Usuarios_Crear
@@ -144,6 +149,7 @@ def create_usuario(
     db.refresh(db_usuario)
     return db_usuario
 
+# Codigo. {}
 def update_usuario(
         db: Session, 
         id_usuario: int, 
@@ -173,6 +179,7 @@ def update_usuario(
     db.refresh(db_usuario)
     return db_usuario
 
+# Codigo. {}
 def delete_usuario(
         db: Session, 
         id_usuario: int

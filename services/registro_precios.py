@@ -15,11 +15,13 @@ cache_promos = None
 tiempo_cache_promos = 0
 tiempo_expiracion = 300
 
+# Codigo. {}
 def clean_registros_cache():
     global cache_promos
     cache_promos = None
     clean_productos_cache()
 
+# Codigo. {}
 def get_registros_precios(
         db: Session, 
         skip: int = 0, 
@@ -37,6 +39,7 @@ def get_registros_precios(
         tiempo_cache_promos = tiempo_actual
     return lista_completa[skip : skip + limit]
 
+# Codigo. {}
 def get_historial_registros_precios(
     db:Session,
     busqueda_promocion: Optional[str] = None,
@@ -212,6 +215,7 @@ def get_historial_registros_precios(
         lista_promociones = lista_temporal
     return lista_promociones[skip : skip + limit]
 
+# Codigo. {}
 def get_registros_precios_activas(
     db: Session
 ):
@@ -222,6 +226,7 @@ def get_registros_precios_activas(
         RegistroPrecios.es_promocion == True
     ).all()
 
+# Codigo. {}
 def create_registros_precios(
     db: Session, 
     promocion: RegistroPreciosCrear
@@ -327,6 +332,7 @@ def create_registros_precios(
     clean_registros_cache()
     return nueva_promo
 
+# Codigo. {}
 def update_registros_precios(
     db: Session, 
     id_promocion: int, 
@@ -353,6 +359,7 @@ def update_registros_precios(
     clean_registros_cache()
     return db_promo
 
+# Codigo. {}
 def delete_promocion(
     db: Session, 
     id_promocion: int
