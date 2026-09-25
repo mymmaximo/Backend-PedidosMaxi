@@ -15,13 +15,13 @@ cache_promos = None
 tiempo_cache_promos = 0
 tiempo_expiracion = 300
 
-# Codigo. {}
+# Codigo. {Limpiar Registros Cargados}
 def clean_registros_cache():
     global cache_promos
     cache_promos = None
     clean_productos_cache()
 
-# Codigo. {}
+# Codigo. {Leer Registros de Precios (Version Vieja)}
 def get_registros_precios(
         db: Session, 
         skip: int = 0, 
@@ -39,28 +39,31 @@ def get_registros_precios(
         tiempo_cache_promos = tiempo_actual
     return lista_completa[skip : skip + limit]
 
-# Codigo. {}
+# Codigo. {Leer Registros de Precios}
 def get_historial_registros_precios(
     db:Session,
+    limit: int = 20,
+    skip: int = 0,
+
     busqueda_promocion: Optional[str] = None,
     orden: Optional[int] = None,
-    fecha_inicio_max: Optional[datetime] = None,
-    fecha_inicio_min: Optional[datetime] = None,
-    fecha_fin_max: Optional[datetime] = None,
-    fecha_fin_min: Optional[datetime] = None,
+    
     precio_nuevo_min: Optional[int] = None,
     precio_nuevo_max: Optional[int] = None,
     precio_anterior_min: Optional[int] = None,
     precio_anterior_max: Optional[int] = None,
     porcentaje_descuento_min: Optional[int] = None,
     porcentaje_descuento_max: Optional[int] = None,
+    filtrocat: Optional[str] = None,
+    fecha_inicio_max: Optional[datetime] = None,
+    fecha_inicio_min: Optional[datetime] = None,
+    fecha_fin_max: Optional[datetime] = None,
+    fecha_fin_min: Optional[datetime] = None,
     es_promocion: Optional[bool] = None,
     promo_activa: Optional[bool] = None,
     bool_activo: Optional[bool] = None,
-    filtrocat: Optional[str] = None,
-    limit: int = 20,
-    skip: int = 0
 ):
+    # Orden y Acceso a Base de Datos
     if orden == 1:
         query = text("SELECT * from get_all_promociones () order by nombre asc")
     elif orden == 2:
@@ -95,6 +98,7 @@ def get_historial_registros_precios(
     if not db_promocion:
         return []
     db_precios = {}
+    # Asignar Datos de Registros
     for i in db_promocion:
         id_promocion = i["id"]
         if id_promocion not in db_precios:
@@ -116,6 +120,7 @@ def get_historial_registros_precios(
                 "activo": i["activo"]
             }
     lista_promociones = list(db_precios.values())
+    # Busqueda de Registros y Productos
     if busqueda_promocion is not None:
         busqueda = busqueda_promocion.lower() 
         lista_filtrada = []
@@ -126,87 +131,102 @@ def get_historial_registros_precios(
             if (busqueda in nombre or busqueda in codigo_barra or busqueda in motivo):
                 lista_filtrada.append(promocion)
         lista_promociones = lista_filtrada
+    # Filtro de Registros de Productos Activos
     if bool_activo is not None:
         lista_temporal = []
         for promocion in lista_promociones:
             if promocion["activo"] == bool_activo:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
+    # Filtro de Registros que son Promocion
     if es_promocion is not None:
         lista_temporal = []
         for promocion in lista_promociones:
             if promocion["es_promocion"] == es_promocion:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
+    # Filtro de Promociones Activas
     if promo_activa is not None:
         lista_temporal = []
         for promocion in lista_promociones:
             if promocion["activa"] == promo_activa:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
+    # Filtro de Categorias de Productos con Cambios de Precios Registrados
     if filtrocat is not None:
         lista_temporal = []
         for promocion in lista_promociones:
             if promocion["categoria"] == filtrocat:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
+    # Filtro de el Maximo Precio Nuevo o Precio Descontado
     if precio_nuevo_max is not None:
         lista_temporal = []
         for promocion in lista_promociones:
             if promocion.get("precio_nuevo") is not None and promocion["precio_nuevo"] <= precio_nuevo_max:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
-        
+    # Filtro de el Minimo Precio Nuevo o Precio Descontado
     if precio_nuevo_min is not None:
         lista_temporal = []
         for promocion in lista_promociones:
             if promocion.get("precio_nuevo") is not None and promocion["precio_nuevo"] >= precio_nuevo_min:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
-        
+    # Filtro de el Maximo Precio Anterior o Precio Sin Descuento
     if precio_anterior_max is not None:
         lista_temporal = []
         for promocion in lista_promociones:
             if promocion.get("precio_anterior") is not None and promocion["precio_anterior"] <= precio_anterior_max:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
-        
+    # Filtro de el Minimo Precio Anterior o Precio Sin Descuento
     if precio_anterior_min is not None:
         lista_temporal = []
         for promocion in lista_promociones:
             if promocion.get("precio_anterior") is not None and promocion["precio_anterior"] >= precio_anterior_min:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
+    # Filtro de Fecha Maxima de Inicio de la Promocion 
+    # (No hay Diferencia entre Fecha de Inicio y Fecha de Fin en Cambios Fijos)
     if fecha_inicio_max is not None:
         lista_temporal = []
         for promocion in lista_promociones:
             if promocion["fecha_inicio"] <= fecha_inicio_max:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
+    # Filtro de Fecha Minima de Inicio de la Promocion 
+    # (No hay Diferencia entre Fecha de Inicio y Fecha de Fin en Cambios Fijos)
     if fecha_inicio_min is not None:
         lista_temporal = []
         for promocion in lista_promociones:
             if promocion["fecha_inicio"] >= fecha_inicio_min:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
+    # Filtro de Fecha Maxima de Fin de la Promocion 
+    # (No hay Diferencia entre Fecha de Inicio y Fecha de Fin en Cambios Fijos)
     if fecha_fin_max is not None:
         lista_temporal = []
         for promocion in lista_promociones:
             if promocion["fecha_fin"] <= fecha_fin_max:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
+    # Filtro de Fecha Minima de Fin de la Promocion 
+    # (No hay Diferencia entre Fecha de Inicio y Fecha de Fin en Cambios Fijos)
     if fecha_fin_min is not None:
         lista_temporal = []
         for promocion in lista_promociones:
             if promocion["fecha_fin"] >= fecha_fin_min:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
+    # Filtro de Porcentaje Maximo de Descuento en Producto dentro del Regiistro
     if porcentaje_descuento_max is not None:
         lista_temporal = []
         for promocion in lista_promociones:
             if promocion.get("porcentaje_descuento") is not None and promocion["porcentaje_descuento"] <= porcentaje_descuento_max:
                 lista_temporal.append(promocion)
         lista_promociones = lista_temporal
+    # Filtro de Porcentaje Minimo de Descuento en Producto dentro del Regiistro
     if porcentaje_descuento_min is not None:
         lista_temporal = []
         for promocion in lista_promociones:
@@ -215,7 +235,7 @@ def get_historial_registros_precios(
         lista_promociones = lista_temporal
     return lista_promociones[skip : skip + limit]
 
-# Codigo. {}
+# Codigo. {Leer Promociones Activas/Vigentes}
 def get_registros_precios_activas(
     db: Session
 ):
@@ -226,7 +246,7 @@ def get_registros_precios_activas(
         RegistroPrecios.es_promocion == True
     ).all()
 
-# Codigo. {}
+# Codigo. {Crear Registro de Precio}
 def create_registros_precios(
     db: Session, 
     promocion: RegistroPreciosCrear
@@ -237,8 +257,10 @@ def create_registros_precios(
     precio_base = float(db_producto.precio)
     precio_nuevo = promocion.precio_nuevo
     porcentaje = promocion.porcentaje_descuento
+    # Si el Registro se carga con Porcentaje el Precio Nuevo se Calcula 
     if porcentaje is not None and precio_nuevo is None:
         precio_nuevo = precio_base - (precio_base * (porcentaje / 100.0))
+    # Si el Registro se carga con Precio Nuevo el Porcentaje se Calcula 
     elif precio_nuevo is not None and porcentaje is None:
         porcentaje = int(round(((precio_base - precio_nuevo) / precio_base) * 100))
     nueva_promo = RegistroPrecios(
@@ -262,6 +284,7 @@ def create_registros_precios(
         .filter(Favoritos.id_producto == nueva_promo.id_producto)
         .all()
     )
+    # Envio de Mail a Clientes con Producto en Favoritos
     reporte = f"API KEY: {bool(resend.api_key)} | Prod ID: {nueva_promo.id_producto} | Favoritos Encontrados: {len(clientes_favoritos)} | "
     for cliente in clientes_favoritos:
         html_correo = f"""
@@ -332,7 +355,7 @@ def create_registros_precios(
     clean_registros_cache()
     return nueva_promo
 
-# Codigo. {}
+# Codigo. {Actualizar Registros de Precios}
 def update_registros_precios(
     db: Session, 
     id_promocion: int, 
@@ -359,7 +382,7 @@ def update_registros_precios(
     clean_registros_cache()
     return db_promo
 
-# Codigo. {}
+# Codigo. {Desactivar Promocion}
 def delete_promocion(
     db: Session, 
     id_promocion: int

@@ -13,38 +13,44 @@ tiempo_expiracion = 300
 cache_cat = None
 tiempo_cache_cat = 0
 
-# Codigo. {}
+# Codigo. {Limpiar Productos Cargados}
 def clean_cache():
     global cache,cache_cat
     cache = None
     cache_cat = None
 
-# Codigo. {}
+# Codigo. {Leer Producto}
 def get_producto(
         db: Session,
+        limit: int = 24,
+        skip: int = 0,
+
         busqueda_producto: Optional[str] = None,
         orden: Optional[int] = None,
+
         precio_producto_min: Optional[int] = None,
         precio_producto_max: Optional[int] = None,
+        porcentaje_descuento_min: Optional[int] = None,
         filtrocat: Optional[str] = None,
         bool_activo: Optional[bool] = None,
-        bool_promocion: Optional[bool] = None,
-        porcentaje_descuento_min: Optional[int] = None,
-        limit: int = 24,
-        skip: int = 0
+        bool_promocion: Optional[bool] = None
     ):
     global cache, tiempo_cache
     tiempo_actual = time.time()
+    # Cargar Productos desde el Cache
     if cache is not None and (tiempo_actual - tiempo_cache) < tiempo_expiracion:
         lista_completa = cache
         print ("cargando desde cache")
+    # Cargar Productos desde la Base de Datos
     else: 
         print ("cargando desde base")
+        # Acceso a la Base de Datps
         query = text("SELECT * from get_all_productos () order by created_at desc")
         db_producto = db.execute(query).mappings().all()
         if not db_producto:
             return []
         db_productos = {}
+        # Asignar Datos de Productos
         for i in db_producto:
             id_productron = i["id"]
             if id_productron not in db_productos:
@@ -64,6 +70,7 @@ def get_producto(
                     "porcentaje_descuento": i.get("porcentaje_descuento"),
                     "imagenes": []
                 }
+            # Asignar Datos de Imagenes
             if i["id_imagen"] is not None:
                 imagen_echo = False
                 for img_guardada in db_productos[id_productron]["imagenes"]:
@@ -82,6 +89,7 @@ def get_producto(
         cache = lista_completa
         tiempo_cache = tiempo_actual
     productos_filtrados = lista_completa.copy()
+    # Orden
     if orden == 1:
         productos_filtrados.sort(key=lambda x: x["nombre"].lower() if x["nombre"] else "")
     elif orden == 2:
@@ -101,6 +109,7 @@ def get_producto(
     else:
         productos_filtrados.sort(key=lambda x: x["created_at"] or "", reverse=True)
     productos_filtrados.sort(key=lambda x: x.get("es_promocion", False), reverse=True)
+    # Busqueda de Productos
     if busqueda_producto is not None:
         busqueda = busqueda_producto.lower() 
         lista_filtrada = []
@@ -112,18 +121,21 @@ def get_producto(
             if (busqueda in nombre or busqueda in categoria or busqueda in codigo_barra or busqueda in motivo):
                 lista_filtrada.append(producto)
         productos_filtrados = lista_filtrada
+    # Filtro de Productos Activos
     if bool_activo is not None:
         lista_temporal = []
         for producto in productos_filtrados:
             if producto["activo"] == bool_activo:
                 lista_temporal.append(producto)
         productos_filtrados = lista_temporal
+    # Filtro de Productos en Promocion
     if bool_promocion is not None:
         lista_temporal = []
         for producto in productos_filtrados:
             if producto["es_promocion"] == bool_promocion:
                 lista_temporal.append(producto)
         productos_filtrados = lista_temporal
+    # Filtro de Precio de Producto Minimo
     if precio_producto_min is not None:
         lista_temporal = []
         for producto in productos_filtrados:
@@ -131,6 +143,7 @@ def get_producto(
             if precio_final >= precio_producto_min:
                 lista_temporal.append(producto)
         productos_filtrados = lista_temporal
+    # Filtro de Precio de Producto Maximo
     if precio_producto_max is not None:
         lista_temporal = []
         for producto in productos_filtrados:
@@ -138,12 +151,14 @@ def get_producto(
             if precio_final <= precio_producto_max:
                 lista_temporal.append(producto)
         productos_filtrados = lista_temporal
+    # Filtro de Categorias
     if filtrocat is not None:
         lista_temporal = []
         for producto in productos_filtrados:
             if producto["categoria"] == filtrocat:
                 lista_temporal.append(producto)
         productos_filtrados = lista_temporal
+    # Filtro de Porcentaje de Descuento de los Productos en Promocion
     if porcentaje_descuento_min is not None:
         lista_temporal = []
         for producto in productos_filtrados:
@@ -153,7 +168,7 @@ def get_producto(
         productos_filtrados = lista_temporal
     return productos_filtrados[skip : skip + limit]
 
-# Codigo. {}
+# Codigo. {Leer todas las Categorias}
 def get_categoria(
         db: Session
     ):
@@ -169,18 +184,19 @@ def get_categoria(
     tiempo_cache_cat = tiempo_actual
     return resultado_seguro
 
-# Codigo. {}
+# Codigo. {Leer todos los Productos}
 def get_productos(
         db: Session, 
         limit: int = 100
     ):
     return db.query(Productos).limit(limit).all()
 
-# Codigo. {}
+# Codigo. {Crear Producto}
 def create_producto(
         db: Session, 
         producto: Productos_Crear
     ):
+    # Generar Codigo de Barras
     parte1 = ''.join(random.choices(string.ascii_uppercase, k=3))
     parte2 = ''.join(random.choices(string.ascii_uppercase, k=3))
     parte3 = ''.join(random.choices(string.digits, k=4))
@@ -193,7 +209,7 @@ def create_producto(
     clean_cache()
     return db_producto
 
-# Codigo. {}
+# Codigo. {Crear Imagenes para Productos}
 def create_archivo(
         db: Session, 
         archivo: ArchivoCrear
@@ -205,7 +221,7 @@ def create_archivo(
     clean_cache()
     return db_archivo
 
-# Codigo. {}
+# Codigo. {Actualizar Productos}
 def update_producto(
         db: Session, 
         id_producto: int, 
@@ -222,7 +238,7 @@ def update_producto(
     clean_cache()
     return db_producto
 
-# Codigo. {}
+# Codigo. {Desactivar Productos}
 def delete_producto(
         db: Session, 
         id_producto: int
@@ -236,7 +252,7 @@ def delete_producto(
     clean_cache()
     return True
 
-# Codigo. {}
+# Codigo. {Borrar Imagen}
 def delete_archivo(
         db: Session,
         id_archivo: int

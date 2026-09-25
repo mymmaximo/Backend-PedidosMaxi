@@ -3,16 +3,18 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session
 from db.models.favoritos import Favoritos
 
-# Codigo. {}
+# Codigo. {Añadir/Quitar de Favoritos}
 def toggle_favorito(
     db: Session, 
     id_cliente: int, 
     id_producto: int
 ):
+    # Detectar si esta en Favoritos
     favorito_existente = db.query(Favoritos).filter(
         Favoritos.id_cliente == id_cliente,
         Favoritos.id_producto == id_producto
-    ).first()    
+    ).first() 
+    # Quitar de Favoritos
     if favorito_existente:
         db.delete(favorito_existente)
         db.commit()
@@ -20,6 +22,7 @@ def toggle_favorito(
             "mensaje": "Removido de favoritos", 
             "estado_favorito": False
         }
+    # Añadir a Favoritos
     else:
         nuevo_favorito = Favoritos(
             id_cliente=id_cliente, 
@@ -33,7 +36,7 @@ def toggle_favorito(
             "estado_favorito": True
         }
 
-# Codigo. {}
+# Codigo. {Leer 1 Favoritos del Clientes}
 def get_favoritos_cliente(
     db: Session, 
     id_cliente: int
@@ -41,19 +44,22 @@ def get_favoritos_cliente(
     favoritos = db.query(Favoritos.id_producto).filter(Favoritos.id_cliente == id_cliente).all()
     return [fav[0] for fav in favoritos]
 
-# Codigo. {}
+# Codigo. {Leer los Favoritos del Clientes}
 def get_lista_favoritos_completa(
         db: Session, 
         id_cliente: int,
+        limit: int = 24,
+        skip: int = 0,
+
         busqueda_producto: Optional[str] = None,
         orden: Optional[int] = None,
+
         precio_producto_min: Optional[int] = None,
         precio_producto_max: Optional[int] = None,
         filtrocat: Optional[str] = None,
         bool_activo: Optional[bool] = None,
-        limit: int = 24,
-        skip: int = 0
     ):
+    # Acceder a Base de Datos
     query = text("SELECT * FROM obtener_favoritos_cliente(:id_cliente)")
     db_favoritos = db.execute(
         query, 
@@ -61,6 +67,7 @@ def get_lista_favoritos_completa(
     if not db_favoritos:
         return []
     db_productos = {}
+    # Asignar Datos de Producto
     for i in db_favoritos:
         id_productron = i["id"]
         if id_productron not in db_productos:
@@ -77,6 +84,7 @@ def get_lista_favoritos_completa(
                 "fav_created_at": i["fav_created_at"],
                 "imagenes": []
             }
+        # Asignar Datos de Imagen
         if i["id_imagen"] is not None:
             imagen_echo = False
             for img_guardada in db_productos[id_productron]["imagenes"]:
@@ -92,6 +100,7 @@ def get_lista_favoritos_completa(
                 }
                 db_productos[id_productron]["imagenes"].append(nueva_imagen)
     productos_filtrados = list(db_productos.values())
+    # Orden
     if orden == 1:
         productos_filtrados.sort(
             key=lambda x: x["nombre"].lower() if x["nombre"] else ""
@@ -132,6 +141,7 @@ def get_lista_favoritos_completa(
             key=lambda x: x["fav_created_at"] or "", 
             reverse=True
         )
+    # Busqueda de Producto
     if busqueda_producto is not None:
         busqueda = busqueda_producto.lower() 
         lista_filtrada = []
@@ -142,24 +152,28 @@ def get_lista_favoritos_completa(
             if (busqueda in nombre or busqueda in categoria or busqueda in codigo_barra):
                 lista_filtrada.append(producto)
         productos_filtrados = lista_filtrada
+    # Filtro de Producto Activo
     if bool_activo is not None:
         lista_temporal = []
         for producto in productos_filtrados:
             if producto["activo"] == bool_activo:
                 lista_temporal.append(producto)
         productos_filtrados = lista_temporal
+    # Filtro de Precio de Producto Minimo
     if precio_producto_min is not None:
         lista_temporal = []
         for producto in productos_filtrados:
             if producto["precio"] >= precio_producto_min:
                 lista_temporal.append(producto)
         productos_filtrados = lista_temporal
+    # Filtro de Precio de Producto Maximo
     if precio_producto_max is not None:
         lista_temporal = []
         for producto in productos_filtrados:
             if producto["precio"] <= precio_producto_max:
                 lista_temporal.append(producto)
         productos_filtrados = lista_temporal
+    # Filtro de Categoria
     if filtrocat is not None:
         lista_temporal = []
         for producto in productos_filtrados:

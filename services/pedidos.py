@@ -5,7 +5,7 @@ from datetime import datetime
 from sqlalchemy.orm import Session
 from db.models.pedidos import Pedidos, Pedidos_Crear
 
-# Codigo. {}
+# Codigo. {Leer 1 Pedido}
 def get_pedido(
         db: Session, 
         id_pedido: Optional[int] = None,
@@ -14,34 +14,40 @@ def get_pedido(
         metodo_pago_pedido: Optional[str] = None
 ):
     resultado = db.query(Pedidos)
+    # Busqueda por ID de Pedido
     if id_pedido is not None:
         resultado = resultado.filter(
             Pedidos.id == id_pedido 
         )
+    # Busqueda por ID de Cliente
     if id_cliente_pedido is not None:
         resultado = resultado.filter(
             Pedidos.id_cliente == id_cliente_pedido
         )
+    # Busqueda por ID de Direccion
     if id_direccion_pedido is not None:
         resultado = resultado.filter(
             Pedidos.id_direccion == id_direccion_pedido
         )
+    # Busqueda por Metodo de Pago
     if metodo_pago_pedido is not None:
         resultado = resultado.filter(
             Pedidos.metodo_pago == metodo_pago_pedido
         )
     return resultado.all()
 
-# Codigo. {}
+# Codigo. {Leer Pedidos con X Producto}
 def get_pedidoxproducto(
         db: Session,
         id_producto: int
 ):
+    # Acceso a Base de Datos
     query = text("SELECT * from obtener_productos_pedidos(:id)")
     db_pedido = db.execute(query, {"id": id_producto}).mappings().all()
     if not db_pedido:
         return False
     db_pedidos = {}
+    # Asignar Datos de Pedidos
     for i in db_pedido:
         id_pedidios = i["id_pedido"]
         if id_pedidios not in db_pedidos:
@@ -56,6 +62,7 @@ def get_pedidoxproducto(
                 "detalle_pedido": [],
                 "total": 0
             }
+        # Asignar Datos de Detalles
         subtotal_detalle = i["cantidad"] * i["precio_unitario"]
         db_pedidos[id_pedidios]["total"] += subtotal_detalle
         nuevo_detalle = {
@@ -63,6 +70,7 @@ def get_pedidoxproducto(
             "cantidad": i["cantidad"],
             "precio_unitario": i["precio_unitario"],
             "subtotal": subtotal_detalle,
+                # Asignar Datos de Productos
                 "producto": {
                 "id_producto": i["id_producto"],
                 "nombre": i["nombre"],
@@ -80,33 +88,36 @@ def get_pedidoxproducto(
         db_pedidos[id_pedidios]["detalle_pedido"].append(nuevo_detalle)
     return list(db_pedidos.values())
 
-# Codigo. {}
+# Codigo. {Leer 1 Pedido}
 def get_pedidoxid_pedido(
         db: Session,
         id_pedidos: int
 ):
-    
+    # Acceso a la Base de Datos
     query = text("SELECT * from obtener_id_pedido_pedidos(:id)")
     db_pedido = db.execute(query, {"id": id_pedidos}).mappings().all()
     if not db_pedido:
         return False
     db_pedidos = {}
+    # Asignar Datos de Pedido
     for i in db_pedido:
         id_pedidios = i["id_pedido"]
         if id_pedidios not in db_pedidos:
             db_pedidos[id_pedidios] = {
                 "id_pedido": id_pedidios,
                 "id_cliente": i["id_cliente"],
-                "cliente": [{
-                "nombre": i["nombre_cliente"],
-                }],
+                    # Asignar Datos de Cliente
+                    "cliente": [{
+                    "nombre": i["nombre_cliente"],
+                    }],
                 "id_direccion": i["id_direccion"],
-                "direccion": [{
+                    # Asignar Datos de Direccion
+                    "direccion": [{
                     "calle": i["calle"],
                     "numero": i["numero"],
                     "ciudad": i["ciudad"],
                     "provincia": i["provincia"],
-                }],
+                    }],
                 "metodo_pago": i["metodo_pago"],
                 "estatus": i["estatus"],
                 "tiempo_estimado_entrega": i["tiempo_estimado_entrega"],
@@ -114,6 +125,7 @@ def get_pedidoxid_pedido(
                 "detalle_pedido": [],
                 "total": 0
             }
+        # Asignar Datos de Detalles
         subtotal_detalle = i["cantidad"] * i["precio_unitario"]
         db_pedidos[id_pedidios]["total"] += subtotal_detalle
         nuevo_detalle = {
@@ -121,6 +133,7 @@ def get_pedidoxid_pedido(
             "cantidad": i["cantidad"],
             "precio_unitario": i["precio_unitario"],
             "subtotal": subtotal_detalle,
+                # Asignar Datos de Productos
                 "producto": {
                 "id_producto": i["id_producto"],
                 "nombre": i["nombre"],
@@ -138,24 +151,27 @@ def get_pedidoxid_pedido(
         db_pedidos[id_pedidios]["detalle_pedido"].append(nuevo_detalle)
     return list(db_pedidos.values())
 
-# Codigo. {}
+# Codigo. {Leer todos los Pedidos (Version Vieja)}
 def get_pedidos(
         db: Session, 
         limit: int = 100
 ):
     return db.query(Pedidos).limit(limit).all()
 
-# Codigo. {}
+# Codigo. {Leer todos los Pedidos}
 def get_all_pedidos(
         db: Session, 
+        limit: int = 20,
+        skip: int = 0,
+
         busqueda_pedido: Optional[str] = None,
         orden: Optional[int] = None,
-        filtromp: Optional[str] = None,
+
         filtroest: Optional[int] = None,
-        filtroprom: Optional[bool] = None,
-        limit: int = 20,
-        skip: int = 0
+        filtromp: Optional[str] = None,
+        filtroprom: Optional[bool] = None
 ):
+    # Orden
     if orden == 1:
         query = text("SELECT * from obtener_all_pedidos() order by created_at asc")
     elif orden == 2:
@@ -166,22 +182,25 @@ def get_all_pedidos(
     if not db_pedido:
         return []
     db_pedidos = {}
+    # Asignar Datos de Pedido
     for i in db_pedido:
         id_pedidios = i["id_pedido"]
         if id_pedidios not in db_pedidos:
             db_pedidos[id_pedidios] = {
                 "id_pedido": id_pedidios,
                 "id_cliente": i["id_cliente"],
-                "cliente": [{
+                    # Asignar Datos de Cliente
+                    "cliente": [{
                     "nombre": i["nombre_cliente"],
-                }],
+                    }],
                 "id_direccion": i["id_direccion"],
-                "direccion": [{
+                    # Asignar Datos de Direccion
+                    "direccion": [{
                     "calle": i["calle"],
                     "numero": i["numero"],
                     "ciudad": i["ciudad"],
                     "provincia": i["provincia"],
-                }],
+                    }],
                 "metodo_pago": i["metodo_pago"],
                 "estatus": i["estatus"],
                 "tiempo_estimado_entrega": i["tiempo_estimado_entrega"],
@@ -191,6 +210,7 @@ def get_all_pedidos(
                 "total": i["total"],
                 "detalle_pedido": []
             }
+        # Asignar Datos de Detalles
         subtotal_detalle = i["cantidad"] * i["precio_unitario"]
         db_pedidos[id_pedidios]["total"] += subtotal_detalle
         nuevo_detalle = {
@@ -198,6 +218,7 @@ def get_all_pedidos(
             "cantidad": i["cantidad"],
             "precio_unitario": i["precio_unitario"],
             "subtotal": i["dp_subtotal"],
+                # Asignar Datos de Productos
                 "producto": {
                 "id_producto": i["id_producto"],
                 "nombre": i["nombre"],
@@ -214,6 +235,7 @@ def get_all_pedidos(
         }
         db_pedidos[id_pedidios]["detalle_pedido"].append(nuevo_detalle)
     lista_pedidos = list(db_pedidos.values())
+    # Busqueda de Pedidos y sus Productos
     if busqueda_pedido is not None:
         busqueda = busqueda_pedido.lower() 
         lista_filtrada = []
@@ -234,18 +256,21 @@ def get_all_pedidos(
             if (busqueda in nombre or busqueda in metodo or busqueda in calle or busqueda in ciudad or busqueda in provincia or encontrado_en_producto):
                 lista_filtrada.append(pedido)
         lista_pedidos = lista_filtrada
+    # Filtro de Metodo de Pago
     if filtromp is not None:
         lista_temporal = []
         for pedido in lista_pedidos:
             if pedido["metodo_pago"] == filtromp:
                 lista_temporal.append(pedido)
         lista_pedidos = lista_temporal
+    # Filtro de Estatus del Pedido
     if filtroest is not None:
         lista_temporal = []
         for pedido in lista_pedidos:
             if pedido["estatus"] == filtroest:
                 lista_temporal.append(pedido)
         lista_pedidos = lista_temporal
+    # Filtro de Pedido comprado con Productos Promocionados
     if filtroprom is not None:
         lista_temporal = []
         for pedido in lista_pedidos:
@@ -255,15 +280,18 @@ def get_all_pedidos(
         lista_pedidos = lista_temporal
     return lista_pedidos[skip : skip + limit]
 
-# Codigo. {}
+# Codigo. {Leer Pedidos de X Cliente}
 def get_pedidoxcliente(
         db: Session,
         id_cliente: int,
+
         busqueda_pedido: Optional[str] = None,
         orden: Optional[int] = None,
+        
         filtromp: Optional[str] = None,
         filtroest: Optional[int] = None
 ):
+    # Orden y Acceso a Base de Datos
     if orden == 1:
         query = text("SELECT * from obtener_clientes_pedidos(:id) order by created_at asc")
     elif orden == 2:
@@ -274,6 +302,7 @@ def get_pedidoxcliente(
     if not db_pedido:
         return []
     db_pedidos = {}
+    # Asignar Datos de Pedidos
     for i in db_pedido:
         id_pedidios = i["id_pedido"]
         if id_pedidios not in db_pedidos:
@@ -281,12 +310,13 @@ def get_pedidoxcliente(
                 "id_pedido": id_pedidios,
                 "id_cliente": i["id_cliente"],
                 "id_direccion": i["id_direccion"],
-                "direccion": [{
+                # Asignar Datos de Direccion
+                    "direccion": [{
                     "calle": i["calle"],
                     "numero": i["numero"],
                     "ciudad": i["ciudad"],
                     "provincia": i["provincia"],
-                }],
+                    }],
                 "metodo_pago": i["metodo_pago"],
                 "tiempo_estimado_entrega": i["tiempo_estimado_entrega"],
                 "tiempo_entrega": i["tiempo_entrega"],
@@ -297,11 +327,13 @@ def get_pedidoxcliente(
                 "estatus": i["estatus"],
                 "detalle_pedido": []
             }
+        # Asignar Datos de Detalles
         nuevo_detalle = {
             "id_detalle_pedido": i["id_detalles_pedido"],
             "cantidad": i["cantidad"],
             "precio_unitario": i["precio_unitario"],
             "subtotal": i["subtotal"],
+                # Asignar Datos de Productos
                 "producto": {
                 "id_producto": i["id_producto"],
                 "nombre": i["nombre"],
@@ -318,6 +350,7 @@ def get_pedidoxcliente(
         }
         db_pedidos[id_pedidios]["detalle_pedido"].append(nuevo_detalle)
     lista_pedidos = list(db_pedidos.values())
+    # Busqueda de Pedidos y sus Productos
     if busqueda_pedido is not None:
         busqueda = busqueda_pedido.lower() 
         lista_filtrada = []
@@ -335,12 +368,14 @@ def get_pedidoxcliente(
             if ( busqueda in metodo or busqueda in calle or busqueda in ciudad or busqueda in provincia or encontrado_en_producto):
                 lista_filtrada.append(pedido)
         lista_pedidos = lista_filtrada
+    # Filtro de Metodo de Pago
     if filtromp is not None:
         lista_temporal = []
         for pedido in lista_pedidos:
             if pedido["metodo_pago"] == filtromp:
                 lista_temporal.append(pedido)
         lista_pedidos = lista_temporal
+    # Filtro de Estatus del Pedido
     if filtroest is not None:
         lista_temporal = []
         for pedido in lista_pedidos:
@@ -349,12 +384,13 @@ def get_pedidoxcliente(
         lista_pedidos = lista_temporal
     return lista_pedidos
 
-# Codigo. {}
+# Codigo. {Crear Pedido}
 def create_pedido(
     db: Session, 
     pedido: Pedidos_Crear
 ):
     datos_pedido = pedido.dict()
+    # Tiempo de Entrega estimado al Azar
     datos_pedido["tiempo_estimado_entrega"] = random.randint(1, 7)
     db_pedido = Pedidos(**datos_pedido)
     db.add(db_pedido)
@@ -362,7 +398,7 @@ def create_pedido(
     db.refresh(db_pedido)
     return db_pedido
 
-# Codigo. {}
+# Codigo. {Actualizar Pedido}
 def update_pedido(
     db: Session, 
     id_pedido: int, 
@@ -372,6 +408,7 @@ def update_pedido(
     db_pedido = db.query(Pedidos).filter(Pedidos.id == id_pedido).first()
     if not db_pedido:
         return None
+    # Pedido Entregado asignacion de Tiempo de Entrega
     if datos_pedido["estatus"] == 1:
         datos_pedido["tiempo_entrega"] = (datetime.now() - db_pedido.created_at).days
     for key, value in datos_pedido.items():
@@ -380,7 +417,7 @@ def update_pedido(
     db.refresh(db_pedido)
     return db_pedido
 
-# Codigo. {}
+# Codigo. {Borrar Pedido}
 def delete_pedido(
     db: Session, 
     id_pedido: int
@@ -392,10 +429,11 @@ def delete_pedido(
     db.commit()
     return True
 
-# Codigo. {}
+# Codigo. {Confirmacion de Pago (Luego de Pasar por Pasarela de Pago)}
 def confirmar_pago(
     db: Session,
     id_pedido: int,
+
     transaccion_id: Optional[str] = None,
     url_recibo: Optional[str] = None,
     detalle_pago: Optional[str] = None,
@@ -404,6 +442,7 @@ def confirmar_pago(
     db_pedido = db.query(Pedidos).filter(Pedidos.id == id_pedido).first()
     if not db_pedido:
         return None
+    # Actualizar el Estado de Pedidos 
     if db_pedido.estatus == 4:
         db_pedido.estatus = 3
         db_pedido.metodo_pago = "Paddle"

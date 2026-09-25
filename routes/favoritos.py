@@ -9,7 +9,7 @@ from sec import obtener_usuario_actual
 
 router = APIRouter()
 
-# Codigo. {Añadir/Quitar de a Favoritos}
+# Codigo. {Añadir/Quitar de Favoritos}
 @router.post(
     "/favoritos/toggle", 
     tags=["Favoritos"]

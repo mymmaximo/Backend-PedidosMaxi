@@ -5,15 +5,17 @@ from sqlalchemy.orm import Session
 from sec import get_contrasena_criptid, verifica_sena, crear_pase, crear_huella
 from db.models.usuarios import Usuarios, Usuarios_Crear, Usuarios_Login, Usuarios_Edit
 
-# Codigo. {}
+# Codigo. {Leer todos los Usuarios}
 def get_usuario(
     db:Session,
-    busqueda_usuario: Optional[str] = None,
-    orden: Optional[int] = None,
-    bool_activo: Optional[bool] = None,
     limit: int = 20,
-    skip: int = 0
+    skip: int = 0,
+
+    orden: Optional[int] = None,
+    busqueda_usuario: Optional[str] = None,
+    bool_activo: Optional[bool] = None
 ):
+    # Orden y Acceso a Base de Datos
     if orden == 1:
         query = text("SELECT * from get_all_usuarios () order by nombre asc")
     elif orden == 2:
@@ -32,6 +34,7 @@ def get_usuario(
     if not db_usuario:
         return []
     db_usuarios = {}
+    # Asignar Datos de Usuarios
     for i in db_usuario:
         id_usuarioh = i["id_usuario"]
         if id_usuarioh not in db_usuarios:
@@ -45,6 +48,7 @@ def get_usuario(
                 "created_at": i["created_at"]
             }
     lista_usuarios = list(db_usuarios.values())
+    # Busqueda de Usuarios
     if busqueda_usuario is not None:
         busqueda = busqueda_usuario.lower() 
         lista_filtrada = []
@@ -55,6 +59,7 @@ def get_usuario(
             if (busqueda in nombre or busqueda in email or busqueda in dni):
                 lista_filtrada.append(usuario)
         lista_usuarios = lista_filtrada
+    # Filtro de Usuarios Activos
     if bool_activo is not None:
         lista_temporal = []
         for usuario in lista_usuarios:
@@ -63,7 +68,7 @@ def get_usuario(
         lista_usuarios = lista_temporal
     return lista_usuarios[skip : skip + limit]
 
-# Codigo. {}
+# Codigo. {Comparacion de DNI}
 def get_dni_usuario(
         db: Session,
         dni_usuario: Optional[str] = None
@@ -75,7 +80,7 @@ def get_dni_usuario(
         )
     return resultado.all()
 
-# Codigo. {}
+# Codigo. {Comparacion de Mail}
 def get_mail_usuario(
         db: Session,
         email_usuario: Optional[str] = None
@@ -87,14 +92,14 @@ def get_mail_usuario(
         )
     return resultado.all()
 
-# Codigo. {}
+# Codigo. {Leer todos los Usuarios (Version Vieja)}
 def get_usuarios(
         db: Session, 
         limit: int = 100
     ):
     return db.query(Usuarios).limit(limit).all()
 
-# Codigo. {}
+# Codigo. {Iniciar Sesion de Usuarios}
 def login_usuarios(
         db: Session,
         pase: Usuarios_Login,
@@ -105,12 +110,14 @@ def login_usuarios(
         ).first()
     if not usuario_db:
         return None, None, None
+    # Encriptar Contraseña
     contrasena_valida = verifica_sena(
         pase.contrasena, 
         usuario_db.contrasena
     )
     if not contrasena_valida:
         return None, None, None
+    # Asignar Rol
     roles_query = db.execute(
         text("SELECT id_rol FROM usuarios_roles WHERE id_usuario = :uid"), 
         {"uid": usuario_db.id}
@@ -127,19 +134,22 @@ def login_usuarios(
     )
     return token_seguro, usuario_db.id, lista_roles
 
-# Codigo. {}
+# Codigo. {Crear Usuario}
 def create_usuario(
         db: Session, 
         usuario: Usuarios_Crear
     ):
     datos_usuario = usuario.dict()
+    # Asignar Rol
     roles = datos_usuario.pop("id_rol")
+    # Encriptar Contraseña
     contrasena_plana = datos_usuario.pop("contrasena")
     contrasena_hash = get_contrasena_criptid(contrasena_plana)
     datos_usuario["contrasena"] = contrasena_hash
     db_usuario = Usuarios(**datos_usuario)
     db.add(db_usuario)
     db.flush()
+    # Asignar Roles en Base de Datos
     for rol in roles:
         db.execute(
             text("INSERT INTO usuarios_roles (id_usuario, id_rol) VALUES (:uid, :rid)"), 
@@ -149,7 +159,7 @@ def create_usuario(
     db.refresh(db_usuario)
     return db_usuario
 
-# Codigo. {}
+# Codigo. {Actualizar Usuarios}
 def update_usuario(
         db: Session, 
         id_usuario: int, 
@@ -161,10 +171,12 @@ def update_usuario(
     usuarios_act = usuario.dict(exclude_unset=True)
     roles_nuevos = usuarios_act.pop("id_rol", None)
     for key, value in usuarios_act.items():
+        # Encriptar Contraseña
         if key == "contrasena":
             contrasena_hash = get_contrasena_criptid(usuario.contrasena)
             value = contrasena_hash
         setattr(db_usuario, key, value)
+    # Asignar Roles
     if roles_nuevos is not None:
         db.execute(
             text("DELETE FROM usuarios_roles WHERE id_usuario = :uid"), 
@@ -179,7 +191,7 @@ def update_usuario(
     db.refresh(db_usuario)
     return db_usuario
 
-# Codigo. {}
+# Codigo. {Desactivar Usuario}
 def delete_usuario(
         db: Session, 
         id_usuario: int

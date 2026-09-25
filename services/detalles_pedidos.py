@@ -5,7 +5,7 @@ from db.models.productos import Productos
 from db.models.registro_precios import RegistroPrecios
 from db.models.detalles_pedido import Detalles_Pedido, Detalles_Pedido_Crear
 
-# Codigo. {}
+# Codigo. {Leer 1 Detalle de Pedido}
 def get_detalle_pedido(
         db: Session, 
         id_detalle_pedido: Optional[int] = None,
@@ -13,28 +13,31 @@ def get_detalle_pedido(
         id_pedido_detalle_pedido: Optional[int] = None
     ):
     resultado = db.query(Detalles_Pedido)
+    # Filtro de ID de Detalle
     if id_detalle_pedido is not None:
         resultado = resultado.filter(
             Detalles_Pedido.id == id_detalle_pedido 
         )
+    # Filtro de ID de Producto
     if id_producto_detalle_pedido is not None:
         resultado = resultado.filter(
             Detalles_Pedido.id_producto == id_producto_detalle_pedido
         )
+    # Filtro de ID de Pedido
     if id_pedido_detalle_pedido is not None:
         resultado = resultado.filter(
             Detalles_Pedido.id_pedido == id_pedido_detalle_pedido
         )
     return resultado.all()
 
-# Codigo. {}
+# Codigo. {Leer Todos los Detalles de Pedido}
 def get_detalles_pedido(
         db: Session, 
         limit: int = 100
     ):
     return db.query(Detalles_Pedido).limit(limit).all()
 
-# Codigo. {}
+# Codigo. {Crear Detalle de Pedido}
 def create_detalle_pedido(
         db: Session, 
         detalle_pedido: list[Detalles_Pedido_Crear]
@@ -44,6 +47,7 @@ def create_detalle_pedido(
         db_producto = db.query(Productos).filter(Productos.id == i.id_producto).first()
         if db_producto is None:
             return False
+        # Busqueda de Promociones
         promocion_activa = db.query(RegistroPrecios).filter(
             RegistroPrecios.id_producto == i.id_producto,
             RegistroPrecios.es_promocion == True, 
@@ -64,7 +68,7 @@ def create_detalle_pedido(
     db.commit()
     return lista_detalles
 
-# Codigo. {}
+# Codigo. {Actualizar Detalle de Pedido}
 def update_detalle_pedido(
         db: Session, 
         id_detalle_pedido: int, 
@@ -79,7 +83,7 @@ def update_detalle_pedido(
     db.refresh(db_detalle_pedido)
     return db_detalle_pedido
 
-# Codigo. {}
+# Codigo. {Borrar Detalle}
 def delete_detalle_pedido(
         db: Session, 
         id_detalle_pedido: int

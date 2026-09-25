@@ -2,7 +2,7 @@ from typing import Optional
 from sqlalchemy.orm import Session
 from db.models.direcciones import Direcciones, Direcciones_Crear
 
-# Codigo. {}
+# Codigo. {Leer 1 Direccion}
 def get_direccion(
         db: Session, 
         id_direccion: Optional[int] = None,
@@ -12,48 +12,53 @@ def get_direccion(
         provincia_direccion: Optional[str] = None
     ):
     resultado = db.query(Direcciones)
+    # Filtro de ID Direccion
     if id_direccion is not None:
         resultado = resultado.filter(
             Direcciones.id == id_direccion 
         )
+    # Filtro de Calle
     if calle_direccion is not None:
         resultado = resultado.filter(
             Direcciones.calle == calle_direccion
         )
+    # Filtro de Barrio
     if barrio_direccion is not None:
         resultado = resultado.filter(
             Direcciones.barrio == barrio_direccion
         )
+    # Filtro de Ciudad
     if ciudad_direccion is not None:
         resultado = resultado.filter(
             Direcciones.ciudad == ciudad_direccion
         )
+    # Filtro de Provincia
     if provincia_direccion is not None:
         resultado = resultado.filter(
             Direcciones.provincia == provincia_direccion 
         )
     return resultado.all()
 
-# Codigo. {}
+# Codigo. {Leer todas las Ciudades}
 def get_ciudad(
         db: Session, 
     ):
     return db.query(Direcciones.ciudad).distinct().all()
 
-# Codigo. {}
+# Codigo. {Leer todas las Provincias}
 def get_provincia(
         db: Session, 
     ):
     return db.query(Direcciones.provincia).distinct().all()
 
-# Codigo. {}
+# Codigo. {Leer todas las Direcciones}
 def get_direcciones(
         db: Session, 
         limit: int = 100
     ):
     return db.query(Direcciones).filter(Direcciones.activo == True).limit(limit).all()
 
-# Codigo. {}
+# Codigo. {Crear Direccion}
 def create_direccion(
         db: Session, 
         direccion: Direcciones_Crear
@@ -64,7 +69,7 @@ def create_direccion(
     db.refresh(db_direccion)
     return db_direccion
 
-# Codigo. {}
+# Codigo. {Actualizar Direccion}
 def update_direccion(
         db: Session, 
         id_direccion: int, 
@@ -79,7 +84,7 @@ def update_direccion(
     db.refresh(db_direccion)
     return db_direccion
 
-# Codigo. {}
+# Codigo. {Borrar Direcciones}
 def delete_direccion(
         db: Session, 
         id_direccion: int
