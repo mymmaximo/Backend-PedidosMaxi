@@ -1,7 +1,7 @@
 from typing import Optional
 from db.database import get_db
 from sqlalchemy.orm import Session
-from db.models.favoritos import FavoritoCrear
+from db.models.favoritos import FavoritoBase
 from services import favoritos as crud_favoritos
 from db.models.productos import Productos_Imagenes
 from fastapi import APIRouter, Depends, HTTPException, status
@@ -16,7 +16,7 @@ router = APIRouter()
 )
 def toggle_favorito_route(
     id_cliente: int,
-    fav: FavoritoCrear,
+    fav: FavoritoBase,
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):

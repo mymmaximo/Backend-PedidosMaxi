@@ -1,12 +1,11 @@
-from typing import Optional
 from db.database import Base
 from sqlalchemy.sql import func
-from pydantic import BaseModel, Field
 from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey, Column, Integer, DateTime, String
 
 class Archivos(Base):
     
+    # Nombre en Base de Datos
     __tablename__ = "archivos"
 
     id = Column(
@@ -37,21 +36,10 @@ class Archivos(Base):
         DateTime(timezone=True), 
         server_default=func.now()
     )
+    # Accseos a Productos (ID)
     productos = relationship(
         "Productos", 
         foreign_keys = [id_producto],
         backref = "archivos"
     )
-
-class ArchivoCreate(BaseModel):
-    id_producto: int
-    s3_key: str = Field (max_length=255)
-    nombre_original: Optional[str] = "imagen_vue"
-    tipo_contenido: Optional[str] = "image/png"
-    tamanio: Optional[int] = 0
-
-class ArchivoResponse(ArchivoCreate):
-    id: int
-    id_producto: int    
-    class Config:
-        from_attributes = True
+    

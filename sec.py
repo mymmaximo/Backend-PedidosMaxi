@@ -15,11 +15,13 @@ load_dotenv()
 ARMA_SECRETA = os.getenv("ARMA_SECRETA")
 ALGORITMO = os.getenv("ALGORITMO")
 
+# Codigo. {Contexto Encriptado}
 pwd_context = CryptContext(
     schemes=["bcrypt"],
     deprecated="auto"
 )
 
+# Codigo. {Conseguir IP del Cliente}
 def obtener_ip_real(
     request: Request
 ) -> str:
@@ -35,6 +37,7 @@ def obtener_ip_real(
     return ip_cliente
 limiter = Limiter(key_func=obtener_ip_real)
 
+# Codigo. {Crear Firma Digital}
 def crear_huella(
         request: Request
 ) -> str:
@@ -58,6 +61,7 @@ def crear_huella(
     huella_cruda = f"{ip_cliente}|{navegador}|{idioma}" 
     return hashlib.sha256(huella_cruda.encode('utf-8')).hexdigest()[:16]
 
+# Codigo. {Crear Pase Digital}
 def crear_pase(
         datos: dict,
         request: Request = None
@@ -78,6 +82,7 @@ def crear_pase(
     )
     return final_token
 
+# Codigo. {Leer Contraseña Desencriptada}
 def get_contrasena_criptid(
         contrasena_plana: str
     ):
@@ -89,6 +94,7 @@ def get_contrasena_criptid(
         contrasena_hash
     )
 
+# Codigo. {Leer Usuario con Sesion Iniciada}
 def obtener_usuario_actual(
     request: Request,
     db: Session = Depends(get_db)
@@ -126,6 +132,7 @@ def obtener_usuario_actual(
             )
     return payload
 
+# Codigo. {Verificar Contraseña}
 def verifica_sena(
         contrasena_plana: str,
         contrasena_hash: str
@@ -135,7 +142,8 @@ def verifica_sena(
         contrasena_hash
     )
     return verificado
-    
+
+# Codigo. {Verificar de Token}
 def verificar_token(token: str):
     try:
         payload = jwt.decode(

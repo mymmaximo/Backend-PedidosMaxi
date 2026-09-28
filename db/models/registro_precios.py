@@ -1,13 +1,14 @@
 from typing import Optional
 from db.database import Base
 from datetime import datetime
-from sqlalchemy.sql import func
 from pydantic import BaseModel
+from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey, Column, Integer, DateTime, String, Numeric, Boolean
 
 class RegistroPrecios(Base):
 
+    # Nombre en Base de Datos
     __tablename__ = "registro_precios"
 
     id = Column(
@@ -55,12 +56,14 @@ class RegistroPrecios(Base):
         Boolean, 
         default=True
     )
+    # Accseos a Productos (ID)
     productos = relationship(
         "Productos", 
         foreign_keys = [id_producto],
         backref = "registro_precios"
     )
 
+# Clase/Modelo de Respuesta. {Clase Base}
 class RegistroPreciosBase(BaseModel):
     id_producto: int
     motivo: Optional[str] = None
@@ -71,9 +74,11 @@ class RegistroPreciosBase(BaseModel):
     es_promocion: Optional[bool] = True
     activa: Optional[bool] = True
 
+# Clase/Modelo de Respuesta. {Crear en Servicios}
 class RegistroPreciosCrear(RegistroPreciosBase):
     pass
 
+# Clase/Modelo de Respuesta. {LeerTodos en Rutas}
 class RegistroPrecios_wproductos(BaseModel):
     id: int
     id_producto: int
@@ -91,6 +96,7 @@ class RegistroPrecios_wproductos(BaseModel):
     activo: bool
     model_config = {"from_attributes": True}
 
+# Clase/Modelo de Respuesta. {Actualizar en Servicios}
 class RegistroPreciosEdit(BaseModel):
     motivo: Optional[str] = None
     precio_nuevo: Optional[float] = None
@@ -100,6 +106,7 @@ class RegistroPreciosEdit(BaseModel):
     es_promocion: Optional[bool] = None
     activa: Optional[bool] = None
 
+# Clase/Modelo de Respuesta. {Actualizar/Crear/LeerTodos/LeerTodos(Promociones) en Rutas}
 class RegistroPreciosRespuesta(RegistroPreciosBase):
     id: int
     precio_anterior: float

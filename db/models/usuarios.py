@@ -7,6 +7,7 @@ from datetime import datetime
 
 class Usuarios(Base):
     
+    # Nombre en Base de Datos
     __tablename__ = "usuarios"
 
     id = Column(
@@ -43,36 +44,18 @@ class Usuarios(Base):
         onupdate=func.now()
     )
 
-class Token(BaseModel):
-    access_token: Optional[str]
-    token_type: Optional[str]
-    id_cliente: Optional[int] = None
-    id_usuario: Optional[int] = None
-    id_rol: Optional[list[int]] = None
-
+# Clase/Modelo de Respuesta. {Clase Base}
 class Usuarios_Base(BaseModel):
     nombre: str
     email: EmailStr
 
-class Usuarios_Act(Usuarios_Base):
-    contrasena: str
-    id_rol: list[int]
-
+# Clase/Modelo de Respuesta. {Crear en Servicios}
 class Usuarios_Crear(Usuarios_Base):
     dni: str
     id_rol: list[int]
     contrasena: str
 
-class Usuarios_Direccion(BaseModel):
-    id_cliente: int
-    nombre: str
-    email: EmailStr
-    dni: str
-    calle: str
-    id_rol: list[int]
-    activo: bool
-    model_config = {"from_attributes": True}
-
+# Clase/Modelo de Respuesta. {Leer en Rutas}
 class Usuarios_Direcciones(Usuarios_Base):
     id: int
     dni: str
@@ -80,19 +63,19 @@ class Usuarios_Direcciones(Usuarios_Base):
     id_rol: list[int]
     created_at: datetime
 
+# Clase/Modelo de Respuesta. {Actualizar en Servicios}
 class Usuarios_Edit(BaseModel):
     nombre: Optional[str] = None
     email: Optional[EmailStr] = None
     id_rol: Optional[list[int]] = None
     contrasena: Optional[str] = None
 
+# Clase/Modelo de Respuesta. {Iniciar Sesion en Servicios}
 class Usuarios_Login(BaseModel):
     email: EmailStr
     contrasena: str
 
-class Usuarios_Pedidos(BaseModel):
-    nombre: str
-
+# Clase/Modelo de Respuesta. {Actualizar/Crear en Rutas}
 class Usuarios_Respuesta(Usuarios_Base):
     id: int
     dni: str

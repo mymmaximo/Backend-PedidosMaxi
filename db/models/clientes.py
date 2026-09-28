@@ -8,6 +8,7 @@ from sqlalchemy import Column, Integer, String, DateTime, Boolean
 
 class Clientes(Base):
     
+    # Nombre en Base de Datos
     __tablename__ = "clientes"
 
     id = Column(
@@ -44,31 +45,17 @@ class Clientes(Base):
         onupdate=func.now()
     )
 
+# Clase/Modelo de Respuesta. {Clase Base}
 class Clientes_Base(BaseModel):
     nombre: str
     email: EmailStr
 
-class Clientes_Act(Clientes_Base):
-    contrasena: str
-
+# Clase/Modelo de Respuesta. {Crear en Servicios}
 class Clientes_Crear(Clientes_Base):
     dni: str
     contrasena: str
 
-class Clientes_Direccion(BaseModel):
-    id_cliente: int
-    nombre: str
-    email: EmailStr
-    dni: str
-    calle: str
-    activo: bool
-    id_direccion: int
-    numero: int
-    barrio: str
-    ciudad: str
-    provincia: str
-    model_config = {"from_attributes": True}
-
+# Clase/Modelo de Respuesta. {Leer 1 o Todos en Rutas}
 class Clientes_Direcciones(Clientes_Base):
     id: int
     dni: str
@@ -76,11 +63,13 @@ class Clientes_Direcciones(Clientes_Base):
     created_at: datetime
     direcciones: list[Direcciones_Clientes]
 
+# Clase/Modelo de Respuesta. {Actualizar en Servicios}
 class Clientes_Edit(BaseModel):
     nombre: Optional[str] = None
     email: Optional[EmailStr] = None
     contrasena: Optional[str] = None
 
+# Clase/Modelo de Respuesta. {Leer Direccion en Rutas}
 class Clientes_id_Direccion(BaseModel):
     id_direccion: int
     calle: str
@@ -90,13 +79,16 @@ class Clientes_id_Direccion(BaseModel):
     provincia: str
     model_config = {"from_attributes": True}
 
+# Clase/Modelo de Respuesta. {Iniciar Sesion en Servicios}
 class Clientes_Login(BaseModel):
     email: EmailStr
     contrasena: str
 
+# Clase/Modelo de Respuesta. {Conexión a Pedidos}
 class Clientes_Pedidos(BaseModel):
     nombre: str
 
+# Clase/Modelo de Respuesta. {Actualizar/Crear en Rutas}
 class Clientes_Respuesta(Clientes_Base):
     id: int
     dni: str
@@ -105,10 +97,4 @@ class Clientes_Respuesta(Clientes_Base):
     updated_at: Optional[datetime] = None
     direcciones: list[Direcciones_Clientes] = []
     model_config = {"from_attributes": True}
-
-class Token(BaseModel):
-    access_token: Optional[str]
-    token_type: Optional[str]
-    id_cliente: Optional[int] = None
-    id_usuario: Optional[int] = None
-    id_rol: Optional[int] = None
+    

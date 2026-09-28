@@ -6,6 +6,7 @@ from sqlalchemy import Column, Integer, DateTime, ForeignKey, UniqueConstraint
 
 class Favoritos(Base):
 
+    # Nombre en Base de Datos
     __tablename__ = "favoritos"
     
     id = Column(
@@ -33,16 +34,9 @@ class Favoritos(Base):
         DateTime(timezone=True), 
         server_default=func.now()
     )
+    # Tablas Ajenas
     __table_args__ = (UniqueConstraint('id_cliente', 'id_producto', name='_cliente_producto_uc'),)
 
+# Clase/Modelo de Respuesta. {Añadir/Quitar en Rutas}
 class FavoritoBase(BaseModel):
     id_producto: int
-
-class FavoritoCrear(FavoritoBase):
-    pass
-
-class FavoritoRespuesta(FavoritoBase):
-    id: int
-    id_cliente: int
-    created_at: datetime
-    model_config = {"from_attributes": True}

@@ -11,6 +11,7 @@ from db.models.detalles_pedido import Detalles_Pedido_wProductos, Detalles_Pedid
 
 class Pedidos(Base):
     
+    # Nombre en Base de Datos
     __tablename__ = "pedidos"
 
     id = Column(
@@ -66,15 +67,18 @@ class Pedidos(Base):
         nullable=True
     )
 
+    # Accseos a Clientes (ID)
     clientes = relationship(
         "Clientes", 
         backref="pedidos"
     )
+    # Accseos a Direcciones (ID)
     direcciones = relationship(
         "Direcciones", 
         backref="pedidos"
     )
 
+# Clase/Modelo de Respuesta. {Clase Base}
 class Pedidos_Base(BaseModel):
     id_cliente: int
     id_direccion: Optional[int] = 0
@@ -83,6 +87,7 @@ class Pedidos_Base(BaseModel):
     tiempo_entrega: Optional[int] = 0
     estatus: Optional[int] = 4
 
+# Clase/Modelo de Respuesta. {Leer1/LeerTodos en Rutas}
 class Pedidos_CDDP(Pedidos_Base):
     id_pedido: int
     cliente : list[Clientes_Pedidos]
@@ -92,9 +97,11 @@ class Pedidos_CDDP(Pedidos_Base):
     total: float
     detalle_pedido : list[Detalles_Pedido_wProductos]
 
+# Clase/Modelo de Respuesta. {Actualizar/Crear en Servicios}
 class Pedidos_Crear(Pedidos_Base):
     pass
 
+# Clase/Modelo de Respuesta. {Leer Pedido por Cliente}
 class Pedidos_DDP(Pedidos_Base):
     id_pedido: int
     direccion: list[Direcciones_Pedidos]
@@ -104,69 +111,13 @@ class Pedidos_DDP(Pedidos_Base):
     estatus: int
     detalle_pedido : list[Detalles_Pedido_wProductos_xClientes]
 
+# Clase/Modelo de Respuesta. {Leer Pedido por Producto}
 class Pedidos_Detalles(Pedidos_Base):
     id_pedido: int
     total: float
     detalle_pedido : list[Detalles_Pedido_wProductos]
 
-class Pedidos_Detalles_Productos(BaseModel):
-    id_pedido: int
-    id_cliente: int
-    id_direccion: int
-    metodo_pago: str
-    estatus: int
-    tiempo_estimado_entrega: int
-    tiempo_entrega: int
-    created_at: datetime
-    updated_at: datetime
-    total: float
-    id_detalles_pedido: int
-    cantidad: int
-    precio_unitario: float
-    subtotal: float
-    id_producto: int
-    nombre: str
-    precio: float
-    stock: int
-    categoria: str
-    codigo_barra: str
-    es_promocion: Optional[bool] = False
-    motivo: Optional[str] = None
-    precio_anterior: Optional[float] = None
-    precio_nuevo: Optional[float] = None
-    porcentaje_descuento: Optional[int] = None
-    model_config = {"from_attributes": True}
-
-class Pedidos_Clientes_Direcciones_Detalles_Productos(BaseModel):
-    id_pedido: int
-    id_cliente: int
-    nombre_cliente: str
-    apellido_cliente: str
-    id_direccion: int
-    calle: str
-    numero: int
-    ciudad: str
-    provincia: str
-    metodo_pago: str
-    estatus: int
-    tiempo_estimado_entrega: int
-    tiempo_entrega: int
-    id_detalles_pedido: int
-    cantidad: int
-    precio_unitario: float
-    id_producto: int
-    nombre: str
-    precio: float
-    stock: int
-    categoria: str
-    codigo_barra: str
-    es_promocion: Optional[bool] = False
-    motivo: Optional[str] = None
-    precio_anterior: Optional[float] = None
-    precio_nuevo: Optional[float] = None
-    porcentaje_descuento: Optional[int] = None
-    model_config = {"from_attributes": True}
-
+# Clase/Modelo de Respuesta. {Actualizar/Crear/Leer1/LeerTodos en Rutas}
 class Pedidos_Respuesta(Pedidos_Base):
     id: int
     created_at: datetime
