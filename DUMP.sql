@@ -1,4 +1,5 @@
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+-- Datos. {Archivos (Imagenes)}
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (145,'0.5303807852455212.avif','articulo-vuelta-al-cole_23-2152003421.avif','avif',13317,'2026-09-08 11:36:02.751236'),
 	 (11,'0.0469508055737643.jpg','images - 2026-08-05T083432.103.jpg','jpg',22897,'2026-09-07 15:05:49.517575'),
 	 (10,'0.7061637235677546.jpg','Gj852gNbUAA5DHt.jpg','jpg',171763,'2026-06-25 09:34:33.421288'),
@@ -9,7 +10,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (26,'0.9636655907204998.jpg','images (99).jpg','jpg',17676,'2026-09-07 15:08:31.548162'),
 	 (28,'0.28291867491013023.jpg','images (96).jpg','jpg',5075,'2026-09-07 15:09:27.51898'),
 	 (131,'0.922912007475087.jpg','images.jpg','jpg',7858,'2026-09-08 11:38:46.245431');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (131,'0.12249990410177625.jpg','ajedres.jpg','jpg',122264,'2026-09-08 11:38:46.975622'),
 	 (28,'0.4552787973306135.jpg','images (95).jpg','jpg',16811,'2026-09-07 15:09:28.056434'),
 	 (27,'0.3127737658971309.jpg','images (88).jpg','jpg',22477,'2026-09-07 15:10:01.468665'),
@@ -20,7 +21,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (10,'0.1578550428396318.jpg','images (12).jpg','jpg',6600,'2026-08-04 15:09:07.435139'),
 	 (139,'0.9980994354766234.jpeg','WhatsApp-Image-2024-08-01-at-15.46.19.jpeg','jpeg',156025,'2026-09-08 11:30:25.713698'),
 	 (102,'0.1464954505457179.jpg','images - 2026-08-05T092833.232.jpg','jpg',10266,'2026-09-08 11:42:14.935653');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (102,'0.5671977783304778.png','images.png','png',20637,'2026-09-08 11:42:15.560535'),
 	 (118,'0.7627769328586471.jpg','images - 2026-08-05T093741.376.jpg','jpg',12376,'2026-09-08 11:42:39.331113'),
 	 (118,'0.030893189959737666.jpg','images - 2026-08-05T093739.165.jpg','jpg',6820,'2026-09-08 11:42:40.032954'),
@@ -31,7 +32,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (146,'0.9085824400072708.webp','750_750-aaaaaa_resultado.webp','webp',65656,'2026-09-08 11:31:56.080263'),
 	 (146,'0.8224340186426157.webp','pava.webp','webp',24482,'2026-09-08 11:31:56.954861'),
 	 (116,'0.9290112812219933.jpg','images - 2026-08-05T093538.392.jpg','jpg',5094,'2026-09-08 11:44:52.022227');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (116,'0.3969271575727227.jpg','images - 2026-08-05T093536.118.jpg','jpg',5844,'2026-09-08 11:44:52.656841'),
 	 (99,'0.8680647591265436.jpg','images - 2026-08-05T090927.080.jpg','jpg',11326,'2026-09-08 11:32:20.643989'),
 	 (99,'0.7598663621447969.jpg','images - 2026-08-05T090923.363.jpg','jpg',12289,'2026-09-08 11:32:21.312'),
@@ -42,7 +43,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (85,'0.6860560079691909.jpg','images - 2026-08-05T090300.816.jpg','jpg',9119,'2026-09-08 11:33:15.494119'),
 	 (85,'0.7297047937783339.jpg','images - 2026-08-05T090257.712.jpg','jpg',23130,'2026-09-08 11:33:16.211924'),
 	 (127,'0.11693391659564178.jpg','escri.jpg','jpg',178628,'2026-09-08 11:33:57.841474');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (127,'0.8656259342997865.webp','resize.webp','webp',19616,'2026-09-08 11:33:58.53592'),
 	 (141,'0.664399596295375.webp','web-2025-09-24t092741-636-745ad702c0b2c5a1d317587168757598-1024-1024.webp','webp',85266,'2026-09-08 11:35:04.971295'),
 	 (141,'0.4266165512524538.webp','sillagamer.webp','webp',5162,'2026-09-08 11:35:05.469548'),
@@ -53,7 +54,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (106,'0.9085878148300246.jpg','images - 2026-08-05T093758.386.jpg','jpg',20621,'2026-09-08 11:47:03.09398'),
 	 (106,'0.2929280072778876.jpg','images - 2026-08-05T093754.947.jpg','jpg',5328,'2026-09-08 11:47:03.605385'),
 	 (45,'0.09197409288618652.jpg','images (42).jpg','jpg',11427,'2026-08-04 15:41:16.215223');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (45,'0.7983037924552702.jpg','images (41).jpg','jpg',13583,'2026-08-04 15:41:16.943623'),
 	 (117,'0.37993827801769675.jpg','images - 2026-08-05T093509.831.jpg','jpg',9925,'2026-09-08 11:47:23.076778'),
 	 (117,'0.36599640334421.jpg','images - 2026-08-05T093506.411.jpg','jpg',17441,'2026-09-08 11:47:23.790687'),
@@ -64,7 +65,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (104,'0.31611818801232006.jpg','images - 2026-08-05T093638.083.jpg','jpg',20855,'2026-09-08 11:48:10.067387'),
 	 (104,'0.022347746210631736.jpg','images - 2026-08-05T093634.807.jpg','jpg',12250,'2026-09-08 11:48:10.799249'),
 	 (19,'0.9317883224722918.jpg','images - 2026-08-05T083753.878.jpg','jpg',9495,'2026-09-07 15:11:43.122945');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (19,'0.47025881331440456.jpg','images - 2026-08-05T083747.264.jpg','jpg',12496,'2026-09-07 15:11:43.924991'),
 	 (136,'0.5771732523959933.jpg','aurisx.jpg','jpg',14992,'2026-09-07 15:12:54.528942'),
 	 (136,'0.8253512943094132.jpg','auriculares.jpg','jpg',50178,'2026-09-07 15:12:55.174169'),
@@ -75,7 +76,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (29,'0.5868923649169744.jpg','images (90).jpg','jpg',20108,'2026-09-07 15:17:47.936711'),
 	 (29,'0.5672224537641639.jpg','images (89).jpg','jpg',5178,'2026-09-07 15:17:48.423726'),
 	 (13,'0.9834399703207088.jpg','images - 2026-08-05T083703.206.jpg','jpg',6903,'2026-09-07 15:18:17.262675');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (13,'0.6321050300337038.jpg','images - 2026-08-05T083659.536.jpg','jpg',4923,'2026-09-07 15:18:17.77864'),
 	 (14,'0.2466499970708611.jpg','images - 2026-08-05T083830.156.jpg','jpg',8194,'2026-09-07 15:19:10.234562'),
 	 (14,'0.41997242971904214.jpg','images - 2026-08-05T083827.498.jpg','jpg',6875,'2026-09-07 15:19:11.067408'),
@@ -86,7 +87,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (30,'0.13664907136977222.jpg','images (98).jpg','jpg',28924,'2026-09-07 15:21:02.177409'),
 	 (30,'0.6139817473272634.jpg','images (97).jpg','jpg',39381,'2026-09-07 15:21:03.289173'),
 	 (111,'0.8823882738786586.jpg','images - 2026-08-05T093106.566.jpg','jpg',5235,'2026-09-08 11:49:07.129585');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (111,'0.7913439744998421.jpg','images - 2026-08-05T093103.171.jpg','jpg',21104,'2026-09-08 11:49:07.927062'),
 	 (120,'0.6798341966480109.jpg','images - 2026-08-05T093524.389.jpg','jpg',6180,'2026-09-08 11:49:23.496268'),
 	 (120,'0.9613220137067822.jpg','images - 2026-08-05T093522.298.jpg','jpg',15996,'2026-09-08 11:49:24.208879'),
@@ -97,7 +98,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (150,'0.9828345277606408.jpg','tazaa.jpg','jpg',8188,'2026-09-08 11:50:54.431969'),
 	 (150,'0.4484387558683799.webp','taza.webp','webp',39246,'2026-09-08 11:50:54.977373'),
 	 (144,'0.04601829180372097.jpg','bolsa venomm.jpg','jpg',17975,'2026-09-08 11:52:53.81271');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (144,'0.6613663633031691.webp','bolsa venom.webp','webp',18768,'2026-09-08 11:52:54.434114'),
 	 (105,'0.012204574151297276.jpg','images - 2026-08-05T093422.368.jpg','jpg',20411,'2026-09-08 11:54:52.061658'),
 	 (105,'0.2706397729865807.jpg','images - 2026-08-05T093419.495.jpg','jpg',13308,'2026-09-08 11:54:52.807625'),
@@ -108,7 +109,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (148,'0.8157528316288087.jpg','Gj852gNbUAA5DHt.jpg','jpg',171763,'2026-09-08 11:57:28.657242'),
 	 (148,'0.5871266248016394.webp','2-slide-1778945521071-8711852593-a2461cb6c42fd0476cae05b59d834ed91778945525-1920-1920.webp','webp',263410,'2026-09-08 11:57:29.785289'),
 	 (148,'0.00039590667707778415.webp','2-slide-1778945521071-7584766414-b0f3a4a02685ce5a5c8dd392ae7fa4f21778945526-1920-1920.webp','webp',262986,'2026-09-08 11:57:30.522148');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (148,'0.3104716013219291.png','Gemini_Generated_Image_uf5yn7uf5yn7uf5y.png','png',6074400,'2026-09-08 11:57:32.143458'),
 	 (148,'0.7118371935345761.png','Gemini_Generated_Image_74i0mk74i0mk74i0.png','png',5976975,'2026-09-08 11:57:34.085435'),
 	 (148,'0.983361781066575.jpg','merry-christmas-and-happy-new-year-red-banner-vector.jpg','jpg',34943,'2026-09-08 11:57:34.696735'),
@@ -119,7 +120,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (147,'0.9655956057989014.webp','aurisa.webp','webp',42408,'2026-09-08 12:07:38.041062'),
 	 (154,'0.9709817330608422.jpg','images - 2026-08-05T094248.753.jpg','jpg',10054,'2026-09-08 12:09:32.482031'),
 	 (154,'0.9196184091809434.jpg','images - 2026-08-05T094246.605.jpg','jpg',13826,'2026-09-08 12:09:33.004276');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (36,'0.846727266056009.jpg','images - 2026-08-05T084123.211.jpg','jpg',13433,'2026-08-05 11:42:37.432541'),
 	 (135,'0.5558774612254223.webp','drive.webp','webp',18772,'2026-09-07 15:27:05.259832'),
 	 (135,'0.2763685361194679.webp','R12_2898795a-13d6-47df-bcfa-06ca4c71c3d3_720x.webp','webp',54104,'2026-09-07 15:27:06.079551'),
@@ -130,7 +131,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (112,'0.8208233997989125.jpg','volante.jpg','jpg',37226,'2026-09-07 15:31:40.213931'),
 	 (112,'0.0508959049708082.webp','0000000000407612000360572g294.webp','webp',64862,'2026-09-07 15:31:41.641579'),
 	 (31,'0.4838335346717726.jpg','images - 2026-08-05T084950.056.jpg','jpg',6184,'2026-09-07 15:32:13.489562');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (31,'0.7310778521924648.jpg','images - 2026-08-05T084947.467.jpg','jpg',5117,'2026-09-07 15:32:14.165701'),
 	 (25,'0.8568676428837716.jpg','images - 2026-08-05T085107.462.jpg','jpg',16388,'2026-09-07 15:33:08.353251'),
 	 (25,'0.6374046514377316.jpg','images - 2026-08-05T085105.299.jpg','jpg',10469,'2026-09-07 15:33:08.99567'),
@@ -141,7 +142,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (35,'0.045802125181551245.jpg','images - 2026-08-05T084812.277.jpg','jpg',7289,'2026-09-07 15:34:49.329987'),
 	 (35,'0.6805106082104138.jpg','images - 2026-08-05T084808.765.jpg','jpg',5905,'2026-09-07 15:34:50.261051'),
 	 (82,'0.8206867826033689.jpg','images - 2026-08-05T091752.072.jpg','jpg',28274,'2026-09-08 12:09:52.940403');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (21,'0.7016187209785982.jpg','images - 2026-08-05T084622.253.jpg','jpg',32429,'2026-09-07 15:36:05.093552'),
 	 (21,'0.3005348052950728.jpg','çfdef.jpg','jpg',38159,'2026-09-07 15:36:07.365983'),
 	 (82,'0.6816122831113507.jpg','images - 2026-08-05T091750.075.jpg','jpg',10021,'2026-09-08 12:09:53.438789'),
@@ -152,7 +153,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (78,'0.30304615017032954.jpg','images - 2026-08-05T092529.200.jpg','jpg',10082,'2026-09-08 12:10:51.372373'),
 	 (78,'0.5613592775093004.jpg','images - 2026-08-05T092526.186.jpg','jpg',17377,'2026-09-08 12:10:51.881249'),
 	 (77,'0.6492357022422616.jpg','images - 2026-08-05T091734.437.jpg','jpg',11191,'2026-09-08 12:11:30.332118');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (77,'0.8502911952069994.jpg','images - 2026-08-05T091732.447.jpg','jpg',5554,'2026-09-08 12:11:30.859737'),
 	 (75,'0.3798119425321751.jpg','images - 2026-08-05T092020.388.jpg','jpg',32846,'2026-09-08 12:11:55.275874'),
 	 (75,'0.05198961646678113.jpg','images - 2026-08-05T092017.242.jpg','jpg',20152,'2026-09-08 12:11:55.911593'),
@@ -163,7 +164,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (87,'0.7033809306738538.jpg','images - 2026-08-05T090300.816.jpg','jpg',9119,'2026-08-05 12:04:31.200145'),
 	 (87,'0.8438501608268106.jpg','images - 2026-08-05T090257.712.jpg','jpg',23130,'2026-08-05 12:04:31.757932'),
 	 (40,'0.7549017341616187.jpg','images - 2026-08-05T085049.896.jpg','jpg',7489,'2026-09-07 15:39:26.639334');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (40,'0.2227659220240883.jpg','images - 2026-08-05T085047.078.jpg','jpg',7052,'2026-09-07 15:39:27.359561'),
 	 (39,'0.19432733556226445.jpg','images - 2026-08-05T085232.909.jpg','jpg',5446,'2026-09-07 15:39:58.187532'),
 	 (39,'0.9934848880467034.jpg','images - 2026-08-05T085229.389.jpg','jpg',5731,'2026-09-07 15:39:58.789039'),
@@ -174,7 +175,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (79,'0.5501024039195437.jpg','images - 2026-08-05T092516.295.jpg','jpg',4874,'2026-09-08 12:13:25.394804'),
 	 (79,'0.9244215322027157.jpg','images - 2026-08-05T092513.970.jpg','jpg',4372,'2026-09-08 12:13:25.922724'),
 	 (38,'0.7161120750906212.jpg','images - 2026-08-05T084912.476.jpg','jpg',16773,'2026-09-07 15:41:43.219132');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (38,'0.7880144942425618.jpg','images - 2026-08-05T084909.334.jpg','jpg',7793,'2026-09-07 15:41:44.061222'),
 	 (142,'0.1650528565183932.jpg','teclado.jpg','jpg',203994,'2026-08-05 12:27:25.091174'),
 	 (142,'0.5735336633077383.webp','tc5061-fb4c3b441c42d784e017392031674807-1024-1024.webp','webp',98292,'2026-08-05 12:27:26.284368'),
@@ -185,7 +186,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (22,'0.5226493121303486.jpg','images - 2026-08-05T084716.901.jpg','jpg',5612,'2026-09-07 15:42:09.010079'),
 	 (22,'0.18292950118961604.jpg','images - 2026-08-05T084714.211.jpg','jpg',3953,'2026-09-07 15:42:09.596704'),
 	 (23,'0.79675334089348.jpg','images - 2026-08-05T084105.986.jpg','jpg',2604,'2026-09-07 15:42:39.093523');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (23,'0.23670884942732706.jpg','images - 2026-08-05T084103.362.jpg','jpg',2408,'2026-09-07 15:42:39.67618'),
 	 (89,'0.4285044558755947.jpg','images - 2026-08-05T092406.911.jpg','jpg',12718,'2026-09-08 12:15:02.957743'),
 	 (89,'0.6899054596552059.jpg','images - 2026-08-05T092403.648.jpg','jpg',4496,'2026-09-08 12:15:03.579699'),
@@ -196,7 +197,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (93,'0.3518064010139941.jpg','images - 2026-08-05T090747.751.jpg','jpg',17350,'2026-09-07 15:45:29.669224'),
 	 (93,'0.28674264671373617.jpg','images - 2026-08-05T090745.216.jpg','jpg',10451,'2026-09-07 15:45:30.632871'),
 	 (92,'0.9566598376336782.jpg','images - 2026-08-05T090119.923.jpg','jpg',21431,'2026-09-07 15:46:04.361203');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (92,'0.39257786327909006.jpg','images - 2026-08-05T090117.546.jpg','jpg',16605,'2026-09-07 15:46:05.45469'),
 	 (100,'0.8655373212846548.jpg','images - 2026-08-05T090452.747.jpg','jpg',4001,'2026-09-07 15:46:47.794415'),
 	 (100,'0.2779328474132622.jpg','images - 2026-08-05T090447.263.jpg','jpg',19259,'2026-09-07 15:46:48.507848'),
@@ -207,7 +208,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (132,'0.9687543244944058.jpg','silla.jpg','jpg',41065,'2026-09-07 15:48:38.067512'),
 	 (132,'0.5999919446819904.webp','foto_270_1191.webp','webp',52960,'2026-09-07 15:48:38.89333'),
 	 (137,'0.041518286552058914.webp','sillanormal.webp','webp',91504,'2026-09-07 15:49:18.23244');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (137,'0.16752497459584093.jpeg','WhatsApp-Image-2023-08-29-at-15.56.55-1-e1693337686398.jpeg','jpeg',81347,'2026-09-07 15:49:18.958965'),
 	 (94,'0.2530682691557333.jpg','images - 2026-08-05T085623.403.jpg','jpg',3845,'2026-09-07 15:49:51.19087'),
 	 (94,'0.7513573895891023.jpg','images - 2026-08-05T085620.711.jpg','jpg',7845,'2026-09-07 15:49:51.874933'),
@@ -218,7 +219,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (74,'0.7832671658094462.jpg','images - 2026-08-05T092426.626.jpg','jpg',1993,'2026-09-08 12:16:18.932147'),
 	 (74,'0.7569744132626514.jpg','images - 2026-08-05T092423.104.jpg','jpg',4093,'2026-09-08 12:16:19.5123'),
 	 (81,'0.26042618971016074.jpg','images - 2026-08-05T091523.736.jpg','jpg',9539,'2026-09-08 12:16:33.782945');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (81,'0.3762317895884095.jpg','images - 2026-08-05T091517.725.jpg','jpg',13855,'2026-09-08 12:16:34.308954'),
 	 (115,'0.39537226999743347.webp','3979-cargador-de-pared-para-celular-700-mah-microusb1-8f74aac7d2c07bdf1116354292762042-640-0.webp','webp',24218,'2026-09-08 12:17:14.47134'),
 	 (115,'0.01912099878091955.jpg','cargador.jpg','jpg',46476,'2026-09-08 12:17:15.121545'),
@@ -229,7 +230,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (122,'0.8441582644112443.jpg','mouse.jpg','jpg',189369,'2026-09-07 13:27:29.313165'),
 	 (122,'0.8825794881935328.jpeg','36452_1.jpeg','jpeg',54010,'2026-09-07 13:27:30.48105'),
 	 (50,'0.2697788553734639.jpg','images (32).jpg','jpg',7333,'2026-09-07 13:33:38.496714');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (50,'0.5553292064484773.jpg','images (31).jpg','jpg',14695,'2026-09-07 13:33:39.226566'),
 	 (42,'0.5740883555074457.jpg','images (30).jpg','jpg',9742,'2026-09-07 13:35:25.7237'),
 	 (42,'0.7986130331797229.jpg','images (29).jpg','jpg',8813,'2026-09-07 13:35:26.331905'),
@@ -240,7 +241,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (41,'0.1807372481978058.jpg','images (42).jpg','jpg',11427,'2026-09-07 13:39:43.870194'),
 	 (41,'0.0636773216163189.jpg','images (41).jpg','jpg',13583,'2026-09-07 13:39:44.892548'),
 	 (48,'0.9577446814935515.jpg','images (54).jpg','jpg',29777,'2026-09-07 13:40:20.625598');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (48,'0.8587078710991832.jpg','images (53).jpg','jpg',9382,'2026-09-07 13:40:21.280552'),
 	 (57,'0.6720963773104262.jpg','images (34).jpg','jpg',6330,'2026-09-07 13:40:44.593669'),
 	 (57,'0.9680515684918191.jpg','images (33).jpg','jpg',6883,'2026-09-07 13:40:45.607618'),
@@ -251,7 +252,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (43,'0.3454106514974886.jpg','images (50).jpg','jpg',15141,'2026-09-07 14:08:46.553801'),
 	 (43,'0.43859748350156225.jpg','images (49).jpg','jpg',12398,'2026-09-07 14:08:47.097973'),
 	 (47,'0.6642853243917123.jpg','images (38).jpg','jpg',7031,'2026-09-07 14:09:21.571819');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (47,'0.11676925690133733.jpg','images (37).jpg','jpg',7048,'2026-09-07 14:09:22.325317'),
 	 (58,'0.6431061385957432.jpg','images (28).jpg','jpg',3115,'2026-09-07 14:10:34.840143'),
 	 (58,'0.9998880975886203.jpg','images (27).jpg','jpg',4930,'2026-09-07 14:10:35.432245'),
@@ -262,7 +263,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (49,'0.04842566561616324.jpg','images (36).jpg','jpg',24074,'2026-09-07 14:13:26.416287'),
 	 (49,'0.031061088423479988.jpg','images (35).jpg','jpg',23204,'2026-09-07 14:13:26.936212'),
 	 (129,'0.05664233534417906.webp','D_NQ_NP_656687-MLA51138166870_082022-O.webp','webp',17120,'2026-09-07 14:14:19.593457');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (129,'0.6174412607330831.webp','mousepad.webp','webp',600188,'2026-09-07 14:14:20.704984'),
 	 (59,'0.02539735874666116.jpg','images (48).jpg','jpg',9453,'2026-09-07 14:14:54.072257'),
 	 (59,'0.7242772478864562.jpg','images (47).jpg','jpg',9279,'2026-09-07 14:14:54.916251'),
@@ -273,7 +274,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (130,'0.5585445352286613.jpg','images (78).jpg','jpg',19819,'2026-09-07 14:18:26.650683'),
 	 (130,'0.1610374361218414.jpg','images (77).jpg','jpg',27526,'2026-09-07 14:18:27.252011'),
 	 (114,'0.5090818360442098.jpg','nb_PLACA-DE-VIDEO-ZOTAC-RTX-3050-ECO-8GB-DDR6_ver_cc0192cf6649e722addaa76bbc731ba6.jpg','jpg',202308,'2026-09-07 14:22:53.021454');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (114,'0.3980862955758231.jpg','rtx.jpg','jpg',80324,'2026-09-07 14:22:53.749766'),
 	 (126,'0.8788998385329995.webp','faxx.webp','webp',18372,'2026-09-07 14:24:56.647477'),
 	 (126,'0.3469895402993761.jpg','fax.jpg','jpg',69472,'2026-09-07 14:24:57.723691'),
@@ -284,7 +285,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (66,'0.1757285470864247.jpg','images (74).jpg','jpg',61333,'2026-09-07 14:28:40.520249'),
 	 (66,'0.21181805790407793.jpg','images (73).jpg','jpg',27087,'2026-09-07 14:28:41.071844'),
 	 (68,'0.9692727265928421.jpg','images (70).jpg','jpg',22802,'2026-09-07 14:29:43.051139');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (68,'0.9148804660041432.jpg','images (69).jpg','jpg',22296,'2026-09-07 14:29:43.741101'),
 	 (67,'0.9956500807665863.jpg','images (68).jpg','jpg',23462,'2026-09-07 14:30:30.364685'),
 	 (67,'0.4926334417587016.jpg','images (67).jpg','jpg',29908,'2026-09-07 14:30:30.950788'),
@@ -295,7 +296,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (62,'0.6859876185258414.jpg','images (66).jpg','jpg',25591,'2026-09-07 14:36:00.183284'),
 	 (62,'0.16994106630801986.jpg','images (65).jpg','jpg',14139,'2026-09-07 14:36:00.819863'),
 	 (55,'0.6616343602131843.jpg','images (56).jpg','jpg',13975,'2026-09-07 14:38:33.667376');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (55,'0.4799020874744079.jpg','images (55).jpg','jpg',4299,'2026-09-07 14:38:34.165927'),
 	 (70,'0.4960262801719315.jpg','images (62).jpg','jpg',30121,'2026-09-07 14:39:03.228737'),
 	 (70,'0.5180000245175841.jpg','images (61).jpg','jpg',24232,'2026-09-07 14:39:03.73113'),
@@ -306,7 +307,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (52,'0.0968084715520442.jpg','images (58).jpg','jpg',42559,'2026-09-07 14:42:07.211251'),
 	 (52,'0.2628103243025024.jpg','images (57).jpg','jpg',7102,'2026-09-07 14:42:07.776353'),
 	 (54,'0.3570680691153344.jpg','images (60).jpg','jpg',30727,'2026-09-07 14:43:01.802614');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (54,'0.7576968379070194.jpg','images (59).jpg','jpg',6260,'2026-09-07 14:43:02.403778'),
 	 (53,'0.4648011241152321.jpg','images (76).jpg','jpg',13826,'2026-09-07 14:43:19.922463'),
 	 (53,'0.9504480062408878.jpg','images (75).jpg','jpg',7861,'2026-09-07 14:43:20.417887'),
@@ -317,7 +318,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (63,'0.39787951237030994.jpg','images (23).jpg','jpg',9114,'2026-09-07 14:50:18.952237'),
 	 (5,'0.5408431800034268.jpg','images (3).jpg','jpg',27272,'2026-09-07 14:51:05.342947'),
 	 (5,'0.8936992606252.webp','184794-800-auto.webp','webp',31088,'2026-09-07 14:51:05.876685');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (9,'0.9048363028670144.jpg','images (5).jpg','jpg',13081,'2026-09-07 14:52:01.005544'),
 	 (9,'0.9351468344365651.jpg','images (4).jpg','jpg',34243,'2026-09-07 14:52:01.624111'),
 	 (10,'0.6066935495882144.jpg','images (16).jpg','jpg',21503,'2026-09-07 14:53:05.921539'),
@@ -328,7 +329,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (1,'0.10843297272665209.jpg','images (6).jpg','jpg',14854,'2026-09-07 14:56:10.264276'),
 	 (3,'0.3863933817899762.jpg','images (22).jpg','jpg',11135,'2026-09-07 14:57:02.590676'),
 	 (3,'0.10542154323919684.jpg','images (21).jpg','jpg',4351,'2026-09-07 14:57:03.130716');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (6,'0.33992329911120944.jpg','images (8).jpg','jpg',11687,'2026-09-07 14:57:59.546546'),
 	 (6,'0.24134782128892174.jpg','images (7).jpg','jpg',13776,'2026-09-07 14:58:00.072186'),
 	 (7,'0.12831605337722873.jpg','images (12).jpg','jpg',6600,'2026-09-07 14:58:28.346361'),
@@ -339,7 +340,7 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (2,'0.19549378258322048.jpg','images (17).jpg','jpg',3669,'2026-09-07 15:00:10.500844'),
 	 (8,'0.8774658015010712.jpg','images (20).jpg','jpg',8360,'2026-09-07 15:00:33.380163'),
 	 (8,'0.9686233529304721.jpg','images (19).jpg','jpg',6619,'2026-09-07 15:00:33.950588');
-INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) VALUES
+insert into public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,tamanio,created_at) values
 	 (4,'0.26146649125732424.jpg','images (10).jpg','jpg',4569,'2026-09-07 15:01:21.591955'),
 	 (4,'0.6542489378776268.jpg','images (9).jpg','jpg',3884,'2026-09-07 15:01:22.13096'),
 	 (153,'0.04328478374879652.jpg','pantalongabardina.jpg','jpg',143141,'2026-09-07 15:01:51.493529'),
@@ -350,11 +351,15 @@ INSERT INTO public.archivos (id_producto,s3_key,nombre_original,tipo_contenido,t
 	 (101,'0.5316936078093101.jpg','images - 2026-08-05T085555.705.jpg','jpg',29227,'2026-09-08 11:29:14.240809'),
 	 (98,'0.0445020407629233.jpg','images - 2026-08-05T090527.172.jpg','jpg',9259,'2026-09-08 11:29:47.784154'),
 	 (98,'0.26495197425769224.jpg','images - 2026-08-05T090524.592.jpg','jpg',7622,'2026-09-08 11:29:48.363653');
-INSERT INTO public.banner (s3_key,nombre_original,tipo_contenido,tamanio,activo,enlace,orden,created_at) VALUES
+
+-- Datos. {Banners de la Pagina Principal}
+insert into public.banner (s3_key,nombre_original,tipo_contenido,tamanio,activo,enlace,orden,created_at) values
 	 ('0.5692411221334659.jpg','merry-christmas-and-happy-new-year-red-banner-vector.jpg','jpg',34943,false,'productos',3,'2026-06-22 10:55:19.888779'),
 	 ('0.4571640522235364.png','Gemini_Generated_Image_uf5yn7uf5yn7uf5y.png','png',6074400,true,'productos',4,'2026-08-03 12:32:13.737723'),
 	 ('0.27419100762663673.png','Gemini_Generated_Image_74i0mk74i0mk74i0.png','png',5976975,true,'productos',5,'2026-08-03 12:32:16.555674');
-INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) VALUES
+
+-- Datos. {Clientes Registrados}
+insert into public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) values
 	 ('Sofía','smartinez@email.com','39555666','2026-03-09 12:42:26.964735','2026-05-05 11:20:09.746063','$2b$12$KkSnQ3tYWR8ms39G9yI48u5pQjkcPI3843owzNYXo7C/30188x73.',true),
 	 ('Javier','javi.xavier@email.com','34888999','2026-03-09 12:42:26.964735','2026-05-05 11:20:20.129406','$2b$12$MPu7A9mjSd91nUSVfgvyfu/t/W6U5aE2QpldWOLeoPOmvihuzHKsq',true),
 	 ('Camilaa','cami.garcia@email.com','41222333','2026-03-09 12:42:26.964735','2026-05-05 13:03:55.397623','$2b$12$YdD60Ryq8zCvGu/gWujJW.2JTthKhKMOzsGEZJIfmtZZj20z3KOk2',true),
@@ -362,79 +367,81 @@ INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,a
 	 ('Lucíana','lucia.f@email.com','38987654','2026-03-09 12:42:26.964735','2026-05-08 12:14:33.014554','$2b$12$/ecZnxWXL1cLGU4.XjM54eSWNUywbMXTYM0SFXqq/qfN.vWmvwMxW',true),
 	 ('Oliver','grayson@gmail.com','123456789','2026-04-10 10:10:28.549725','2026-05-26 09:10:38.745872','$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true),
 	 ('Goku','kakarotto@ccmail.com','8000666','2026-03-18 11:18:25.044441','2026-06-01 12:42:42.904259','$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',false),
-	 ('ben','ben@galvan.com','14681648','2026-06-05 09:32:54.685513',NULL,'$2b$12$VtFvaJuxA1CWDa3hbKGLhOebitMjUIKDzqIExQNAqMb39SHDejI2e',true),
-	 ('Juju','Hakusho@gmail.com','42635476','2026-06-26 09:50:28.592766',NULL,'$2b$12$H2h4nXsEscsAqKetWbq3ueJYwFydPdeu/5Xr5AVlZbH.MJi.GRS42',true),
+	 ('ben','ben@galvan.com','14681648','2026-06-05 09:32:54.685513',null,'$2b$12$VtFvaJuxA1CWDa3hbKGLhOebitMjUIKDzqIExQNAqMb39SHDejI2e',true),
+	 ('Juju','Hakusho@gmail.com','42635476','2026-06-26 09:50:28.592766',null,'$2b$12$H2h4nXsEscsAqKetWbq3ueJYwFydPdeu/5Xr5AVlZbH.MJi.GRS42',true),
 	 ('Joaquín','joaquin.ruiz@email.com','37444555','2026-03-09 12:42:26.964735','2026-03-09 12:42:26.964735','$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true);
-INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) VALUES
-	 ('Jonny','jonny@sbr.com','777888999','2026-03-27 08:42:48.017243',NULL,'$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true),
-	 ('Baki','hanma@gmail.com','814613535','2026-04-17 09:43:34.516494',NULL,'$2b$12$7BzQpyi6Is.DWuMaMvoLOOQlI1O/N.IgaYqwSMgeFclaY1J8m9.fS',true),
-	 ('Baki','bakihanma@gmail.com','41685419','2026-04-17 09:46:40.718326',NULL,'$2b$12$F156SXcsEmhDGRc3.mS7M.8Dr7E.Lg04p/a/B3CN1O9Br4K0dtlFy',true),
+insert into public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) values
+	 ('Jonny','jonny@sbr.com','777888999','2026-03-27 08:42:48.017243',null,'$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true),
+	 ('Baki','hanma@gmail.com','814613535','2026-04-17 09:43:34.516494',null,'$2b$12$7BzQpyi6Is.DWuMaMvoLOOQlI1O/N.IgaYqwSMgeFclaY1J8m9.fS',true),
+	 ('Baki','bakihanma@gmail.com','41685419','2026-04-17 09:46:40.718326',null,'$2b$12$F156SXcsEmhDGRc3.mS7M.8Dr7E.Lg04p/a/B3CN1O9Br4K0dtlFy',true),
 	 ('Jodio','jojo@gmail.com','99999999','2026-04-01 10:01:43.41078','2026-05-08 12:14:31.354486','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true),
 	 ('Maxi','max@gmail.com','8523697','2026-03-09 12:42:26.964735','2026-04-17 11:44:00.184693','$2b$12$c4/NU5K9Ant.m7cBp6MNiudZri0deGtc7c6WHNpdk9QS/q0RBPMnG',true),
-	 ('john','john@gmail.com','46845464','2026-07-28 14:05:52.7617',NULL,'$2b$12$kKqK1VK72Un3Y.pSiwy8Vu1EEZLNCb4dZzPyBirR8NjjVnF2JgbY6',true),
-	 ('Franco','franco@gmail.com','45241854','2026-07-31 13:33:25.238115',NULL,'$2b$12$gJ82J368NehsK.1Ldj2ZrOae4lVzAjlX3Na2y3NuvBJN5KNMUTP/O',true),
-	 ('Baki Hanma','baki@gmail.com','16514644','2026-08-03 13:06:52.832873',NULL,'$2b$12$hrXYErp2p2Unncxf.6ksPeujJ7JVE3GxLqpTQL22ucGvpPf9TIbTO',true),
+	 ('john','john@gmail.com','46845464','2026-07-28 14:05:52.7617',null,'$2b$12$kKqK1VK72Un3Y.pSiwy8Vu1EEZLNCb4dZzPyBirR8NjjVnF2JgbY6',true),
+	 ('Franco','franco@gmail.com','45241854','2026-07-31 13:33:25.238115',null,'$2b$12$gJ82J368NehsK.1Ldj2ZrOae4lVzAjlX3Na2y3NuvBJN5KNMUTP/O',true),
+	 ('Baki Hanma','baki@gmail.com','16514644','2026-08-03 13:06:52.832873',null,'$2b$12$hrXYErp2p2Unncxf.6ksPeujJ7JVE3GxLqpTQL22ucGvpPf9TIbTO',true),
 	 ('lorenzo','lololol@gmail.com','15631486','2026-07-29 15:33:24.661852','2026-08-03 15:27:54.267893','$2b$12$DrGIW5jQo4jDCAwdDu8EoOCk5ynLSupUYyIfvQBYAOl2oZ2RSpzEq',true),
-	 ('Mateo','mateo.gomez@email.com','38444111','2026-03-10 10:00:00',NULL,'$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true);
-INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) VALUES
+	 ('Mateo','mateo.gomez@email.com','38444111','2026-03-10 10:00:00',null,'$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true);
+insert into public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) values
 	 ('Martina','martina.perez@gmail.com','40555222','2026-03-12 14:20:10.123456','2026-04-01 09:00:00','$2b$12$KkSnQ3tYWR8ms39G9yI48u5pQjkcPI3843owzNYXo7C/30188x73.',true),
-	 ('Lucas','lucas.silva@email.com','36777888','2026-03-15 08:30:20.654321',NULL,'$2b$12$MPu7A9mjSd91nUSVfgvyfu/t/W6U5aE2QpldWOLeoPOmvihuzHKsq',true),
+	 ('Lucas','lucas.silva@email.com','36777888','2026-03-15 08:30:20.654321',null,'$2b$12$MPu7A9mjSd91nUSVfgvyfu/t/W6U5aE2QpldWOLeoPOmvihuzHKsq',true),
 	 ('Valentina','valen.torres@gmail.com','42111444','2026-03-18 16:45:00.111222','2026-05-10 11:15:30','$2b$12$YdD60Ryq8zCvGu/gWujJW.2JTthKhKMOzsGEZJIfmtZZj20z3KOk2',true),
-	 ('Santiago','santi.lopez@email.com','37888999','2026-03-20 09:12:33.444555',NULL,'$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true),
+	 ('Santiago','santi.lopez@email.com','37888999','2026-03-20 09:12:33.444555',null,'$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true),
 	 ('Catalina','cata.rodriguez@gmail.com','43222555','2026-03-22 11:50:44.789123','2026-06-02 10:30:00.123456','$2b$12$/ecZnxWXL1cLGU4.XjM54eSWNUywbMXTYM0SFXqq/qfN.vWmvwMxW',true),
-	 ('Joaquin','joaco.fernandez@email.com','39333666','2026-03-25 13:22:11.999888',NULL,'$2b$12$dz0d4gbROL/wW3AHAF46y.jWwvApkdiUnzBLeSvrsksvjQoI4KCQm',true),
+	 ('Joaquin','joaco.fernandez@email.com','39333666','2026-03-25 13:22:11.999888',null,'$2b$12$dz0d4gbROL/wW3AHAF46y.jWwvApkdiUnzBLeSvrsksvjQoI4KCQm',true),
 	 ('Camila','cami.sanchez@gmail.com','41444777','2026-03-28 15:10:05.123789','2026-05-15 14:00:22.555444','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true),
-	 ('Agustin','agus.gimenez@email.com','35999000','2026-04-02 07:55:40.555666',NULL,'$2b$12$c4/NU5K9Ant.m7cBp6MNiudZri0deGtc7c6WHNpdk9QS/q0RBPMnG',true),
+	 ('Agustin','agus.gimenez@email.com','35999000','2026-04-02 07:55:40.555666',null,'$2b$12$c4/NU5K9Ant.m7cBp6MNiudZri0deGtc7c6WHNpdk9QS/q0RBPMnG',true),
 	 ('Florencia','flor.castro@gmail.com','38666111','2026-04-05 18:05:15.333222','2026-07-01 09:20:11.777888','$2b$12$kKqK1VK72Un3Y.pSiwy8Vu1EEZLNCb4dZzPyBirR8NjjVnF2JgbY6',true),
-	 ('Nicolas','nico.diaz@email.com','34111222','2026-04-08 12:00:00.123456',NULL,'$2b$12$gJ82J368NehsK.1Ldj2ZrOae4lVzAjlX3Na2y3NuvBJN5KNMUTP/O',true);
-INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) VALUES
+	 ('Nicolas','nico.diaz@email.com','34111222','2026-04-08 12:00:00.123456',null,'$2b$12$gJ82J368NehsK.1Ldj2ZrOae4lVzAjlX3Na2y3NuvBJN5KNMUTP/O',true);
+insert into public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) values
 	 ('Victoria','vicky.acosta@gmail.com','44333222','2026-04-10 10:30:15.654321','2026-06-12 15:40:00','$2b$12$hrXYErp2p2Unncxf.6ksPeujJ7JVE3GxLqpTQL22ucGvpPf9TIbTO',true),
-	 ('Facundo','facu.medina@email.com','36222444','2026-04-12 14:15:22.987654',NULL,'$2b$12$DrGIW5jQo4jDCAwdDu8EoOCk5ynLSupUYyIfvQBYAOl2oZ2RSpzEq',true),
+	 ('Facundo','facu.medina@email.com','36222444','2026-04-12 14:15:22.987654',null,'$2b$12$DrGIW5jQo4jDCAwdDu8EoOCk5ynLSupUYyIfvQBYAOl2oZ2RSpzEq',true),
 	 ('Julieta','juli.ruiz@gmail.com','41555666','2026-04-15 09:40:11.111222','2026-05-20 12:10:05.444333','$2b$12$7BzQpyi6Is.DWuMaMvoLOOQlI1O/N.IgaYqwSMgeFclaY1J8m9.fS',true),
-	 ('Tomas','tomi.alvarez@email.com','38777999','2026-04-18 17:20:30.333444',NULL,'$2b$12$F156SXcsEmhDGRc3.mS7M.8Dr7E.Lg04p/a/B3CN1O9Br4K0dtlFy',true),
+	 ('Tomas','tomi.alvarez@email.com','38777999','2026-04-18 17:20:30.333444',null,'$2b$12$F156SXcsEmhDGRc3.mS7M.8Dr7E.Lg04p/a/B3CN1O9Br4K0dtlFy',true),
 	 ('Paula','paula.vargas@gmail.com','40888111','2026-04-20 11:05:40.555666','2026-06-25 16:30:12.888999','$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true),
-	 ('Ignacio','nacho.romero@email.com','35444333','2026-04-22 08:25:50.777888',NULL,'$2b$12$KkSnQ3tYWR8ms39G9yI48u5pQjkcPI3843owzNYXo7C/30188x73.',true),
+	 ('Ignacio','nacho.romero@email.com','35444333','2026-04-22 08:25:50.777888',null,'$2b$12$KkSnQ3tYWR8ms39G9yI48u5pQjkcPI3843owzNYXo7C/30188x73.',true),
 	 ('Agustina','agus.sosa@gmail.com','42999888','2026-04-25 13:50:05.222111','2026-07-10 10:00:44.111222','$2b$12$MPu7A9mjSd91nUSVfgvyfu/t/W6U5aE2QpldWOLeoPOmvihuzHKsq',true),
-	 ('Federico','fede.molina@email.com','37555666','2026-04-28 15:10:15.999',NULL,'$2b$12$YdD60Ryq8zCvGu/gWujJW.2JTthKhKMOzsGEZJIfmtZZj20z3KOk2',true),
+	 ('Federico','fede.molina@email.com','37555666','2026-04-28 15:10:15.999',null,'$2b$12$YdD60Ryq8zCvGu/gWujJW.2JTthKhKMOzsGEZJIfmtZZj20z3KOk2',true),
 	 ('Candela','cande.ortiz@gmail.com','43666777','2026-05-02 10:12:33.444555','2026-08-01 14:22:11.333444','$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true),
-	 ('Gonzalo','gonza.herrera@email.com','33888999','2026-05-05 09:00:00.123456',NULL,'$2b$12$/ecZnxWXL1cLGU4.XjM54eSWNUywbMXTYM0SFXqq/qfN.vWmvwMxW',true);
-INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) VALUES
+	 ('Gonzalo','gonza.herrera@email.com','33888999','2026-05-05 09:00:00.123456',null,'$2b$12$/ecZnxWXL1cLGU4.XjM54eSWNUywbMXTYM0SFXqq/qfN.vWmvwMxW',true);
+insert into public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) values
 	 ('Milagros','mili.peredo@gmail.com','45111222','2026-05-08 14:20:10.789456','2026-06-15 11:30:00','$2b$12$dz0d4gbROL/wW3AHAF46y.jWwvApkdiUnzBLeSvrsksvjQoI4KCQm',true),
-	 ('Ezequiel','eze.cordoba@email.com','36444555','2026-05-10 16:45:22.333222',NULL,'$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true),
+	 ('Ezequiel','eze.cordoba@email.com','36444555','2026-05-10 16:45:22.333222',null,'$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true),
 	 ('Rocio','ro.paz@gmail.com','41777888','2026-05-12 11:15:33.555444','2026-07-20 15:00:10.123456','$2b$12$c4/NU5K9Ant.m7cBp6MNiudZri0deGtc7c6WHNpdk9QS/q0RBPMnG',true),
-	 ('Leandro','lean.suarez@email.com','38222333','2026-05-15 08:30:40.111999',NULL,'$2b$12$kKqK1VK72Un3Y.pSiwy8Vu1EEZLNCb4dZzPyBirR8NjjVnF2JgbY6',true),
+	 ('Leandro','lean.suarez@email.com','38222333','2026-05-15 08:30:40.111999',null,'$2b$12$kKqK1VK72Un3Y.pSiwy8Vu1EEZLNCb4dZzPyBirR8NjjVnF2JgbY6',true),
 	 ('Antonella','anto.navarro@gmail.com','42444555','2026-05-18 13:22:55.777888','2026-08-05 09:10:44.555444','$2b$12$gJ82J368NehsK.1Ldj2ZrOae4lVzAjlX3Na2y3NuvBJN5KNMUTP/O',true),
-	 ('Matias','mati.mendoza@email.com','37111000','2026-05-20 17:10:12.333444',NULL,'$2b$12$hrXYErp2p2Unncxf.6ksPeujJ7JVE3GxLqpTQL22ucGvpPf9TIbTO',true),
+	 ('Matias','mati.mendoza@email.com','37111000','2026-05-20 17:10:12.333444',null,'$2b$12$hrXYErp2p2Unncxf.6ksPeujJ7JVE3GxLqpTQL22ucGvpPf9TIbTO',true),
 	 ('Sol','sol.rios@gmail.com','44999000','2026-05-22 10:05:20.999111','2026-08-10 16:40:22.111999','$2b$12$DrGIW5jQo4jDCAwdDu8EoOCk5ynLSupUYyIfvQBYAOl2oZ2RSpzEq',true),
-	 ('Esteban','este.ibanez@email.com','35666777','2026-05-25 12:40:15.444333',NULL,'$2b$12$7BzQpyi6Is.DWuMaMvoLOOQlI1O/N.IgaYqwSMgeFclaY1J8m9.fS',true),
+	 ('Esteban','este.ibanez@email.com','35666777','2026-05-25 12:40:15.444333',null,'$2b$12$7BzQpyi6Is.DWuMaMvoLOOQlI1O/N.IgaYqwSMgeFclaY1J8m9.fS',true),
 	 ('Magdalena','magui.flores@gmail.com','40333444','2026-05-28 15:55:30.888777','2026-08-15 13:20:11','$2b$12$F156SXcsEmhDGRc3.mS7M.8Dr7E.Lg04p/a/B3CN1O9Br4K0dtlFy',true),
-	 ('Damian','dami.vera@email.com','34555666','2026-06-01 09:30:00.123456',NULL,'$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true);
-INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) VALUES
+	 ('Damian','dami.vera@email.com','34555666','2026-06-01 09:30:00.123456',null,'$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true);
+insert into public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) values
 	 ('Celeste','cele.bustos@gmail.com','43111222','2026-06-03 14:10:15.789456','2026-07-05 10:15:00','$2b$12$KkSnQ3tYWR8ms39G9yI48u5pQjkcPI3843owzNYXo7C/30188x73.',true),
-	 ('Guillermo','guille.cabrera@email.com','32777888','2026-06-06 11:20:44.333222',NULL,'$2b$12$MPu7A9mjSd91nUSVfgvyfu/t/W6U5aE2QpldWOLeoPOmvihuzHKsq',true),
+	 ('Guillermo','guille.cabrera@email.com','32777888','2026-06-06 11:20:44.333222',null,'$2b$12$MPu7A9mjSd91nUSVfgvyfu/t/W6U5aE2QpldWOLeoPOmvihuzHKsq',true),
 	 ('Brenda','bren.peralta@gmail.com','45888999','2026-06-08 16:50:22.555444','2026-08-12 14:30:10.123456','$2b$12$YdD60Ryq8zCvGu/gWujJW.2JTthKhKMOzsGEZJIfmtZZj20z3KOk2',true),
-	 ('Hernan','hernan.silvestre@email.com','36999000','2026-06-10 08:15:33.111999',NULL,'$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true),
+	 ('Hernan','hernan.silvestre@email.com','36999000','2026-06-10 08:15:33.111999',null,'$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true),
 	 ('Julián','julian.paredes@gmail.com','41222444','2026-06-13 13:40:11.777888','2026-08-18 09:05:44.555444','$2b$12$/ecZnxWXL1cLGU4.XjM54eSWNUywbMXTYM0SFXqq/qfN.vWmvwMxW',true),
-	 ('Mariana','mari.maldonado@email.com','39111333','2026-06-15 10:05:55.333444',NULL,'$2b$12$dz0d4gbROL/wW3AHAF46y.jWwvApkdiUnzBLeSvrsksvjQoI4KCQm',false),
+	 ('Mariana','mari.maldonado@email.com','39111333','2026-06-15 10:05:55.333444',null,'$2b$12$dz0d4gbROL/wW3AHAF46y.jWwvApkdiUnzBLeSvrsksvjQoI4KCQm',false),
 	 ('Claudio','claudio.campos@gmail.com','31444555','2026-06-18 15:25:40.999111','2026-08-20 17:11:22.111999','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true),
-	 ('Natalia','nati.caceres@email.com','38333222','2026-06-20 12:12:12.444333',NULL,'$2b$12$c4/NU5K9Ant.m7cBp6MNiudZri0deGtc7c6WHNpdk9QS/q0RBPMnG',true),
+	 ('Natalia','nati.caceres@email.com','38333222','2026-06-20 12:12:12.444333',null,'$2b$12$c4/NU5K9Ant.m7cBp6MNiudZri0deGtc7c6WHNpdk9QS/q0RBPMnG',true),
 	 ('Esteban','esteban.ojeda@gmail.com','40666555','2026-06-22 17:33:10.888777','2026-08-22 11:22:33','$2b$12$kKqK1VK72Un3Y.pSiwy8Vu1EEZLNCb4dZzPyBirR8NjjVnF2JgbY6',true),
-	 ('Andrea','andy.guerra@email.com','37222111','2026-06-25 09:40:00.123456',NULL,'$2b$12$gJ82J368NehsK.1Ldj2ZrOae4lVzAjlX3Na2y3NuvBJN5KNMUTP/O',true);
-INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) VALUES
+	 ('Andrea','andy.guerra@email.com','37222111','2026-06-25 09:40:00.123456',null,'$2b$12$gJ82J368NehsK.1Ldj2ZrOae4lVzAjlX3Na2y3NuvBJN5KNMUTP/O',true);
+insert into public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) values
 	 ('Adrian','adri.benitez@gmail.com','35888777','2026-06-28 14:15:15.789456','2026-07-15 08:30:00','$2b$12$hrXYErp2p2Unncxf.6ksPeujJ7JVE3GxLqpTQL22ucGvpPf9TIbTO',true),
-	 ('Romina','romi.farias@email.com','42555666','2026-06-30 11:00:44.333222',NULL,'$2b$12$DrGIW5jQo4jDCAwdDu8EoOCk5ynLSupUYyIfvQBYAOl2oZ2RSpzEq',true),
+	 ('Romina','romi.farias@email.com','42555666','2026-06-30 11:00:44.333222',null,'$2b$12$DrGIW5jQo4jDCAwdDu8EoOCk5ynLSupUYyIfvQBYAOl2oZ2RSpzEq',true),
 	 ('Patricia','paty.reinoso@gmail.com','33444333','2026-07-02 16:30:22.555444','2026-08-25 12:00:10.123456','$2b$12$7BzQpyi6Is.DWuMaMvoLOOQlI1O/N.IgaYqwSMgeFclaY1J8m9.fS',true),
-	 ('Gabriel','gabi.ponce@email.com','36111999','2026-07-05 08:45:33.111999',NULL,'$2b$12$F156SXcsEmhDGRc3.mS7M.8Dr7E.Lg04p/a/B3CN1O9Br4K0dtlFy',true),
+	 ('Gabriel','gabi.ponce@email.com','36111999','2026-07-05 08:45:33.111999',null,'$2b$12$F156SXcsEmhDGRc3.mS7M.8Dr7E.Lg04p/a/B3CN1O9Br4K0dtlFy',true),
 	 ('Valeria','vale.morales@gmail.com','41888777','2026-07-08 13:20:11.777888','2026-08-27 15:45:44.555444','$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true),
-	 ('Emiliano','emi.suarez@email.com','39444888','2026-07-10 10:55:55.333444',NULL,'$2b$12$KkSnQ3tYWR8ms39G9yI48u5pQjkcPI3843owzNYXo7C/30188x73.',true),
+	 ('Emiliano','emi.suarez@email.com','39444888','2026-07-10 10:55:55.333444',null,'$2b$12$KkSnQ3tYWR8ms39G9yI48u5pQjkcPI3843owzNYXo7C/30188x73.',true),
 	 ('Lorena','lore.navia@gmail.com','34222111','2026-07-12 15:10:40.999111','2026-08-28 09:11:22.111999','$2b$12$MPu7A9mjSd91nUSVfgvyfu/t/W6U5aE2QpldWOLeoPOmvihuzHKsq',true),
-	 ('Mariano','mariano.gomez@email.com','37999444','2026-07-14 12:22:12.444333',NULL,'$2b$12$YdD60Ryq8zCvGu/gWujJW.2JTthKhKMOzsGEZJIfmtZZj20z3KOk2',true),
+	 ('Mariano','mariano.gomez@email.com','37999444','2026-07-14 12:22:12.444333',null,'$2b$12$YdD60Ryq8zCvGu/gWujJW.2JTthKhKMOzsGEZJIfmtZZj20z3KOk2',true),
 	 ('Silvina','sil.vazquez@gmail.com','38111999','2026-07-16 17:05:10.888777','2026-08-29 16:22:33','$2b$12$ywoO20Gc6ozqexg5.7QXkuxPZ6QhxaJbgz9uEfjl7TQIjaLozKRcK',true),
-	 ('Cell','celljr@gmail.com','31514145','2026-09-02 11:27:27.659464',NULL,'$2b$12$HPF2E.HfsUezqfQshYLfG.rZDpsF8exBGc7T8RraFMAxKl7fqAvnG',true);
-INSERT INTO public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) VALUES
+	 ('Cell','celljr@gmail.com','31514145','2026-09-02 11:27:27.659464',null,'$2b$12$HPF2E.HfsUezqfQshYLfG.rZDpsF8exBGc7T8RraFMAxKl7fqAvnG',true);
+insert into public.clientes (nombre,email,dni,created_at,updated_at,contrasena,activo) values
 	 ('Maximo','maxgiesenosw@gmail.com','42638965','2026-03-31 08:45:33.835518','2026-05-05 11:20:47.111616','$2b$12$dz0d4gbROL/wW3AHAF46y.jWwvApkdiUnzBLeSvrsksvjQoI4KCQm',true),
-	 ('Manuel Juarez','maxgiesenow@gmail.com','36151544','2026-09-22 15:37:28.072828',NULL,'$2b$12$.S7wNBy1DqL96wQvHujO5e8er0kBEV2J.pRicT/nYNVAZ86BQnAT6',true);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+	 ('Manuel Juarez','maxgiesenow@gmail.com','36151544','2026-09-22 15:37:28.072828',null,'$2b$12$.S7wNBy1DqL96wQvHujO5e8er0kBEV2J.pRicT/nYNVAZ86BQnAT6',true);
+
+-- Datos. {Detalles de los Productos en los Pedidos}
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (216,65,4,4156.00),
 	 (217,42,1,55000.00),
 	 (218,22,1,25000.00),
@@ -445,7 +452,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (222,15,2,95000.00),
 	 (223,147,4,5772220.00),
 	 (224,147,4,5772220.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (225,147,4,4252.00),
 	 (226,27,1,21000.00),
 	 (1,10,1,45000.00),
@@ -456,7 +463,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (5,4,1,800000.00),
 	 (6,7,1,110000.00),
 	 (7,2,1,450000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (7,1,1,350000.00),
 	 (8,9,3,45000.00),
 	 (9,6,1,120000.00),
@@ -467,7 +474,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (23,4,20,800000.00),
 	 (24,2,1,450000.00),
 	 (24,4,20,800000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (24,8,1,220000.00),
 	 (24,1,1,5000.00),
 	 (24,12,1,10000.00),
@@ -478,7 +485,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (26,7,1,110000.00),
 	 (26,4,1,800000.00),
 	 (26,1,1,5000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (27,2,1,450000.00),
 	 (28,2,4,450000.00),
 	 (148,5,2,280000.00),
@@ -489,7 +496,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (153,15,1,5000.00),
 	 (154,16,1,15000.00),
 	 (155,18,2,29990.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (156,20,1,457870.00),
 	 (157,2,1,450000.00),
 	 (158,4,3,800000.00),
@@ -500,7 +507,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (163,14,2,8000000.00),
 	 (48,1,1,350000.00),
 	 (47,3,2,300000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (46,6,1,120000.00),
 	 (45,9,1,45000.00),
 	 (44,12,3,10000.00),
@@ -511,7 +518,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (39,4,2,800000.00),
 	 (38,7,1,110000.00),
 	 (37,10,1,45000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (36,13,3,50000.00),
 	 (35,16,1,15000.00),
 	 (34,19,2,35000.00),
@@ -522,7 +529,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (29,10,1,45000.00),
 	 (28,13,2,50000.00),
 	 (27,16,1,15000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (26,19,1,35000.00),
 	 (25,22,3,15100.00),
 	 (24,2,1,450000.00),
@@ -533,7 +540,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (19,17,1,25000.00),
 	 (18,20,1,457870.00),
 	 (17,2,3,450000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (16,5,1,280000.00),
 	 (15,8,2,220000.00),
 	 (14,11,1,15000.00),
@@ -544,7 +551,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (9,3,1,300000.00),
 	 (8,6,2,120000.00),
 	 (7,9,1,45000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (6,12,3,10000.00),
 	 (5,15,1,5000.00),
 	 (4,18,2,29990.00),
@@ -555,7 +562,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (113,11,2,15000.00),
 	 (114,14,1,8000000.00),
 	 (115,17,3,25000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (116,20,1,457870.00),
 	 (117,1,2,350000.00),
 	 (118,3,1,300000.00),
@@ -566,7 +573,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (123,18,2,29990.00),
 	 (124,21,1,18000.00),
 	 (125,2,2,450000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (126,5,1,280000.00),
 	 (127,8,1,220000.00),
 	 (128,11,3,15000.00),
@@ -577,7 +584,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (133,4,2,800000.00),
 	 (134,7,1,110000.00),
 	 (135,10,1,45000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (136,13,3,50000.00),
 	 (29,6,6,120000.00),
 	 (30,3,5,500000.00),
@@ -588,7 +595,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (35,1,1,5000.00),
 	 (36,2,4,550000.00),
 	 (37,15,1,5000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (38,1,1,5000.00),
 	 (38,14,1,8000000.00),
 	 (39,5,1,8000.00),
@@ -599,7 +606,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (40,9,1,110000.00),
 	 (41,1,1,5000.00),
 	 (41,5,1,8000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (42,5,1,8000.00),
 	 (42,15,1,5000.00),
 	 (43,9,1,110000.00),
@@ -610,7 +617,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (45,18,1,29990.00),
 	 (45,6,1,120000.00),
 	 (45,4,1,800000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (46,9,1,110000.00),
 	 (105,143,4,146.00),
 	 (105,111,4,1800.00),
@@ -621,7 +628,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (109,45,1,14000.00),
 	 (110,45,1,14000.00),
 	 (111,65,1,4156.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (112,16,1,18000.00),
 	 (113,112,1,500001.00),
 	 (114,7,1,25000.00),
@@ -632,7 +639,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (57,5,3,280000.00),
 	 (58,6,1,120000.00),
 	 (59,7,2,110000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (60,8,1,220000.00),
 	 (61,9,4,45000.00),
 	 (62,10,1,45000.00),
@@ -643,7 +650,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (67,15,3,5000.00),
 	 (68,16,1,15000.00),
 	 (69,17,2,25000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (70,18,1,29990.00),
 	 (71,19,4,35000.00),
 	 (72,20,1,457870.00),
@@ -654,7 +661,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (77,3,3,300000.00),
 	 (78,4,1,800000.00),
 	 (79,5,2,280000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (80,6,1,120000.00),
 	 (81,7,4,110000.00),
 	 (82,8,1,220000.00),
@@ -665,7 +672,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (87,13,2,50000.00),
 	 (88,14,1,8000000.00),
 	 (89,15,1,5000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (90,16,2,15000.00),
 	 (91,17,1,25000.00),
 	 (92,18,3,29990.00),
@@ -676,7 +683,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (97,1,3,350000.00),
 	 (98,2,1,450000.00),
 	 (99,4,2,800000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (100,5,1,280000.00),
 	 (101,6,2,120000.00),
 	 (102,8,1,220000.00),
@@ -687,7 +694,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (107,3,2,300000.00),
 	 (108,6,1,120000.00),
 	 (109,9,3,45000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (110,12,1,10000.00),
 	 (111,15,2,5000.00),
 	 (112,18,1,29990.00),
@@ -698,7 +705,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (117,6,3,120000.00),
 	 (118,8,1,220000.00),
 	 (119,10,2,45000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (120,13,1,50000.00),
 	 (121,15,1,5000.00),
 	 (122,17,2,25000.00),
@@ -709,7 +716,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (127,5,3,280000.00),
 	 (128,7,1,110000.00),
 	 (129,9,2,45000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (130,11,1,15000.00),
 	 (131,14,1,8000000.00),
 	 (132,16,2,15000.00),
@@ -720,7 +727,7 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (137,6,1,120000.00),
 	 (138,8,3,220000.00),
 	 (139,10,1,45000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (140,12,2,10000.00),
 	 (141,15,1,5000.00),
 	 (142,17,1,25000.00),
@@ -731,13 +738,15 @@ INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitar
 	 (147,3,1,300000.00),
 	 (137,16,1,15000.00),
 	 (138,19,2,35000.00);
-INSERT INTO public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) VALUES
+insert into public.detalles_pedido (id_pedido,id_producto,cantidad,precio_unitario) values
 	 (139,22,1,15100.00),
 	 (140,2,1,450000.00),
 	 (141,5,2,280000.00),
 	 (142,8,1,220000.00),
 	 (143,11,3,15000.00);
-INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VALUES
+
+-- Datos. {Direcciones de los Pedidos de los Clientes}
+insert into public.direcciones (calle,numero,barrio,ciudad,provincia,activo) values
 	 ('Av. San Martín',150,'Centro','Villa Carlos Paz','Córdoba',true),
 	 ('Av. Sabattini',3200,'Empalme','Córdoba','Córdoba',true),
 	 ('kent',1000000,'super','smallville','catamarca',true),
@@ -748,7 +757,7 @@ INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VAL
 	 ('Recta Martinolli',6500,'Argüello','Córdoba','Córdoba',true),
 	 ('Gral. Paz',6156,'Centro','Córdoba','Córdoba',true),
 	 ('Capsulecorp',777,'Pinguino','Metropolis del Este','Corrientes',true);
-INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VALUES
+insert into public.direcciones (calle,numero,barrio,ciudad,provincia,activo) values
 	 ('Capsule Avenue',8,'Capsule','East City','Córdoba',true),
 	 ('Av. Colon',168,'Centro','Córdoba','Córdoba',true),
 	 ('Traxa',2,'Centro','Córdoba','Córdoba',true),
@@ -759,7 +768,7 @@ INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VAL
 	 ('asd',23,'ads','add','Buenos Aires',true),
 	 ('111',11,'1111','1111','Neuquén',true),
 	 ('111',111,'111','111','Buenos Aires',true);
-INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VALUES
+insert into public.direcciones (calle,numero,barrio,ciudad,provincia,activo) values
 	 ('222',22,'222','222','Mendoza',true),
 	 ('333',333,'333','3333','Chaco',true),
 	 ('hanma',23887,'yuhiro','itagaki','Corrientes',true),
@@ -770,7 +779,7 @@ INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VAL
 	 ('Chacabuco',880,'Centro','Córdoba','Córdoba',true),
 	 ('Av. Vélez Sársfield',1400,'Kenedy','Córdoba','Córdoba',true),
 	 ('Gotham Street',1939,'Batcave','Ciudad Gótica','Buenos Aires',true);
-INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VALUES
+insert into public.direcciones (calle,numero,barrio,ciudad,provincia,activo) values
 	 ('Namekusei Road',42,'Green','Planeta Namek','Córdoba',true),
 	 ('Av. Valparaíso',2400,'Jardín','Córdoba','Córdoba',true),
 	 ('Lafinur',750,'Centro','San Luis','San Luis',true),
@@ -781,7 +790,7 @@ INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VAL
 	 ('Corrientes',1500,'San Nicolás','Buenos Aires','Buenos Aires',true),
 	 ('Av. O Higgins',5200,'Bajo Hondo','Córdoba','Córdoba',true),
 	 ('Tigre Boulevard',88,'Delta','Tigre','Buenos Aires',true);
-INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VALUES
+insert into public.direcciones (calle,numero,barrio,ciudad,provincia,activo) values
 	 ('Kame House Beach',1,'Isla','Kame House','Corrientes',true),
 	 ('Av. Don Bosco',2800,'Alto Alberdi','Córdoba','Córdoba',true),
 	 ('Pringles',123,'Centro','Neuquén','Neuquén',true),
@@ -792,7 +801,7 @@ INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VAL
 	 ('Zanarkand Road',1010,'Blitzball','Zanarkand','Córdoba',true),
 	 ('Hogwarts Lane',7,'Wizard','Londres','Buenos Aires',true),
 	 ('Av. San Martín',150,'Centro','Villa Carlos Paz','Córdoba',true);
-INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VALUES
+insert into public.direcciones (calle,numero,barrio,ciudad,provincia,activo) values
 	 ('Av. Sabattini',3200,'Empalme','Córdoba','Córdoba',true),
 	 ('kent',1000000,'super','smallville','catamarca',true),
 	 ('Rafael Núñez',3500,'Cerro de las Rosas','Córdoba','Córdoba',true),
@@ -803,7 +812,7 @@ INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VAL
 	 ('Gral. Paz',6156,'Centro','Córdoba','Córdoba',true),
 	 ('Capsulecorp',777,'Pinguino','Metropolis del Este','Corrientes',true),
 	 ('Capsule Avenue',8,'Capsule','East City','Córdoba',true);
-INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VALUES
+insert into public.direcciones (calle,numero,barrio,ciudad,provincia,activo) values
 	 ('Av. Colon',168,'Centro','Córdoba','Córdoba',true),
 	 ('Traxa',2,'Centro','Córdoba','Córdoba',true),
 	 ('9 de Julio',265,'Centro','Córdoba','Córdoba',true),
@@ -814,7 +823,7 @@ INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VAL
 	 ('111',11,'1111','1111','Neuquén',true),
 	 ('111',111,'111','111','Buenos Aires',true),
 	 ('222',22,'222','222','Mendoza',true);
-INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VALUES
+insert into public.direcciones (calle,numero,barrio,ciudad,provincia,activo) values
 	 ('333',333,'333','3333','Chaco',true),
 	 ('hanma',23887,'yuhiro','itagaki','Corrientes',true),
 	 ('lololol',19919,'lololololol','lolololol','Entre Ríos',true),
@@ -825,7 +834,7 @@ INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VAL
 	 ('Av. Vélez Sársfield',1400,'Kenedy','Córdoba','Córdoba',true),
 	 ('Gotham Street',1939,'Batcave','Ciudad Gótica','Buenos Aires',true),
 	 ('Namekusei Road',42,'Green','Planeta Namek','Córdoba',true);
-INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VALUES
+insert into public.direcciones (calle,numero,barrio,ciudad,provincia,activo) values
 	 ('Av. Valparaíso',2400,'Jardín','Córdoba','Córdoba',true),
 	 ('Lafinur',750,'Centro','San Luis','San Luis',true),
 	 ('San Martín',910,'Centro','Mendoza','Mendoza',true),
@@ -836,7 +845,7 @@ INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VAL
 	 ('Av. O Higgins',5200,'Bajo Hondo','Córdoba','Córdoba',true),
 	 ('Tigre Boulevard',88,'Delta','Tigre','Buenos Aires',true),
 	 ('Kame House Beach',1,'Isla','Kame House','Corrientes',true);
-INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VALUES
+insert into public.direcciones (calle,numero,barrio,ciudad,provincia,activo) values
 	 ('Av. Don Bosco',2800,'Alto Alberdi','Córdoba','Córdoba',true),
 	 ('Pringles',123,'Centro','Neuquén','Neuquén',true),
 	 ('San Lorenzo',600,'Centro','Paraná','Entre Ríos',true),
@@ -845,12 +854,16 @@ INSERT INTO public.direcciones (calle,numero,barrio,ciudad,provincia,activo) VAL
 	 ('San Martín',300,'Centro','Ushuaia','Tierra del Fuego',true),
 	 ('Zanarkand Road',1010,'Blitzball','Zanarkand','Córdoba',true),
 	 ('Hogwarts Lane',7,'Wizard','Londres','Buenos Aires',true);
-INSERT INTO public.estados_pedido (estatus) VALUES
+
+-- Datos. {Estatus de la Entrega del Pedido}
+insert into public.estados_pedido (estatus) values
 	 ('Entregado'),
 	 ('En_Camino'),
 	 ('Preparando'),
 	 ('Pendiente');
-INSERT INTO public.favoritos (id_cliente,id_producto,created_at) VALUES
+
+-- Datos. {Productos Favoritos de los Clientes}
+insert into public.favoritos (id_cliente,id_producto,created_at) values
 	 (19,41,'2026-09-14 11:45:06.989048'),
 	 (19,42,'2026-09-14 11:57:29.437411'),
 	 (19,62,'2026-09-14 11:57:33.594982'),
@@ -860,256 +873,260 @@ INSERT INTO public.favoritos (id_cliente,id_producto,created_at) VALUES
 	 (72,132,'2026-09-22 15:57:17.315023'),
 	 (72,141,'2026-09-22 15:58:03.562572'),
 	 (72,99,'2026-09-22 15:58:04.404535');
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
+
+-- Datos. {Pedidos}
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
 	 (1,2,'txn_01m1a2b3c4d5e6f7g8h9i0j1','https://paddle.com/receipt/1','Tarjeta terminada en 4242','Paddle',15000.00,2,4,'2026-03-10 10:00:00','2026-03-12 11:00:00',1),
 	 (3,5,'mp_12345678901','https://mercadopago.com/receipt/1','Dinero en cuenta','MercadoPago',8500.00,1,2,'2026-03-15 09:30:00','2026-03-16 10:45:00',1),
-	 (6,8,NULL,NULL,'Pago al repartidor','Efectivo',NULL,4,3,'2026-03-20 14:15:00','2026-03-24 15:20:00',1),
-	 (9,11,'trx_8889990001',NULL,'Transferencia bancaria','Transferencia',45000.00,5,5,'2026-03-25 11:20:00','2026-03-30 12:10:00',1),
+	 (6,8,null,null,'Pago al repartidor','Efectivo',null,4,3,'2026-03-20 14:15:00','2026-03-24 15:20:00',1),
+	 (9,11,'trx_8889990001',null,'Transferencia bancaria','Transferencia',45000.00,5,5,'2026-03-25 11:20:00','2026-03-30 12:10:00',1),
 	 (12,14,'txn_01m2b3c4d5e6f7g8h9i0j1k2','https://paddle.com/receipt/2','Tarjeta terminada en 1111','Paddle',120000.00,3,6,'2026-04-02 16:40:00','2026-04-05 17:00:00',1),
 	 (15,17,'mp_45678901234','https://mercadopago.com/receipt/2','Tarjeta terminada en 5555','MercadoPago',22500.00,2,2,'2026-04-08 10:05:00','2026-04-10 11:30:00',1),
-	 (18,20,NULL,NULL,'Pago al repartidor','Efectivo',NULL,1,1,'2026-04-12 08:50:00','2026-04-13 09:10:00',1),
+	 (18,20,null,null,'Pago al repartidor','Efectivo',null,1,1,'2026-04-12 08:50:00','2026-04-13 09:10:00',1),
 	 (2,4,'txn_01m3c4d5e6f7g8h9i0j1k2l3','https://paddle.com/receipt/3','Tarjeta terminada en 2222','Paddle',35000.00,4,4,'2026-04-18 13:25:00','2026-04-22 14:40:00',1),
-	 (5,7,'trx_9990001112',NULL,'Transferencia bancaria','Transferencia',89000.00,6,5,'2026-04-22 15:10:00','2026-04-28 16:00:00',1),
+	 (5,7,'trx_9990001112',null,'Transferencia bancaria','Transferencia',89000.00,6,5,'2026-04-22 15:10:00','2026-04-28 16:00:00',1),
 	 (8,10,'mp_78901234567','https://mercadopago.com/receipt/3','Dinero en cuenta','MercadoPago',18000.00,3,3,'2026-04-28 09:45:00','2026-05-01 10:20:00',1);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
 	 (11,13,'txn_01m4d5e6f7g8h9i0j1k2l3m4','https://paddle.com/receipt/4','Tarjeta terminada en 4242','Paddle',54000.00,2,4,'2026-05-05 10:00:00','2026-05-07 15:30:00',1),
-	 (14,16,NULL,NULL,'Pago al repartidor','Efectivo',NULL,1,2,'2026-05-10 11:15:00','2026-05-11 12:00:00',1),
-	 (17,19,'trx_1112223334',NULL,'Transferencia bancaria','Transferencia',135000.00,4,5,'2026-05-15 09:20:00','2026-05-19 18:45:00',1),
+	 (14,16,null,null,'Pago al repartidor','Efectivo',null,1,2,'2026-05-10 11:15:00','2026-05-11 12:00:00',1),
+	 (17,19,'trx_1112223334',null,'Transferencia bancaria','Transferencia',135000.00,4,5,'2026-05-15 09:20:00','2026-05-19 18:45:00',1),
 	 (20,22,'mp_10111213141','https://mercadopago.com/receipt/4','Tarjeta terminada en 8888','MercadoPago',62000.00,3,3,'2026-05-20 14:10:00','2026-05-23 09:30:00',1),
 	 (1,3,'txn_01m5e6f7g8h9i0j1k2l3m4n5','https://paddle.com/receipt/5','Tarjeta terminada en 9999','Paddle',21000.00,5,4,'2026-05-25 16:40:00','2026-05-30 11:20:00',1),
-	 (4,6,NULL,NULL,'Pago al repartidor','Efectivo',NULL,2,2,'2026-06-02 10:05:00','2026-06-04 13:15:00',1),
+	 (4,6,null,null,'Pago al repartidor','Efectivo',null,2,2,'2026-06-02 10:05:00','2026-06-04 13:15:00',1),
 	 (7,9,'mp_20212223242','https://mercadopago.com/receipt/5','Dinero en cuenta','MercadoPago',48000.00,4,3,'2026-06-08 12:30:00','2026-06-12 17:50:00',1),
-	 (10,12,'trx_2223334445',NULL,'Transferencia bancaria','Transferencia',95000.00,3,5,'2026-06-14 08:45:00','2026-06-17 14:10:00',1),
+	 (10,12,'trx_2223334445',null,'Transferencia bancaria','Transferencia',95000.00,3,5,'2026-06-14 08:45:00','2026-06-17 14:10:00',1),
 	 (13,15,'txn_01m6f7g8h9i0j1k2l3m4n5o6','https://paddle.com/receipt/6','Tarjeta terminada en 3333','Paddle',115000.00,6,7,'2026-06-20 15:25:00','2026-06-26 10:00:00',1),
 	 (16,18,'mp_30313233343','https://mercadopago.com/receipt/6','Tarjeta terminada en 7777','MercadoPago',34000.00,2,3,'2026-06-25 11:55:00','2026-06-27 16:40:00',1);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
-	 (19,21,NULL,NULL,'Pago al repartidor','Efectivo',NULL,1,2,'2026-07-01 09:10:00','2026-07-02 10:30:00',1),
-	 (2,5,'trx_3334445556',NULL,'Transferencia bancaria','Transferencia',76000.00,5,5,'2026-07-05 14:20:00','2026-07-10 11:15:00',1),
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
+	 (19,21,null,null,'Pago al repartidor','Efectivo',null,1,2,'2026-07-01 09:10:00','2026-07-02 10:30:00',1),
+	 (2,5,'trx_3334445556',null,'Transferencia bancaria','Transferencia',76000.00,5,5,'2026-07-05 14:20:00','2026-07-10 11:15:00',1),
 	 (5,8,'txn_01m7g8h9i0j1k2l3m4n5o6p7','https://paddle.com/receipt/7','Tarjeta terminada en 4242','Paddle',28000.00,3,4,'2026-07-10 16:35:00','2026-07-13 09:50:00',1),
 	 (8,11,'mp_40414243444','https://mercadopago.com/receipt/7','Dinero en cuenta','MercadoPago',55000.00,2,2,'2026-07-15 10:40:00','2026-07-17 14:25:00',1),
 	 (11,14,'txn_01m8h9i0j1k2l3m4n5o6p7q8','https://paddle.com/receipt/8','Tarjeta terminada en 6666','Paddle',105000.00,4,5,'2026-07-20 12:15:00','2026-07-24 16:10:00',1),
-	 (14,17,NULL,NULL,'Pago al repartidor','Efectivo',NULL,2,3,'2026-07-25 08:55:00','2026-07-27 11:45:00',1),
-	 (17,20,'trx_4445556667',NULL,'Transferencia bancaria','Transferencia',42000.00,0,6,'2026-07-28 15:30:00','2026-07-29 09:00:00',2),
+	 (14,17,null,null,'Pago al repartidor','Efectivo',null,2,3,'2026-07-25 08:55:00','2026-07-27 11:45:00',1),
+	 (17,20,'trx_4445556667',null,'Transferencia bancaria','Transferencia',42000.00,0,6,'2026-07-28 15:30:00','2026-07-29 09:00:00',2),
 	 (20,23,'mp_50515253545','https://mercadopago.com/receipt/8','Tarjeta terminada en 1212','MercadoPago',88000.00,0,4,'2026-07-30 11:05:00','2026-07-31 10:20:00',2),
 	 (3,6,'txn_01m9i0j1k2l3m4n5o6p7q8r9','https://paddle.com/receipt/9','Tarjeta terminada en 4242','Paddle',67000.00,0,5,'2026-08-01 14:40:00','2026-08-02 12:15:00',2),
-	 (6,9,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,2,'2026-08-05 09:25:00','2026-08-05 10:00:00',2);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
-	 (9,12,'trx_5556667778',NULL,'Transferencia bancaria','Transferencia',112000.00,0,7,'2026-08-10 16:10:00','2026-08-11 08:30:00',2),
+	 (6,9,null,null,'Pago al repartidor','Efectivo',null,0,2,'2026-08-05 09:25:00','2026-08-05 10:00:00',2);
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
+	 (9,12,'trx_5556667778',null,'Transferencia bancaria','Transferencia',112000.00,0,7,'2026-08-10 16:10:00','2026-08-11 08:30:00',2),
 	 (12,15,'mp_60616263646','https://mercadopago.com/receipt/9','Dinero en cuenta','MercadoPago',29000.00,0,3,'2026-08-12 11:55:00','2026-08-13 09:45:00',2),
 	 (15,18,'txn_01n0j1k2l3m4n5o6p7q8r9s0','https://paddle.com/receipt/10','Tarjeta terminada en 9876','Paddle',145000.00,0,6,'2026-08-15 13:20:00','2026-08-16 11:10:00',2),
-	 (18,21,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,2,'2026-08-18 10:05:00','2026-08-18 10:30:00',2),
-	 (1,24,'trx_6667778889',NULL,'Transferencia bancaria','Transferencia',81000.00,0,5,'2026-08-20 15:40:00','2026-08-21 09:20:00',2),
+	 (18,21,null,null,'Pago al repartidor','Efectivo',null,0,2,'2026-08-18 10:05:00','2026-08-18 10:30:00',2),
+	 (1,24,'trx_6667778889',null,'Transferencia bancaria','Transferencia',81000.00,0,5,'2026-08-20 15:40:00','2026-08-21 09:20:00',2),
 	 (4,2,'mp_70717273747','https://mercadopago.com/receipt/10','Tarjeta terminada en 3434','MercadoPago',53000.00,0,4,'2026-08-22 12:15:00','2026-08-22 13:00:00',3),
 	 (7,5,'txn_01n1k2l3m4n5o6p7q8r9s0t1','https://paddle.com/receipt/11','Tarjeta terminada en 4242','Paddle',92000.00,0,6,'2026-08-25 09:50:00','2026-08-25 10:10:00',3),
-	 (10,8,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,1,'2026-08-26 14:35:00','2026-08-26 14:45:00',3),
-	 (13,11,'trx_7778889990',NULL,'Transferencia bancaria','Transferencia',38000.00,0,5,'2026-08-27 11:20:00','2026-08-27 15:30:00',3),
+	 (10,8,null,null,'Pago al repartidor','Efectivo',null,0,1,'2026-08-26 14:35:00','2026-08-26 14:45:00',3),
+	 (13,11,'trx_7778889990',null,'Transferencia bancaria','Transferencia',38000.00,0,5,'2026-08-27 11:20:00','2026-08-27 15:30:00',3),
 	 (16,14,'mp_80818283848','https://mercadopago.com/receipt/11','Dinero en cuenta','MercadoPago',74000.00,0,3,'2026-08-28 16:05:00','2026-08-28 16:20:00',3);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
 	 (19,17,'txn_01n2l3m4n5o6p7q8r9s0t1u2','https://paddle.com/receipt/12','Tarjeta terminada en 5678','Paddle',125000.00,0,7,'2026-08-29 09:15:00','2026-08-29 09:30:00',3),
-	 (2,20,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,2,'2026-08-29 11:40:00','2026-08-29 11:50:00',3),
-	 (5,23,'trx_8889990002',NULL,'Transferencia bancaria','Transferencia',61000.00,0,4,'2026-08-30 10:25:00','2026-08-30 12:10:00',3),
+	 (2,20,null,null,'Pago al repartidor','Efectivo',null,0,2,'2026-08-29 11:40:00','2026-08-29 11:50:00',3),
+	 (5,23,'trx_8889990002',null,'Transferencia bancaria','Transferencia',61000.00,0,4,'2026-08-30 10:25:00','2026-08-30 12:10:00',3),
 	 (8,1,'mp_90919293949','https://mercadopago.com/receipt/12','Tarjeta terminada en 1122','MercadoPago',49000.00,0,3,'2026-08-30 14:55:00','2026-08-30 15:15:00',3),
 	 (11,4,'txn_01n3m4n5o6p7q8r9s0t1u2v3','https://paddle.com/receipt/13','Tarjeta terminada en 4242','Paddle',86000.00,0,6,'2026-08-31 08:30:00','2026-08-31 08:40:00',3),
-	 (14,7,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,1,'2026-08-31 09:10:00','2026-08-31 09:15:00',3),
-	 (17,10,'trx_9990001113',NULL,'Transferencia bancaria','Transferencia',108000.00,0,5,'2026-08-31 10:45:00','2026-08-31 11:20:00',3),
+	 (14,7,null,null,'Pago al repartidor','Efectivo',null,0,1,'2026-08-31 09:10:00','2026-08-31 09:15:00',3),
+	 (17,10,'trx_9990001113',null,'Transferencia bancaria','Transferencia',108000.00,0,5,'2026-08-31 10:45:00','2026-08-31 11:20:00',3),
 	 (20,13,'mp_01020304050','https://mercadopago.com/receipt/13','Dinero en cuenta','MercadoPago',23000.00,0,2,'2026-08-31 11:50:00','2026-08-31 12:00:00',3),
 	 (3,16,'txn_01n4n5o6p7q8r9s0t1u2v3w4','https://paddle.com/receipt/14','Tarjeta terminada en 8765','Paddle',142000.00,0,7,'2026-08-31 12:10:00','2026-08-31 12:20:00',3),
 	 (6,19,'mp_12131415161','https://mercadopago.com/receipt/14','Tarjeta terminada en 4444','MercadoPago',59000.00,0,4,'2026-08-31 12:30:00','2026-08-31 12:35:00',3);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
 	 (14,12,'txn_01m1a2b3c4d5e6f7g8h9i001','https://paddle.com/receipt/1','Tarjeta terminada en 4242','Paddle',15000.00,2,4,'2026-03-10 10:00:00','2026-03-12 11:00:00',1),
 	 (13,11,'mp_123456789002','https://mercadopago.com/receipt/2','Dinero en cuenta','MercadoPago',8500.00,1,2,'2026-03-11 09:30:00','2026-03-12 10:45:00',1),
-	 (10,13,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,3,'2026-03-12 14:15:00',NULL,2),
-	 (5,2,'trx_8889990004',NULL,'Transferencia bancaria','Transferencia',45000.00,5,5,'2026-03-13 11:20:00','2026-03-18 12:10:00',1),
-	 (3,3,'txn_01m2b3c4d5e6f7g8h9i005','https://paddle.com/receipt/5','Tarjeta terminada en 1111','Paddle',120000.00,0,6,'2026-03-14 16:40:00',NULL,3),
-	 (13,6,'mp_45678901206','https://mercadopago.com/receipt/6','Tarjeta terminada en 5555','MercadoPago',22500.00,0,2,'2026-03-15 10:05:00',NULL,2),
-	 (12,14,'trx_1112223307',NULL,'Transferencia bancaria','Transferencia',135000.00,0,5,'2026-03-16 09:20:00',NULL,3),
+	 (10,13,null,null,'Pago al repartidor','Efectivo',null,0,3,'2026-03-12 14:15:00',null,2),
+	 (5,2,'trx_8889990004',null,'Transferencia bancaria','Transferencia',45000.00,5,5,'2026-03-13 11:20:00','2026-03-18 12:10:00',1),
+	 (3,3,'txn_01m2b3c4d5e6f7g8h9i005','https://paddle.com/receipt/5','Tarjeta terminada en 1111','Paddle',120000.00,0,6,'2026-03-14 16:40:00',null,3),
+	 (13,6,'mp_45678901206','https://mercadopago.com/receipt/6','Tarjeta terminada en 5555','MercadoPago',22500.00,0,2,'2026-03-15 10:05:00',null,2),
+	 (12,14,'trx_1112223307',null,'Transferencia bancaria','Transferencia',135000.00,0,5,'2026-03-16 09:20:00',null,3),
 	 (2,4,'txn_01m3c4d5e6f7g8h9i008','https://paddle.com/receipt/8','Tarjeta terminada en 2222','Paddle',35000.00,4,4,'2026-03-17 13:25:00','2026-03-21 14:40:00',1),
 	 (7,9,'mp_78901234509','https://mercadopago.com/receipt/9','Dinero en cuenta','MercadoPago',18000.00,3,3,'2026-03-18 09:45:00','2026-03-21 10:20:00',1),
-	 (18,20,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,1,'2026-03-19 08:50:00',NULL,3);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
-	 (11,13,'trx_9990001111',NULL,'Transferencia bancaria','Transferencia',89000.00,6,5,'2026-03-20 15:10:00','2026-03-26 16:00:00',1),
-	 (14,16,'txn_01m4d5e6f7g8h9i0012','https://paddle.com/receipt/12','Tarjeta terminada en 4242','Paddle',54000.00,0,4,'2026-03-21 10:00:00',NULL,2),
-	 (17,19,'mp_10111213113','https://mercadopago.com/receipt/13','Tarjeta terminada en 8888','MercadoPago',62000.00,0,3,'2026-03-22 14:10:00',NULL,3),
-	 (4,6,NULL,NULL,'Pago al repartidor','Efectivo',NULL,2,2,'2026-03-23 10:05:00','2026-03-25 13:15:00',1),
-	 (1,3,'trx_2223334415',NULL,'Transferencia bancaria','Transferencia',95000.00,0,5,'2026-03-24 08:45:00',NULL,2),
+	 (18,20,null,null,'Pago al repartidor','Efectivo',null,0,1,'2026-03-19 08:50:00',null,3);
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
+	 (11,13,'trx_9990001111',null,'Transferencia bancaria','Transferencia',89000.00,6,5,'2026-03-20 15:10:00','2026-03-26 16:00:00',1),
+	 (14,16,'txn_01m4d5e6f7g8h9i0012','https://paddle.com/receipt/12','Tarjeta terminada en 4242','Paddle',54000.00,0,4,'2026-03-21 10:00:00',null,2),
+	 (17,19,'mp_10111213113','https://mercadopago.com/receipt/13','Tarjeta terminada en 8888','MercadoPago',62000.00,0,3,'2026-03-22 14:10:00',null,3),
+	 (4,6,null,null,'Pago al repartidor','Efectivo',null,2,2,'2026-03-23 10:05:00','2026-03-25 13:15:00',1),
+	 (1,3,'trx_2223334415',null,'Transferencia bancaria','Transferencia',95000.00,0,5,'2026-03-24 08:45:00',null,2),
 	 (14,12,'txn_01m1a2b3c4d5e6f7g8h9i016','https://paddle.com/receipt/16','Tarjeta terminada en 4242','Paddle',15150.00,2,4,'2026-03-25 10:00:00','2026-03-27 11:00:00',1),
 	 (13,11,'mp_123456789017','https://mercadopago.com/receipt/17','Dinero en cuenta','MercadoPago',8650.00,1,2,'2026-03-26 09:30:00','2026-03-27 10:45:00',1),
-	 (10,13,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,3,'2026-03-27 14:15:00',NULL,2),
-	 (5,2,'trx_8889990019',NULL,'Transferencia bancaria','Transferencia',45150.00,5,5,'2026-03-28 11:20:00','2026-04-02 12:10:00',1),
-	 (3,3,'txn_01m2b3c4d5e6f7g8h9i020','https://paddle.com/receipt/20','Tarjeta terminada en 1111','Paddle',120150.00,0,6,'2026-03-29 16:40:00',NULL,3);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
-	 (13,6,'mp_45678901221','https://mercadopago.com/receipt/21','Tarjeta terminada en 5555','MercadoPago',22650.00,0,2,'2026-03-30 10:05:00',NULL,2),
-	 (12,14,'trx_1112223322',NULL,'Transferencia bancaria','Transferencia',135150.00,0,5,'2026-03-31 09:20:00',NULL,3),
+	 (10,13,null,null,'Pago al repartidor','Efectivo',null,0,3,'2026-03-27 14:15:00',null,2),
+	 (5,2,'trx_8889990019',null,'Transferencia bancaria','Transferencia',45150.00,5,5,'2026-03-28 11:20:00','2026-04-02 12:10:00',1),
+	 (3,3,'txn_01m2b3c4d5e6f7g8h9i020','https://paddle.com/receipt/20','Tarjeta terminada en 1111','Paddle',120150.00,0,6,'2026-03-29 16:40:00',null,3);
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
+	 (13,6,'mp_45678901221','https://mercadopago.com/receipt/21','Tarjeta terminada en 5555','MercadoPago',22650.00,0,2,'2026-03-30 10:05:00',null,2),
+	 (12,14,'trx_1112223322',null,'Transferencia bancaria','Transferencia',135150.00,0,5,'2026-03-31 09:20:00',null,3),
 	 (2,4,'txn_01m3c4d5e6f7g8h9i023','https://paddle.com/receipt/23','Tarjeta terminada en 2222','Paddle',35150.00,4,4,'2026-04-01 13:25:00','2026-04-05 14:40:00',1),
 	 (7,9,'mp_78901234524','https://mercadopago.com/receipt/24','Dinero en cuenta','MercadoPago',18150.00,3,3,'2026-04-02 09:45:00','2026-04-05 10:20:00',1),
-	 (18,20,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,1,'2026-04-03 08:50:00',NULL,3),
-	 (11,13,'trx_9990001126',NULL,'Transferencia bancaria','Transferencia',89150.00,6,5,'2026-04-04 15:10:00','2026-04-10 16:00:00',1),
-	 (14,16,'txn_01m4d5e6f7g8h9i0027','https://paddle.com/receipt/27','Tarjeta terminada en 4242','Paddle',54150.00,0,4,'2026-04-05 10:00:00',NULL,2),
-	 (17,19,'mp_10111213128','https://mercadopago.com/receipt/28','Tarjeta terminada en 8888','MercadoPago',62150.00,0,3,'2026-04-06 14:10:00',NULL,3),
-	 (4,6,NULL,NULL,'Pago al repartidor','Efectivo',NULL,2,2,'2026-04-07 10:05:00','2026-04-09 13:15:00',1),
-	 (1,3,'trx_2223334430',NULL,'Transferencia bancaria','Transferencia',95150.00,0,5,'2026-04-08 08:45:00',NULL,2);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
+	 (18,20,null,null,'Pago al repartidor','Efectivo',null,0,1,'2026-04-03 08:50:00',null,3),
+	 (11,13,'trx_9990001126',null,'Transferencia bancaria','Transferencia',89150.00,6,5,'2026-04-04 15:10:00','2026-04-10 16:00:00',1),
+	 (14,16,'txn_01m4d5e6f7g8h9i0027','https://paddle.com/receipt/27','Tarjeta terminada en 4242','Paddle',54150.00,0,4,'2026-04-05 10:00:00',null,2),
+	 (17,19,'mp_10111213128','https://mercadopago.com/receipt/28','Tarjeta terminada en 8888','MercadoPago',62150.00,0,3,'2026-04-06 14:10:00',null,3),
+	 (4,6,null,null,'Pago al repartidor','Efectivo',null,2,2,'2026-04-07 10:05:00','2026-04-09 13:15:00',1),
+	 (1,3,'trx_2223334430',null,'Transferencia bancaria','Transferencia',95150.00,0,5,'2026-04-08 08:45:00',null,2);
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
 	 (14,12,'txn_01m1a2b3c4d5e6f7g8h9i031','https://paddle.com/receipt/31','Tarjeta terminada en 4242','Paddle',15300.00,2,4,'2026-04-09 10:00:00','2026-04-11 11:00:00',1),
 	 (13,11,'mp_123456789032','https://mercadopago.com/receipt/32','Dinero en cuenta','MercadoPago',8800.00,1,2,'2026-04-10 09:30:00','2026-04-11 10:45:00',1),
-	 (10,13,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,3,'2026-04-11 14:15:00',NULL,2),
-	 (5,2,'trx_8889990034',NULL,'Transferencia bancaria','Transferencia',45300.00,5,5,'2026-04-12 11:20:00','2026-04-17 12:10:00',1),
-	 (3,3,'txn_01m2b3c4d5e6f7g8h9i035','https://paddle.com/receipt/35','Tarjeta terminada en 1111','Paddle',120300.00,0,6,'2026-04-13 16:40:00',NULL,3),
-	 (13,6,'mp_45678901236','https://mercadopago.com/receipt/36','Tarjeta terminada en 5555','MercadoPago',22800.00,0,2,'2026-04-14 10:05:00',NULL,2),
-	 (12,14,'trx_1112223337',NULL,'Transferencia bancaria','Transferencia',135300.00,0,5,'2026-04-15 09:20:00',NULL,3),
+	 (10,13,null,null,'Pago al repartidor','Efectivo',null,0,3,'2026-04-11 14:15:00',null,2),
+	 (5,2,'trx_8889990034',null,'Transferencia bancaria','Transferencia',45300.00,5,5,'2026-04-12 11:20:00','2026-04-17 12:10:00',1),
+	 (3,3,'txn_01m2b3c4d5e6f7g8h9i035','https://paddle.com/receipt/35','Tarjeta terminada en 1111','Paddle',120300.00,0,6,'2026-04-13 16:40:00',null,3),
+	 (13,6,'mp_45678901236','https://mercadopago.com/receipt/36','Tarjeta terminada en 5555','MercadoPago',22800.00,0,2,'2026-04-14 10:05:00',null,2),
+	 (12,14,'trx_1112223337',null,'Transferencia bancaria','Transferencia',135300.00,0,5,'2026-04-15 09:20:00',null,3),
 	 (2,4,'txn_01m3c4d5e6f7g8h9i038','https://paddle.com/receipt/38','Tarjeta terminada en 2222','Paddle',35300.00,4,4,'2026-04-16 13:25:00','2026-04-20 14:40:00',1),
 	 (7,9,'mp_78901234539','https://mercadopago.com/receipt/39','Dinero en cuenta','MercadoPago',18300.00,3,3,'2026-04-17 09:45:00','2026-04-20 10:20:00',1),
-	 (18,20,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,1,'2026-04-18 08:50:00',NULL,3);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
-	 (11,13,'trx_9990001141',NULL,'Transferencia bancaria','Transferencia',89300.00,6,5,'2026-04-19 15:10:00','2026-04-25 16:00:00',1),
-	 (14,16,'txn_01m4d5e6f7g8h9i0042','https://paddle.com/receipt/42','Tarjeta terminada en 4242','Paddle',54300.00,0,4,'2026-04-20 10:00:00',NULL,2),
-	 (17,19,'mp_10111213143','https://mercadopago.com/receipt/43','Tarjeta terminada en 8888','MercadoPago',62300.00,0,3,'2026-04-21 14:10:00',NULL,3),
-	 (4,6,NULL,NULL,'Pago al repartidor','Efectivo',NULL,2,2,'2026-04-22 10:05:00','2026-04-24 13:15:00',1),
-	 (1,3,'trx_2223334445',NULL,'Transferencia bancaria','Transferencia',95300.00,0,5,'2026-04-23 08:45:00',NULL,2),
+	 (18,20,null,null,'Pago al repartidor','Efectivo',null,0,1,'2026-04-18 08:50:00',null,3);
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
+	 (11,13,'trx_9990001141',null,'Transferencia bancaria','Transferencia',89300.00,6,5,'2026-04-19 15:10:00','2026-04-25 16:00:00',1),
+	 (14,16,'txn_01m4d5e6f7g8h9i0042','https://paddle.com/receipt/42','Tarjeta terminada en 4242','Paddle',54300.00,0,4,'2026-04-20 10:00:00',null,2),
+	 (17,19,'mp_10111213143','https://mercadopago.com/receipt/43','Tarjeta terminada en 8888','MercadoPago',62300.00,0,3,'2026-04-21 14:10:00',null,3),
+	 (4,6,null,null,'Pago al repartidor','Efectivo',null,2,2,'2026-04-22 10:05:00','2026-04-24 13:15:00',1),
+	 (1,3,'trx_2223334445',null,'Transferencia bancaria','Transferencia',95300.00,0,5,'2026-04-23 08:45:00',null,2),
 	 (14,12,'txn_01m1a2b3c4d5e6f7g8h9i046','https://paddle.com/receipt/46','Tarjeta terminada en 4242','Paddle',15450.00,2,4,'2026-04-24 10:00:00','2026-04-26 11:00:00',1),
 	 (13,11,'mp_123456789047','https://mercadopago.com/receipt/47','Dinero en cuenta','MercadoPago',8950.00,1,2,'2026-04-25 09:30:00','2026-04-26 10:45:00',1),
-	 (10,13,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,3,'2026-04-26 14:15:00',NULL,2),
-	 (5,2,'trx_8889990049',NULL,'Transferencia bancaria','Transferencia',45450.00,5,5,'2026-04-27 11:20:00','2026-05-02 12:10:00',1),
-	 (3,3,'txn_01m2b3c4d5e6f7g8h9i050','https://paddle.com/receipt/50','Tarjeta terminada en 1111','Paddle',120450.00,0,6,'2026-04-28 16:40:00',NULL,3);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
-	 (13,6,'mp_45678901251','https://mercadopago.com/receipt/51','Tarjeta terminada en 5555','MercadoPago',22950.00,0,2,'2026-04-29 10:05:00',NULL,2),
-	 (12,14,'trx_1112223352',NULL,'Transferencia bancaria','Transferencia',135450.00,0,5,'2026-04-30 09:20:00',NULL,3),
+	 (10,13,null,null,'Pago al repartidor','Efectivo',null,0,3,'2026-04-26 14:15:00',null,2),
+	 (5,2,'trx_8889990049',null,'Transferencia bancaria','Transferencia',45450.00,5,5,'2026-04-27 11:20:00','2026-05-02 12:10:00',1),
+	 (3,3,'txn_01m2b3c4d5e6f7g8h9i050','https://paddle.com/receipt/50','Tarjeta terminada en 1111','Paddle',120450.00,0,6,'2026-04-28 16:40:00',null,3);
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
+	 (13,6,'mp_45678901251','https://mercadopago.com/receipt/51','Tarjeta terminada en 5555','MercadoPago',22950.00,0,2,'2026-04-29 10:05:00',null,2),
+	 (12,14,'trx_1112223352',null,'Transferencia bancaria','Transferencia',135450.00,0,5,'2026-04-30 09:20:00',null,3),
 	 (2,4,'txn_01m3c4d5e6f7g8h9i053','https://paddle.com/receipt/53','Tarjeta terminada en 2222','Paddle',35450.00,4,4,'2026-05-01 13:25:00','2026-05-05 14:40:00',1),
 	 (7,9,'mp_78901234554','https://mercadopago.com/receipt/54','Dinero en cuenta','MercadoPago',18450.00,3,3,'2026-05-02 09:45:00','2026-05-05 10:20:00',1),
-	 (18,20,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,1,'2026-05-03 08:50:00',NULL,3),
-	 (11,13,'trx_9990001156',NULL,'Transferencia bancaria','Transferencia',89450.00,6,5,'2026-05-04 15:10:00','2026-05-10 16:00:00',1),
-	 (14,16,'txn_01m4d5e6f7g8h9i0057','https://paddle.com/receipt/57','Tarjeta terminada en 4242','Paddle',54450.00,0,4,'2026-05-05 10:00:00',NULL,2),
-	 (17,19,'mp_10111213158','https://mercadopago.com/receipt/58','Tarjeta terminada en 8888','MercadoPago',62450.00,0,3,'2026-05-06 14:10:00',NULL,3),
-	 (4,6,NULL,NULL,'Pago al repartidor','Efectivo',NULL,2,2,'2026-05-07 10:05:00','2026-05-09 13:15:00',1),
-	 (1,3,'trx_2223334460',NULL,'Transferencia bancaria','Transferencia',95450.00,0,5,'2026-05-08 08:45:00',NULL,2);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
+	 (18,20,null,null,'Pago al repartidor','Efectivo',null,0,1,'2026-05-03 08:50:00',null,3),
+	 (11,13,'trx_9990001156',null,'Transferencia bancaria','Transferencia',89450.00,6,5,'2026-05-04 15:10:00','2026-05-10 16:00:00',1),
+	 (14,16,'txn_01m4d5e6f7g8h9i0057','https://paddle.com/receipt/57','Tarjeta terminada en 4242','Paddle',54450.00,0,4,'2026-05-05 10:00:00',null,2),
+	 (17,19,'mp_10111213158','https://mercadopago.com/receipt/58','Tarjeta terminada en 8888','MercadoPago',62450.00,0,3,'2026-05-06 14:10:00',null,3),
+	 (4,6,null,null,'Pago al repartidor','Efectivo',null,2,2,'2026-05-07 10:05:00','2026-05-09 13:15:00',1),
+	 (1,3,'trx_2223334460',null,'Transferencia bancaria','Transferencia',95450.00,0,5,'2026-05-08 08:45:00',null,2);
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
 	 (14,12,'txn_01m1a2b3c4d5e6f7g8h9i061','https://paddle.com/receipt/61','Tarjeta terminada en 4242','Paddle',15600.00,2,4,'2026-05-09 10:00:00','2026-05-11 11:00:00',1),
 	 (13,11,'mp_123456789062','https://mercadopago.com/receipt/62','Dinero en cuenta','MercadoPago',9100.00,1,2,'2026-05-10 09:30:00','2026-05-11 10:45:00',1),
-	 (10,13,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,3,'2026-05-11 14:15:00',NULL,2),
-	 (5,2,'trx_8889990064',NULL,'Transferencia bancaria','Transferencia',45600.00,5,5,'2026-05-12 11:20:00','2026-05-17 12:10:00',1),
-	 (3,3,'txn_01m2b3c4d5e6f7g8h9i065','https://paddle.com/receipt/65','Tarjeta terminada en 1111','Paddle',120600.00,0,6,'2026-05-13 16:40:00',NULL,3),
-	 (13,6,'mp_45678901266','https://mercadopago.com/receipt/66','Tarjeta terminada en 5555','MercadoPago',23100.00,0,2,'2026-05-14 10:05:00',NULL,2),
-	 (12,14,'trx_1112223367',NULL,'Transferencia bancaria','Transferencia',135600.00,0,5,'2026-05-15 09:20:00',NULL,3),
+	 (10,13,null,null,'Pago al repartidor','Efectivo',null,0,3,'2026-05-11 14:15:00',null,2),
+	 (5,2,'trx_8889990064',null,'Transferencia bancaria','Transferencia',45600.00,5,5,'2026-05-12 11:20:00','2026-05-17 12:10:00',1),
+	 (3,3,'txn_01m2b3c4d5e6f7g8h9i065','https://paddle.com/receipt/65','Tarjeta terminada en 1111','Paddle',120600.00,0,6,'2026-05-13 16:40:00',null,3),
+	 (13,6,'mp_45678901266','https://mercadopago.com/receipt/66','Tarjeta terminada en 5555','MercadoPago',23100.00,0,2,'2026-05-14 10:05:00',null,2),
+	 (12,14,'trx_1112223367',null,'Transferencia bancaria','Transferencia',135600.00,0,5,'2026-05-15 09:20:00',null,3),
 	 (2,4,'txn_01m3c4d5e6f7g8h9i068','https://paddle.com/receipt/68','Tarjeta terminada en 2222','Paddle',35600.00,4,4,'2026-05-16 13:25:00','2026-05-20 14:40:00',1),
 	 (7,9,'mp_78901234569','https://mercadopago.com/receipt/69','Dinero en cuenta','MercadoPago',18600.00,3,3,'2026-05-17 09:45:00','2026-05-20 10:20:00',1),
-	 (18,20,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,1,'2026-05-18 08:50:00',NULL,3);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
-	 (11,13,'trx_9990001171',NULL,'Transferencia bancaria','Transferencia',89600.00,6,5,'2026-05-19 15:10:00','2026-05-25 16:00:00',1),
-	 (14,16,'txn_01m4d5e6f7g8h9i0072','https://paddle.com/receipt/72','Tarjeta terminada en 4242','Paddle',54600.00,0,4,'2026-05-20 10:00:00',NULL,2),
-	 (17,19,'mp_10111213173','https://mercadopago.com/receipt/73','Tarjeta terminada en 8888','MercadoPago',62600.00,0,3,'2026-05-21 14:10:00',NULL,3),
-	 (4,6,NULL,NULL,'Pago al repartidor','Efectivo',NULL,2,2,'2026-05-22 10:05:00','2026-05-24 13:15:00',1),
-	 (1,3,'trx_2223334475',NULL,'Transferencia bancaria','Transferencia',95600.00,0,5,'2026-05-23 08:45:00',NULL,2),
+	 (18,20,null,null,'Pago al repartidor','Efectivo',null,0,1,'2026-05-18 08:50:00',null,3);
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
+	 (11,13,'trx_9990001171',null,'Transferencia bancaria','Transferencia',89600.00,6,5,'2026-05-19 15:10:00','2026-05-25 16:00:00',1),
+	 (14,16,'txn_01m4d5e6f7g8h9i0072','https://paddle.com/receipt/72','Tarjeta terminada en 4242','Paddle',54600.00,0,4,'2026-05-20 10:00:00',null,2),
+	 (17,19,'mp_10111213173','https://mercadopago.com/receipt/73','Tarjeta terminada en 8888','MercadoPago',62600.00,0,3,'2026-05-21 14:10:00',null,3),
+	 (4,6,null,null,'Pago al repartidor','Efectivo',null,2,2,'2026-05-22 10:05:00','2026-05-24 13:15:00',1),
+	 (1,3,'trx_2223334475',null,'Transferencia bancaria','Transferencia',95600.00,0,5,'2026-05-23 08:45:00',null,2),
 	 (14,12,'txn_01m1a2b3c4d5e6f7g8h9i076','https://paddle.com/receipt/76','Tarjeta terminada en 4242','Paddle',15750.00,2,4,'2026-05-24 10:00:00','2026-05-26 11:00:00',1),
 	 (13,11,'mp_123456789077','https://mercadopago.com/receipt/77','Dinero en cuenta','MercadoPago',9250.00,1,2,'2026-05-25 09:30:00','2026-05-26 10:45:00',1),
-	 (10,13,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,3,'2026-05-26 14:15:00',NULL,2),
-	 (5,2,'trx_8889990079',NULL,'Transferencia bancaria','Transferencia',45750.00,5,5,'2026-05-27 11:20:00','2026-06-01 12:10:00',1),
-	 (3,3,'txn_01m2b3c4d5e6f7g8h9i080','https://paddle.com/receipt/80','Tarjeta terminada en 1111','Paddle',120750.00,0,6,'2026-05-28 16:40:00',NULL,3);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
-	 (13,6,'mp_45678901281','https://mercadopago.com/receipt/81','Tarjeta terminada en 5555','MercadoPago',23250.00,0,2,'2026-05-29 10:05:00',NULL,2),
-	 (12,14,'trx_1112223382',NULL,'Transferencia bancaria','Transferencia',135750.00,0,5,'2026-05-30 09:20:00',NULL,3),
+	 (10,13,null,null,'Pago al repartidor','Efectivo',null,0,3,'2026-05-26 14:15:00',null,2),
+	 (5,2,'trx_8889990079',null,'Transferencia bancaria','Transferencia',45750.00,5,5,'2026-05-27 11:20:00','2026-06-01 12:10:00',1),
+	 (3,3,'txn_01m2b3c4d5e6f7g8h9i080','https://paddle.com/receipt/80','Tarjeta terminada en 1111','Paddle',120750.00,0,6,'2026-05-28 16:40:00',null,3);
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
+	 (13,6,'mp_45678901281','https://mercadopago.com/receipt/81','Tarjeta terminada en 5555','MercadoPago',23250.00,0,2,'2026-05-29 10:05:00',null,2),
+	 (12,14,'trx_1112223382',null,'Transferencia bancaria','Transferencia',135750.00,0,5,'2026-05-30 09:20:00',null,3),
 	 (2,4,'txn_01m3c4d5e6f7g8h9i083','https://paddle.com/receipt/83','Tarjeta terminada en 2222','Paddle',35750.00,4,4,'2026-05-31 13:25:00','2026-06-04 14:40:00',1),
 	 (7,9,'mp_78901234584','https://mercadopago.com/receipt/84','Dinero en cuenta','MercadoPago',18750.00,3,3,'2026-06-01 09:45:00','2026-06-04 10:20:00',1),
-	 (18,20,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,1,'2026-06-02 08:50:00',NULL,3),
-	 (11,13,'trx_9990001186',NULL,'Transferencia bancaria','Transferencia',89750.00,6,5,'2026-06-03 15:10:00','2026-06-09 16:00:00',1),
-	 (14,16,'txn_01m4d5e6f7g8h9i0087','https://paddle.com/receipt/87','Tarjeta terminada en 4242','Paddle',54750.00,0,4,'2026-06-04 10:00:00',NULL,2),
-	 (17,19,'mp_10111213188','https://mercadopago.com/receipt/88','Tarjeta terminada en 8888','MercadoPago',62750.00,0,3,'2026-06-05 14:10:00',NULL,3),
-	 (4,6,NULL,NULL,'Pago al repartidor','Efectivo',NULL,2,2,'2026-06-06 10:05:00','2026-06-08 13:15:00',1),
-	 (1,3,'trx_2223334490',NULL,'Transferencia bancaria','Transferencia',95750.00,0,5,'2026-06-07 08:45:00',NULL,2);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
+	 (18,20,null,null,'Pago al repartidor','Efectivo',null,0,1,'2026-06-02 08:50:00',null,3),
+	 (11,13,'trx_9990001186',null,'Transferencia bancaria','Transferencia',89750.00,6,5,'2026-06-03 15:10:00','2026-06-09 16:00:00',1),
+	 (14,16,'txn_01m4d5e6f7g8h9i0087','https://paddle.com/receipt/87','Tarjeta terminada en 4242','Paddle',54750.00,0,4,'2026-06-04 10:00:00',null,2),
+	 (17,19,'mp_10111213188','https://mercadopago.com/receipt/88','Tarjeta terminada en 8888','MercadoPago',62750.00,0,3,'2026-06-05 14:10:00',null,3),
+	 (4,6,null,null,'Pago al repartidor','Efectivo',null,2,2,'2026-06-06 10:05:00','2026-06-08 13:15:00',1),
+	 (1,3,'trx_2223334490',null,'Transferencia bancaria','Transferencia',95750.00,0,5,'2026-06-07 08:45:00',null,2);
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
 	 (14,12,'txn_01m1a2b3c4d5e6f7g8h9i091','https://paddle.com/receipt/91','Tarjeta terminada en 4242','Paddle',15900.00,2,4,'2026-06-08 10:00:00','2026-06-10 11:00:00',1),
 	 (13,11,'mp_123456789092','https://mercadopago.com/receipt/92','Dinero en cuenta','MercadoPago',9400.00,1,2,'2026-06-09 09:30:00','2026-06-10 10:45:00',1),
-	 (10,13,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,3,'2026-06-10 14:15:00',NULL,2),
-	 (5,2,'trx_8889990094',NULL,'Transferencia bancaria','Transferencia',45900.00,5,5,'2026-06-11 11:20:00','2026-06-16 12:10:00',1),
-	 (3,3,'txn_01m2b3c4d5e6f7g8h9i095','https://paddle.com/receipt/95','Tarjeta terminada en 1111','Paddle',120900.00,0,6,'2026-06-12 16:40:00',NULL,3),
-	 (13,6,'mp_45678901296','https://mercadopago.com/receipt/96','Tarjeta terminada en 5555','MercadoPago',23400.00,0,2,'2026-06-13 10:05:00',NULL,2),
-	 (12,14,'trx_1112223397',NULL,'Transferencia bancaria','Transferencia',135900.00,0,5,'2026-06-14 09:20:00',NULL,3),
+	 (10,13,null,null,'Pago al repartidor','Efectivo',null,0,3,'2026-06-10 14:15:00',null,2),
+	 (5,2,'trx_8889990094',null,'Transferencia bancaria','Transferencia',45900.00,5,5,'2026-06-11 11:20:00','2026-06-16 12:10:00',1),
+	 (3,3,'txn_01m2b3c4d5e6f7g8h9i095','https://paddle.com/receipt/95','Tarjeta terminada en 1111','Paddle',120900.00,0,6,'2026-06-12 16:40:00',null,3),
+	 (13,6,'mp_45678901296','https://mercadopago.com/receipt/96','Tarjeta terminada en 5555','MercadoPago',23400.00,0,2,'2026-06-13 10:05:00',null,2),
+	 (12,14,'trx_1112223397',null,'Transferencia bancaria','Transferencia',135900.00,0,5,'2026-06-14 09:20:00',null,3),
 	 (2,4,'txn_01m3c4d5e6f7g8h9i098','https://paddle.com/receipt/98','Tarjeta terminada en 2222','Paddle',35900.00,4,4,'2026-06-15 13:25:00','2026-06-19 14:40:00',1),
 	 (7,9,'mp_78901234599','https://mercadopago.com/receipt/99','Dinero en cuenta','MercadoPago',18900.00,3,3,'2026-06-16 09:45:00','2026-06-19 10:20:00',1),
-	 (18,20,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,1,'2026-06-17 08:50:00',NULL,3);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
-	 (11,13,'trx_99900011101',NULL,'Transferencia bancaria','Transferencia',89900.00,6,5,'2026-06-18 15:10:00','2026-06-24 16:00:00',1),
-	 (14,16,'txn_01m4d5e6f7g8h9i00102','https://paddle.com/receipt/102','Tarjeta terminada en 4242','Paddle',54900.00,0,4,'2026-06-19 10:00:00',NULL,2),
-	 (17,19,'mp_101112131103','https://mercadopago.com/receipt/103','Tarjeta terminada en 8888','MercadoPago',62900.00,0,3,'2026-06-20 14:10:00',NULL,3),
-	 (4,6,NULL,NULL,'Pago al repartidor','Efectivo',NULL,2,2,'2026-06-21 10:05:00','2026-06-23 13:15:00',1),
-	 (1,3,'trx_22233344105',NULL,'Transferencia bancaria','Transferencia',95900.00,0,5,'2026-06-22 08:45:00',NULL,2),
+	 (18,20,null,null,'Pago al repartidor','Efectivo',null,0,1,'2026-06-17 08:50:00',null,3);
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
+	 (11,13,'trx_99900011101',null,'Transferencia bancaria','Transferencia',89900.00,6,5,'2026-06-18 15:10:00','2026-06-24 16:00:00',1),
+	 (14,16,'txn_01m4d5e6f7g8h9i00102','https://paddle.com/receipt/102','Tarjeta terminada en 4242','Paddle',54900.00,0,4,'2026-06-19 10:00:00',null,2),
+	 (17,19,'mp_101112131103','https://mercadopago.com/receipt/103','Tarjeta terminada en 8888','MercadoPago',62900.00,0,3,'2026-06-20 14:10:00',null,3),
+	 (4,6,null,null,'Pago al repartidor','Efectivo',null,2,2,'2026-06-21 10:05:00','2026-06-23 13:15:00',1),
+	 (1,3,'trx_22233344105',null,'Transferencia bancaria','Transferencia',95900.00,0,5,'2026-06-22 08:45:00',null,2),
 	 (14,12,'txn_01m1a2b3c4d5e6f7g8h9i0106','https://paddle.com/receipt/106','Tarjeta terminada en 4242','Paddle',16050.00,2,4,'2026-06-23 10:00:00','2026-06-25 11:00:00',1),
 	 (13,11,'mp_1234567890107','https://mercadopago.com/receipt/107','Dinero en cuenta','MercadoPago',9550.00,1,2,'2026-06-24 09:30:00','2026-06-25 10:45:00',1),
-	 (10,13,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,3,'2026-06-25 14:15:00',NULL,2),
-	 (5,2,'trx_88899900109',NULL,'Transferencia bancaria','Transferencia',46050.00,5,5,'2026-06-26 11:20:00','2026-07-01 12:10:00',1),
-	 (3,3,'txn_01m2b3c4d5e6f7g8h9i0110','https://paddle.com/receipt/110','Tarjeta terminada en 1111','Paddle',121050.00,0,6,'2026-06-27 16:40:00',NULL,3);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
-	 (13,6,'mp_456789012111','https://mercadopago.com/receipt/111','Tarjeta terminada en 5555','MercadoPago',23550.00,0,2,'2026-06-28 10:05:00',NULL,2),
-	 (12,14,'trx_11122233112',NULL,'Transferencia bancaria','Transferencia',136050.00,0,5,'2026-06-29 09:20:00',NULL,3),
+	 (10,13,null,null,'Pago al repartidor','Efectivo',null,0,3,'2026-06-25 14:15:00',null,2),
+	 (5,2,'trx_88899900109',null,'Transferencia bancaria','Transferencia',46050.00,5,5,'2026-06-26 11:20:00','2026-07-01 12:10:00',1),
+	 (3,3,'txn_01m2b3c4d5e6f7g8h9i0110','https://paddle.com/receipt/110','Tarjeta terminada en 1111','Paddle',121050.00,0,6,'2026-06-27 16:40:00',null,3);
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
+	 (13,6,'mp_456789012111','https://mercadopago.com/receipt/111','Tarjeta terminada en 5555','MercadoPago',23550.00,0,2,'2026-06-28 10:05:00',null,2),
+	 (12,14,'trx_11122233112',null,'Transferencia bancaria','Transferencia',136050.00,0,5,'2026-06-29 09:20:00',null,3),
 	 (2,4,'txn_01m3c4d5e6f7g8h9i0113','https://paddle.com/receipt/113','Tarjeta terminada en 2222','Paddle',36050.00,4,4,'2026-06-30 13:25:00','2026-07-04 14:40:00',1),
 	 (7,9,'mp_789012345114','https://mercadopago.com/receipt/114','Dinero en cuenta','MercadoPago',19050.00,3,3,'2026-07-01 09:45:00','2026-07-04 10:20:00',1),
-	 (18,20,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,1,'2026-07-02 08:50:00',NULL,3),
-	 (11,13,'trx_99900011116',NULL,'Transferencia bancaria','Transferencia',90050.00,6,5,'2026-07-03 15:10:00','2026-07-09 16:00:00',1),
-	 (14,16,'txn_01m4d5e6f7g8h9i00117','https://paddle.com/receipt/117','Tarjeta terminada en 4242','Paddle',55050.00,0,4,'2026-07-04 10:00:00',NULL,2),
-	 (17,19,'mp_101112131118','https://mercadopago.com/receipt/118','Tarjeta terminada en 8888','MercadoPago',63050.00,0,3,'2026-07-05 14:10:00',NULL,3),
-	 (4,6,NULL,NULL,'Pago al repartidor','Efectivo',NULL,2,2,'2026-07-06 10:05:00','2026-07-08 13:15:00',1),
-	 (1,3,'trx_22233344120',NULL,'Transferencia bancaria','Transferencia',96050.00,0,5,'2026-07-07 08:45:00',NULL,2);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
+	 (18,20,null,null,'Pago al repartidor','Efectivo',null,0,1,'2026-07-02 08:50:00',null,3),
+	 (11,13,'trx_99900011116',null,'Transferencia bancaria','Transferencia',90050.00,6,5,'2026-07-03 15:10:00','2026-07-09 16:00:00',1),
+	 (14,16,'txn_01m4d5e6f7g8h9i00117','https://paddle.com/receipt/117','Tarjeta terminada en 4242','Paddle',55050.00,0,4,'2026-07-04 10:00:00',null,2),
+	 (17,19,'mp_101112131118','https://mercadopago.com/receipt/118','Tarjeta terminada en 8888','MercadoPago',63050.00,0,3,'2026-07-05 14:10:00',null,3),
+	 (4,6,null,null,'Pago al repartidor','Efectivo',null,2,2,'2026-07-06 10:05:00','2026-07-08 13:15:00',1),
+	 (1,3,'trx_22233344120',null,'Transferencia bancaria','Transferencia',96050.00,0,5,'2026-07-07 08:45:00',null,2);
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
 	 (14,12,'txn_01m1a2b3c4d5e6f7g8h9i0121','https://paddle.com/receipt/121','Tarjeta terminada en 4242','Paddle',16200.00,2,4,'2026-07-08 10:00:00','2026-07-10 11:00:00',1),
 	 (13,11,'mp_1234567890122','https://mercadopago.com/receipt/122','Dinero en cuenta','MercadoPago',9700.00,1,2,'2026-07-09 09:30:00','2026-07-10 10:45:00',1),
-	 (10,13,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,3,'2026-07-10 14:15:00',NULL,2),
-	 (5,2,'trx_88899900124',NULL,'Transferencia bancaria','Transferencia',46200.00,5,5,'2026-07-11 11:20:00','2026-07-16 12:10:00',1),
-	 (3,3,'txn_01m2b3c4d5e6f7g8h9i0125','https://paddle.com/receipt/125','Tarjeta terminada en 1111','Paddle',121200.00,0,6,'2026-07-12 16:40:00',NULL,3),
-	 (13,6,'mp_456789012126','https://mercadopago.com/receipt/126','Tarjeta terminada en 5555','MercadoPago',23700.00,0,2,'2026-07-13 10:05:00',NULL,2),
-	 (12,14,'trx_11122233127',NULL,'Transferencia bancaria','Transferencia',136200.00,0,5,'2026-07-14 09:20:00',NULL,3),
+	 (10,13,null,null,'Pago al repartidor','Efectivo',null,0,3,'2026-07-10 14:15:00',null,2),
+	 (5,2,'trx_88899900124',null,'Transferencia bancaria','Transferencia',46200.00,5,5,'2026-07-11 11:20:00','2026-07-16 12:10:00',1),
+	 (3,3,'txn_01m2b3c4d5e6f7g8h9i0125','https://paddle.com/receipt/125','Tarjeta terminada en 1111','Paddle',121200.00,0,6,'2026-07-12 16:40:00',null,3),
+	 (13,6,'mp_456789012126','https://mercadopago.com/receipt/126','Tarjeta terminada en 5555','MercadoPago',23700.00,0,2,'2026-07-13 10:05:00',null,2),
+	 (12,14,'trx_11122233127',null,'Transferencia bancaria','Transferencia',136200.00,0,5,'2026-07-14 09:20:00',null,3),
 	 (2,4,'txn_01m3c4d5e6f7g8h9i0128','https://paddle.com/receipt/128','Tarjeta terminada en 2222','Paddle',36200.00,4,4,'2026-07-15 13:25:00','2026-07-19 14:40:00',1),
 	 (7,9,'mp_789012345129','https://mercadopago.com/receipt/129','Dinero en cuenta','MercadoPago',19200.00,3,3,'2026-07-16 09:45:00','2026-07-19 10:20:00',1),
-	 (18,20,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,1,'2026-07-17 08:50:00',NULL,3);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
-	 (11,13,'trx_99900011131',NULL,'Transferencia bancaria','Transferencia',90200.00,6,5,'2026-07-18 15:10:00','2026-07-24 16:00:00',1),
-	 (14,16,'txn_01m4d5e6f7g8h9i00132','https://paddle.com/receipt/132','Tarjeta terminada en 4242','Paddle',55200.00,0,4,'2026-07-19 10:00:00',NULL,2),
-	 (17,19,'mp_101112131133','https://mercadopago.com/receipt/133','Tarjeta terminada en 8888','MercadoPago',63200.00,0,3,'2026-07-20 14:10:00',NULL,3),
-	 (4,6,NULL,NULL,'Pago al repartidor','Efectivo',NULL,2,2,'2026-07-21 10:05:00','2026-07-23 13:15:00',1),
-	 (1,3,'trx_22233344135',NULL,'Transferencia bancaria','Transferencia',96200.00,0,5,'2026-07-22 08:45:00',NULL,2),
+	 (18,20,null,null,'Pago al repartidor','Efectivo',null,0,1,'2026-07-17 08:50:00',null,3);
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
+	 (11,13,'trx_99900011131',null,'Transferencia bancaria','Transferencia',90200.00,6,5,'2026-07-18 15:10:00','2026-07-24 16:00:00',1),
+	 (14,16,'txn_01m4d5e6f7g8h9i00132','https://paddle.com/receipt/132','Tarjeta terminada en 4242','Paddle',55200.00,0,4,'2026-07-19 10:00:00',null,2),
+	 (17,19,'mp_101112131133','https://mercadopago.com/receipt/133','Tarjeta terminada en 8888','MercadoPago',63200.00,0,3,'2026-07-20 14:10:00',null,3),
+	 (4,6,null,null,'Pago al repartidor','Efectivo',null,2,2,'2026-07-21 10:05:00','2026-07-23 13:15:00',1),
+	 (1,3,'trx_22233344135',null,'Transferencia bancaria','Transferencia',96200.00,0,5,'2026-07-22 08:45:00',null,2),
 	 (14,12,'txn_01m1a2b3c4d5e6f7g8h9i0136','https://paddle.com/receipt/136','Tarjeta terminada en 4242','Paddle',16350.00,2,4,'2026-07-23 10:00:00','2026-07-25 11:00:00',1),
 	 (13,11,'mp_1234567890137','https://mercadopago.com/receipt/137','Dinero en cuenta','MercadoPago',9850.00,1,2,'2026-07-24 09:30:00','2026-07-25 10:45:00',1),
-	 (10,13,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,3,'2026-07-25 14:15:00',NULL,2),
-	 (5,2,'trx_88899900139',NULL,'Transferencia bancaria','Transferencia',46350.00,5,5,'2026-07-26 11:20:00','2026-07-31 12:10:00',1),
-	 (3,3,'txn_01m2b3c4d5e6f7g8h9i0140','https://paddle.com/receipt/140','Tarjeta terminada en 1111','Paddle',121350.00,0,6,'2026-07-27 16:40:00',NULL,3);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
-	 (13,6,'mp_456789012141','https://mercadopago.com/receipt/141','Tarjeta terminada en 5555','MercadoPago',23850.00,0,2,'2026-07-28 10:05:00',NULL,2),
-	 (12,14,'trx_11122233142',NULL,'Transferencia bancaria','Transferencia',136350.00,0,5,'2026-07-29 09:20:00',NULL,3),
+	 (10,13,null,null,'Pago al repartidor','Efectivo',null,0,3,'2026-07-25 14:15:00',null,2),
+	 (5,2,'trx_88899900139',null,'Transferencia bancaria','Transferencia',46350.00,5,5,'2026-07-26 11:20:00','2026-07-31 12:10:00',1),
+	 (3,3,'txn_01m2b3c4d5e6f7g8h9i0140','https://paddle.com/receipt/140','Tarjeta terminada en 1111','Paddle',121350.00,0,6,'2026-07-27 16:40:00',null,3);
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
+	 (13,6,'mp_456789012141','https://mercadopago.com/receipt/141','Tarjeta terminada en 5555','MercadoPago',23850.00,0,2,'2026-07-28 10:05:00',null,2),
+	 (12,14,'trx_11122233142',null,'Transferencia bancaria','Transferencia',136350.00,0,5,'2026-07-29 09:20:00',null,3),
 	 (2,4,'txn_01m3c4d5e6f7g8h9i0143','https://paddle.com/receipt/143','Tarjeta terminada en 2222','Paddle',36350.00,4,4,'2026-07-30 13:25:00','2026-08-03 14:40:00',1),
 	 (7,9,'mp_789012345144','https://mercadopago.com/receipt/144','Dinero en cuenta','MercadoPago',19350.00,3,3,'2026-07-31 09:45:00','2026-08-03 10:20:00',1),
-	 (18,20,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,1,'2026-08-01 08:50:00',NULL,3),
-	 (11,13,'trx_99900011146',NULL,'Transferencia bancaria','Transferencia',90350.00,6,5,'2026-08-02 15:10:00','2026-08-08 16:00:00',1),
-	 (14,16,'txn_01m4d5e6f7g8h9i00147','https://paddle.com/receipt/147','Tarjeta terminada en 4242','Paddle',55350.00,0,4,'2026-08-03 10:00:00',NULL,2),
-	 (17,19,'mp_101112131148','https://mercadopago.com/receipt/148','Tarjeta terminada en 8888','MercadoPago',63350.00,0,3,'2026-08-04 14:10:00',NULL,3),
-	 (4,6,NULL,NULL,'Pago al repartidor','Efectivo',NULL,2,2,'2026-08-05 10:05:00','2026-08-07 13:15:00',1),
-	 (1,3,'trx_22233344150',NULL,'Transferencia bancaria','Transferencia',96350.00,0,5,'2026-08-06 08:45:00',NULL,2);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
+	 (18,20,null,null,'Pago al repartidor','Efectivo',null,0,1,'2026-08-01 08:50:00',null,3),
+	 (11,13,'trx_99900011146',null,'Transferencia bancaria','Transferencia',90350.00,6,5,'2026-08-02 15:10:00','2026-08-08 16:00:00',1),
+	 (14,16,'txn_01m4d5e6f7g8h9i00147','https://paddle.com/receipt/147','Tarjeta terminada en 4242','Paddle',55350.00,0,4,'2026-08-03 10:00:00',null,2),
+	 (17,19,'mp_101112131148','https://mercadopago.com/receipt/148','Tarjeta terminada en 8888','MercadoPago',63350.00,0,3,'2026-08-04 14:10:00',null,3),
+	 (4,6,null,null,'Pago al repartidor','Efectivo',null,2,2,'2026-08-05 10:05:00','2026-08-07 13:15:00',1),
+	 (1,3,'trx_22233344150',null,'Transferencia bancaria','Transferencia',96350.00,0,5,'2026-08-06 08:45:00',null,2);
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
 	 (14,12,'txn_01m1a2b3c4d5e6f7g8h9i0151','https://paddle.com/receipt/151','Tarjeta terminada en 4242','Paddle',16500.00,2,4,'2026-08-07 10:00:00','2026-08-09 11:00:00',1),
 	 (13,11,'mp_1234567890152','https://mercadopago.com/receipt/152','Dinero en cuenta','MercadoPago',10000.00,1,2,'2026-08-08 09:30:00','2026-08-09 10:45:00',1),
-	 (10,13,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,3,'2026-08-09 14:15:00',NULL,2),
-	 (5,2,'trx_88899900154',NULL,'Transferencia bancaria','Transferencia',46500.00,5,5,'2026-08-10 11:20:00','2026-08-15 12:10:00',1),
-	 (3,3,'txn_01m2b3c4d5e6f7g8h9i0155','https://paddle.com/receipt/155','Tarjeta terminada en 1111','Paddle',121500.00,0,6,'2026-08-11 16:40:00',NULL,3),
-	 (13,6,'mp_456789012156','https://mercadopago.com/receipt/156','Tarjeta terminada en 5555','MercadoPago',24000.00,0,2,'2026-08-12 10:05:00',NULL,2),
-	 (12,14,'trx_11122233157',NULL,'Transferencia bancaria','Transferencia',136500.00,0,5,'2026-08-13 09:20:00',NULL,3),
+	 (10,13,null,null,'Pago al repartidor','Efectivo',null,0,3,'2026-08-09 14:15:00',null,2),
+	 (5,2,'trx_88899900154',null,'Transferencia bancaria','Transferencia',46500.00,5,5,'2026-08-10 11:20:00','2026-08-15 12:10:00',1),
+	 (3,3,'txn_01m2b3c4d5e6f7g8h9i0155','https://paddle.com/receipt/155','Tarjeta terminada en 1111','Paddle',121500.00,0,6,'2026-08-11 16:40:00',null,3),
+	 (13,6,'mp_456789012156','https://mercadopago.com/receipt/156','Tarjeta terminada en 5555','MercadoPago',24000.00,0,2,'2026-08-12 10:05:00',null,2),
+	 (12,14,'trx_11122233157',null,'Transferencia bancaria','Transferencia',136500.00,0,5,'2026-08-13 09:20:00',null,3),
 	 (2,4,'txn_01m3c4d5e6f7g8h9i0158','https://paddle.com/receipt/158','Tarjeta terminada en 2222','Paddle',36500.00,4,4,'2026-08-14 13:25:00','2026-08-18 14:40:00',1),
 	 (7,9,'mp_789012345159','https://mercadopago.com/receipt/159','Dinero en cuenta','MercadoPago',19500.00,3,3,'2026-08-15 09:45:00','2026-08-18 10:20:00',1),
-	 (18,20,NULL,NULL,'Pago al repartidor','Efectivo',NULL,0,1,'2026-08-16 08:50:00',NULL,3);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
-	 (11,13,'trx_99900011161',NULL,'Transferencia bancaria','Transferencia',90500.00,6,5,'2026-08-17 15:10:00','2026-08-23 16:00:00',1),
-	 (14,16,'txn_01m4d5e6f7g8h9i00162','https://paddle.com/receipt/162','Tarjeta terminada en 4242','Paddle',55500.00,0,4,'2026-08-18 10:00:00',NULL,2),
-	 (17,19,'mp_101112131163','https://mercadopago.com/receipt/163','Tarjeta terminada en 8888','MercadoPago',63500.00,0,3,'2026-08-19 14:10:00',NULL,3),
-	 (4,6,NULL,NULL,'Pago al repartidor','Efectivo',NULL,2,2,'2026-08-20 10:05:00','2026-08-22 13:15:00',1),
-	 (1,3,'trx_22233344165',NULL,'Transferencia bancaria','Transferencia',96500.00,0,5,'2026-08-21 08:45:00',NULL,2),
+	 (18,20,null,null,'Pago al repartidor','Efectivo',null,0,1,'2026-08-16 08:50:00',null,3);
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
+	 (11,13,'trx_99900011161',null,'Transferencia bancaria','Transferencia',90500.00,6,5,'2026-08-17 15:10:00','2026-08-23 16:00:00',1),
+	 (14,16,'txn_01m4d5e6f7g8h9i00162','https://paddle.com/receipt/162','Tarjeta terminada en 4242','Paddle',55500.00,0,4,'2026-08-18 10:00:00',null,2),
+	 (17,19,'mp_101112131163','https://mercadopago.com/receipt/163','Tarjeta terminada en 8888','MercadoPago',63500.00,0,3,'2026-08-19 14:10:00',null,3),
+	 (4,6,null,null,'Pago al repartidor','Efectivo',null,2,2,'2026-08-20 10:05:00','2026-08-22 13:15:00',1),
+	 (1,3,'trx_22233344165',null,'Transferencia bancaria','Transferencia',96500.00,0,5,'2026-08-21 08:45:00',null,2),
 	 (19,21,'txn_01m1eptvnwy32zx9m03p20xc5r','','Tarjeta terminada en 4242','Paddle',55000.00,0,2,'2026-09-01 14:44:06.880208','2026-09-01 14:44:26.151974',3),
 	 (19,21,'txn_01m1esqet0p4ajaynv5ct94a4m','','Tarjeta terminada en 4242','Paddle',25000.00,5,3,'2026-09-01 15:34:41.128459','2026-09-07 11:32:27.028434',1),
 	 (19,21,'txn_01m1efyga75963x84hba7qc67x','','Tarjeta terminada en 4242','Paddle',16624.00,0,2,'2026-09-01 12:43:46.251229','2026-09-07 13:19:15.560152',2),
-	 (19,21,NULL,NULL,NULL,' ',NULL,0,5,'2026-09-07 13:21:33.713002','2026-09-08 11:26:58.523025',2),
+	 (19,21,null,null,null,' ',null,0,5,'2026-09-07 13:21:33.713002','2026-09-08 11:26:58.523025',2),
 	 (19,21,'txn_01m25rzm299y7e5pyqk60bfw0q','','Tarjeta terminada en 4242','Paddle',110000.00,11,3,'2026-09-10 13:44:11.889256','2026-09-21 15:26:50.450109',1);
-INSERT INTO public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) VALUES
+insert into public.pedidos (id_cliente,id_direccion,transaccion_id,url_recibo,detalle_pago,metodo_pago,monto_pagado,tiempo_entrega,tiempo_estimado_entrega,created_at,updated_at,estatus) values
 	 (19,21,'txn_01m25swryfgxmr2pb3jp0vaxqt','','Tarjeta terminada en 4242','Paddle',255000.00,11,3,'2026-09-10 14:00:07.15135','2026-09-21 15:26:54.100307',1),
-	 (19,21,NULL,NULL,NULL,' ',NULL,0,1,'2026-09-15 12:50:56.548881',NULL,4),
-	 (19,21,NULL,NULL,NULL,' ',NULL,0,5,'2026-09-15 12:51:27.907961','2026-09-17 12:09:59.973667',3),
+	 (19,21,null,null,null,' ',null,0,1,'2026-09-15 12:50:56.548881',null,4),
+	 (19,21,null,null,null,' ',null,0,5,'2026-09-15 12:51:27.907961','2026-09-17 12:09:59.973667',3),
 	 (19,21,'txn_01m2jn0pevk09sp8sd61dgdkxk','','Tarjeta terminada en 4242','Paddle',17008.00,0,6,'2026-09-15 13:44:59.948695','2026-09-15 13:45:31.264169',3),
 	 (19,21,'txn_01m25h3bn9azpa1qqphej8hk4x','','Tarjeta terminada en 4242','Paddle',750000.00,11,3,'2026-09-10 11:26:25.665334','2026-09-21 15:26:41.196452',1),
 	 (19,17,'txn_01m34nj6v0n6s88sbvfs03eep2','','Tarjeta terminada en 4242','Paddle',21000.00,0,2,'2026-09-22 13:40:53.971943','2026-09-22 13:41:16.929278',3);
-INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+
+-- Datos. {Productos}
+insert into public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) values
 	 ('Amortiguador Vibración Base (Bass Shaker)',140000.00,15,'SimRacing','AMO-VIB-6013','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
 	 ('Silla Butaca Competición',380000.00,10,'SimRacing','SIL-BUT-6015','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
 	 ('Interfaz de Audio USB 2x2',280000.00,15,'Audio','INT-USB-7001','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
@@ -1120,7 +1137,7 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Aro Volante Formula F1',320000.00,18,'SimRacing','ARO-FOR-6002','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
 	 ('Soporte Monitor Integrado Cockpit',120000.00,22,'SimRacing','SOP-MON-6004','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
 	 ('Freno de Mano Progresivo USB',185000.00,30,'SimRacing','FRE-MAN-6005','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true);
-INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+insert into public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) values
 	 ('Palanca de Cambios Secuencial',210000.00,25,'SimRacing','PAL-SEC-6006','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
 	 ('Base Volante Direct Drive 8Nm',950000.00,8,'SimRacing','BAS-DIR-6007','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
 	 ('Guantes Carreras SimRacing',45000.00,60,'SimRacing','GUA-CAR-6008','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
@@ -1131,7 +1148,7 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Lentes Protección Luz Azul',45000.00,110,'Accesorios','LEN-LUZ-5009','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Mouse Bungee (Sujeta Cable)',22000.00,80,'Accesorios','MOU-BUN-5011','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Kit Limpieza Pantallas y Teclado',16500.00,220,'Accesorios','KIT-LIM-5012','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true);
-INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+insert into public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) values
 	 ('Funda Protectora Teclado',12000.00,160,'Accesorios','FUN-TEC-5014','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Cámara de Seguridad IP WiFi',85000.00,45,'Accesorios','CAM-SEG-5015','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Ventilador Gabinete 120mm x3',45000.00,120,'Hardware','FAN-120-4011','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
@@ -1142,7 +1159,7 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Soporte Celular Escritorio',12000.00,250,'Accesorios','SOP-CEL-5001','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Funda Notebook 15.6 Neoprene',35000.00,180,'Accesorios','FUN-NOT-5002','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Cable USB-C Carga Rápida 2m',15000.00,400,'Accesorios','CAB-USC-5003','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true);
-INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+insert into public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) values
 	 ('Organizador de Cables Velco (10u)',8500.00,500,'Accesorios','ORG-CAB-5004','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Mochila Porta Notebook Impermeable',85000.00,60,'Accesorios','MOC-POR-5005','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Memoria RAM DDR4 16GB 3200MHz',95000.00,150,'Hardware','RAM-DDR-4001','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
@@ -1153,7 +1170,7 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Cargador Inalámbrico Fast Charge',55000.00,69,'Accesorios','CAR-INA-5007','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Cable XLR a XLR 3 Metros',35000.00,118,'Audio','CAB-XLR-7007','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
 	 ('Micrófono Inalámbrico Solapero',160000.00,6,'Audio','MIC-SOL-7014','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true);
-INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+insert into public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) values
 	 ('Cable Extensión Pedales USB',25000.00,79,'SimRacing','CAB-PED-6012','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
 	 ('Tira LED RGB 5 Metros',38000.00,128,'Accesorios','TIR-LED-5013','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true),
 	 ('Remera Algodón Básica Lisa',18000.00,280,'Indumentaria','REM-ALG-8001','2026-06-25 09:31:41.35302','2026-06-25 09:31:41.35302',true),
@@ -1164,7 +1181,7 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Soporte Monitores de Estudio (Pie)',110000.00,4,'Audio','SOP-PIE-7013','2026-06-22 12:27:58.663','2026-09-07 15:15:18.717089',true),
 	 ('Alfombra Goma Antideslizante Cockpit',65000.00,44,'SimRacing','ALF-ANT-6014','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
 	 ('Adaptador Bluetooth 5.0 USB',14000.00,297,'Accesorios','ADA-BLU-5010','2026-06-22 12:27:58.635659','2026-06-22 12:27:58.635659',true);
-INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+insert into public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) values
 	 ('Cable Jack 3.5 a Doble RCA',18000.00,179,'Audio','CAB-JAC-7012','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
 	 ('Amplificador Auriculares 4 Salidas',95000.00,2,'Audio','AMP-AUR-7011','2026-06-22 12:27:58.663','2026-06-22 12:27:58.663',true),
 	 ('Pantalón Jogging Algodón',38000.00,152,'Indumentaria','PAN-JOG-8004','2026-06-25 09:31:41.35302','2026-06-25 09:31:41.35302',true),
@@ -1175,7 +1192,7 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Refrigeración Líquida 240mm',240000.00,25,'Hardware','REF-LIQ-4006','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
 	 ('Cooler CPU por Aire RGB',75000.00,80,'Hardware','COO-AIR-4008','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
 	 ('Disco Duro HDD 2TB 7200RPM',90000.00,65,'Hardware','HDD-2TB-4009','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true);
-INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+insert into public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) values
 	 ('Procesador Intel Core i5 12400F',310000.00,40,'Hardware','CPU-I50-4010','2026-06-22 12:27:58.616585','2026-06-22 12:27:58.616585',true),
 	 ('Auriculares con Micrófono',78000.00,80,'Periféricos','AUR-MIC-3006','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
 	 ('Mousepad XL Tela Suave',25000.00,200,'Periféricos','PAD-XLS-3007','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
@@ -1186,7 +1203,7 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Parlantes 2.1 Escritorio',89000.00,45,'Periféricos','PAR-210-3012','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
 	 ('HUB USB 3.0 de 7 Puertos',35000.00,150,'Periféricos','HUB-USB-3013','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
 	 ('Gafas VR Realidad Virtual',850000.00,8,'Periféricos','GAF-VRV-3015','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true);
-INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+insert into public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) values
 	 ('Soporte CPU con Ruedas',22000.00,75,'Muebleria','SOP-CPU-2011','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
 	 ('Cajonera Bajo Escritorio',98000.00,25,'Muebleria','CAJ-BAJ-2012','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
 	 ('Estante Flotante Pared',18000.00,150,'Muebleria','EST-FLO-2013','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
@@ -1197,7 +1214,7 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Monitor Ultrawide 34"',650000.00,12,'Periféricos','MON-ULW-3003','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
 	 ('Webcam Full HD 1080p',95000.00,40,'Periféricos','WEB-FHD-3004','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
 	 ('Escritorio en L (Esquinero)',185000.00,15,'Muebleria','ESC-ESQ-2001','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true);
-INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+insert into public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) values
 	 ('Silla de Oficina Ergonómica',240000.00,30,'Muebleria','SIL-OFI-2002','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
 	 ('Biblioteca 5 Estantes',115000.00,22,'Muebleria','BIB-5ES-2003','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
 	 ('Mesa de Centro Ratona',85000.00,40,'Muebleria','MES-RAT-2004','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
@@ -1208,7 +1225,7 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Mesa Comedor Plegable',170000.00,18,'Muebleria','MES-COM-2009','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
 	 ('Banqueta Alta Barra',65000.00,50,'Muebleria','BAN-ALT-2010','2026-06-22 12:27:58.563793','2026-06-22 12:27:58.563793',true),
 	 ('Agenda 2027 Diaria',22000.00,50,'Indefinido','AGE-DIA-6006','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true);
-INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+insert into public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) values
 	 ('Cartuchera de Lona',7800.00,210,'Indefinido','CAR-LON-7007','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
 	 ('Post-it Notas Adhesivas',3500.00,800,'Indefinido','POS-ADH-8008','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
 	 ('Goma de Borrar Miga',500.00,2000,'Indefinido','GOM-MIG-9009','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
@@ -1219,7 +1236,7 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Resaltadores Pastel x6',6700.00,280,'Indefinido','RES-PAS-1414','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
 	 ('Zapatillas Vans Knu Skool',110000.00,10,'Indumentaria','IND-VAN-KNU','2026-03-09 12:42:26.964735','2026-06-05 09:41:41.46197',true),
 	 ('Placa de Video NVIDIA RTX 3050',550000.00,234,'Hardware','HW-NV-3050','2026-03-09 12:42:26.964735','2026-06-05 10:03:48.575321',true);
-INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+insert into public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) values
 	 ('Cargador',15651.00,1456,'Periféricos','HGJ-JYS-0786','2026-05-20 10:27:12.442462','2026-06-05 12:15:30.868022',true),
 	 ('Mochila Ecológica',8500.00,450,'Indefinido','MOC-ECO-1001','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
 	 ('Libreta Tapa Dura',4200.00,120,'Indefinido','LIB-TAP-2002','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
@@ -1227,12 +1244,12 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Taza Cerámica Mágica',6500.00,300,'Indefinido','TAZ-MAG-4004','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
 	 ('Llavero Destapador',1200.00,1500,'Indefinido','LLA-DES-5005','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true),
 	 ('Soporte Riser PCIe 4.0',1500.00,17,'Accesorios','ACC-PCI-40','2026-03-09 12:42:26.964735','2026-05-11 09:11:51.125973',true),
-	 ('Monitor Piola',15100.00,38,'Periféricos','ASFDCXZ','2026-05-06 09:03:48.235761',NULL,true),
+	 ('Monitor Piola',15100.00,38,'Periféricos','ASFDCXZ','2026-05-06 09:03:48.235761',null,true),
 	 ('Monitor Curvo 27 pulgadas',220000.00,11,'Periféricos','PER-MON-27C','2026-03-09 12:42:26.964735','2026-04-16 12:41:20.387107',true),
-	 ('Maquina de Fax',457870.00,30,'Hardware','HSHGGDSF','2026-05-06 08:53:54.589411',NULL,true);
-INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+	 ('Maquina de Fax',457870.00,30,'Hardware','HSHGGDSF','2026-05-06 08:53:54.589411',null,true);
+insert into public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) values
 	 ('Escritorio Piola!',8001.00,50,'Muebleria','JNS-CXD-6416','2026-03-09 12:42:26.964735','2026-05-12 11:25:18.891074',true),
-	 ('Botella Roja',29990.00,65,'Accesorios','NNAISDM','2026-05-06 08:52:30.432285',NULL,true),
+	 ('Botella Roja',29990.00,65,'Accesorios','NNAISDM','2026-05-06 08:52:30.432285',null,true),
 	 ('Mousepad Homero Dou''',10001.00,491,'Accesorios','ASXD-165-AL','2026-03-31 08:54:42.953551','2026-08-04 15:44:19.531046',true),
 	 ('Placa de Video RTX 4060 8GB',680000.00,18,'Hardware','GPU-406-4007','2026-06-22 12:27:58.616585','2026-08-04 15:59:09.424328',true),
 	 ('Juego de Ajedrez',50000.00,10,'Indefinido','NU OAN U85','2026-03-31 09:18:57.03676','2026-08-05 12:14:42.700164',true),
@@ -1241,46 +1258,48 @@ INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created
 	 ('Cuaderno',61456.00,16,'Indefinido','OEK-RXR-1706','2026-05-22 10:20:59.636738','2026-05-26 11:06:23.187104',false),
 	 ('Base Direct Drive Moza R12',800000.00,97,'SimRacing','SR-MOZ-R12','2026-03-09 12:42:26.964735','2026-04-16 12:41:20.758691',true),
 	 ('Bolígrafo Tinta Gel',1800.00,1196,'Indefinido','BOL-GEL-1515','2026-06-22 12:27:58.257875','2026-06-22 12:27:58.257875',true);
-INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+insert into public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) values
 	 ('Lata',14.00,61,'Indefinido','BAQ-LDR-8658','2026-06-05 08:38:04.779331','2026-09-08 11:58:22.935912',true),
 	 ('Mouse Performance',100000.00,49,'Periféricos','PER-MON-275','2026-04-01 12:50:36.972244','2026-09-16 14:30:35.739568',true),
 	 ('Auriculares Inalámbricos JBL Tune 770NC',120000.00,4,'Audio','AUD-JBL-770','2026-03-09 12:42:26.964735','2026-04-16 12:41:16.938246',true),
 	 ('Celular Zarpado',5000000.00,4,'Hardware','NAB-FDUB-658','2026-05-06 08:53:07.58381','2026-05-08 08:49:55.726121',true),
 	 ('Escritorio Normal',40000.00,86,'Muebleria','BIU-USD-4445','2026-05-06 08:54:38.97244','2026-05-08 08:50:09.753917',true),
 	 ('Teclado Mecánico Redragon',110000.00,27,'Periféricos','PER-TEC-RED','2026-03-09 12:42:26.964735','2026-04-16 12:41:20.560128',true),
-	 ('Silla Gamer',41.00,3613,'Muebleria','KYY-KLN-5644','2026-05-21 09:53:39.423853',NULL,true),
+	 ('Silla Gamer',41.00,3613,'Muebleria','KYY-KLN-5644','2026-05-21 09:53:39.423853',null,true),
 	 ('wall',74654.00,124,'Indefinido','RJJ-PPN-7688','2026-05-20 10:15:11.126817','2026-05-26 12:47:16.566999',false),
-	 ('Bolsa de Tela Venom',516.00,156315,'Indefinido','QLZ-PBQ-1955','2026-05-20 13:09:47.880256',NULL,true),
-	 ('Cuaderno',61456.00,16,'Indefinido','LBQ-WUZ-3721','2026-05-22 10:33:16.358872',NULL,true);
-INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+	 ('Bolsa de Tela Venom',516.00,156315,'Indefinido','QLZ-PBQ-1955','2026-05-20 13:09:47.880256',null,true),
+	 ('Cuaderno',61456.00,16,'Indefinido','LBQ-WUZ-3721','2026-05-22 10:33:16.358872',null,true);
+insert into public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) values
 	 ('Notebook',50001.00,49,'Hardware','NDNI-DSAD-259','2026-04-10 10:06:48.471102','2026-05-06 10:29:29.437869',true),
-	 ('Taza',840.00,99,'Indefinido','QJE-HTK-2878','2026-05-07 08:44:41.646347',NULL,true),
+	 ('Taza',840.00,99,'Indefinido','QJE-HTK-2878','2026-05-07 08:44:41.646347',null,true),
 	 ('Bolsa Producto',5.00,999987,'Indefinido','QOY-YYZ-0143','2026-05-07 12:31:43.612829','2026-05-22 11:01:40.392979',true),
-	 ('Botella Azul',15000.00,76,'Accesorios','MNNJLOIKS','2026-05-06 08:51:09.827784',NULL,true),
+	 ('Botella Azul',15000.00,76,'Accesorios','MNNJLOIKS','2026-05-06 08:51:09.827784',null,true),
 	 ('Pantalón Cargo Gabardina',6.00,75,'Indumentaria','PAN-CAR-8014','2026-06-25 09:31:41.35302','2026-07-29 15:48:09.301485',true),
 	 ('Micrófono Condensador USB',1200001.00,25,'Periféricos','MIC-CON-3005','2026-06-22 12:27:58.599835','2026-08-05 12:43:28.997467',true),
 	 ('Wallpaper',123.00,10,'Indefinido','ZSZ-MOQ-2071','2026-05-20 10:10:53.790316','2026-09-08 11:57:59.966598',true),
 	 ('Medias Invisibles Pack x3',9500.00,321,'Indumentaria','MED-INV-8005','2026-06-25 09:31:41.35302','2026-09-10 14:54:34.686006',true),
-	 ('Auriculares Inalambricos',5772220.00,321,'Periféricos','NASODNIO','2026-05-06 08:52:04.541972',NULL,true),
+	 ('Auriculares Inalambricos',5772220.00,321,'Periféricos','NASODNIO','2026-05-06 08:52:04.541972',null,true),
 	 ('Silla',123321.00,23131,'Muebleria','DSX-QGW-6722','2026-05-21 09:42:39.341004','2026-09-23 12:52:33.121203',true);
-INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+insert into public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) values
 	 ('Remera Térmica Compresión',28000.00,76,'Indumentaria','REM-TER-8007','2026-06-25 09:31:41.35302','2026-06-25 09:31:41.35302',true),
 	 ('Camisa Manga Corta Estampada',55000.00,50,'Indumentaria','CAM-MAN-8011','2026-06-25 09:31:41.35302','2026-06-25 09:31:41.35302',true),
 	 ('Botónera SimRacing (Button Box)',150000.00,4,'SimRacing','BOT-BOX-6011','2026-06-22 12:27:58.648406','2026-06-22 12:27:58.648406',true),
 	 ('Adaptador HDMI a DisplayPort',18000.00,199,'Periféricos','ADA-HDM-3014','2026-06-22 12:27:58.599835','2026-06-22 12:27:58.599835',true),
-	 ('Cafe',146.00,1569041,'Indefinido','YYO-BWZ-4636','2026-06-05 08:44:58.616104',NULL,true),
-	 ('Pava Electrica',29999.00,31,'Muebleria','HIR-TBV-3991','2026-05-06 09:32:26.028032',NULL,true),
+	 ('Cafe',146.00,1569041,'Indefinido','YYO-BWZ-4636','2026-06-05 08:44:58.616104',null,true),
+	 ('Pava Electrica',29999.00,31,'Muebleria','HIR-TBV-3991','2026-05-06 09:32:26.028032',null,true),
 	 ('Volante Logitech G29',500001.00,1,'SimRacing','SR-LOG-G29','2026-03-09 12:42:26.964735','2026-06-05 09:34:19.954549',true),
 	 ('Short Deportivo Microfibra',25000.00,154,'Indumentaria','SHO-DEP-8008','2026-06-25 09:31:41.35302','2026-06-25 09:31:41.35302',true),
 	 ('Bermuda Jean Cargo',48000.00,8,'Indumentaria','BER-JEA-8012','2026-06-25 09:31:41.35302','2026-06-25 09:31:41.35302',true),
 	 ('Gorra Visera Curva Regulable',15000.00,162,'Indumentaria','GOR-VIS-8003','2026-06-25 09:31:41.35302','2026-06-25 09:31:41.35302',true);
-INSERT INTO public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) VALUES
+insert into public.productos (nombre,precio,stock,categoria,codigo_barra,created_at,updated_at,activo) values
 	 ('Campera Rompeviento Ligera',65000.00,30,'Indumentaria','CAM-ROM-8006','2026-06-25 09:31:41.35302','2026-06-25 09:31:41.35302',true),
 	 ('Cinturón Lona Hebilla Metálica',14000.00,126,'Indumentaria','CIN-LON-8010','2026-06-25 09:31:41.35302','2026-06-25 09:31:41.35302',true),
 	 ('Edulcorante',4156.00,159,'Indefinido','DWC-IXX-6487','2026-06-29 11:31:44.454338','2026-08-05 12:42:28.313418',true),
-	 ('Paracaidas',14351.00,1453,'Indumentaria','PMI-VHO-4519','2026-09-02 11:26:31.14676',NULL,true),
+	 ('Paracaidas',14351.00,1453,'Indumentaria','PMI-VHO-4519','2026-09-02 11:26:31.14676',null,true),
 	 ('Monitores de Estudio Activos (Par)',450000.00,510,'Audio','MON-EST-7006','2026-06-22 12:27:58.663','2026-09-07 15:05:46.849052',true);
-INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
+
+-- Datos. {Registros de Precios: Historial de Cambios Fijos y Promociones}
+insert into public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) values
 	 (23,'Seguridad Hogar',72999.00,'2026-09-14 00:00:00+00','2026-10-10 23:59:59+00','2026-09-15 14:54:19.098059+00',140000.00,48,true,true),
 	 (26,'Bajá las Temps',12500.00,'2026-09-15 00:00:00+00','2026-10-05 23:59:59+00','2026-09-15 14:54:19.098059+00',280000.00,96,true,true),
 	 (27,'Todo RGB',21000.00,'2026-09-01 00:00:00+00','2026-09-30 23:59:59+00','2026-09-15 14:54:19.098059+00',195000.00,89,true,true),
@@ -1291,7 +1310,7 @@ INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inici
 	 (34,'Promo Hardware',82000.00,'2026-09-12 00:00:00+00','2026-09-26 23:59:59+00','2026-09-15 14:54:19.098059+00',120000.00,32,true,true),
 	 (35,'Velocidad SSD',105000.00,'2026-09-14 00:00:00+00','2026-10-01 23:59:59+00','2026-09-15 14:54:19.098059+00',185000.00,43,true,true),
 	 (36,'Sale Indumentaria',79999.00,'2026-09-10 00:00:00+00','2026-09-28 23:59:59+00','2026-09-15 14:54:19.098059+00',210000.00,62,true,true);
-INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
+insert into public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) values
 	 (39,'Chau Cables',46000.00,'2026-09-01 00:00:00+00','2026-10-15 23:59:59+00','2026-09-15 14:54:19.098059+00',85000.00,46,true,true),
 	 (40,'Conexión Segura',29500.00,'2026-09-10 00:00:00+00','2026-09-25 23:59:59+00','2026-09-15 14:54:19.098059+00',95000.00,69,true,true),
 	 (18,'Descuento Audio',14999.00,'2026-09-14 00:00:00+00','2026-09-30 23:59:59+00','2026-09-15 14:54:19.098059+00',160000.00,91,true,true),
@@ -1302,7 +1321,7 @@ INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inici
 	 (17,'Sale Influencer',34999.00,'2026-09-05 00:00:00+00','2026-10-15 23:59:59+00','2026-09-15 14:54:19.098059+00',110000.00,68,true,true),
 	 (24,'Refrigeración 15%',38500.00,'2026-09-05 00:00:00+00','2026-09-30 23:59:59+00','2026-09-15 14:54:19.098059+00',65000.00,41,true,true),
 	 (45,'asddsa',361.00,'2026-09-02 14:58:00+00','2026-09-30 06:58:00+00','2026-09-15 14:58:22.48088+00',14000.00,97,true,true);
-INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
+insert into public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) values
 	 (15,'Semana Ergonomía',69999.00,'2026-09-15 00:00:00+00','2026-10-05 23:59:59+00','2026-09-15 14:54:19.098059+00',95000.00,26,true,true),
 	 (19,'Cuidá tus Ojos',37999.00,'2026-09-01 00:00:00+00','2026-10-31 23:59:59+00','2026-09-15 14:54:19.098059+00',135000.00,72,true,true),
 	 (25,'Modding Week',31999.00,'2026-09-10 00:00:00+00','2026-09-20 23:59:59+00','2026-09-15 14:54:19.098059+00',380000.00,92,true,false),
@@ -1312,78 +1331,80 @@ INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inici
 	 (11,'Derrapes al 15%',159999.00,'2026-09-10 00:00:00+00','2026-10-10 23:59:59+00','2026-09-15 14:54:19.098059+00',450000.00,64,true,true),
 	 (82,'asd',170000.00,'2026-09-09 02:30:00+00','2026-09-25 14:28:00+00','2026-09-16 14:28:25.005623+00',850000.00,80,true,true),
 	 (147,'auris',1154444.00,'2026-09-15 15:15:00+00','2026-09-24 15:15:00+00','2026-09-16 15:15:16.617543+00',5772220.00,80,true,true),
-	 (154,NULL,1.00,'2026-09-15 15:15:00+00','2026-09-25 15:15:00+00','2026-09-16 15:15:35.097125+00',1200001.00,100,true,true);
-INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
-	 (1,'Cambio de precio fijo',50000.00,'2026-03-12 11:51:01.439941+00','2026-03-12 11:51:01.439941+00','2026-03-12 11:51:01.439941+00',5.00,NULL,false,false),
-	 (1,'Cambio de precio fijo',5000.00,'2026-03-12 11:51:19.042781+00','2026-03-12 11:51:19.042781+00','2026-03-12 11:51:19.042781+00',50000.00,NULL,false,false),
-	 (3,'Cambio de precio fijo',500000.00,'2026-03-12 11:58:04.020623+00','2026-03-12 11:58:04.020623+00','2026-03-12 11:58:04.020623+00',300000.00,NULL,false,false),
-	 (10,'Cambio de precio fijo',1500000.00,'2026-03-12 11:58:43.665482+00','2026-03-12 11:58:43.665482+00','2026-03-12 11:58:43.665482+00',45000.00,NULL,false,false),
-	 (10,'Cambio de precio fijo',150000.00,'2026-03-12 11:59:03.881449+00','2026-03-12 11:59:03.881449+00','2026-03-12 11:59:03.881449+00',1500000.00,NULL,false,false),
-	 (10,'Cambio de precio fijo',1500.00,'2026-03-12 12:14:39.520234+00','2026-03-12 12:14:39.520234+00','2026-03-12 12:14:39.520234+00',150000.00,NULL,false,false),
-	 (5,'Cambio de precio fijo',8000.00,'2026-03-18 11:19:51.047676+00','2026-03-18 11:19:51.047676+00','2026-03-18 11:19:51.047676+00',280000.00,NULL,false,false),
-	 (1,'Cambio de precio fijo',50000.00,'2026-04-17 12:43:29.136912+00','2026-04-17 12:43:29.136912+00','2026-04-17 12:43:29.136912+00',5000.00,NULL,false,false),
-	 (1,'Cambio de precio fijo',5000.00,'2026-04-17 12:46:44.894606+00','2026-04-17 12:46:44.894606+00','2026-04-17 12:46:44.894606+00',50000.00,NULL,false,false),
-	 (2,'Cambio de precio fijo',550000.00,'2026-04-17 12:47:02.776687+00','2026-04-17 12:47:02.776687+00','2026-04-17 12:47:02.776687+00',450000.00,NULL,false,false);
-INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
-	 (15,'Cambio de precio fijo',5000.00,'2026-04-17 12:47:18.936461+00','2026-04-17 12:47:18.936461+00','2026-04-17 12:47:18.936461+00',500000.00,NULL,false,false),
-	 (15,'Cambio de precio fijo',50000.00,'2026-05-05 09:00:35.692983+00','2026-05-05 09:00:35.692983+00','2026-05-05 09:00:35.692983+00',5000.00,NULL,false,false),
-	 (15,'Cambio de precio fijo',50001.00,'2026-05-06 10:29:29.437869+00','2026-05-06 10:29:29.437869+00','2026-05-06 10:29:29.437869+00',50000.00,NULL,false,false),
-	 (5,'Cambio de precio fijo',8001.00,'2026-05-12 11:25:18.891074+00','2026-05-12 11:25:18.891074+00','2026-05-12 11:25:18.891074+00',8000.00,NULL,false,false),
-	 (12,'Cambio de precio fijo',10001.00,'2026-05-12 11:32:01.944875+00','2026-05-12 11:32:01.944875+00','2026-05-12 11:32:01.944875+00',10000.00,NULL,false,false),
-	 (3,'Cambio de precio fijo',500001.00,'2026-06-05 09:34:19.954549+00','2026-06-05 09:34:19.954549+00','2026-06-05 09:34:19.954549+00',500000.00,NULL,false,false),
-	 (6,'Cambio de precio fijo',130000.00,'2026-08-03 10:12:33.444555+00','2026-08-03 10:12:33.444555+00','2026-08-03 10:12:33.444555+00',125000.00,NULL,false,false),
-	 (8,'Cambio de precio fijo',215000.00,'2026-08-05 09:00:00.123456+00','2026-08-05 09:00:00.123456+00','2026-08-05 09:00:00.123456+00',210000.00,NULL,false,false),
-	 (10,'Cambio de precio fijo',2000.00,'2026-08-08 14:20:10.789456+00','2026-08-08 14:20:10.789456+00','2026-08-08 14:20:10.789456+00',1500.00,NULL,false,false),
-	 (12,'Cambio de precio fijo',10500.00,'2026-08-10 16:45:22.333222+00','2026-08-10 16:45:22.333222+00','2026-08-10 16:45:22.333222+00',10001.00,NULL,false,false);
-INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
-	 (13,'Cambio de precio fijo',53000.00,'2026-08-12 11:15:33.555444+00','2026-08-12 11:15:33.555444+00','2026-08-12 11:15:33.555444+00',52000.00,NULL,false,false),
-	 (15,'Cambio de precio fijo',51000.00,'2026-08-15 08:30:40.111999+00','2026-08-15 08:30:40.111999+00','2026-08-15 08:30:40.111999+00',50001.00,NULL,false,false),
-	 (18,'Cambio de precio fijo',32000.00,'2026-08-18 13:22:55.777888+00','2026-08-18 13:22:55.777888+00','2026-08-18 13:22:55.777888+00',31000.00,NULL,false,false),
-	 (20,'Cambio de precio fijo',465000.00,'2026-08-20 17:10:12.333444+00','2026-08-20 17:10:12.333444+00','2026-08-20 17:10:12.333444+00',460000.00,NULL,false,false),
-	 (3,'Cambio de precio fijo',510000.00,'2026-08-22 10:05:20.999111+00','2026-08-22 10:05:20.999111+00','2026-08-22 10:05:20.999111+00',500001.00,NULL,false,false),
-	 (4,'Cambio de precio fijo',820000.00,'2026-08-25 12:40:15.444333+00','2026-08-25 12:40:15.444333+00','2026-08-25 12:40:15.444333+00',800000.00,NULL,false,false),
-	 (16,'Cambio de precio fijo',16500.00,'2026-07-08 11:50:44.789123+00','2026-07-08 11:50:44.789123+00','2026-07-08 11:50:44.789123+00',15000.00,NULL,false,false),
-	 (17,'Cambio de precio fijo',27000.00,'2026-07-10 16:22:11.123456+00','2026-07-10 16:22:11.123456+00','2026-07-10 16:22:11.123456+00',25000.00,NULL,false,false),
-	 (18,'Cambio de precio fijo',31000.00,'2026-07-12 08:30:15.654321+00','2026-07-12 08:30:15.654321+00','2026-07-12 08:30:15.654321+00',29990.00,NULL,false,false),
-	 (19,'Cambio de precio fijo',34000.00,'2026-07-15 14:15:22.987654+00','2026-07-15 14:15:22.987654+00','2026-07-15 14:15:22.987654+00',35000.00,NULL,false,false);
-INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
-	 (20,'Cambio de precio fijo',460000.00,'2026-07-18 09:40:11.111222+00','2026-07-18 09:40:11.111222+00','2026-07-18 09:40:11.111222+00',457870.00,NULL,false,false),
-	 (21,'Cambio de precio fijo',18500.00,'2026-07-20 17:20:30.333444+00','2026-07-20 17:20:30.333444+00','2026-07-20 17:20:30.333444+00',18000.00,NULL,false,false),
-	 (22,'Cambio de precio fijo',15500.00,'2026-07-22 11:05:40.555666+00','2026-07-22 11:05:40.555666+00','2026-07-22 11:05:40.555666+00',15100.00,NULL,false,false),
-	 (1,'Cambio de precio fijo',52000.00,'2026-07-25 08:25:50.777888+00','2026-07-25 08:25:50.777888+00','2026-07-25 08:25:50.777888+00',50000.00,NULL,false,false),
-	 (2,'Cambio de precio fijo',490000.00,'2026-07-28 13:50:05.222111+00','2026-07-28 13:50:05.222111+00','2026-07-28 13:50:05.222111+00',480000.00,NULL,false,false),
-	 (5,'Cambio de precio fijo',8500.00,'2026-08-01 15:10:15.999+00','2026-08-01 15:10:15.999+00','2026-08-01 15:10:15.999+00',8001.00,NULL,false,false),
-	 (2,'Cambio de precio fijo',480000.00,'2026-06-10 10:12:30.123456+00','2026-06-10 10:12:30.123456+00','2026-06-10 10:12:30.123456+00',550000.00,NULL,false,false),
-	 (4,'Cambio de precio fijo',750000.00,'2026-06-12 14:05:11.987654+00','2026-06-12 14:05:11.987654+00','2026-06-12 14:05:11.987654+00',800000.00,NULL,false,false),
-	 (4,'Cambio de precio fijo',800000.00,'2026-06-15 09:22:45.444333+00','2026-06-15 09:22:45.444333+00','2026-06-15 09:22:45.444333+00',750000.00,NULL,false,false),
-	 (6,'Cambio de precio fijo',125000.00,'2026-06-18 11:40:15.111222+00','2026-06-18 11:40:15.111222+00','2026-06-18 11:40:15.111222+00',120000.00,NULL,false,false);
-INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
-	 (7,'Cambio de precio fijo',115000.00,'2026-06-20 15:10:50.555666+00','2026-06-20 15:10:50.555666+00','2026-06-20 15:10:50.555666+00',110000.00,NULL,false,false),
-	 (8,'Cambio de precio fijo',210000.00,'2026-06-22 08:33:22.777888+00','2026-06-22 08:33:22.777888+00','2026-06-22 08:33:22.777888+00',220000.00,NULL,false,false),
-	 (9,'Cambio de precio fijo',48000.00,'2026-06-25 13:50:05.333444+00','2026-06-25 13:50:05.333444+00','2026-06-25 13:50:05.333444+00',45000.00,NULL,false,false),
-	 (11,'Cambio de precio fijo',16000.00,'2026-06-28 10:15:40.222111+00','2026-06-28 10:15:40.222111+00','2026-06-28 10:15:40.222111+00',15000.00,NULL,false,false),
-	 (13,'Cambio de precio fijo',52000.00,'2026-07-02 14:20:11.999+00','2026-07-02 14:20:11.999+00','2026-07-02 14:20:11.999+00',50000.00,NULL,false,false),
-	 (14,'Cambio de precio fijo',7900000.00,'2026-07-05 09:12:33.444555+00','2026-07-05 09:12:33.444555+00','2026-07-05 09:12:33.444555+00',8000000.00,NULL,false,false),
-	 (135,NULL,80000.00,'2026-09-18 15:40:00+00','2026-09-25 15:40:00+00','2026-09-18 15:40:26.52453+00',800000.00,90,true,true),
+	 (154,null,1.00,'2026-09-15 15:15:00+00','2026-09-25 15:15:00+00','2026-09-16 15:15:35.097125+00',1200001.00,100,true,true);
+insert into public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) values
+	 (1,'Cambio de precio fijo',50000.00,'2026-03-12 11:51:01.439941+00','2026-03-12 11:51:01.439941+00','2026-03-12 11:51:01.439941+00',5.00,null,false,false),
+	 (1,'Cambio de precio fijo',5000.00,'2026-03-12 11:51:19.042781+00','2026-03-12 11:51:19.042781+00','2026-03-12 11:51:19.042781+00',50000.00,null,false,false),
+	 (3,'Cambio de precio fijo',500000.00,'2026-03-12 11:58:04.020623+00','2026-03-12 11:58:04.020623+00','2026-03-12 11:58:04.020623+00',300000.00,null,false,false),
+	 (10,'Cambio de precio fijo',1500000.00,'2026-03-12 11:58:43.665482+00','2026-03-12 11:58:43.665482+00','2026-03-12 11:58:43.665482+00',45000.00,null,false,false),
+	 (10,'Cambio de precio fijo',150000.00,'2026-03-12 11:59:03.881449+00','2026-03-12 11:59:03.881449+00','2026-03-12 11:59:03.881449+00',1500000.00,null,false,false),
+	 (10,'Cambio de precio fijo',1500.00,'2026-03-12 12:14:39.520234+00','2026-03-12 12:14:39.520234+00','2026-03-12 12:14:39.520234+00',150000.00,null,false,false),
+	 (5,'Cambio de precio fijo',8000.00,'2026-03-18 11:19:51.047676+00','2026-03-18 11:19:51.047676+00','2026-03-18 11:19:51.047676+00',280000.00,null,false,false),
+	 (1,'Cambio de precio fijo',50000.00,'2026-04-17 12:43:29.136912+00','2026-04-17 12:43:29.136912+00','2026-04-17 12:43:29.136912+00',5000.00,null,false,false),
+	 (1,'Cambio de precio fijo',5000.00,'2026-04-17 12:46:44.894606+00','2026-04-17 12:46:44.894606+00','2026-04-17 12:46:44.894606+00',50000.00,null,false,false),
+	 (2,'Cambio de precio fijo',550000.00,'2026-04-17 12:47:02.776687+00','2026-04-17 12:47:02.776687+00','2026-04-17 12:47:02.776687+00',450000.00,null,false,false);
+insert into public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) values
+	 (15,'Cambio de precio fijo',5000.00,'2026-04-17 12:47:18.936461+00','2026-04-17 12:47:18.936461+00','2026-04-17 12:47:18.936461+00',500000.00,null,false,false),
+	 (15,'Cambio de precio fijo',50000.00,'2026-05-05 09:00:35.692983+00','2026-05-05 09:00:35.692983+00','2026-05-05 09:00:35.692983+00',5000.00,null,false,false),
+	 (15,'Cambio de precio fijo',50001.00,'2026-05-06 10:29:29.437869+00','2026-05-06 10:29:29.437869+00','2026-05-06 10:29:29.437869+00',50000.00,null,false,false),
+	 (5,'Cambio de precio fijo',8001.00,'2026-05-12 11:25:18.891074+00','2026-05-12 11:25:18.891074+00','2026-05-12 11:25:18.891074+00',8000.00,null,false,false),
+	 (12,'Cambio de precio fijo',10001.00,'2026-05-12 11:32:01.944875+00','2026-05-12 11:32:01.944875+00','2026-05-12 11:32:01.944875+00',10000.00,null,false,false),
+	 (3,'Cambio de precio fijo',500001.00,'2026-06-05 09:34:19.954549+00','2026-06-05 09:34:19.954549+00','2026-06-05 09:34:19.954549+00',500000.00,null,false,false),
+	 (6,'Cambio de precio fijo',130000.00,'2026-08-03 10:12:33.444555+00','2026-08-03 10:12:33.444555+00','2026-08-03 10:12:33.444555+00',125000.00,null,false,false),
+	 (8,'Cambio de precio fijo',215000.00,'2026-08-05 09:00:00.123456+00','2026-08-05 09:00:00.123456+00','2026-08-05 09:00:00.123456+00',210000.00,null,false,false),
+	 (10,'Cambio de precio fijo',2000.00,'2026-08-08 14:20:10.789456+00','2026-08-08 14:20:10.789456+00','2026-08-08 14:20:10.789456+00',1500.00,null,false,false),
+	 (12,'Cambio de precio fijo',10500.00,'2026-08-10 16:45:22.333222+00','2026-08-10 16:45:22.333222+00','2026-08-10 16:45:22.333222+00',10001.00,null,false,false);
+insert into public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) values
+	 (13,'Cambio de precio fijo',53000.00,'2026-08-12 11:15:33.555444+00','2026-08-12 11:15:33.555444+00','2026-08-12 11:15:33.555444+00',52000.00,null,false,false),
+	 (15,'Cambio de precio fijo',51000.00,'2026-08-15 08:30:40.111999+00','2026-08-15 08:30:40.111999+00','2026-08-15 08:30:40.111999+00',50001.00,null,false,false),
+	 (18,'Cambio de precio fijo',32000.00,'2026-08-18 13:22:55.777888+00','2026-08-18 13:22:55.777888+00','2026-08-18 13:22:55.777888+00',31000.00,null,false,false),
+	 (20,'Cambio de precio fijo',465000.00,'2026-08-20 17:10:12.333444+00','2026-08-20 17:10:12.333444+00','2026-08-20 17:10:12.333444+00',460000.00,null,false,false),
+	 (3,'Cambio de precio fijo',510000.00,'2026-08-22 10:05:20.999111+00','2026-08-22 10:05:20.999111+00','2026-08-22 10:05:20.999111+00',500001.00,null,false,false),
+	 (4,'Cambio de precio fijo',820000.00,'2026-08-25 12:40:15.444333+00','2026-08-25 12:40:15.444333+00','2026-08-25 12:40:15.444333+00',800000.00,null,false,false),
+	 (16,'Cambio de precio fijo',16500.00,'2026-07-08 11:50:44.789123+00','2026-07-08 11:50:44.789123+00','2026-07-08 11:50:44.789123+00',15000.00,null,false,false),
+	 (17,'Cambio de precio fijo',27000.00,'2026-07-10 16:22:11.123456+00','2026-07-10 16:22:11.123456+00','2026-07-10 16:22:11.123456+00',25000.00,null,false,false),
+	 (18,'Cambio de precio fijo',31000.00,'2026-07-12 08:30:15.654321+00','2026-07-12 08:30:15.654321+00','2026-07-12 08:30:15.654321+00',29990.00,null,false,false),
+	 (19,'Cambio de precio fijo',34000.00,'2026-07-15 14:15:22.987654+00','2026-07-15 14:15:22.987654+00','2026-07-15 14:15:22.987654+00',35000.00,null,false,false);
+insert into public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) values
+	 (20,'Cambio de precio fijo',460000.00,'2026-07-18 09:40:11.111222+00','2026-07-18 09:40:11.111222+00','2026-07-18 09:40:11.111222+00',457870.00,null,false,false),
+	 (21,'Cambio de precio fijo',18500.00,'2026-07-20 17:20:30.333444+00','2026-07-20 17:20:30.333444+00','2026-07-20 17:20:30.333444+00',18000.00,null,false,false),
+	 (22,'Cambio de precio fijo',15500.00,'2026-07-22 11:05:40.555666+00','2026-07-22 11:05:40.555666+00','2026-07-22 11:05:40.555666+00',15100.00,null,false,false),
+	 (1,'Cambio de precio fijo',52000.00,'2026-07-25 08:25:50.777888+00','2026-07-25 08:25:50.777888+00','2026-07-25 08:25:50.777888+00',50000.00,null,false,false),
+	 (2,'Cambio de precio fijo',490000.00,'2026-07-28 13:50:05.222111+00','2026-07-28 13:50:05.222111+00','2026-07-28 13:50:05.222111+00',480000.00,null,false,false),
+	 (5,'Cambio de precio fijo',8500.00,'2026-08-01 15:10:15.999+00','2026-08-01 15:10:15.999+00','2026-08-01 15:10:15.999+00',8001.00,null,false,false),
+	 (2,'Cambio de precio fijo',480000.00,'2026-06-10 10:12:30.123456+00','2026-06-10 10:12:30.123456+00','2026-06-10 10:12:30.123456+00',550000.00,null,false,false),
+	 (4,'Cambio de precio fijo',750000.00,'2026-06-12 14:05:11.987654+00','2026-06-12 14:05:11.987654+00','2026-06-12 14:05:11.987654+00',800000.00,null,false,false),
+	 (4,'Cambio de precio fijo',800000.00,'2026-06-15 09:22:45.444333+00','2026-06-15 09:22:45.444333+00','2026-06-15 09:22:45.444333+00',750000.00,null,false,false),
+	 (6,'Cambio de precio fijo',125000.00,'2026-06-18 11:40:15.111222+00','2026-06-18 11:40:15.111222+00','2026-06-18 11:40:15.111222+00',120000.00,null,false,false);
+insert into public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) values
+	 (7,'Cambio de precio fijo',115000.00,'2026-06-20 15:10:50.555666+00','2026-06-20 15:10:50.555666+00','2026-06-20 15:10:50.555666+00',110000.00,null,false,false),
+	 (8,'Cambio de precio fijo',210000.00,'2026-06-22 08:33:22.777888+00','2026-06-22 08:33:22.777888+00','2026-06-22 08:33:22.777888+00',220000.00,null,false,false),
+	 (9,'Cambio de precio fijo',48000.00,'2026-06-25 13:50:05.333444+00','2026-06-25 13:50:05.333444+00','2026-06-25 13:50:05.333444+00',45000.00,null,false,false),
+	 (11,'Cambio de precio fijo',16000.00,'2026-06-28 10:15:40.222111+00','2026-06-28 10:15:40.222111+00','2026-06-28 10:15:40.222111+00',15000.00,null,false,false),
+	 (13,'Cambio de precio fijo',52000.00,'2026-07-02 14:20:11.999+00','2026-07-02 14:20:11.999+00','2026-07-02 14:20:11.999+00',50000.00,null,false,false),
+	 (14,'Cambio de precio fijo',7900000.00,'2026-07-05 09:12:33.444555+00','2026-07-05 09:12:33.444555+00','2026-07-05 09:12:33.444555+00',8000000.00,null,false,false),
+	 (135,null,80000.00,'2026-09-18 15:40:00+00','2026-09-25 15:40:00+00','2026-09-18 15:40:26.52453+00',800000.00,90,true,true),
 	 (45,'bobobobobobo',361.00,'2026-09-02 17:58:00+00','2026-09-30 09:58:00+00','2026-09-18 15:51:22.751031+00',14000.00,97,true,true),
-	 (122,NULL,20000.00,'2026-09-15 14:30:00+00','2026-09-17 14:30:00+00','2026-09-16 14:30:53.843603+00',100000.00,80,true,false),
+	 (122,null,20000.00,'2026-09-15 14:30:00+00','2026-09-17 14:30:00+00','2026-09-16 14:30:53.843603+00',100000.00,80,true,false),
 	 (132,'silla de mamadera',49293.60,'2026-09-14 15:59:00+00','2026-09-23 15:59:00+00','2026-09-22 15:59:18.733348+00',123234.00,60,true,true);
-INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
+insert into public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) values
 	 (137,'Silla sin patas',24664.20,'2026-09-21 15:39:00+00','2026-09-23 15:39:00+00','2026-09-22 15:39:24.712361+00',123321.00,80,true,false),
 	 (99,'silaaa',14000.00,'2026-09-15 16:04:00+00','2026-09-30 16:04:00+00','2026-09-22 16:04:36.408812+00',28000.00,50,true,false),
 	 (137,'monogatari',24664.20,'2026-09-16 12:35:00+00','2026-09-30 12:35:00+00','2026-09-23 12:35:12.913859+00',123321.00,80,true,false),
 	 (25,'crazy',228000.00,'2026-09-16 12:39:00+00','2026-09-30 12:39:00+00','2026-09-23 12:39:54.25956+00',380000.00,40,true,true),
 	 (137,'chase',36996.30,'2026-09-16 12:41:00+00','2026-09-30 12:41:00+00','2026-09-23 12:41:14.4888+00',123321.00,70,true,false),
-	 (137,NULL,24664.20,'2026-09-16 12:52:00+00','2026-09-23 12:52:00+00','2026-09-23 12:53:02.165533+00',123321.00,80,true,true),
-	 (137,NULL,24664.20,'2026-09-16 18:52:00+00','2026-09-23 18:52:00+00','2026-09-23 12:53:26.636796+00',123321.00,80,true,false),
+	 (137,null,24664.20,'2026-09-16 12:52:00+00','2026-09-23 12:52:00+00','2026-09-23 12:53:02.165533+00',123321.00,80,true,true),
+	 (137,null,24664.20,'2026-09-16 18:52:00+00','2026-09-23 18:52:00+00','2026-09-23 12:53:26.636796+00',123321.00,80,true,false),
 	 (137,'a',24664.20,'2026-09-16 15:52:00+00','2026-09-23 15:52:00+00','2026-09-23 12:53:18.89339+00',123321.00,80,true,false),
-	 (137,NULL,24664.20,'2026-09-16 15:52:00+00','2026-09-23 15:52:00+00','2026-09-23 13:22:44.042252+00',123321.00,80,true,false),
-	 (137,NULL,24664.20,'2026-09-16 15:52:00+00','2026-09-23 15:52:00+00','2026-09-23 13:33:47.296849+00',123321.00,80,true,false);
-INSERT INTO public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) VALUES
+	 (137,null,24664.20,'2026-09-16 15:52:00+00','2026-09-23 15:52:00+00','2026-09-23 13:22:44.042252+00',123321.00,80,true,false),
+	 (137,null,24664.20,'2026-09-16 15:52:00+00','2026-09-23 15:52:00+00','2026-09-23 13:33:47.296849+00',123321.00,80,true,false);
+insert into public.registro_precios (id_producto,motivo,precio_nuevo,fecha_inicio,fecha_fin,created_at,precio_anterior,porcentaje_descuento,es_promocion,activa) values
 	 (137,'aaa',24664.20,'2026-09-16 15:52:00+00','2026-09-23 15:52:00+00','2026-09-23 13:42:06.911544+00',123321.00,80,true,false),
 	 (137,'asdc',24664.20,'2026-09-16 15:52:00+00','2026-09-23 15:52:00+00','2026-09-23 13:47:31.889679+00',123321.00,80,true,false),
 	 (137,'a',24664.20,'2026-09-16 15:52:00+00','2026-09-23 15:52:00+00','2026-09-23 13:53:00.252778+00',123321.00,80,true,true);
-INSERT INTO public.roles (rol,descripcion) VALUES
+
+-- Datos. {Roles y su Descripcion}
+insert into public.roles (rol,descripcion) values
 	 ('Administrador','Dueño de la Pagina, Tiene Acceso a Todas las Funciones de la Pagina'),
 	 ('Editor de Productos General','Puede editar todo sobre los Productos y ver el historial de cambios de precios'),
 	 ('Gestor de Precios','Puede editar los precios de los productos y ver el historial de cambios de precios'),
@@ -1391,48 +1412,52 @@ INSERT INTO public.roles (rol,descripcion) VALUES
 	 ('Rider','Puede cambiar el estado de sus pedidos'),
 	 ('Editor de Clientes','Puede editar todo sobre los Clientes'),
 	 ('Gestor de Pedidos General','Puede editar y ver todos los Pedidos');
-INSERT INTO public.usuarios (nombre,email,dni,contrasena,activo,created_at,updated_at) VALUES
-	 ('Lucía','lucia.gomez@email.com','35111222','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-01 09:00:00',NULL),
-	 ('Franco','franco.sosa@email.com','36222333','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-01 09:10:00',NULL),
-	 ('Valeria','valeria.perez@email.com','37333444','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-02 10:00:00',NULL),
-	 ('Esteban','esteban.quito@email.com','38444555','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-02 10:30:00',NULL),
-	 ('Camila','camila.rodriguez@email.com','39555666','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-03 11:00:00',NULL),
-	 ('Gonzalo','gonzalo.benitez@email.com','40666777','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-03 11:30:00',NULL),
-	 ('Agustina','agustina.rios@email.com','41777888','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-04 12:00:00',NULL),
-	 ('Micaela','micaela.acosta@email.com','42888999','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-04 12:30:00',NULL),
-	 ('Federico','federico.vazquez@email.com','43999000','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-05 13:00:00',NULL),
-	 ('Mateo','mateo.silva@email.com','45111222','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-06 14:00:00',NULL);
-INSERT INTO public.usuarios (nombre,email,dni,contrasena,activo,created_at,updated_at) VALUES
-	 ('Martina','martina.peralta@email.com','46222333','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-06 14:30:00',NULL),
-	 ('Joaquín','joaquin.gomez@email.com','47333444','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-07 15:00:00',NULL),
-	 ('Florencia','florencia.castro@email.com','48444555','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-07 15:30:00',NULL),
-	 ('Ignacio','ignacio.diaz@email.com','49555666','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-08 16:00:00',NULL),
-	 ('Antonella','antonella.romero@email.com','30666777','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-08 16:30:00',NULL),
-	 ('Bautista','bautista.medina@email.com','31777888','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-09 17:00:00',NULL),
-	 ('Catalina','catalina.flores@email.com','32888999','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-09 17:30:00',NULL),
-	 ('Thiago','thiago.benitez@email.com','33999000','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-10 18:00:00',NULL),
-	 ('Delfina','delfina.sanchez@email.com','34000111','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-10 18:30:00',NULL),
-	 ('Facundo','facundo.torres@email.com','35111333','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-11 09:00:00',NULL);
-INSERT INTO public.usuarios (nombre,email,dni,contrasena,activo,created_at,updated_at) VALUES
-	 ('Milagros','milagros.suarez@email.com','36222444','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-11 09:30:00',NULL),
-	 ('Santino','santino.ortiz@email.com','37333555','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-12 10:00:00',NULL),
-	 ('Juan','juan@gmail.com','41864158','$2b$12$StfyY0SPJUSTW1hoKTGCjOdBAc021aagr0VHGb6x/RZM6LWEOT9Hy',true,'2026-05-12 10:15:40.30004',NULL),
+
+-- Datos. {Usuarios con Permisos}
+insert into public.usuarios (nombre,email,dni,contrasena,activo,created_at,updated_at) values
+	 ('Lucía','lucia.gomez@email.com','35111222','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-01 09:00:00',null),
+	 ('Franco','franco.sosa@email.com','36222333','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-01 09:10:00',null),
+	 ('Valeria','valeria.perez@email.com','37333444','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-02 10:00:00',null),
+	 ('Esteban','esteban.quito@email.com','38444555','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-02 10:30:00',null),
+	 ('Camila','camila.rodriguez@email.com','39555666','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-03 11:00:00',null),
+	 ('Gonzalo','gonzalo.benitez@email.com','40666777','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-03 11:30:00',null),
+	 ('Agustina','agustina.rios@email.com','41777888','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-04 12:00:00',null),
+	 ('Micaela','micaela.acosta@email.com','42888999','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-04 12:30:00',null),
+	 ('Federico','federico.vazquez@email.com','43999000','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-05 13:00:00',null),
+	 ('Mateo','mateo.silva@email.com','45111222','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-06 14:00:00',null);
+insert into public.usuarios (nombre,email,dni,contrasena,activo,created_at,updated_at) values
+	 ('Martina','martina.peralta@email.com','46222333','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-06 14:30:00',null),
+	 ('Joaquín','joaquin.gomez@email.com','47333444','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-07 15:00:00',null),
+	 ('Florencia','florencia.castro@email.com','48444555','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-07 15:30:00',null),
+	 ('Ignacio','ignacio.diaz@email.com','49555666','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-08 16:00:00',null),
+	 ('Antonella','antonella.romero@email.com','30666777','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-08 16:30:00',null),
+	 ('Bautista','bautista.medina@email.com','31777888','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-09 17:00:00',null),
+	 ('Catalina','catalina.flores@email.com','32888999','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-09 17:30:00',null),
+	 ('Thiago','thiago.benitez@email.com','33999000','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-10 18:00:00',null),
+	 ('Delfina','delfina.sanchez@email.com','34000111','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-10 18:30:00',null),
+	 ('Facundo','facundo.torres@email.com','35111333','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-11 09:00:00',null);
+insert into public.usuarios (nombre,email,dni,contrasena,activo,created_at,updated_at) values
+	 ('Milagros','milagros.suarez@email.com','36222444','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-11 09:30:00',null),
+	 ('Santino','santino.ortiz@email.com','37333555','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-12 10:00:00',null),
+	 ('Juan','juan@gmail.com','41864158','$2b$12$StfyY0SPJUSTW1hoKTGCjOdBAc021aagr0VHGb6x/RZM6LWEOT9Hy',true,'2026-05-12 10:15:40.30004',null),
 	 ('Leandro','lean@gmail.com','48684486','$2b$12$StfyY0SPJUSTW1hoKTGCjOdBAc021aagr0VHGb6x/RZM6LWEOT9Hy',true,'2026-05-12 10:16:24.754034','2026-05-26 09:10:58.301049'),
 	 ('Cris','cris@gmail.com','14774476','$2b$12$KKSJrao5FDLoi9eo81/q8ull/V5hfvS1n.wavEg4fhvnRYwXvHw82',true,'2026-05-12 10:17:01.391533','2026-08-03 12:54:41.851516'),
-	 ('Tomas','pela@gmail.com','48648846','$2b$12$QoynFBdLMa.IkEw9QPxz2.LRcrNU8pYM1jE.hhRucws629aN0R1Y2',true,'2026-05-12 10:18:20.79238',NULL),
-	 ('Victoria','victoria.ruiz@email.com','38444666','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-12 10:30:00',NULL),
-	 ('Lautaro','lautaro.jimenez@email.com','39555777','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-13 11:00:00',NULL),
-	 ('Abril','abril.moreno@email.com','40666888','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-13 11:30:00',NULL),
-	 ('Ciro','ciro.alvarez@email.com','41777999','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-14 12:00:00',NULL);
-INSERT INTO public.usuarios (nombre,email,dni,contrasena,activo,created_at,updated_at) VALUES
-	 ('Zoe','zoe.castillo@email.com','42888111','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-14 12:30:00',NULL),
-	 ('Benjamín','benjamin.gimenez@email.com','43999222','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-15 13:00:00',NULL),
-	 ('Emma','emma.vera@email.com','44000333','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-15 13:30:00',NULL),
+	 ('Tomas','pela@gmail.com','48648846','$2b$12$QoynFBdLMa.IkEw9QPxz2.LRcrNU8pYM1jE.hhRucws629aN0R1Y2',true,'2026-05-12 10:18:20.79238',null),
+	 ('Victoria','victoria.ruiz@email.com','38444666','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-12 10:30:00',null),
+	 ('Lautaro','lautaro.jimenez@email.com','39555777','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-13 11:00:00',null),
+	 ('Abril','abril.moreno@email.com','40666888','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-13 11:30:00',null),
+	 ('Ciro','ciro.alvarez@email.com','41777999','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-14 12:00:00',null);
+insert into public.usuarios (nombre,email,dni,contrasena,activo,created_at,updated_at) values
+	 ('Zoe','zoe.castillo@email.com','42888111','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-14 12:30:00',null),
+	 ('Benjamín','benjamin.gimenez@email.com','43999222','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-15 13:00:00',null),
+	 ('Emma','emma.vera@email.com','44000333','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-15 13:30:00',null),
 	 ('Matias','mati@gmail.com','41868648','$2b$12$TOHoFhGpgQhEzgWxgLEZ3uYbdDZLK5wwrWxClIOLxHmr/04xKec8S',true,'2026-05-12 10:18:51.450352','2026-08-28 14:20:02.454958'),
-	 ('Bean','bean@gmail.com','16541865','$2b$12$JUV3tBxQDn5wRAtMmx4u4eYFpQY7waq5sAV3Le7cKucy3icMn5w/q',true,'2026-09-02 13:46:13.797053',NULL),
+	 ('Bean','bean@gmail.com','16541865','$2b$12$JUV3tBxQDn5wRAtMmx4u4eYFpQY7waq5sAV3Le7cKucy3icMn5w/q',true,'2026-09-02 13:46:13.797053',null),
 	 ('Julieta','julieta.mendoza@email.com','44000111','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-06-05 13:30:00','2026-09-07 13:08:34.84899'),
 	 ('Maximo','manueljuarezfenix@gmail.com','42638965','$2b$12$zn9giavOcZZL8Dm5sGZ74u.6l9FdI4kFPX/pmMLoquoRbIpk9BKle',true,'2026-05-11 11:57:59.966549','2026-05-11 11:57:59.966549');
-INSERT INTO public.usuarios_roles (id_usuario,id_rol) VALUES
+
+-- Datos. {Usuarios y Sus Multiples Roles (Conexion)}
+insert into public.usuarios_roles (id_usuario,id_rol) values
 	 (8,3),
 	 (9,4),
 	 (10,5),
@@ -1443,7 +1468,7 @@ INSERT INTO public.usuarios_roles (id_usuario,id_rol) VALUES
 	 (16,6),
 	 (18,3),
 	 (19,4);
-INSERT INTO public.usuarios_roles (id_usuario,id_rol) VALUES
+insert into public.usuarios_roles (id_usuario,id_rol) values
 	 (20,5),
 	 (21,6),
 	 (23,3),
@@ -1454,7 +1479,7 @@ INSERT INTO public.usuarios_roles (id_usuario,id_rol) VALUES
 	 (30,5),
 	 (31,6),
 	 (33,3);
-INSERT INTO public.usuarios_roles (id_usuario,id_rol) VALUES
+insert into public.usuarios_roles (id_usuario,id_rol) values
 	 (34,4),
 	 (35,5),
 	 (36,6),
@@ -1465,7 +1490,7 @@ INSERT INTO public.usuarios_roles (id_usuario,id_rol) VALUES
 	 (6,3),
 	 (4,7),
 	 (2,7);
-INSERT INTO public.usuarios_roles (id_usuario,id_rol) VALUES
+insert into public.usuarios_roles (id_usuario,id_rol) values
 	 (43,4),
 	 (27,2),
 	 (32,2),
@@ -1476,5 +1501,5 @@ INSERT INTO public.usuarios_roles (id_usuario,id_rol) VALUES
 	 (22,6),
 	 (17,2),
 	 (17,6);
-INSERT INTO public.usuarios_roles (id_usuario,id_rol) VALUES
+insert into public.usuarios_roles (id_usuario,id_rol) values
 	 (1,1);

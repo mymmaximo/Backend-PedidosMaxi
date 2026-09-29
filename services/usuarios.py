@@ -17,19 +17,19 @@ def get_usuario(
 ):
     # Orden y Acceso a Base de Datos
     if orden == 1:
-        query = text("SELECT * from get_all_usuarios () order by nombre asc")
+        query = text("select * from get_all_usuarios () order by nombre asc")
     elif orden == 2:
-        query = text("SELECT * from get_all_usuarios () order by nombre desc")
+        query = text("select * from get_all_usuarios () order by nombre desc")
     elif orden == 3:
-        query = text("SELECT * from get_all_usuarios () order by id_rol asc")
+        query = text("select * from get_all_usuarios () order by id_rol asc")
     elif orden == 4:
-        query = text("SELECT * from get_all_usuarios () order by id_rol desc")
+        query = text("select * from get_all_usuarios () order by id_rol desc")
     elif orden == 5:
-        query = text("SELECT * from get_all_usuarios () order by created_at asc")
+        query = text("select * from get_all_usuarios () order by created_at asc")
     elif orden == 6:
-        query = text("SELECT * from get_all_usuarios () order by created_at desc")
+        query = text("select * from get_all_usuarios () order by created_at desc")
     else:
-        query = text("SELECT * from get_all_usuarios () order by id_rol asc")
+        query = text("select * from get_all_usuarios () order by id_rol asc")
     db_usuario = db.execute(query).mappings().all()
     if not db_usuario:
         return []
@@ -119,7 +119,7 @@ def login_usuarios(
         return None, None, None
     # Asignar Rol
     roles_query = db.execute(
-        text("SELECT id_rol FROM usuarios_roles WHERE id_usuario = :uid"), 
+        text("select id_rol FROM usuarios_roles where id_usuario = :uid"), 
         {"uid": usuario_db.id}
     ).fetchall()
     lista_roles = [r[0] for r in roles_query]
@@ -152,7 +152,7 @@ def create_usuario(
     # Asignar Roles en Base de Datos
     for rol in roles:
         db.execute(
-            text("INSERT INTO usuarios_roles (id_usuario, id_rol) VALUES (:uid, :rid)"), 
+            text("insert into usuarios_roles (id_usuario, id_rol) values (:uid, :rid)"), 
             {"uid": db_usuario.id, "rid": rol}
         )
     db.commit()
@@ -179,12 +179,12 @@ def update_usuario(
     # Asignar Roles
     if roles_nuevos is not None:
         db.execute(
-            text("DELETE FROM usuarios_roles WHERE id_usuario = :uid"), 
+            text("DELETE FROM usuarios_roles where id_usuario = :uid"), 
             {"uid": id_usuario}
         )
         for rol in roles_nuevos:
             db.execute(
-                text("INSERT INTO usuarios_roles (id_usuario, id_rol) VALUES (:uid, :rid)"), 
+                text("insert into usuarios_roles (id_usuario, id_rol) values (:uid, :rid)"), 
                 {"uid": id_usuario, "rid": rol}
             )
     db.commit()

@@ -60,7 +60,7 @@ def get_lista_favoritos_completa(
         bool_activo: Optional[bool] = None,
     ):
     # Acceder a Base de Datos
-    query = text("SELECT * FROM obtener_favoritos_cliente(:id_cliente)")
+    query = text("select * FROM obtener_favoritos_cliente(:id_cliente)")
     db_favoritos = db.execute(
         query, 
         {"id_cliente": id_cliente}).mappings().all()

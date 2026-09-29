@@ -20,15 +20,15 @@ def get_cliente(
 ):
     # Orden y Acceso a Base de Datos
     if orden == 1:
-        query = text("SELECT * from get_all_clientes () order by nombre asc")
+        query = text("select * from get_all_clientes () order by nombre asc")
     elif orden == 2:
-        query = text("SELECT * from get_all_clientes () order by nombre desc")
+        query = text("select * from get_all_clientes () order by nombre desc")
     elif orden == 3:
-        query = text("SELECT * from get_all_clientes () order by created_at asc")
+        query = text("select * from get_all_clientes () order by created_at asc")
     elif orden == 4:
-        query = text("SELECT * from get_all_clientes () order by created_at desc")
+        query = text("select * from get_all_clientes () order by created_at desc")
     else:
-        query = text("SELECT * from get_all_clientes () order by created_at desc")
+        query = text("select * from get_all_clientes () order by created_at desc")
     db_cliente = db.execute(query).mappings().all()
     if not db_cliente:
         return []
@@ -163,7 +163,7 @@ def get_cliente_id_direccion(
     db:Session,
     id_cliente: int
 ):
-    query = text("SELECT * from get_only_clientes ()")
+    query = text("select * from get_only_clientes ()")
     db_cliente = db.execute(query).mappings().all()
     direcciones_list = []
     id_direcciones = []
@@ -186,7 +186,7 @@ def get_cliente_id_direccion(
 def get_cliente_direccion(
     db: Session
 ):
-    query = text("SELECT * from get_all_clientes ()")
+    query = text("select * from get_all_clientes ()")
     db_cliente = db.execute(query).mappings().all()
     cliente_list = {}
     for i in db_cliente:

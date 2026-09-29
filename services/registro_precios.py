@@ -65,35 +65,35 @@ def get_historial_registros_precios(
 ):
     # Orden y Acceso a Base de Datos
     if orden == 1:
-        query = text("SELECT * from get_all_promociones () order by nombre asc")
+        query = text("select * from get_all_promociones () order by nombre asc")
     elif orden == 2:
-        query = text("SELECT * from get_all_promociones () order by nombre desc")
+        query = text("select * from get_all_promociones () order by nombre desc")
     elif orden == 3:
-        query = text("SELECT * from get_all_promociones () order by fecha_inicio asc")
+        query = text("select * from get_all_promociones () order by fecha_inicio asc")
     elif orden == 4:
-        query = text("SELECT * from get_all_promociones () order by fecha_inicio desc")
+        query = text("select * from get_all_promociones () order by fecha_inicio desc")
     elif orden == 5:
-        query = text("SELECT * from get_all_promociones () order by fecha_fin asc")
+        query = text("select * from get_all_promociones () order by fecha_fin asc")
     elif orden == 6:
-        query = text("SELECT * from get_all_promociones () order by fecha_fin desc")
+        query = text("select * from get_all_promociones () order by fecha_fin desc")
     elif orden == 7:
-        query = text("SELECT * from get_all_promociones () order by precio_nuevo asc")
+        query = text("select * from get_all_promociones () order by precio_nuevo asc")
     elif orden == 8:
-        query = text("SELECT * from get_all_promociones () order by precio_nuevo desc")
+        query = text("select * from get_all_promociones () order by precio_nuevo desc")
     elif orden == 9:
-        query = text("SELECT * from get_all_promociones () order by precio_anterior asc")
+        query = text("select * from get_all_promociones () order by precio_anterior asc")
     elif orden == 10:
-        query = text("SELECT * from get_all_promociones () order by precio_anterior desc")
+        query = text("select * from get_all_promociones () order by precio_anterior desc")
     elif orden == 11:
-        query = text("SELECT * from get_all_promociones () order by porcentaje_descuento asc")
+        query = text("select * from get_all_promociones () order by porcentaje_descuento asc")
     elif orden == 12:
-        query = text("SELECT * from get_all_promociones () order by porcentaje_descuento desc")
+        query = text("select * from get_all_promociones () order by porcentaje_descuento desc")
     elif orden == 13:
-        query = text("SELECT * from get_all_promociones () order by categoria asc")
+        query = text("select * from get_all_promociones () order by categoria asc")
     elif orden == 14:
-        query = text("SELECT * from get_all_promociones () order by categoria desc")
+        query = text("select * from get_all_promociones () order by categoria desc")
     else:
-        query = text("SELECT * from get_all_promociones () order by created_at desc")
+        query = text("select * from get_all_promociones () order by created_at desc")
     db_promocion = db.execute(query).mappings().all()
     if not db_promocion:
         return []

@@ -42,7 +42,7 @@ def get_pedidoxproducto(
         id_producto: int
 ):
     # Acceso a Base de Datos
-    query = text("SELECT * from obtener_productos_pedidos(:id)")
+    query = text("select * from obtener_productos_pedidos(:id)")
     db_pedido = db.execute(query, {"id": id_producto}).mappings().all()
     if not db_pedido:
         return False
@@ -94,7 +94,7 @@ def get_pedidoxid_pedido(
         id_pedidos: int
 ):
     # Acceso a la Base de Datos
-    query = text("SELECT * from obtener_id_pedido_pedidos(:id)")
+    query = text("select * from obtener_id_pedido_pedidos(:id)")
     db_pedido = db.execute(query, {"id": id_pedidos}).mappings().all()
     if not db_pedido:
         return False
@@ -173,11 +173,11 @@ def get_all_pedidos(
 ):
     # Orden
     if orden == 1:
-        query = text("SELECT * from obtener_all_pedidos() order by created_at asc")
+        query = text("select * from obtener_all_pedidos() order by created_at asc")
     elif orden == 2:
-        query = text("SELECT * from obtener_all_pedidos() order by created_at desc")
+        query = text("select * from obtener_all_pedidos() order by created_at desc")
     else:
-        query = text("SELECT * from obtener_all_pedidos() order by created_at desc")
+        query = text("select * from obtener_all_pedidos() order by created_at desc")
     db_pedido = db.execute(query).mappings().all()
     if not db_pedido:
         return []
@@ -293,11 +293,11 @@ def get_pedidoxcliente(
 ):
     # Orden y Acceso a Base de Datos
     if orden == 1:
-        query = text("SELECT * from obtener_clientes_pedidos(:id) order by created_at asc")
+        query = text("select * from obtener_clientes_pedidos(:id) order by created_at asc")
     elif orden == 2:
-        query = text("SELECT * from obtener_clientes_pedidos(:id) order by created_at desc")
+        query = text("select * from obtener_clientes_pedidos(:id) order by created_at desc")
     else:
-        query = text("SELECT * from obtener_clientes_pedidos(:id) order by created_at desc")
+        query = text("select * from obtener_clientes_pedidos(:id) order by created_at desc")
     db_pedido = db.execute(query, {"id": id_cliente}).mappings().all()
     if not db_pedido:
         return []

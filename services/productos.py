@@ -45,7 +45,7 @@ def get_producto(
     else: 
         print ("cargando desde base")
         # Acceso a la Base de Datps
-        query = text("SELECT * from get_all_productos () order by created_at desc")
+        query = text("select * from get_all_productos () order by created_at desc")
         db_producto = db.execute(query).mappings().all()
         if not db_producto:
             return []
