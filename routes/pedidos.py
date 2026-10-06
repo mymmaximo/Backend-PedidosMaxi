@@ -261,15 +261,6 @@ def create_detalles_pedido(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
-    # Verificacion. {Cliente, Administrador, Gestor de Precios}
-    true_cliente = usuario_logeado.get("id_cliente") == pedidios.id_cliente
-    roles = usuario_logeado.get("id_rol") or []
-    true_rol = any(rol in roles for rol in [1, 3])
-    if not (true_cliente or true_rol):
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN, 
-            detail="No tienes permiso para modificar esto."
-        )
     # Verificacion. {Lista de Detalles Vacia}
     if not detalle_pedido:
         raise HTTPException(
@@ -287,6 +278,15 @@ def create_detalles_pedido(
             detail="Pedido no encontrado"
         )
     pedidios = db_pedido[0]
+    # Verificacion. {Cliente, Administrador, Gestor de Precios}
+    true_cliente = usuario_logeado.get("id_cliente") == pedidios.id_cliente
+    roles = usuario_logeado.get("id_rol") or []
+    true_rol = any(rol in roles for rol in [1, 3])
+    if not (true_cliente or true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
+        )
     # Service. {Crear Detalles de Pedido}
     db_detalle = servi.create_detalle_pedido(
         db=db,
