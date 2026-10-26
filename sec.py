@@ -71,7 +71,7 @@ def crear_pase(
         encripto.update({
             "huella": crear_huella(request)
         })
-    expira = datetime.now(timezone.utc) + timedelta(minutes=120)
+    expira = datetime.now(timezone.utc) + timedelta(minutes=2)
     encripto.update({
         "exp": expira
     })
@@ -100,7 +100,13 @@ def obtener_usuario_actual(
     db: Session = Depends(get_db)
 ):
     token = request.cookies.get("token_seguro")
+    sesion_activa = request.cookies.get("sesion_activa")
     if not token:
+        if sesion_activa == "true":
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="SESION_EXPIRADA"
+            )
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="No se encontró el token de sesión legítimo."
@@ -109,7 +115,7 @@ def obtener_usuario_actual(
     if not payload:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="El Acceso es inválido o ha expirado."
+            detail="SESION_EXPIRADA"
         )
     huella_actual = crear_huella(request)
     huella_guardada = payload.get("huella")

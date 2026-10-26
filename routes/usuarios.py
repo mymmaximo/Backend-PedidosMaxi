@@ -81,8 +81,8 @@ def login_usuario(
     )
     response.set_cookie(
         key="sesion_activa", 
-        value="true", 
-        httponly=False,
+        value="true",
+        httponly=True,
         secure=True,
         samesite="none"
     )
@@ -119,7 +119,7 @@ def create_usuario(
     )
     if db_usuario_email:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED, 
+            status_code=status.HTTP_400_BAD_REQUEST, 
             detail="Email ya registrado"
         )
     # Service. {Comparar DNI}
@@ -159,9 +159,9 @@ def update_usuario(
             detail="No tienes permiso para modificar esto."
         )
     # Service. {Comparar Mail}
-    if usuario.email is not None:
+    if usuario.email:
         db_usuarios_email = crud.get_mail_usuario(
-            db, 
+            db,
             email_usuario=usuario.email
         )
         if db_usuarios_email and id_usuario != db_usuarios_email[0].id:
@@ -177,7 +177,7 @@ def update_usuario(
     )
     if db_usuario is None:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Usuario no encontrado"
         )
     return db_usuario
@@ -207,7 +207,7 @@ def delete_usuario(
     )
     if not success:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Usuario no encontrado"
         )
     return {"detail": "Usuario eliminado"}
@@ -235,12 +235,12 @@ def verificar_sesion (
         httponly=True,
         secure=True,
         samesite="none",
-        max_age=7200
+        max_age=120
     )
     response.set_cookie(
         key="sesion_activa",
         value="true",
-        httponly=False,
+        httponly=True,
         secure=True,
         samesite="none"
     )
@@ -268,7 +268,7 @@ def logout_sesion(
     # Service. {Cerrar Sesion}
     response.delete_cookie(
         key="sesion_activa",
-        httponly=False,
+        httponly=True,
         secure=True,
         samesite="none"
     )

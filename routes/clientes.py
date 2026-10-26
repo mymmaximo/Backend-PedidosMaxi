@@ -148,7 +148,7 @@ def login_cliente(
         httponly=True,
         secure=True,
         samesite="none",
-        max_age=7200
+        max_age=120
     )
     return {
         "access_token": token_seguro,
@@ -231,7 +231,7 @@ def update_cliente(
     )
     if db_cliente is None:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Cliente no encontrado"
         )
     return db_cliente
@@ -262,7 +262,7 @@ def delete_cliente(
     )
     if not success:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Cliente no encontrado"
         )
     return {"detail": "Cliente eliminado"}

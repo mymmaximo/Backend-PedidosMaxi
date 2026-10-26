@@ -79,7 +79,7 @@ def update_banners(
     )
     if db_banner is None:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Banners no encontrado"
         )
     return db_banner
@@ -109,7 +109,7 @@ def deact_banner(
     )
     if not success:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Banner no encontrado"
         )
     return {"detail": "Banner desactivado"}
@@ -139,7 +139,7 @@ def hard_delete_banner(
     )
     if not success:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail="Banner no encontrado"
         )
     return {"detail": "Banner eliminado"}

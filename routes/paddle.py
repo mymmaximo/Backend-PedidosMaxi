@@ -38,7 +38,7 @@ def crear_transaccion(
     for detalle in detalles:
         productos = db.query(Productos).filter(Productos.id == detalle.id_producto).first()
         nombre_producto = productos.nombre if productos else "Producto sin Nombre"
-        precio_centavos = str(int(detalle.precio_unitario * 100))
+        precio_centavos = str(int(round(detalle.precio_unitario * 100)))
         items_paddle.append({
             "quantity": detalle.cantidad,
             "price": {

@@ -33,15 +33,6 @@ def read_pedido(
     id_direccion_pedido: Optional[int] = None,
     metodo_pago_pedido: Optional[str] = None
     ):
-    # Verificacion. {Administrador, Gestor de Precios, Editor de Clientes}
-    true_cliente = usuario_logeado.get("id_cliente") == db_pedido[0].id_cliente
-    roles = usuario_logeado.get("id_rol") or []
-    true_rol = any(rol in roles for rol in [1, 3, 6])
-    if not (true_cliente or true_rol):
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN, 
-            detail="No tienes permiso para modificar esto."
-        )
     # Service. {Leer 1 Pedido}
     db_pedido = crud.get_pedido(
         db, 
@@ -52,8 +43,17 @@ def read_pedido(
     )
     if not db_pedido:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Pedido no encontrado"
+        )
+    # Verificacion. {Administrador, Gestor de Precios, Editor de Clientes}
+    true_cliente = usuario_logeado.get("id_cliente") == db_pedido[0].id_cliente
+    roles = usuario_logeado.get("id_rol") or []
+    true_rol = any(rol in roles for rol in [1, 3, 6])
+    if not (true_cliente or true_rol):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="No tienes permiso para modificar esto."
         )
     return db_pedido
 
@@ -83,7 +83,7 @@ def read_producto_pedido(
     )
     if db_pedidos is False: 
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Producto no encontrado"
         )
     return db_pedidos
@@ -134,6 +134,16 @@ def read_pedido_producto(
     db: Session = Depends(get_db),
     usuario_logeado: dict = Depends(obtener_usuario_actual)
 ):
+    # Service. {Leer 1 Pedido}
+    db_pedidos = crud.get_pedidoxid_pedido(
+        db,
+        id_pedido
+    )
+    if db_pedidos is False: 
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, 
+            detail="Pedido no encontrado"
+        )
     # Verificacion. {Cliente, Administrador, Gestor de Precios, Editor de Clientes}
     true_cliente = usuario_logeado.get("id_cliente") == db_pedidos.id_cliente
     roles = usuario_logeado.get("id_rol") or []
@@ -142,16 +152,6 @@ def read_pedido_producto(
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
             detail="No tienes permiso para modificar esto."
-        )
-    # Service. {Leer 1 Pedido}
-    db_pedidos = crud.get_pedidoxid_pedido(
-        db,
-        id_pedido
-    )
-    if db_pedidos is False: 
-        raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
-            detail="Pedido no encontrado"
         )
     return db_pedidos
 
@@ -274,7 +274,7 @@ def create_detalles_pedido(
     )
     if not db_pedido:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Pedido no encontrado"
         )
     pedidios = db_pedido[0]
@@ -319,7 +319,7 @@ def update_pedido(
     db_cliente = db.query(Clientes).filter(Clientes.id == pedido.id_cliente).first()
     if not db_cliente:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Cliente no encontrado"
         )
     # Service. {Encontrar Direccion}
@@ -329,7 +329,7 @@ def update_pedido(
     )
     if not db_direccion:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Direccion no encontrada"
         )
     # Service. {Actualizar Pedidos}
@@ -364,7 +364,7 @@ def delete_pedido(
     )
     if not success:
         raise HTTPException(
-            status_code=status.HTTP_404_not_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail="Pedido no encontrado"
         )
     return {"detail": "Pedido eliminado"}
@@ -450,7 +450,7 @@ async def webhook_paddle(
             return {"status": "ok"} 
         else:
             raise HTTPException(
-                status_code=status.HTTP_404_not_FOUND, 
+                status_code=status.HTTP_404_NOT_FOUND, 
                 detail="Pedido no encontrado"
             )
     return {"status": "ok", "message": "Evento ignorado"}

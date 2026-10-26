@@ -211,8 +211,6 @@ def get_all_pedidos(
                 "detalle_pedido": []
             }
         # Asignar Datos de Detalles
-        subtotal_detalle = i["cantidad"] * i["precio_unitario"]
-        db_pedidos[id_pedidios]["total"] += subtotal_detalle
         nuevo_detalle = {
             "id_detalle_pedido": i["id_detalles_pedido"],
             "cantidad": i["cantidad"],
@@ -320,7 +318,6 @@ def get_pedidoxcliente(
                 "metodo_pago": i["metodo_pago"],
                 "tiempo_estimado_entrega": i["tiempo_estimado_entrega"],
                 "tiempo_entrega": i["tiempo_entrega"],
-                "total": i["total"],
                 "created_at": i["created_at"],
                 "updated_at": i["updated_at"],
                 "total": i["total"],
@@ -409,8 +406,9 @@ def update_pedido(
     if not db_pedido:
         return None
     # Pedido Entregado asignacion de Tiempo de Entrega
-    if datos_pedido["estatus"] == 1:
-        datos_pedido["tiempo_entrega"] = (datetime.now() - db_pedido.created_at).days
+    if datos_pedido["estatus"] == 1 and db_pedido.created_at:
+        tiempo_ahora = datetime.now(db_pedido.created_at.tzinfo)
+        datos_pedido["tiempo_entrega"] = (tiempo_ahora - db_pedido.created_at).days
     for key, value in datos_pedido.items():
         setattr(db_pedido, key, value)
     db.commit()

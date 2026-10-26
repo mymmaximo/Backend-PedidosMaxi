@@ -107,8 +107,8 @@ def login_usuarios(
 ):
     usuario_db = db.query(Usuarios).filter(
         Usuarios.email == pase.email
-        ).first()
-    if not usuario_db:
+    ).first()
+    if not usuario_db or not usuario_db.activo:
         return None, None, None
     # Encriptar Contraseña
     contrasena_valida = verifica_sena(
@@ -136,7 +136,7 @@ def login_usuarios(
 
 # Codigo. {Crear Usuario}
 def create_usuario(
-        db: Session, 
+        db: Session,
         usuario: Usuarios_Crear
     ):
     datos_usuario = usuario.dict()
@@ -172,6 +172,8 @@ def update_usuario(
     roles_nuevos = usuarios_act.pop("id_rol", None)
     for key, value in usuarios_act.items():
         # Encriptar Contraseña
+        if value is None or (isinstance(value, str) and value.strip() == ""):
+            continue
         if key == "contrasena":
             contrasena_hash = get_contrasena_criptid(usuario.contrasena)
             value = contrasena_hash
