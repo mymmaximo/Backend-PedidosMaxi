@@ -71,7 +71,7 @@ def crear_pase(
         encripto.update({
             "huella": crear_huella(request)
         })
-    expira = datetime.now(timezone.utc) + timedelta(minutes=2)
+    expira = datetime.now(timezone.utc) + timedelta(hours=2)
     encripto.update({
         "exp": expira
     })
