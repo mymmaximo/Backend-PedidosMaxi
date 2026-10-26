@@ -77,7 +77,7 @@ def login_usuario(
         httponly=True,
         secure=True,
         samesite="none",
-        max_age=120
+        max_age=7200
     )
     response.set_cookie(
         key="sesion_activa", 
@@ -235,7 +235,7 @@ def verificar_sesion (
         httponly=True,
         secure=True,
         samesite="none",
-        max_age=120
+        max_age=7200
     )
     response.set_cookie(
         key="sesion_activa",

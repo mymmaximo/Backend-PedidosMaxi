@@ -148,7 +148,7 @@ def login_cliente(
         httponly=True,
         secure=True,
         samesite="none",
-        max_age=120
+        max_age=7200
     )
     return {
         "access_token": token_seguro,
